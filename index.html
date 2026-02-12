@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Gaming LE Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+                        url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png');
+            background-size: cover; background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+    <header class="h-64 flex items-center justify-center text-center hero-gradient border-b border-blue-900/50 shadow-2xl">
+        <div>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter uppercase italic text-white">Dynamic Gaming LE</h1>
+            <p class="text-blue-400 mt-2 uppercase tracking-widest text-xs font-bold">Official Resource Portal</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all shadow-xl group">
+                <i data-lucide="book" class="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1">Operations Manual</h3>
+                <p class="text-slate-400 text-sm">Full SOPs and procedures.</p>
+            </div>
+            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all shadow-xl group">
+                <i data-lucide="radio" class="w-8 h-8 text-green-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1">Radio Codes</h3>
+                <p class="text-slate-400 text-sm">Communication protocols.</p>
+            </div>
+            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all shadow-xl group">
+                <i data-lucide="car" class="w-8 h-8 text-purple-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1">Vehicle Database</h3>
+                <p class="text-slate-400 text-sm">Fleet spawn codes.</p>
+            </div>
+            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-red-500 transition-all shadow-xl group">
+                <i data-lucide="scale" class="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1">Penal Code</h3>
+                <p class="text-slate-400 text-sm">Laws and sanctions.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
