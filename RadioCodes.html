@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Codes | DG LE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+
+    <nav class="p-4 bg-slate-800/50 border-b border-slate-700 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span class="font-bold uppercase tracking-tight text-sm">Return to Dashboard</span>
+        </a>
+        <span class="text-xs text-slate-500 font-mono italic">SECURE ACCESS // RADIO_PROTOCOLS</span>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        <header class="mb-10">
+            <h1 class="text-4xl font-black uppercase italic italic">Radio Codes</h1>
+            <p class="text-slate-400">Communication protocols and 10-code quick reference.</p>
+        </header>
+
+        <div class="mb-8 relative">
+            <input type="text" placeholder="Search codes..." class="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-12 focus:outline-none focus:border-blue-500">
+            <i data-lucide="search" class="absolute left-4 top-3.5 text-slate-500 w-5 h-5"></i>
+        </div>
+
+        <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
+            <table class="w-full text-left">
+                <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
+                    <tr>
+                        <th class="px-6 py-4">Code</th>
+                        <th class="px-6 py-4">Meaning</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-700">
+                    <tr>
+                        <td class="px-6 py-4 font-mono text-blue-400">10-4</td>
+                        <td class="px-6 py-4">Acknowledgment / Message Received</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-mono text-blue-400">10-7</td>
+                        <td class="px-6 py-4 text-red-400">Out of Service</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-mono text-blue-400">10-8</td>
+                        <td class="px-6 py-4 text-green-400">In Service / Available</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-mono text-blue-400">10-20</td>
+                        <td class="px-6 py-4 text-slate-300">Location Request</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 font-mono text-blue-400">10-99</td>
+                        <td class="px-6 py-4 text-orange-500 font-bold">Warrant / Wanted Person</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
