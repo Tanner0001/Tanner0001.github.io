@@ -22,46 +22,66 @@
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <div class="mb-10 p-6 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-start gap-4 shadow-lg">
-            <i data-lucide="info" class="text-blue-400 w-6 h-6 mt-1 shrink-0"></i>
-            <div>
-                <h2 class="font-bold text-blue-100">Personnel Dashboard</h2>
-                <p class="text-slate-400 text-sm mt-1">Select a module below to access law enforcement resources. Ensure you are familiar with all updated protocols.</p>
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
+        
+        <section>
+            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                Operations Modules <div class="h-px bg-slate-800 flex-1"></div>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="Manual.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all shadow-xl group block">
+                    <i data-lucide="book" class="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Operations Manual</h3>
+                    <p class="text-slate-400 text-sm">Full SOPs and procedures.</p>
+                </a>
+                <a href="RadioCodes.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all shadow-xl group block">
+                    <i data-lucide="radio" class="w-8 h-8 text-green-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Radio Codes</h3>
+                    <p class="text-slate-400 text-sm">10-Codes and protocols.</p>
+                </a>
+                <a href="VehicleDatabase.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all shadow-xl group block">
+                    <i data-lucide="car" class="w-8 h-8 text-purple-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Vehicle Database</h3>
+                    <p class="text-slate-400 text-sm">Fleet spawn codes.</p>
+                </a>
+                <a href="PenalCode.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-red-500 transition-all shadow-xl group block">
+                    <i data-lucide="scale" class="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Penal Code</h3>
+                    <p class="text-slate-400 text-sm">Laws and sanctions.</p>
+                </a>
             </div>
-        </div>
+        </section>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <a href="Manual.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all shadow-xl group cursor-pointer block">
-                <i data-lucide="book" class="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1 text-white">Operations Manual</h3>
-                <p class="text-slate-400 text-sm">Full SOPs and procedures.</p>
-            </a>
+        <section>
+            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                Active Agencies <div class="h-px bg-slate-800 flex-1"></div>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-blue-600">
+                    <h4 class="text-2xl font-black text-white italic uppercase">LSPS</h4>
+                    <p class="text-xs text-blue-400 font-bold mb-3 uppercase tracking-widest">Los Santos Police</p>
+                    <p class="text-sm text-slate-400 mb-4">Metropolitan jurisdiction and emergency city response.</p>
+                    <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 1-XX, K9-XX</div>
+                </div>
+                <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-green-600">
+                    <h4 class="text-2xl font-black text-white italic uppercase">SASO</h4>
+                    <p class="text-xs text-green-400 font-bold mb-3 uppercase tracking-widest">Sheriff's Office</p>
+                    <p class="text-sm text-slate-400 mb-4">County patrol and highway traffic enforcement.</p>
+                    <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 2-XX, HP-XX</div>
+                </div>
+                <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-red-600">
+                    <h4 class="text-2xl font-black text-white italic uppercase">RCMP</h4>
+                    <p class="text-xs text-red-400 font-bold mb-3 uppercase tracking-widest">Federal Operations</p>
+                    <p class="text-sm text-slate-400 mb-4">Federal investigations and specialized tactical units.</p>
+                    <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: FED-XX, ERT-XX</div>
+                </div>
+            </div>
+        </section>
 
-            <a href="RadioCodes.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all shadow-xl group cursor-pointer block">
-                <i data-lucide="radio" class="w-8 h-8 text-green-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1 text-white">Radio Codes</h3>
-                <p class="text-slate-400 text-sm">Communication protocols.</p>
-            </a>
-
-            <a href="VehicleDatabase.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all shadow-xl group cursor-pointer block">
-                <i data-lucide="car" class="w-8 h-8 text-purple-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1 text-white">Vehicle Database</h3>
-                <p class="text-slate-400 text-sm">Fleet spawn codes.</p>
-            </a>
-
-            <a href="PenalCode.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-red-500 transition-all shadow-xl group cursor-pointer block">
-                <i data-lucide="scale" class="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1 text-white">Penal Code</h3>
-                <p class="text-slate-400 text-sm">Laws and sanctions.</p>
-            </a>
-
-        </div>
     </main>
 
-    <footer class="text-center py-12 text-slate-500 text-[10px] uppercase tracking-[0.2em] font-bold opacity-50">
-        Dynamic Gaming &copy; 2026 // RESTRICTED ACCESS
+    <footer class="text-center py-20 text-slate-700 text-[10px] uppercase tracking-[0.4em] font-black">
+        Dynamic Gaming LE // RESTRICTED ACCESS // 2026
     </footer>
 
     <script>lucide.createIcons();</script>
