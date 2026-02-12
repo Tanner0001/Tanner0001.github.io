@@ -23,29 +23,46 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all shadow-xl group">
-                <i data-lucide="book" class="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1">Operations Manual</h3>
-                <p class="text-slate-400 text-sm">Full SOPs and procedures.</p>
-            </div>
-            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all shadow-xl group">
-                <i data-lucide="radio" class="w-8 h-8 text-green-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1">Radio Codes</h3>
-                <p class="text-slate-400 text-sm">Communication protocols.</p>
-            </div>
-            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all shadow-xl group">
-                <i data-lucide="car" class="w-8 h-8 text-purple-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1">Vehicle Database</h3>
-                <p class="text-slate-400 text-sm">Fleet spawn codes.</p>
-            </div>
-            <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-red-500 transition-all shadow-xl group">
-                <i data-lucide="scale" class="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                <h3 class="font-bold text-xl mb-1">Penal Code</h3>
-                <p class="text-slate-400 text-sm">Laws and sanctions.</p>
+        <div class="mb-10 p-6 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-start gap-4 shadow-lg">
+            <i data-lucide="info" class="text-blue-400 w-6 h-6 mt-1 shrink-0"></i>
+            <div>
+                <h2 class="font-bold text-blue-100">Personnel Dashboard</h2>
+                <p class="text-slate-400 text-sm mt-1">Select a module below to access law enforcement resources. Ensure you are familiar with all updated protocols.</p>
             </div>
         </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="Manual.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all shadow-xl group cursor-pointer block">
+                <i data-lucide="book" class="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1 text-white">Operations Manual</h3>
+                <p class="text-slate-400 text-sm">Full SOPs and procedures.</p>
+            </a>
+
+            <a href="RadioCodes.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all shadow-xl group cursor-pointer block">
+                <i data-lucide="radio" class="w-8 h-8 text-green-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1 text-white">Radio Codes</h3>
+                <p class="text-slate-400 text-sm">Communication protocols.</p>
+            </a>
+
+            <a href="VehicleDatabase.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all shadow-xl group cursor-pointer block">
+                <i data-lucide="car" class="w-8 h-8 text-purple-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1 text-white">Vehicle Database</h3>
+                <p class="text-slate-400 text-sm">Fleet spawn codes.</p>
+            </a>
+
+            <a href="PenalCode.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-red-500 transition-all shadow-xl group cursor-pointer block">
+                <i data-lucide="scale" class="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-bold text-xl mb-1 text-white">Penal Code</h3>
+                <p class="text-slate-400 text-sm">Laws and sanctions.</p>
+            </a>
+
+        </div>
     </main>
+
+    <footer class="text-center py-12 text-slate-500 text-[10px] uppercase tracking-[0.2em] font-bold opacity-50">
+        Dynamic Gaming &copy; 2026 // RESTRICTED ACCESS
+    </footer>
 
     <script>lucide.createIcons();</script>
 </body>
