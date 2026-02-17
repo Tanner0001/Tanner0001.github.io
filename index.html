@@ -8,75 +8,240 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .hero-gradient {
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+            background: linear-gradient(to bottom, rgba(20, 1, 38, 0.85), rgba(20, 1, 38, 0.95)), 
                         url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png');
             background-size: cover; background-position: center;
         }
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #3c1e5b; border-radius: 10px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab.active { background-color: #5b21b6; color: #fff; }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
-    <header class="h-64 flex items-center justify-center text-center hero-gradient border-b border-blue-900/50 shadow-2xl">
+    <header class="h-64 flex items-center justify-center text-center hero-gradient border-b border-purple-900/50 shadow-2xl">
         <div>
             <h1 class="text-4xl md:text-6xl font-black tracking-tighter uppercase italic text-white">Dynamic Gaming LE</h1>
-            <p class="text-blue-400 mt-2 uppercase tracking-widest text-xs font-bold">Official Resource Portal</p>
+            <p class="text-purple-400 mt-2 uppercase tracking-widest text-xs font-bold">Official Resource Portal</p>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 space-y-16">
-        
-        <section>
-            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
-                Operations Modules <div class="h-px bg-slate-800 flex-1"></div>
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="Manual.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all shadow-xl group block">
-                    <i data-lucide="book" class="w-8 h-8 text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Operations Manual</h3>
-                    <p class="text-slate-400 text-sm">Full SOPs and procedures.</p>
-                </a>
-                <a href="RadioCodes.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all shadow-xl group block">
-                    <i data-lucide="radio" class="w-8 h-8 text-green-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Radio Codes</h3>
-                    <p class="text-slate-400 text-sm">10-Codes and protocols.</p>
-                </a>
-                <a href="VehicleDatabase.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all shadow-xl group block">
-                    <i data-lucide="car" class="w-8 h-8 text-purple-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Vehicle Database</h3>
-                    <p class="text-slate-400 text-sm">Fleet spawn codes.</p>
-                </a>
-                <a href="PenalCode.html" class="p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-red-500 transition-all shadow-xl group block">
-                    <i data-lucide="scale" class="w-8 h-8 text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-bold text-xl mb-1 text-white italic uppercase">Penal Code</h3>
-                    <p class="text-slate-400 text-sm">Laws and sanctions.</p>
-                </a>
-            </div>
-        </section>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="flex border-b border-slate-700 mb-8">
+            <button class="tab active p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard')">Dashboard</button>
+            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('manual')">Manual</button>
+            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('radiocodes')">Radio Codes</button>
+            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles')">Vehicles</button>
+            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
+        </div>
 
-        <section>
-            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
-                Active Agencies <div class="h-px bg-slate-800 flex-1"></div>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-blue-600">
-                    <h4 class="text-2xl font-black text-white italic uppercase">LSPS</h4>
-                    <p class="text-xs text-blue-400 font-bold mb-3 uppercase tracking-widest">Los Santos Police</p>
-                    <p class="text-sm text-slate-400 mb-4">Metropolitan jurisdiction and emergency city response.</p>
-                    <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 1-XX, K9-XX</div>
+        <div id="dashboard" class="tab-content active">
+            <section>
+                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                    Active Agencies <div class="h-px bg-slate-800 flex-1"></div>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-purple-600">
+                        <h4 class="text-2xl font-black text-white italic uppercase">LSPS</h4>
+                        <p class="text-xs text-purple-400 font-bold mb-3 uppercase tracking-widest">Los Santos Police</p>
+                        <p class="text-sm text-slate-400 mb-4">Metropolitan jurisdiction and emergency city response.</p>
+                        <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 1-XX, K9-XX</div>
+                    </div>
+                    <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-purple-600">
+                        <h4 class="text-2xl font-black text-white italic uppercase">SASO</h4>
+                        <p class="text-xs text-purple-400 font-bold mb-3 uppercase tracking-widest">Sheriff's Office</p>
+                        <p class="text-sm text-slate-400 mb-4">County patrol and highway traffic enforcement.</p>
+                        <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 2-XX, HP-XX</div>
+                    </div>
+                    <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-purple-600">
+                        <h4 class="text-2xl font-black text-white italic uppercase">RCMP</h4>
+                        <p class="text-xs text-purple-400 font-bold mb-3 uppercase tracking-widest">Federal Operations</p>
+                        <p class="text-sm text-slate-400 mb-4">Federal investigations and specialized tactical units.</p>
+                        <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: FED-XX, ERT-XX</div>
+                    </div>
                 </div>
-                <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-green-600">
-                    <h4 class="text-2xl font-black text-white italic uppercase">SASO</h4>
-                    <p class="text-xs text-green-400 font-bold mb-3 uppercase tracking-widest">Sheriff's Office</p>
-                    <p class="text-sm text-slate-400 mb-4">County patrol and highway traffic enforcement.</p>
-                    <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 2-XX, HP-XX</div>
+            </section>
+        </div>
+
+        <div id="manual" class="tab-content">
+            <div class="flex flex-1">
+                <aside class="hidden lg:block w-72 bg-slate-900 border-r border-slate-800 p-6 sidebar-scroll overflow-y-auto">
+                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Sections</h2>
+                    <ul class="space-y-1">
+                        <li><a href="#intro" class="block p-2 text-purple-400 bg-purple-500/5 rounded-lg font-bold text-sm">Introduction</a></li>
+                        <li><a href="#conduct" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Code of Conduct</a></li>
+                        <li><a href="#use-of-force" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Use of Force Policy</a></li>
+                        <li><a href="#pursuits" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Pursuit Protocols</a></li>
+                        <li><a href="#arrests" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Arrest & Booking</a></li>
+                    </ul>
+                </aside>
+                <div class="lg:hidden fixed bottom-6 right-6 z-50">
+                    <button class="bg-purple-600 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white" onclick="toggleManualSidebar()">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </div>
-                <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-red-600">
-                    <h4 class="text-2xl font-black text-white italic uppercase">RCMP</h4>
-                    <p class="text-xs text-red-400 font-bold mb-3 uppercase tracking-widest">Federal Operations</p>
-                    <p class="text-sm text-slate-400 mb-4">Federal investigations and specialized tactical units.</p>
-                    <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: FED-XX, ERT-XX</div>
-                </div>
+        
+                <main class="flex-1 p-6 md:p-12 max-w-4xl">
+                    <article class="prose prose-invert max-w-none">
+                        <section id="intro" class="mb-12">
+                            <h1 class="text-4xl font-black uppercase italic italic text-white mb-4">Operations Manual</h1>
+                            <p class="text-slate-400 leading-relaxed text-lg mb-6">
+                                This document serves as the primary governing text for all law enforcement operations within Dynamic Gaming LE. 
+                                Every officer is required to maintain a thorough understanding of these procedures.
+                            </p>
+                            <div class="h-1 w-20 bg-purple-600 rounded-full mb-12"></div>
+                        </section>
+        
+                        <section id="use-of-force" class="mb-12 bg-slate-800/30 p-8 rounded-3xl border border-slate-800">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="shield-alert" class="text-red-500 w-6 h-6"></i>
+                                <h2 class="text-2xl font-bold uppercase italic">Use of Force Continuum</h2>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="border-l-2 border-slate-700 pl-4">
+                                    <h3 class="text-purple-400 font-bold uppercase text-sm mb-1">Level 1: Presence</h3>
+                                    <p class="text-slate-400 text-sm">The mere presence of an officer is the first level of force.</p>
+                                </div>
+                                <div class="border-l-2 border-slate-700 pl-4">
+                                    <h3 class="text-purple-400 font-bold uppercase text-sm mb-1">Level 2: Verbal Commands</h3>
+                                    <p class="text-slate-400 text-sm">Clear, concise verbal directions to the suspect.</p>
+                                </div>
+                                <div class="border-l-2 border-slate-700 pl-4">
+                                    <h3 class="text-orange-500 font-bold uppercase text-sm mb-1">Level 3: Less-Lethal</h3>
+                                    <p class="text-slate-400 text-sm">Utilization of Tasers, OC Spray, or Beanbag Shotguns.</p>
+                                </div>
+                                <div class="border-l-2 border-red-600 pl-4">
+                                    <h3 class="text-red-500 font-bold uppercase text-sm mb-1">Level 4: Lethal Force</h3>
+                                    <p class="text-slate-400 text-sm">Highest level of force, only to be used when there is an immediate threat to life.</p>
+                                </div>
+                            </div>
+                        </section>
+        
+                        <section id="conduct" class="mb-12">
+                            <h2 class="text-2xl font-bold uppercase italic mb-4">Professional Conduct</h2>
+                            <p class="text-slate-400 mb-4">
+                                Officers must maintain a professional demeanor at all times. This includes:
+                            </p>
+                            <ul class="list-disc list-inside text-slate-400 space-y-2 ml-4">
+                                <li>Strict adherence to the chain of command.</li>
+                                <li>Maintaining radio silence during priority calls.</li>
+                                <li>Respectful treatment of civilians and other emergency personnel.</li>
+                            </ul>
+                        </section>
+                    </article>
+                </main>
             </div>
-        </section>
+        </div>
+
+        <div id="radiocodes" class="tab-content">
+            <main class="max-w-4xl mx-auto px-6 py-12">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black uppercase italic italic">Radio Codes</h1>
+                    <p class="text-slate-400">Communication protocols and 10-code quick reference.</p>
+                </header>
+        
+                <div class="mb-8 relative">
+                    <input type="text" id="radioCodeSearch" placeholder="Search codes..." class="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-12 focus:outline-none focus:border-purple-500">
+                    <i data-lucide="search" class="absolute left-4 top-3.5 text-slate-500 w-5 h-5"></i>
+                </div>
+        
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
+                    <table class="w-full text-left" id="radioCodesTable">
+                        <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
+                            <tr>
+                                <th class="px-6 py-4">Code</th>
+                                <th class="px-6 py-4">Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-400">10-4</td>
+                                <td class="px-6 py-4">Acknowledgment / Message Received</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-400">10-7</td>
+                                <td class="px-6 py-4 text-red-400">Out of Service</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-400">10-8</td>
+                                <td class="px-6 py-4 text-green-400">In Service / Available</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-400">10-20</td>
+                                <td class="px-6 py-4 text-slate-300">Location Request</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-400">10-99</td>
+                                <td class="px-6 py-4 text-orange-500 font-bold">Warrant / Wanted Person</td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+
+        <div id="vehicles" class="tab-content">
+            <header class="mb-10 text-center">
+                <h1 class="text-4xl font-black uppercase italic italic text-white">Vehicle Database</h1>
+                <p class="text-slate-400">Official fleet inventory and authorized spawn codes.</p>
+            </header>
+            <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
+                        <tr>
+                            <th class="px-6 py-4">Vehicle</th>
+                            <th class="px-6 py-4">Division</th>
+                            <th class="px-6 py-4">Spawn Code</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700">
+                        <tr>
+                            <td class="px-6 py-4 font-bold">High Speed Interceptor</td>
+                            <td class="px-6 py-4">LSPS / Traffic Enforcement</td>
+                            <td class="px-6 py-4 font-mono text-purple-400">INTERCEPTOR1</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-bold">Patrol SUV</td>
+                            <td class="px-6 py-4">SASO / County Patrol</td>
+                            <td class="px-6 py-4 font-mono text-purple-400">PATROLSUV2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="penalcode" class="tab-content">
+            <main class="max-w-4xl mx-auto px-6 py-12">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Criminal Penal Code</h1>
+                    <p class="text-slate-400">Statutory definitions and sentencing guidelines.</p>
+                </header>
+        
+                <div class="space-y-4">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                        <div class="bg-red-900/20 p-4 border-b border-slate-700 text-red-400 font-bold uppercase tracking-widest text-xs">I. Violent Offenses</div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-bold text-white">101. First Degree Murder</h4>
+                                    <p class="text-sm text-slate-500">Unlawful killing of a human with premeditation.</p>
+                                </div>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-xs font-bold border border-red-500/20">FELONY</span>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-bold text-white">102. Armed Robbery</h4>
+                                    <p class="text-sm text-slate-500">Taking property by force using a deadly weapon.</p>
+                                </div>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-xs font-bold border border-red-500/20">FELONY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
 
     </main>
 
@@ -84,6 +249,63 @@
         Dynamic Gaming LE // RESTRICTED ACCESS // 2026
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        function openTab(tabName) {
+            var i;
+            var x = document.getElementsByClassName("tab-content");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+
+            var tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            event.currentTarget.classList.add("active");
+            
+            // Re-create icons for the newly visible tab content
+            lucide.createIcons();
+        }
+
+        // Radio Codes Search Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioCodeSearch = document.getElementById('radioCodeSearch');
+            if (radioCodeSearch) {
+                radioCodeSearch.addEventListener('keyup', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const table = document.getElementById('radioCodesTable');
+                    const rows = table.getElementsByTagName('tr');
+
+                    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header row
+                        const cells = rows[i].getElementsByTagName('td');
+                        let rowText = '';
+                        for (let j = 0; j < cells.length; j++) {
+                            rowText += cells[j].textContent.toLowerCase() + ' ';
+                        }
+                        if (rowText.indexOf(searchTerm) > -1) {
+                            rows[i].style.display = '';
+                        } else {
+                            rows[i].style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+
+        // Manual Sidebar Mobile Toggle
+        function toggleManualSidebar() {
+            const sidebar = document.querySelector('#manual aside');
+            if (sidebar) {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('absolute');
+                sidebar.classList.toggle('left-0');
+                sidebar.classList.toggle('top-0');
+                sidebar.classList.toggle('h-full');
+                sidebar.classList.toggle('z-40');
+            }
+        }
+    </script>
 </body>
 </html>
