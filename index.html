@@ -37,31 +37,57 @@
         </div>
 
         <div id="dashboard" class="tab-content active">
-            <section>
+            <div class="p-4 mb-8 bg-slate-800/20 border border-slate-700 rounded-xl text-orange-200">
+                <p class="font-bold">Pinned Message:</p>
+                <p class="text-sm">Welcome to the updated Dynamic Gaming LE Portal! Please review the new manual content and familiarise yourself with the new layout.</p>
+            </div>
+            <section class="mb-12">
                 <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
-                    Active Agencies <div class="h-px bg-slate-800 flex-1"></div>
+                    Callsign Information <div class="h-px bg-slate-800 flex-1"></div>
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-purple-600">
-                        <h4 class="text-2xl font-black text-white italic uppercase">LSPS</h4>
-                        <p class="text-xs text-orange-400 font-bold mb-3 uppercase tracking-widest">Los Santos Police</p>
-                        <p class="text-sm text-slate-400 mb-4">Metropolitan jurisdiction and emergency city response.</p>
-                        <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 1-XX, K9-XX</div>
-                    </div>
-                    <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-purple-600">
-                        <h4 class="text-2xl font-black text-white italic uppercase">SASO</h4>
-                        <p class="text-xs text-orange-400 font-bold mb-3 uppercase tracking-widest">Sheriff's Office</p>
-                        <p class="text-sm text-slate-400 mb-4">County patrol and highway traffic enforcement.</p>
-                        <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: 2-XX, HP-XX</div>
-                    </div>
-                    <div class="bg-slate-800/40 p-6 rounded-3xl border border-slate-800 shadow-xl border-l-4 border-l-purple-600">
-                        <h4 class="text-2xl font-black text-white italic uppercase">RCMP</h4>
-                        <p class="text-xs text-orange-400 font-bold mb-3 uppercase tracking-widest">Federal Operations</p>
-                        <p class="text-sm text-slate-400 mb-4">Federal investigations and specialized tactical units.</p>
-                        <div class="p-3 bg-slate-900 rounded-xl text-xs font-mono text-slate-500">Callsigns: FED-XX, ERT-XX</div>
-                    </div>
+                <p class="text-slate-400 mb-4">
+                    Callsigns are different for each agency to assist with distinction. Below is a list of all agency callsigns and their structure.
+                </p>
+                <p class="text-slate-400 mb-4">
+                    Callsigns must include two (2) digits. 
+                    Partnered units should utilize the same unit number.
+                </p>
+                <p class="text-slate-400 mb-4">
+                    An example:
+                </p>
+                <div class="bg-slate-900 p-3 rounded-xl text-xs font-mono text-slate-500 mb-4">4K-70 - San Andreas State Police K-9 Unit</div>
+                <p class="text-slate-400 mb-4">
+                    If your callsign is already taken, select another.
+                </p>
+                <p class="text-slate-400 mb-4">
+                    Below is a list of all available radio callsigns:
+                </p>
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl my-4">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
+                            <tr>
+                                <th class="px-6 py-4">Agency</th>
+                                <th class="px-6 py-4">Callsign</th>
+                                <th class="px-6 py-4">Assignment [*]</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700">
+                            <tr><td class="px-6 py-2">Los Santos Police Department</td><td class="px-6 py-2">1[*]-00</td><td class="px-6 py-2">L - Patrol Unit</td></tr>
+                            <tr><td class="px-6 py-2">Los Santos Sheriff’s Department</td><td class="px-6 py-2">2[*]-00</td><td class="px-6 py-2">S - Supervisor</td></tr>
+                            <tr><td class="px-6 py-2">Blaine County Sheriff’s Office</td><td class="px-6 py-2">3[*]-00</td><td class="px-6 py-2">D - Detective</td></tr>
+                            <tr><td class="px-6 py-2">San Andreas State Patrol</td><td class="px-6 py-2">4[*]-00</td><td class="px-6 py-2">T - Traffic</td></tr>
+                            <tr><td class="px-6 py-2">National Park Service</td><td class="px-6 py-2">5[*]-00</td><td class="px-6 py-2">R - Tactical Unit</td></tr>
+                            <tr><td class="px-6 py-2">Davis Police Department</td><td class="px-6 py-2">2[*]-00</td><td class="px-6 py-2">K - K-9</td></tr>
+                            <tr><td class="px-6 py-2">Paleto Bay Police Department</td><td class="px-6 py-2">6[*]-00</td><td class="px-6 py-2"></td></tr>
+                            <tr><td class="px-6 py-2">Los Santos Port Police</td><td class="px-6 py-2">7[*]-00</td><td class="px-6 py-2"></td></tr>
+                            <tr><td class="px-6 py-2">N.O.O.S.E.</td><td class="px-6 py-2">8[*]-00</td><td class="px-6 py-2"></td></tr>
+                            <tr><td class="px-6 py-2">Air Unit</td><td class="px-6 py-2">AIR-00</td><td class="px-6 py-2"></td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
+        </div>
+
         </div>
 
         <div id="manual" class="tab-content">
@@ -69,40 +95,40 @@
                 <aside class="hidden lg:block w-72 bg-slate-900 border-r border-slate-800 p-6 sidebar-scroll overflow-y-auto">
                     <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Sections</h2>
                     <ul class="space-y-1">
-                        <li><a href="#section-1" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 1 Introduction</a></li>
+                        <li><a href="#section-1" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 1 Introduction</a></li>
                         <li class="ml-4"><a href="#section-1-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 1.1 Core Ethics</a></li>
                         <li class="ml-4"><a href="#section-1-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 1.2 Duties</a></li>
-                        <li><a href="#section-2" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 2 Chain of Command</a></li>
-                        <li><a href="#section-3" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 3 Radio Communications</a></li>
-                        <li><a href="#section-4" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 4 Agency Patrol Zones</a></li>
-                        <li><a href="#section-5" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 5 Divisions</a></li>
+                        <li><a href="#section-2" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 2 Chain of Command</a></li>
+                        <li><a href="#section-3" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 3 Radio Communications</a></li>
+                        <li><a href="#section-4" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 4 Agency Patrol Zones</a></li>
+                        <li><a href="#section-5" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 5 Divisions</a></li>
                         <li class="ml-4"><a href="#section-5-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 5.1 Divisional Duties</a></li>
-                        <li><a href="#section-6" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 6 Use of Force Continuum</a></li>
+                        <li><a href="#section-6" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 6 Use of Force Continuum</a></li>
                         <li class="ml-4"><a href="#section-6-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 6.1 Investigation and Accountability</a></li>
-                        <li><a href="#section-7" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 7 Traffic Stops</a></li>
+                        <li><a href="#section-7" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 7 Traffic Stops</a></li>
                         <li class="ml-4"><a href="#section-7-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 7.1 High Risk Traffic Stops</a></li>
-                        <li><a href="#section-8" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 8 Pursuit Intervention / Vehicle Pursuits</a></li>
-                        <li><a href="#section-9" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 9 Criminal Apprehension</a></li>
-                        <li><a href="#section-10" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 10 Responding and Clearing Calls</a></li>
+                        <li><a href="#section-8" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 8 Pursuit Intervention / Vehicle Pursuits</a></li>
+                        <li><a href="#section-9" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 9 Criminal Apprehension</a></li>
+                        <li><a href="#section-10" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 10 Responding and Clearing Calls</a></li>
                         <li class="ml-4"><a href="#section-10-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 10.1 Officer Involved Emergency Calls</a></li>
-                        <li><a href="#section-11" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 11 Briefings</a></li>
-                        <li><a href="#section-12" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 12 Reporting or Commending Law Enforcement Officers</a></li>
-                        <li><a href="#section-13" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 13 Disciplinary Actions</a></li>
-                        <li><a href="#section-14" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 14 Activity</a></li>
+                        <li><a href="#section-11" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 11 Briefings</a></li>
+                        <li><a href="#section-12" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 12 Reporting or Commending Law Enforcement Officers</a></li>
+                        <li><a href="#section-13" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 13 Disciplinary Actions</a></li>
+                        <li><a href="#section-14" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 14 Activity</a></li>
                         <li class="ml-4"><a href="#section-14-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 14.1 Resignation</a></li>
                         <li class="ml-4"><a href="#section-14-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 14.2 Leave of Absence</a></li>
-                        <li><a href="#section-15" class="block p-2 text-orange-400 bg-orange-500/5 rounded-lg font-bold text-sm">Section 15 Equipment</a></li>
+                        <li><a href="#section-15" class="block p-2 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 15 Equipment</a></li>
                         <li class="ml-4"><a href="#section-15-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.1 Firearms</a></li>
                         <li class="ml-4"><a href="#section-15-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.2 Less Lethal</a></li>
                     </ul>
                 </aside>
                 <div class="lg:hidden fixed bottom-6 right-6 z-50">
-                    <button class="bg-orange-600 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white" onclick="toggleManualSidebar()">
+                    <button class="bg-slate-700 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white" onclick="toggleManualSidebar()">
                         <i data-lucide="menu"></i>
                     </button>
                 </div>
         
-                <main class="flex-1 p-6 md:p-12 max-w-4xl">
+                <main class="flex-1 p-6 md:p-12 max-w-5xl">
                     <article class="prose prose-invert max-w-none">
                         <section id="section-1" class="mb-12">
                             <h1 class="text-4xl font-black uppercase italic italic text-white mb-4">Law Enforcement Standard Operating Procedure</h1>
