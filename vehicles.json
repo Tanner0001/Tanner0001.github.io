@@ -1,22 +1,60 @@
 {
   "lspd": [
-    {"role": "Patrol", "model": "Vapid Stanier Gen II", "code": "POLICE"},
-    {"role": "Patrol", "model": "Bravado Buffalo S", "code": "POLICE2"},
-    {"role": "Patrol", "model": "Bravado Buffalo STX", "code": "POLICE3"},
-    {"role": "Supervisor", "model": "Vapid Scout", "code": "POLICESCE"},
-    {"role": "Specialized", "model": "High Speed Interceptor", "code": "INTERCEPTOR1"}
+    {"role": "Patrol", "model": "Vapid Torrence Interceptor", "code": "LSPTOR"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "LSPSCOUT2"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "LSPSCOUT"},
+    {"role": "Multipurpose", "model": "Vapid Scout Interceptor 2016", "code": "LSPSCOUTUM"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2013", "code": "LSPSCOUT3"},
+    {"role": "Supervisor/Gang", "model": "Vapid Torrence Interceptor Unmarked", "code": "LSTORUM"},
+    {"role": "Supervisor/Detective", "model": "Alamo 2600LS ", "code": "NALAMOUM"}
   ],
-  "lscso": [
-    {"role": "County Patrol", "model": "Declasse Granger 3600LX", "code": "SHERIFF"},
-    {"role": "County Patrol", "model": "Vapid Stanier", "code": "SHERIFF2"},
-    {"role": "Supervisor", "model": "Patrol SUV", "code": "PATROLSUV2"}
+  "lssd": [
+    {"role": "Off-Road Patrol", "model": "Alamo 2600LS 4x4", "code": "LSALAMO"},
+    {"role": "Patrol", "model": "Alamo 2600LS ", "code": "LSALAMO2"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "LSSCOUT"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "LSSCOUT2"},
+    {"role": "Supervisor/SWAT", "model": "Alamo 2600LS ", "code": "LSALAMO3"},
   ],
   "bcso": [
-    {"role": "Rural Patrol", "model": "Vapid Caracara 4x4", "code": "BCSO1"},
-    {"role": "Sgt/Command", "model": "Dundreary Landstalker XL", "code": "BCSO2"}
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2014", "code": "BCSO6"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "BCSO1"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "BCSO3"},
+    {"role": "K9", "model": "Vapid Scout Interceptor 2014", "code": "BCSO5"},  
+    {"role": "Supervisor/Traffic", "model": "Vapid Scout Interceptor 2020", "code": "BCSO4"},
+    {"role": "Supervisor/Traffic", "model": "Vapid Scout Interceptor 2016", "code": "BCSO2"}
+  ],
+    "pbpd": [
+    {"role": "Patrol/Supervisor", "model": "Vapid Scout Interceptor 2020", "code": "pbpdscout"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "pbpdstanier"}
   ],
   "sasp": [
-    {"role": "Highway", "model": "Bravado Buffalo STX Interceptor", "code": "SASP1"},
-    {"role": "Traffic", "model": "Vapid Dominator Interceptor", "code": "SASP2"}
+    {"role": "Patrol", "model": "Alamo 2600LS", "code": "SPALAMO"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2013", "code": "SPSCOUT"}, 
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "SPSCOUT2"}, 
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "SPSCOUT3"}, 
+    {"role": "K9", "model": "Alamo 2600LS", "code": "SPALAMO2"},
+    {"role": "Traffic", "model": "Vapid Scout Interceptor 2016", "code": "SPSCOUT2CVE"}, 
+    {"role": "Traffic", "model": "Dinka Thrust", "code": "SPTHRUST"}, 
+    {"role": "Supervisor", "model": "Vapid Scout Interceptor 2020", "code": "SPSCOUT3UM"}
   ]
+    "sadfw": [
+    {"role": "Patrol", "model": "Vapid Caracara 4x4", "code": "WILDLIFE2"},
+  ]
+      "nps": [
+    {"role": "Patrol", "model": "Alamo 2500LS", "code": "NPSALAMO"},
+    {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "NPSSCOUT2"},
+    {"role": "Supervisor", "model": "Alamo 2500LS", "code": "NPSALAMO2"},
+    {"role": "Supervisor", "model": "Vapid Scout Interceptor 2016", "code": "NPSSCOUT"}
+  ]
+      "Unmarked": [
+    {"role": "Traffic", "model": "Alamo 2600LS ", "code": "nalamoum"},
+    {"role": "Swat/Traffic", "model": "SandStorm ", "code": "NLSPDSTORMU"},
+    {"role": "Multipurpose", "model": "Aleutian ", "code": "nlspdaleutianu"},
+    {"role": "Multipurpose", "model": "Bravado Buffalo STX Interceptor", "code": "nlspdbufSXU"},
+    {"role": "Multipurpose", "model": "Vapid Sadler ", "code": "sadlerdet"},
+    {"role": "Swat", "model": "Centurion ", "code": "riot3"}
+  ]
+  
+
+
 }
