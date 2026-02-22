@@ -25,7 +25,24 @@
         }
         html {
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
+        /* Mobile Enhancements */
+        @media (max-width: 768px) {
+            .hero-gradient { height: 12rem; }
+            .tab { padding: 1rem 0.75rem; font-size: 0.7rem; }
+            .responsive-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .responsive-table-container table {
+                min-width: 600px;
+            }
+        }
+        /* Custom Scrollbar for sub-tabs */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
         td.px-6.py-2 {
             padding-top: 0.75rem; /* py-3 equivalent */
             padding-bottom: 0.75rem; /* py-3 equivalent */
@@ -40,13 +57,14 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        <div class="flex border-b border-slate-700 mb-8">
-            <button class="tab active p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard')">Dashboard</button>
-            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('manual')">Manual</button>
-            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('agencies')">Agencies</button>
-            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles')">Vehicles</button>
-            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+        <div class="flex border-b border-slate-700 mb-8 overflow-x-auto no-scrollbar whitespace-nowrap">
+            <button class="tab active p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard')">Dashboard</button>
+            <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('manual')">Manual</button>
+            <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('agencies')">Agencies</button>
+            <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles')">Vehicles</button>
+            <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
+            <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('uniforms')">Uniforms</button>
         </div>
 
         <div id="dashboard" class="tab-content active">
@@ -1104,6 +1122,74 @@
                 </div>
             </main>
         </div>
+
+        <div id="uniforms" class="tab-content">
+            <main class="max-w-5xl mx-auto px-6 py-12">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Uniform Guidelines</h1>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official departmental dress codes and equipment standards.</p>
+                </header>
+
+                <!-- Sub-navigation for agencies -->
+                <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto no-scrollbar whitespace-nowrap max-w-full">
+                    <button class="sub-tab-uniform active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openUniformSubTab('u-lspd', event)">LSPD</button>
+                    <button class="sub-tab-uniform px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openUniformSubTab('u-lssd', event)">LSSD</button>
+                    <button class="sub-tab-uniform px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openUniformSubTab('u-bcso', event)">BCSO</button>
+                    <button class="sub-tab-uniform px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openUniformSubTab('u-sasp', event)">SASP</button>
+                </div>
+
+                <div id="uniform-data-container">
+                    <!-- LSPD Section -->
+                    <div id="u-lspd" class="uniform-sub-content active space-y-12">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Uniform Card -->
+                            <div class="bg-slate-800/30 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col">
+                                <div class="aspect-[3/4] bg-slate-900 flex items-center justify-center border-b border-slate-700 text-slate-700">
+                                    <i data-lucide="image" class="w-12 h-12"></i>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-white font-black uppercase italic tracking-wider mb-2">Class A (Formal)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Full dress uniform with tie and campaign hat. Used for ceremonies, court, and official appearances.</p>
+                                </div>
+                            </div>
+                            <!-- Uniform Card -->
+                            <div class="bg-slate-800/30 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col">
+                                <div class="aspect-[3/4] bg-slate-900 flex items-center justify-center border-b border-slate-700 text-slate-700">
+                                    <i data-lucide="image" class="w-12 h-12"></i>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-white font-black uppercase italic tracking-wider mb-2">Class B (Standard)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Long sleeve shirt with patches. Standard patrol uniform for colder weather or formal patrol duties.</p>
+                                </div>
+                            </div>
+                            <!-- Uniform Card -->
+                            <div class="bg-slate-800/30 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col">
+                                <div class="aspect-[3/4] bg-slate-900 flex items-center justify-center border-b border-slate-700 text-slate-700">
+                                    <i data-lucide="image" class="w-12 h-12"></i>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-white font-black uppercase italic tracking-wider mb-2">Class C (Duty)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Short sleeve shirt. The primary daily uniform for all field operations and patrol duties.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LSSD Section -->
+                    <div id="u-lssd" class="uniform-sub-content hidden space-y-12">
+                        <p class="text-slate-500 italic text-sm text-center py-20">LSSD Uniform Guidelines blocked out. Waiting for specific requirements.</p>
+                    </div>
+
+                    <!-- BCSO Section -->
+                    <div id="u-bcso" class="uniform-sub-content hidden space-y-12">
+                        <p class="text-slate-500 italic text-sm text-center py-20">BCSO Uniform Guidelines blocked out. Waiting for specific requirements.</p>
+                    </div>
+
+                    <!-- SASP Section -->
+                    <div id="u-sasp" class="uniform-sub-content hidden space-y-12">
+                        <p class="text-slate-500 italic text-sm text-center py-20">SASP Uniform Guidelines blocked out. Waiting for specific requirements.</p>
+                    </div>
+                </div>
             </main>
         </div>
 
@@ -1181,6 +1267,30 @@
             lucide.createIcons();
         }
 
+        // Uniform Sub-tab Functionality
+        function openUniformSubTab(subTabName, event) {
+            const contents = document.getElementsByClassName("uniform-sub-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.add("hidden");
+                contents[i].classList.remove("active");
+            }
+            
+            const buttons = document.getElementsByClassName("sub-tab-uniform");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active", "bg-orange-600", "text-white");
+                buttons[i].classList.add("text-slate-500");
+            }
+            
+            const target = document.getElementById(subTabName);
+            target.classList.remove("hidden");
+            target.classList.add("active");
+            
+            event.currentTarget.classList.add("active", "bg-orange-600", "text-white");
+            event.currentTarget.classList.remove("text-slate-500");
+            
+            lucide.createIcons();
+        }
+
         // Accordion Toggle Functionality
         function toggleAccordion(id) {
             const content = document.getElementById(id);
@@ -1199,12 +1309,25 @@
         function toggleManualSidebar() {
             const sidebar = document.querySelector('#manual aside');
             if (sidebar) {
-                sidebar.classList.toggle('hidden');
-                sidebar.classList.toggle('absolute');
-                sidebar.classList.toggle('left-0');
-                sidebar.classList.toggle('top-0');
-                sidebar.classList.toggle('h-full');
-                sidebar.classList.toggle('z-40');
+                if (sidebar.classList.contains('hidden')) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('fixed', 'inset-0', 'z-50', 'w-full', 'h-full', 'bg-slate-900');
+                    // Add a close button if it doesn't exist
+                    if (!document.getElementById('close-sidebar')) {
+                        const closeBtn = document.createElement('button');
+                        closeBtn.id = 'close-sidebar';
+                        closeBtn.className = 'absolute top-6 right-6 p-2 bg-slate-800 rounded-full text-white';
+                        closeBtn.innerHTML = '<i data-lucide="x"></i>';
+                        closeBtn.onclick = toggleManualSidebar;
+                        sidebar.appendChild(closeBtn);
+                        lucide.createIcons();
+                    }
+                } else {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('fixed', 'inset-0', 'z-50', 'w-full', 'h-full', 'bg-slate-900');
+                    const closeBtn = document.getElementById('close-sidebar');
+                    if (closeBtn) closeBtn.remove();
+                }
             }
         }
 
@@ -1344,24 +1467,26 @@
                         <div class="bg-slate-800/80 p-6 border-b border-slate-700">
                             <h3 class="text-white font-black uppercase italic m-0">${key.toUpperCase()} Fleet</h3>
                         </div>
-                        <table class="w-full text-left m-0">
-                            <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
-                                <tr>
-                                    <th class="px-8 py-4">Role</th>
-                                    <th class="px-8 py-4">Vehicle Model</th>
-                                    <th class="px-8 py-4 text-right">Spawn Code</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-800 text-sm">
-                                ${vehicleData[key].map(v => `
-                                    <tr class="hover:bg-slate-800/30 transition-colors">
-                                        <td class="px-8 py-4 text-slate-500 font-bold">${v.role}</td>
-                                        <td class="px-8 py-4 text-white">${v.model}</td>
-                                        <td class="px-8 py-4 text-right font-mono text-orange-400">${v.code}</td>
+                        <div class="responsive-table-container">
+                            <table class="w-full text-left m-0">
+                                <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
+                                    <tr>
+                                        <th class="px-8 py-4">Role</th>
+                                        <th class="px-8 py-4">Vehicle Model</th>
+                                        <th class="px-8 py-4 text-right">Spawn Code</th>
                                     </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800 text-sm">
+                                    ${vehicleData[key].map(v => `
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-4 text-slate-500 font-bold">${v.role}</td>
+                                            <td class="px-8 py-4 text-white">${v.model}</td>
+                                            <td class="px-8 py-4 text-right font-mono text-orange-400">${v.code}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             `).join('');
