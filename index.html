@@ -88,87 +88,90 @@
             </div>
         </div>
 
-        <!-- Smaller Department Cards -->
-        <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full mb-24">
+        <!-- Modern Department Cards -->
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-32">
             <!-- LEO Card -->
-            <button onclick="enterPortal('leo')" class="group relative aspect-[16/9] md:aspect-square bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-orange-500 transition-all duration-500 shadow-2xl">
-                <div class="absolute inset-0 bg-orange-600/5 group-hover:bg-orange-600/10 transition-colors duration-700"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-30 transition-all group-hover:scale-110">
-                    <i data-lucide="shield" class="w-24 h-24 text-orange-500"></i>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-left">
-                    <h2 class="text-2xl font-black uppercase italic text-white leading-none">Law Enforcement</h2>
-                    <p class="text-slate-500 text-[10px] mt-1 uppercase font-bold tracking-widest">Entry Portal</p>
+            <button onclick="enterPortal('leo')" class="group relative aspect-video md:aspect-square bg-slate-900 rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-orange-500/50 transition-all duration-700 shadow-2xl">
+                <div class="absolute inset-0 bg-[url('images/imagepdcentral.png')] bg-cover bg-center opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end items-start text-left">
+                    <div class="bg-orange-500 p-3 rounded-2xl mb-4 shadow-[0_0_20px_rgba(249,115,22,0.3)] group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-black uppercase italic text-white leading-none tracking-tighter mb-1">Law Enforcement</h2>
+                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">Access Portal <i data-lucide="chevron-right" class="inline w-3 h-3 ml-1"></i></p>
                 </div>
             </button>
 
             <!-- FD/EMS Card -->
-            <button onclick="enterPortal('fd')" class="group relative aspect-[16/9] md:aspect-square bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-red-500 transition-all duration-500 shadow-2xl">
-                <div class="absolute inset-0 bg-red-600/5 group-hover:bg-red-600/10 transition-colors duration-700"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-30 transition-all group-hover:scale-110">
-                    <i data-lucide="flame" class="w-24 h-24 text-red-500"></i>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-left">
-                    <h2 class="text-2xl font-black uppercase italic text-white leading-none">Fire & EMS</h2>
-                    <p class="text-slate-500 text-[10px] mt-1 uppercase font-bold tracking-widest">Entry Portal</p>
+            <button onclick="enterPortal('fd')" class="group relative aspect-video md:aspect-square bg-slate-900 rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-red-500/50 transition-all duration-700 shadow-2xl">
+                <div class="absolute inset-0 bg-[url('images/imfdage.png')] bg-cover bg-center opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end items-start text-left">
+                    <div class="bg-red-600 p-3 rounded-2xl mb-4 shadow-[0_0_20px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="flame" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-black uppercase italic text-white leading-none tracking-tighter mb-1">Fire & Medical</h2>
+                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">Access Portal <i data-lucide="chevron-right" class="inline w-3 h-3 ml-1"></i></p>
                 </div>
             </button>
 
             <!-- Civilian Card -->
-            <button onclick="enterPortal('civ')" class="group relative aspect-[16/9] md:aspect-square bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-500 transition-all duration-500 shadow-2xl">
-                <div class="absolute inset-0 bg-emerald-600/5 group-hover:bg-emerald-600/10 transition-colors duration-700"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-30 transition-all group-hover:scale-110">
-                    <i data-lucide="users" class="w-24 h-24 text-emerald-500"></i>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <div class="absolute bottom-6 left-6 text-left">
-                    <h2 class="text-2xl font-black uppercase italic text-white leading-none">Civ Life</h2>
-                    <p class="text-slate-500 text-[10px] mt-1 uppercase font-bold tracking-widest">Entry Portal</p>
+            <button onclick="enterPortal('civ')" class="group relative aspect-video md:aspect-square bg-slate-900 rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-emerald-500/50 transition-all duration-700 shadow-2xl">
+                <div class="absolute inset-0 bg-[url('images/ima2ge.png')] bg-cover bg-center opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end items-start text-left">
+                    <div class="bg-emerald-600 p-3 rounded-2xl mb-4 shadow-[0_0_20px_rgba(5,150,105,0.3)] group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-black uppercase italic text-white leading-none tracking-tighter mb-1">Civ Operations</h2>
+                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">Access Portal <i data-lucide="chevron-right" class="inline w-3 h-3 ml-1"></i></p>
                 </div>
             </button>
         </div>
 
         <!-- About & Gallery Section -->
-        <div class="relative z-10 w-full max-w-6xl grid lg:grid-cols-2 gap-12 mb-20">
+        <div class="relative z-10 w-full max-w-6xl grid lg:grid-cols-2 gap-16 mb-32">
             <!-- About Us -->
-            <section class="space-y-6">
-                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] flex items-center gap-4">
-                    About The Server <div class="h-px bg-slate-800 flex-1"></div>
+            <section class="space-y-8 text-left">
+                <h2 class="text-xs font-black text-orange-500 uppercase tracking-[0.4em] flex items-center gap-4">
+                    COMMUNITY PROFILE <div class="h-px bg-white/10 flex-1"></div>
                 </h2>
-                <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl">
-                    <p class="text-slate-300 leading-relaxed">Dynamic Gaming provides a high-fidelity roleplay experience focused on immersive storytelling and realistic departmental operations. Founded in 2022, we pride ourselves on a professional community and custom-tailored resources for every player.</p>
-                    <div class="grid grid-cols-2 gap-4 mt-8">
-                        <div class="bg-slate-800/50 p-4 rounded-2xl">
-                            <span class="block text-2xl font-black text-orange-500">100+</span>
-                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Active Members</span>
+                <div class="bg-white/5 border border-white/10 p-10 rounded-[3rem] backdrop-blur-2xl relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/10 blur-[80px] rounded-full"></div>
+                    <p class="text-slate-200 text-xl font-medium leading-relaxed m-0 italic">"Pushing the boundaries of immersive storytelling since 2022."</p>
+                    <p class="text-slate-400 mt-6 leading-relaxed">Dynamic Gaming is a premier roleplay community focused on professional departmental operations and high-fidelity player interactions. We provide custom frameworks, dedicated command staff, and a welcoming environment for all skill levels.</p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-10">
+                        <div class="bg-white/5 border border-white/5 p-6 rounded-3xl group hover:bg-white/10 transition-colors text-center">
+                            <span class="block text-4xl font-black text-white mb-1">100+</span>
+                            <span class="text-[10px] text-orange-500 uppercase font-black tracking-widest">Active Personnel</span>
                         </div>
-                        <div class="bg-slate-800/50 p-4 rounded-2xl">
-                            <span class="block text-2xl font-black text-orange-500">24/7</span>
-                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Server Uptime</span>
+                        <div class="bg-white/5 border border-white/5 p-6 rounded-3xl group hover:bg-white/10 transition-colors text-center">
+                            <span class="block text-4xl font-black text-white mb-1">99.9%</span>
+                            <span class="text-[10px] text-orange-500 uppercase font-black tracking-widest">Uptime Rating</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Gallery -->
-            <section class="space-y-6">
-                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] flex items-center gap-4">
-                    Community Gallery <div class="h-px bg-slate-800 flex-1"></div>
+            <section class="space-y-8 text-left">
+                <h2 class="text-xs font-black text-orange-500 uppercase tracking-[0.4em] flex items-center gap-4">
+                    FIELD FOOTAGE <div class="h-px bg-white/10 flex-1"></div>
                 </h2>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
-                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    <div class="aspect-square bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-2xl">
+                        <img src="images/17282257253000282112_20250330005032_1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
-                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    <div class="aspect-square bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-2xl">
+                        <img src="images/17282257253000282112_20250505162250_1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
-                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    <div class="aspect-square bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-2xl">
+                        <img src="images/17282257253000282112_20250511004744_1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
-                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    <div class="aspect-square bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-2xl">
+                        <img src="images/imag1e.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                     </div>
                 </div>
             </section>
