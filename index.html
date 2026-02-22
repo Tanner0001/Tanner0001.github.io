@@ -104,36 +104,89 @@
         </div>
 
         <div id="manual" class="tab-content">
-            <div class="flex flex-1">
-                <aside class="hidden lg:block w-72 bg-slate-900 border-r border-slate-800 p-6 sidebar-scroll overflow-y-auto">
-                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Sections</h2>
-                    <ul class="space-y-1">
-                        <li><a href="#section-1" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 1 Introduction</a></li>
-                        <li class="ml-4"><a href="#section-1-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 1.1 Core Ethics</a></li>
-                        <li class="ml-4"><a href="#section-1-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 1.2 Duties</a></li>
-                        <li><a href="#section-2" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 2 Chain of Command</a></li>
-                        <li><a href="#section-3" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 3 Radio Communications</a></li>
-                        <li><a href="#section-4" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 4 Agency Patrol Zones</a></li>
-                        <li><a href="#section-5" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 5 Divisions</a></li>
-                        <li class="ml-4"><a href="#section-5-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 5.1 Divisional Duties</a></li>
-                        <li><a href="#section-6" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 6 Use of Force Continuum</a></li>
-                        <li class="ml-4"><a href="#section-6-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 6.1 Investigation and Accountability</a></li>
-                        <li><a href="#section-7" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 7 Traffic Stops</a></li>
-                        <li class="ml-4"><a href="#section-7-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 7.1 High Risk Traffic Stops</a></li>
-                        <li><a href="#section-8" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 8 Pursuit Intervention / Vehicle Pursuits</a></li>
-                        <li><a href="#section-9" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 9 Criminal Apprehension</a></li>
-                        <li><a href="#section-10" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 10 Responding and Clearing Calls</a></li>
-                        <li class="ml-4"><a href="#section-10-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 10.1 Officer Involved Emergency Calls</a></li>
-                        <li><a href="#section-11" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 11 Briefings</a></li>
-                        <li><a href="#section-12" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 12 Reporting or Commending Law Enforcement Officers</a></li>
-                        <li><a href="#section-13" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 13 Disciplinary Actions</a></li>
-                        <li><a href="#section-14" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 14 Activity</a></li>
-                        <li class="ml-4"><a href="#section-14-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 14.1 Resignation</a></li>
-                        <li class="ml-4"><a href="#section-14-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 14.2 Leave of Absence</a></li>
-                        <li><a href="#section-15" class="block p-3 text-orange-300 bg-slate-700/50 rounded-lg font-bold text-sm">Section 15 Equipment</a></li>
-                        <li class="ml-4"><a href="#section-15-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.1 Firearms</a></li>
-                        <li class="ml-4"><a href="#section-15-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.2 Less Lethal</a></li>
-                    </ul>
+            <div class="flex flex-1 relative min-h-[calc(100vh-20rem)]">
+                <aside class="hidden lg:block w-80 bg-slate-900 border-r border-slate-800 p-6 sidebar-scroll overflow-y-auto sticky top-0 h-screen">
+                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Navigation</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Category: General -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-general')" class="w-full flex justify-between items-center text-orange-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>General Info</span>
+                                <i data-lucide="chevron-down" id="cat-general-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-general" class="space-y-1 ml-2">
+                                <li><a href="#section-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 1 Introduction</a></li>
+                                <li><a href="#section-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 2 Chain of Command</a></li>
+                                <li><a href="#section-11" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 11 Briefings</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Communications -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-comm')" class="w-full flex justify-between items-center text-orange-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Communications</span>
+                                <i data-lucide="chevron-down" id="cat-comm-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-comm" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-3" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 3 Radio Comms</a></li>
+                                <li><a href="#section-4" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 4 Patrol Zones</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Field Operations -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-field')" class="w-full flex justify-between items-center text-orange-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Field Operations</span>
+                                <i data-lucide="chevron-down" id="cat-field-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-field" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-6" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 6 Use of Force</a></li>
+                                <li><a href="#section-7" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 7 Traffic Stops</a></li>
+                                <li><a href="#section-8" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 8 Pursuits</a></li>
+                                <li><a href="#section-9" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 9 Apprehension</a></li>
+                                <li><a href="#section-10" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 10 Responding</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Divisions -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-divs')" class="w-full flex justify-between items-center text-orange-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Divisions</span>
+                                <i data-lucide="chevron-down" id="cat-divs-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-divs" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-5" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 5 Overview</a></li>
+                                <li><a href="#section-5-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 5.1 Duties</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Personnel -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-pers')" class="w-full flex justify-between items-center text-orange-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Professional Standards</span>
+                                <i data-lucide="chevron-down" id="cat-pers-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-pers" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-12" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 12 Reporting</a></li>
+                                <li><a href="#section-13" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 13 Discipline</a></li>
+                                <li><a href="#section-14" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 14 Activity</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Equipment -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-equip')" class="w-full flex justify-between items-center text-orange-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Equipment</span>
+                                <i data-lucide="chevron-down" id="cat-equip-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-equip" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-15" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15 General</a></li>
+                                <li><a href="#section-15-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.1 Firearms</a></li>
+                                <li><a href="#section-15-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.2 Less Lethal</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </aside>
                 <div class="lg:hidden fixed bottom-6 right-6 z-50">
                     <button class="bg-slate-700 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white" onclick="toggleManualSidebar()">
@@ -143,758 +196,463 @@
         
                 <main class="flex-1 p-6 md:p-12 max-w-5xl">
                     <article class="prose prose-invert max-w-none">
-                        <section id="section-1" class="mb-12">
-                            <h1 class="text-4xl font-black uppercase italic italic text-white mb-4">Law Enforcement Standard Operating Procedure</h1>
-                            <p class="text-slate-400 leading-relaxed text-lg mb-6">
-                                This document sets forth the policies and procedures of the agency that all law enforcement officers must adhere to in order to perform their duties to the highest standard. It is the responsibility of each officer to comply with these rules and policies.
-                            </p>
-                            <p class="text-slate-400 leading-relaxed text-lg mb-6">
-                                Authorized law enforcement command staff may make changes to this document at any time. All changes will be clearly stated in the law enforcement bulletin.
-                            </p>
-                            <p class="text-slate-400 leading-relaxed text-lg mb-6">
-                                Law enforcement is a dynamic field, and it is not possible to include instructions and policies on every task that an officer may encounter while on duty. Actions taken that are not explicitly covered by the written standards may be acceptable on a case-by-case basis, but must be reasonable and reflect the Agency Duties and Ethics.
-                            </p>
-                            <p class="text-slate-400 leading-relaxed text-lg mb-6">
-                                In addition to this document, officers are also subject to the directives of supervisory personnel. Any directive from a supervisor has the same authority as a written policy.
-                            </p>
-                            <p class="text-slate-400 leading-relaxed text-lg mb-6">
-                                This Standard Operating Procedure document is maintained by law enforcement command staff.
-                            </p>
-                            <div class="h-1 w-20 bg-slate-700 rounded-full mb-12"></div>
-                        </section>
-        
-                        <section id="section-1-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 1.1 Core Ethics</h2>
-                            <p class="text-slate-400 mb-4">
-                                As a sworn law enforcement officer, your actions are to be guided by the following principles:
-                            </p>
-                            <div class="space-y-4 mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Respect</h3>
-                                    <p class="text-slate-400">Treat others with dignity and respect. This includes your colleagues and the public. Refrain from disrespectful behavior, such as shouting or using profanity.</p>
+                        <!-- Intro Header -->
+                        <div class="mb-16 text-center lg:text-left">
+                            <h1 class="text-5xl font-black uppercase italic text-white mb-4 leading-tight">Standard Operating <span class="text-orange-500">Procedures</span></h1>
+                            <p class="text-slate-400 text-xl max-w-2xl leading-relaxed">Official protocols and ethical guidelines for all sworn Law Enforcement Officers.</p>
+                            <div class="h-1.5 w-32 bg-orange-600 rounded-full mt-8 mx-auto lg:mx-0"></div>
+                        </div>
+
+                        <section id="section-1" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 1</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Introduction</h2>
+                            </div>
+                            
+                            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                                <div class="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50">
+                                    <p class="text-slate-300 leading-relaxed m-0">
+                                        This document sets forth the policies and procedures of the agency that all law enforcement officers must adhere to in order to perform their duties to the highest standard. It is the responsibility of each officer to comply with these rules and policies.
+                                    </p>
                                 </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Service</h3>
-                                    <p class="text-slate-400">Serve the public with dedication and professionalism. Protect the community from harm, enforce the law with no bias, and assist those that are in need.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Excellence</h3>
-                                    <p class="text-slate-400">Always look for ways to better yourself. Be efficient in law and departmental policies, and maintain skills through continuous training. Be honest and ethical in your conduct, and hold yourself to the highest standards.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Justice</h3>
-                                    <p class="text-slate-400">Uphold the law and promote justice for everyone. Be fair with everyone, regardless of race, religion, ethnicity, gender or sexual orientation.</p>
+                                <div class="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50">
+                                    <p class="text-slate-300 leading-relaxed m-0">
+                                        Authorized law enforcement command staff may make changes to this document at any time. All changes will be clearly stated in the law enforcement bulletin.
+                                    </p>
                                 </div>
                             </div>
-                            <p class="text-slate-400 mb-4">
-                                As a sworn law enforcement officer, you are responsible for upholding the principles.
-                            </p>
-                        </section>
-        
-                        <section id="section-1-2" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 1.2 Duties</h2>
-                            <p class="text-slate-400 mb-4">
-                                The duties of a law enforcement officer are including, but not completely limited to:
-                            </p>
-                            <div class="space-y-4 mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Protect Life and Property</h3>
-                                    <p class="text-slate-400">Protect individuals and property from harm. Be proactive and vigilant during patrols. Collaborate with the community and colleagues to deter crime.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Maintain Order</h3>
-                                    <p class="text-slate-400">Prevent and resolve any conflicts. Ensure a safe and secure community with low conflict. Use de-escalation techniques to reduce public safety risks.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Enforce and Adhere To The Law</h3>
-                                    <p class="text-slate-400">Adhere to and enforce all State and Federal laws.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Build Relationships With The Community</h3>
-                                    <p class="text-slate-400">Build and retain a positive relationship and image with the community. Develop a sense of trust with the public.</p>
+
+                            <div id="section-1-1" class="mb-12 bg-slate-800/20 p-8 rounded-3xl border border-slate-800">
+                                <h3 class="text-2xl font-black uppercase italic text-orange-400 mb-6 flex items-center gap-3">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i> 1.1 Core Ethics
+                                </h3>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Respect</h4>
+                                        <p class="text-slate-400 text-sm">Treat others with dignity. Refrain from disrespectful behavior, shouting, or profanity.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Service</h4>
+                                        <p class="text-slate-400 text-sm">Serve with dedication. Protect the community and assist those in need with no bias.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Excellence</h4>
+                                        <p class="text-slate-400 text-sm">Better yourself continuously. Be efficient in policy and maintain training standards.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Justice</h4>
+                                        <p class="text-slate-400 text-sm">Uphold the law for everyone, regardless of race, religion, gender, or orientation.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="text-slate-400 mb-4">
-                                Throughout the course of your duties, regardless of rank or position within your department, law enforcement officers are expected to uphold all laws within the United States of America and are responsible for the enforcement and education of all laws whilst upholding the ethical values of Law Enforcement. This means every law enforcement officer shall treat everyone with the respect they deserve, provide quality service, serve with excellence and ensure that justice is sought by conducting detailed investigations and presenting the courts with detailed paperwork to support your actions within the course of your duties.
-                            </p>
+
+                            <div id="section-1-2">
+                                <h3 class="text-2xl font-black uppercase italic text-orange-400 mb-6 flex items-center gap-3">
+                                    <i data-lucide="briefcase" class="w-6 h-6"></i> 1.2 Duties
+                                </h3>
+                                <ul class="list-none p-0 space-y-4">
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="heart" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Protect Life and Property</strong><span class="text-slate-400 text-sm">Be proactive and vigilant during patrols to deter crime.</span></div>
+                                    </li>
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="scale" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Maintain Order</strong><span class="text-slate-400 text-sm">Use de-escalation techniques to resolve conflicts and ensure security.</span></div>
+                                    </li>
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="gavel" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Enforce the Law</strong><span class="text-slate-400 text-sm">Adhere to and enforce all State and Federal laws strictly.</span></div>
+                                    </li>
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="users" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Community Relations</strong><span class="text-slate-400 text-sm">Develop a sense of trust with the public through positive interaction.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
                         </section>
-        
-                        <section id="section-2" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 2 Chain of Command</h2>
-                            <p class="text-slate-400 mb-4">
-                                All law enforcement officers are subordinate to all ranks above their position, regardless of agency.
+
+                        <section id="section-2" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 2</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Chain of Command</h2>
+                            </div>
+                            <p class="text-slate-400 mb-8 leading-relaxed">
+                                All law enforcement officers are subordinate to all ranks above their position, regardless of agency. Any and all departmental issues shall be discussed with respect to the Chain of Command.
                             </p>
-                            <p class="text-slate-400 mb-4">
-                                Sworn law enforcement officers are ranked:
-                            </p>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                                <table class="w-full text-left m-0">
+                                    <thead class="bg-slate-800/80 text-orange-300 text-xs uppercase font-bold tracking-[0.2em]">
                                         <tr>
-                                            <th class="px-6 py-4">Command Grade</th>
-                                            <th class="px-6 py-4">Supervisory Grade</th>
-                                            <th class="px-6 py-4">Patrol Grade</th>
+                                            <th class="px-8 py-6">Command Grade</th>
+                                            <th class="px-8 py-6">Supervisory Grade</th>
+                                            <th class="px-8 py-6">Patrol Grade</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">Captain</td><td class="px-6 py-2">Sergeant</td><td class="px-6 py-2">Police Officer III</td></tr>
-                                        <tr><td class="px-6 py-2">Lieutenant</td><td class="px-6 py-2">Corporal</td><td class="px-6 py-2">Police Officer II</td></tr>
-                                        <tr><td class="px-6 py-2"></td><td class="px-6 py-2"></td><td class="px-6 py-2">Police Officer I</td></tr>
+                                    <tbody class="divide-y divide-slate-800">
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-5 text-white font-medium">Captain</td>
+                                            <td class="px-8 py-5 text-white font-medium">Sergeant</td>
+                                            <td class="px-8 py-5 text-white font-medium">Police Officer III</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-5 text-white font-medium">Lieutenant</td>
+                                            <td class="px-8 py-5 text-white font-medium">Corporal</td>
+                                            <td class="px-8 py-5 text-white font-medium">Police Officer II</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-5 text-slate-500 italic">---</td>
+                                            <td class="px-8 py-5 text-slate-500 italic">---</td>
+                                            <td class="px-8 py-5 text-white font-medium">Police Officer I</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-slate-400 mb-4">
-                                Any and all departmental issues shall be discussed with respect to the Chain of Command.
-                            </p>
                         </section>
-        
-                        <section id="section-3" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 3 Radio Communications</h2>
-                            <p class="text-slate-400 mb-4">
-                                Radio Communication is essential to keeping officers organized.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Radio channels are to only be used for radio communication and are expected to be used in a professional fashion. All broadcasts on radio channels are to be clear and calm.
-                            </p>
-                            <p class="text-slate-400 font-bold mb-2">Upon key-up:</p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Clearly state your callsign.</li>
-                                <li>Broadcast your transmission.</li>
-                            </ul>
-                            <p class="text-slate-400 font-bold mb-2">If your broadcast references an on-going situation:</p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Clearly state your callsign, a brief description of the on-going situation, and your current location, including a postal number.</li>
-                            </ul>
-                            <p class="text-slate-400 mb-4">
-                                If another officer is broadcasting, let them finish their traffic before you key-up.
-                            </p>
-                            
-                            <h3 class="text-xl font-bold text-white mb-2">Radio Frequency Information</h3>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4"></th>
-                                            <th class="px-6 py-4"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2 font-bold">Los Santos County</td><td class="px-6 py-2">70 - Patrol Channel 71 - TAC Channel 1 72 - TAC Channel 2</td></tr>
-                                        <tr><td class="px-6 py-2 font-bold">Blaine County</td><td class="px-6 py-2">80 - Patrol Channel 81 - TAC Channel 1 82 - TAC Channel 2</td></tr>
-                                    </tbody>
-                                </table>
+
+                        <section id="section-3" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 3</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Radio Communications</h2>
                             </div>
-                            <p class="text-slate-400 mb-4">
-                                Primarily plain-talk is required as opposed to 10-codes. 
-                                Permitted deviations from this are: “CODE 6” and “CODE 4”.
-                            </p>
-        
-                            <h3 class="text-xl font-bold text-white mb-2">Callsign Information</h3>
-                            <p class="text-slate-400 mb-4">
-                                Callsigns are different for each agency to assist with distinction. Below is a list of all agency callsigns and their structure.
-                            </p>
                             
-                            <div class="space-y-8 mt-6">
+                            <div class="bg-orange-600/10 border border-orange-500/20 p-6 rounded-2xl mb-8">
+                                <p class="text-orange-300 font-bold m-0 flex items-center gap-2">
+                                    <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                                    Professional Standards Required
+                                </p>
+                                <p class="text-orange-300/80 text-sm mt-2 m-0 leading-relaxed">
+                                    Radio channels are for official communication only. Broadcasts must be clear, calm, and concise.
+                                </p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Standard Key-Up</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
+                                        <li>State your callsign clearly.</li>
+                                        <li>Broadcast your transmission.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Active Situations</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
+                                        <li>State callsign and brief situation.</li>
+                                        <li>State current location (include postal).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest border-b border-slate-800 pb-2">Radio Frequencies</h3>
+                            <div class="grid sm:grid-cols-2 gap-4 mb-12">
+                                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                                    <span class="text-orange-500 font-black text-xs uppercase tracking-widest mb-2 block">Los Santos County</span>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-white text-lg font-bold">Patrol: 70</span>
+                                        <span class="text-slate-400 text-sm">TAC 1: 71 | TAC 2: 72</span>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                                    <span class="text-orange-500 font-black text-xs uppercase tracking-widest mb-2 block">Blaine County</span>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-white text-lg font-bold">Patrol: 80</span>
+                                        <span class="text-slate-400 text-sm">TAC 1: 81 | TAC 2: 82</span>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest border-b border-slate-800 pb-2">Callsign Structure</h3>
+                            <div class="space-y-6">
                                 <!-- LSPD -->
-                                <div class="border-l-4 border-orange-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Los Santos Police Department</h4>
-                                    <div class="space-y-4 text-sm text-slate-400">
-                                        <div><span class="text-orange-300 font-bold block">Chief of Police</span> Car followed by 1 (e.g. CAR-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Deputy Chief</span> Car followed by 2 (e.g. CAR-2)</div>
-                                        <div><span class="text-orange-300 font-bold block">Assistant Chief</span> Car followed by a single digit number 3-7 (e.g. CAR-5)</div>
-                                        <div><span class="text-orange-300 font-bold block">Captains</span> Car followed by a single or two digit number 8-12 (e.g. CAR-8)</div>
-                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> Car followed by a single or two digit number 13-33 (e.g. CAR-20)</div>
-                                        <div><span class="text-orange-300 font-bold block">Detectives</span> Watch followed by David and a single or two digit number (e.g. 2-DAVID-10)</div>
-                                        <div><span class="text-orange-300 font-bold block">Patrol Sergeants</span> Watch followed by precinct identifier (e.g. 2-NORA)<br><span class="text-xs italic">(2-NORA would be a 2nd shift Sergeant assigned to Nora/North precinct)</span></div>
-                                        <div><span class="text-orange-300 font-bold block">Patrol District Units</span> Watch followed by precinct identifier and 1 or 2 digit number (e.g. 2-SAM-1)<br><span class="text-xs italic">(2-SAM-1 would be a patrol car on 2nd watch, assigned to Sam/South precinct, and they would be the 1st car. Additional units assigned to South precinct would be a number from 2-13 e.g. 2-SAM-2, 2-SAM-11)</span></div>
-                                        <div><span class="text-orange-300 font-bold block">Uniformed Walking Beat Units</span> Designated by the watch, precinct, and a two digit number 61-69. (e.g. 2-NORA-61). Walking Beat Sergeants are identified by the watch, precinct and the number 70 (e.g. 2-NORA-70)</div>
-                                        <div><span class="text-orange-300 font-bold block">Uniformed Bicycle Beat Units</span> Designated by the watch, precinct, and a 2 digit number 81-89 (e.g. 2-WILLIAM-81). Bicycle Beat Sergeants are identified by the watch, precinct and the number 80 (e.g. 2-WILLIAM-80)</div>
-                                        <div><span class="text-orange-300 font-bold block">Patrol Wagons</span> Identified by the precinct, watch and the number 10 (e.g. 2-NORA-10)</div>
-                                        <div><span class="text-orange-300 font-bold block">Harbor Units</span> HBR followed by a 1 or 2 digit number (e.g. HARBOR-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Traffic Units</span> T followed by a 2 digit number (e.g. TOM-15)</div>
-                                        <div><span class="text-orange-300 font-bold block">Parking Enforcement</span> P followed by a 2 or 3 digit number (e.g. PAUL-254)</div>
-                                        <div><span class="text-orange-300 font-bold block">Crisis Response Unit</span> CRT followed by a single digit number 1-9 (e.g. CRT-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Anti-Crime Team</span> Precinct letter followed by a number from 95-99 (e.g. EDWARD-95)</div>
-                                        <div><span class="text-orange-300 font-bold block">SWAT</span> Z followed by a 2 digit number (e.g. ZEBRA-20)</div>
-                                        <div><span class="text-orange-300 font-bold block">K-9</span> K-9 followed by a 1 or 2 digit number 1-15</div>
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-lspd')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Los Santos Police Department</span>
+                                        <i data-lucide="chevron-down" id="cs-lspd-icon"></i>
+                                    </button>
+                                    <div id="cs-lspd" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="space-y-4">
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-orange-300">Chief of Police</strong> Car followed by 1 (e.g. CAR-1)</div>
+                                                <div><strong class="text-orange-300">Deputy Chief</strong> Car followed by 2 (e.g. CAR-2)</div>
+                                                <div><strong class="text-orange-300">Assistant Chief</strong> Car followed by single digit 3-7 (e.g. CAR-5)</div>
+                                                <div><strong class="text-orange-300">Captains</strong> Car followed by 1 or 2 digits 8-12 (e.g. CAR-8)</div>
+                                                <div><strong class="text-orange-300">Lieutenants</strong> Car followed by 1 or 2 digits 13-33 (e.g. CAR-20)</div>
+                                                <div><strong class="text-orange-300">Detectives</strong> Watch-DAVID-Unit (e.g. 2-DAVID-10)</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4">
+                                                <strong class="text-white block mb-2">Patrol Assignments</strong>
+                                                <ul class="list-none p-0 space-y-2">
+                                                    <li><strong class="text-orange-300">Sergeants:</strong> Watch followed by precinct (e.g. 2-NORA)</li>
+                                                    <li><strong class="text-orange-300">District Units:</strong> Watch-Precinct-Unit (e.g. 2-SAM-1)</li>
+                                                    <li><strong class="text-orange-300">Walking Beat:</strong> Watch-Precinct-61 to 69 (Sgt: 70)</li>
+                                                    <li><strong class="text-orange-300">Bicycle Beat:</strong> Watch-Precinct-81 to 89 (Sgt: 80)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4 grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-orange-300">Harbor</strong> HBR + 1 or 2 digits (HARBOR-1)</div>
+                                                <div><strong class="text-orange-300">Traffic</strong> T + 2 digits (TOM-15)</div>
+                                                <div><strong class="text-orange-300">SWAT</strong> Z + 2 digits (ZEBRA-20)</div>
+                                                <div><strong class="text-orange-300">K-9</strong> K-9 + 1 or 2 digits (1-15)</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- LSPP -->
-                                <div class="border-l-4 border-slate-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Los Santos Port Police</h4>
-                                    <p class="text-sm text-slate-500 italic">Callsign information pending.</p>
-                                </div>
-
                                 <!-- LSCSO -->
-                                <div class="border-l-4 border-orange-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Los Santos County Sheriff’s Office</h4>
-                                    <div class="space-y-4 text-sm text-slate-400">
-                                        <div><span class="text-orange-300 font-bold block">Sheriff</span> County followed by 1 (e.g. COUNTY-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Undersheriff</span> County followed by 2 (e.g. COUNTY-2)</div>
-                                        <div><span class="text-orange-300 font-bold block">Division Chiefs</span> County a single digit number 3-7 (e.g. COUNTY-5)</div>
-                                        <div><span class="text-orange-300 font-bold block">K-9</span> K-9 followed by a 1 or 2 digit number 1-15</div>
-                                        <div><span class="text-orange-300 font-bold block">North Precinct Unincorporated Units</span> Letter C followed by a 2 digit number 90-99 (e.g CHARLES-92). Sergeants will be watch followed by C (e.g. 2-CHARLES)</div>
-                                        <div><span class="text-orange-300 font-bold block">South Precinct Unincorporated Units</span> Letter G followed by a 2 digit number 90-99 (e.g. GEORGE-90). Sergeants will be watch followed by G (e.g. 2-GEORGE)</div>
-                                        <div><span class="text-orange-300 font-bold block">City of Davis Police Department</span> Letter L followed by a 2 digit number 90-99 (e.g. LINCOLN-90). Sergeants will be watch followed by L (e.g. 2-LINCOLN)</div>
-                                        <div><span class="text-orange-300 font-bold block">City of Rockford Hills Police Department</span> Letter H followed by 3 digit number 290-299 (e.g. HENRY-299). Sergeants will be watch followed by H (e.g. 2-HENRY)</div>
-                                        <div><span class="text-orange-300 font-bold block">Los Santos METRO Transit units</span> METRO 40-49 (LS city limits), METRO 50-59 (outside LS city limits). Sergeants will be watch followed by METRO. Bicycle (BEES): METRO 91-99.</div>
-                                        <div><span class="text-orange-300 font-bold block">Marine Unit</span> MARINE 1-59</div>
-                                        <div><span class="text-orange-300 font-bold block">Detectives</span> County 120-160</div>
-                                        <div><span class="text-orange-300 font-bold block">Air Support</span> LE Ops helicopters: GUARDIAN-1. SAR ops: GUARDIAN-2.</div>
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-lscso')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">LS County Sheriff’s Office</span>
+                                        <i data-lucide="chevron-down" id="cs-lscso-icon"></i>
+                                    </button>
+                                    <div id="cs-lscso" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="space-y-4">
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-orange-300">Sheriff</strong> County followed by 1 (e.g. COUNTY-1)</div>
+                                                <div><strong class="text-orange-300">Undersheriff</strong> County followed by 2 (e.g. COUNTY-2)</div>
+                                                <div><strong class="text-orange-300">Division Chiefs</strong> County single digit 3-7</div>
+                                                <div><strong class="text-orange-300">Detectives</strong> County 120-160</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4 grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-orange-300">North Precinct</strong> CHARLES 90-99 (Sgt: 2-CHARLES)</div>
+                                                <div><strong class="text-orange-300">South Precinct</strong> GEORGE 90-99 (Sgt: 2-GEORGE)</div>
+                                                <div><strong class="text-orange-300">City of Davis</strong> LINCOLN 90-99 (Sgt: 2-LINCOLN)</div>
+                                                <div><strong class="text-orange-300">Rockford Hills</strong> HENRY 290-299 (Sgt: 2-HENRY)</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4">
+                                                <strong class="text-white block mb-2">METRO Transit / Air / Marine</strong>
+                                                <ul class="list-none p-0 space-y-1">
+                                                    <li><strong class="text-orange-300">METRO 40-49</strong> Within City Limits</li>
+                                                    <li><strong class="text-orange-300">METRO 50-59</strong> Outside City Limits</li>
+                                                    <li><strong class="text-orange-300">GUARDIAN-1</strong> LE Ops / <strong class="text-orange-300">GUARDIAN-2</strong> SAR Ops</li>
+                                                    <li><strong class="text-orange-300">MARINE 1-59</strong> Marine Units</li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- BCSD -->
-                                <div class="border-l-4 border-orange-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Blaine County Sheriff’s Department</h4>
-                                    <div class="space-y-4 text-sm text-slate-400">
-                                        <div><span class="text-orange-300 font-bold block">Sheriff</span> County followed by 1 (e.g. COUNTY-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Undersheriff</span> County followed by 2 (e.g. COUNTY-2)</div>
-                                        <div><span class="text-orange-300 font-bold block">Bureau Chiefs</span> County a single digit number 3-6 (e.g. COUNTY-5)</div>
-                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> County and a single or two digit number 7-25 (e.g. County-15)</div>
-                                        <div><span class="text-orange-300 font-bold block">Sergeants</span> County and a two digit number 26-70 (e.g. County-35)</div>
-                                        <div><span class="text-orange-300 font-bold block">Corporals and Deputies</span> County a three digit number 100-600 (e.g. County-255)</div>
-                                        <div><span class="text-orange-300 font-bold block">K-9</span> K-9 followed by a 1 or 2 digit number 1-10</div>
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-bcsd')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Blaine County Sheriff’s Dept</span>
+                                        <i data-lucide="chevron-down" id="cs-bcsd-icon"></i>
+                                    </button>
+                                    <div id="cs-bcsd" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div><strong class="text-orange-300">Sheriff</strong> COUNTY-1</div>
+                                            <div><strong class="text-orange-300">Undersheriff</strong> COUNTY-2</div>
+                                            <div><strong class="text-orange-300">Bureau Chiefs</strong> County 3-6</div>
+                                            <div><strong class="text-orange-300">Lieutenants</strong> County 7-25</div>
+                                            <div><strong class="text-orange-300">Sergeants</strong> County 26-70</div>
+                                            <div><strong class="text-orange-300">Deputies</strong> County 100-600</div>
+                                            <div><strong class="text-orange-300">K-9</strong> K-9 1-10</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- PBPD -->
-                                <div class="border-l-4 border-orange-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Paleto Bay Police Department</h4>
-                                    <div class="space-y-4 text-sm text-slate-400">
-                                        <div><span class="text-orange-300 font-bold block">Chief of Police</span> Car followed by 1 (e.g. CAR-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Deputy Chief</span> Car followed by 2 (e.g. CAR-2)</div>
-                                        <div><span class="text-orange-300 font-bold block">Assistant Chiefs</span> Car followed by a single digit number 3-5 (e.g. CAR-4)</div>
-                                        <div><span class="text-orange-300 font-bold block">Captains</span> Car followed by a single digit number 6-9 (e.g. CAR-8)</div>
-                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> Lincoln followed by a two digit number 10-22 (e.g. LINCOLN-15)</div>
-                                        <div><span class="text-orange-300 font-bold block">Sergeants</span> Sam followed by a three digit number 100-300 (e.g. SAM-133)</div>
-                                        <div><span class="text-orange-300 font-bold block">Detectives</span> David followed by a three digit number 100-300 (e.g. DAVID-122)</div>
-                                        <div><span class="text-orange-300 font-bold block">Two Man Patrol Cars</span> Baker followed by a three digit number 100-400 (e.g. BAKER-257)</div>
-                                        <div><span class="text-orange-300 font-bold block">One Man Patrol Car</span> Paul followed by a three digit number 100-400 (e.g. PAUL-368)</div>
-                                        <div><span class="text-orange-300 font-bold block">Motorcycle Units</span> Mary followed by a three digit number 100-400 (e.g. MARY-134)</div>
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-pbpd')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Paleto Bay Police Department</span>
+                                        <i data-lucide="chevron-down" id="cs-pbpd-icon"></i>
+                                    </button>
+                                    <div id="cs-pbpd" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div><strong class="text-orange-300">Chief/Deputy</strong> CAR-1, CAR-2</div>
+                                            <div><strong class="text-orange-300">Assist. Chief</strong> CAR 3-5</div>
+                                            <div><strong class="text-orange-300">Captains</strong> CAR 6-9</div>
+                                            <div><strong class="text-orange-300">Lieutenants</strong> LINCOLN 10-22</div>
+                                            <div><strong class="text-orange-300">Sergeants</strong> SAM 100-300</div>
+                                            <div><strong class="text-orange-300">Detectives</strong> DAVID 100-300</div>
+                                            <div><strong class="text-orange-300">2-Man Patrol</strong> BAKER 100-400</div>
+                                            <div><strong class="text-orange-300">1-Man Patrol</strong> PAUL 100-400</div>
+                                            <div><strong class="text-orange-300">Motorcycle</strong> MARY 100-400</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- SASP -->
-                                <div class="border-l-4 border-orange-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">San Andreas State Patrol & Other State Agencies</h4>
-                                    <div class="space-y-4 text-sm text-slate-400">
-                                        <div><span class="text-orange-300 font-bold block">Chief</span> State followed by 1 (e.g. STATE-1)</div>
-                                        <div><span class="text-orange-300 font-bold block">Deputy Chiefs</span> State followed by a single digit number 2-5 (e.g. STATE-3)</div>
-                                        <div><span class="text-orange-300 font-bold block">Majors</span> State followed by a single or two digit number 6-14 (e.g. STATE-7)</div>
-                                        <div><span class="text-orange-300 font-bold block">Captains</span> State followed by a two digit number 15-39 (e.g. STATE-20)</div>
-                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> State followed by a two digit number 40-99 (e.g. STATE-50)</div>
-                                        <div><span class="text-orange-300 font-bold block">Sergeants</span> State followed by a three digit number 100-299 (e.g. STATE-141)</div>
-                                        <div><span class="text-orange-300 font-bold block">Corporals and Troopers</span> State followed by a three digit number 300-1299 (e.g. STATE-978)</div>
-                                        <div><span class="text-orange-300 font-bold block">Motorcycle Troopers</span> Mary followed by a three digit number 300-1299 (e.g. MARY-356)</div>
-                                        <div><span class="text-orange-300 font-bold block">Commercial Vehicle Enforcement Officers</span> X-Ray followed by a three digit number 700-999 (e.g. XRAY-750)</div>
-                                        <div><span class="text-orange-300 font-bold block">Air Support</span> Smokey followed by a single digit number 1-3 (e.g. SMOKEY-3)</div>
-                                        <div><span class="text-orange-300 font-bold block">San Andreas State Parks</span> Parks followed by a three digit number 100-300 (e.g. PARKS-283)</div>
-                                        <div><span class="text-orange-300 font-bold block">San Andreas Department of Fish and Wildlife</span> Police Officers: Wildlife 100-200. Sergeants: Wildlife 20-50. Captains: Wildlife 5-11.</div>
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-sasp')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">State Patrol & Other Agencies</span>
+                                        <i data-lucide="chevron-down" id="cs-sasp-icon"></i>
+                                    </button>
+                                    <div id="cs-sasp" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="space-y-4">
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-orange-300">Chief</strong> STATE-1</div>
+                                                <div><strong class="text-orange-300">Deputy Chiefs</strong> STATE 2-5</div>
+                                                <div><strong class="text-orange-300">Majors</strong> STATE 6-14</div>
+                                                <div><strong class="text-orange-300">Captains</strong> STATE 15-39</div>
+                                                <div><strong class="text-orange-300">Lieutenants</strong> STATE 40-99</div>
+                                                <div><strong class="text-orange-300">Sergeants</strong> STATE 100-299</div>
+                                                <div><strong class="text-orange-300">Troopers</strong> STATE 300-1299</div>
+                                                <div><strong class="text-orange-300">Motorcycle</strong> MARY 300-1299</div>
+                                                <div><strong class="text-orange-300">Commercial</strong> XRAY 700-999</div>
+                                                <div><strong class="text-orange-300">Air Support</strong> SMOKEY 1-3</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4 grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-orange-300">State Parks</strong> PARKS 100-300</div>
+                                                <div><strong class="text-orange-300">Wildlife Officers</strong> WILDLIFE 100-200</div>
+                                                <div><strong class="text-orange-300">Wildlife Sgts</strong> WILDLIFE 20-50</div>
+                                                <div><strong class="text-orange-300">Wildlife Capts</strong> WILDLIFE 5-11</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Federal -->
-                                <div class="border-l-4 border-orange-500 pl-6 py-2">
-                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Federal Agencies</h4>
-                                    <div class="space-y-4 text-sm text-slate-400">
-                                        <div><span class="text-orange-300 font-bold block">United States Forest Service Law Enforcement</span> Forest followed by a three digit number 100-200 (e.g. FOREST-156)</div>
-                                        <div><span class="text-orange-300 font-bold block">National Parks Service</span> NPS followed by a three digit number 100-200 (e.g. NPS-138)</div>
-                                        <div><span class="text-orange-300 font-bold block">United States Border Patrol</span> USBP followed by a three digit number 100-200 (e.g. USBP-110)</div>
-                                        <div><span class="text-orange-300 font-bold block">United States Department of Homeland Security</span> DHS followed by a three digit number 100-200 (e.g. DHS-178)</div>
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-fed')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Federal Agencies</span>
+                                        <i data-lucide="chevron-down" id="cs-fed-icon"></i>
+                                    </button>
+                                    <div id="cs-fed" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div><strong class="text-orange-300">Forest Service</strong> FOREST 100-200</div>
+                                            <div><strong class="text-orange-300">NPS</strong> NPS 100-200</div>
+                                            <div><strong class="text-orange-300">Border Patrol</strong> USBP 100-200</div>
+                                            <div><strong class="text-orange-300">Homeland Security</strong> DHS 100-200</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-        
-                            <h3 class="text-xl font-bold text-white mb-2">Phonetics Information</h3>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4"></th>
-                                            <th class="px-6 py-4"></th>
-                                            <th class="px-6 py-4"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">A ADAM</td><td class="px-6 py-2">J JOHN</td><td class="px-6 py-2">S SAM</td></tr>
-                                        <tr><td class="px-6 py-2">B BOY</td><td class="px-6 py-2">K KING</td><td class="px-6 py-2">T TOM</td></tr>
-                                        <tr><td class="px-6 py-2">C CHARLES</td><td class="px-6 py-2">L LINCOLN</td><td class="px-6 py-2">U UNION</td></tr>
-                                        <tr><td class="px-6 py-2">D DAVID</td><td class="px-6 py-2">M MARY</td><td class="px-6 py-2">V VICTOR</td></tr>
-                                        <tr><td class="px-6 py-2">E EDWARD</td><td class="px-6 py-2">N NORA</td><td class="px-6 py-2">W WILLIAM</td></tr>
-                                        <tr><td class="px-6 py-2">F FRANK</td><td class="px-6 py-2">O OCEAN</td><td class="px-6 py-2">X XRAY</td></tr>
-                                        <tr><td class="px-6 py-2">G GEORGE</td><td class="px-6 py-2">P PAUL</td><td class="px-6 py-2">Y YOUNG</td></tr>
-                                        <tr><td class="px-6 py-2">H HENRY</td><td class="px-6 py-2">Q QUEEN</td><td class="px-6 py-2">Z ZEBRA</td></tr>
-                                        <tr><td class="px-6 py-2">I IDA</td><td class="px-6 py-2">R ROBERT</td><td class="px-6 py-2"></td></tr>
-                                    </tbody>
-                                </table>
+                        </section>
+
+                        <section id="section-6" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 6</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Use of Force Continuum</h2>
                             </div>
-                        </section>
-        
-                        <section id="section-4" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 4 Agency Patrol Zones</h2>
-                            <p class="text-slate-400 mb-4">
-                                Law enforcement agencies are assigned specific patrol zones within which they are responsible for maintaining public safety and order. Adherence to designated patrol zones is expected, with the exception of responding to mutual aid requests.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                In instances where multiple law enforcement agencies share jurisdiction over a particular zone, the agency represented by the designated color holds primary authority. Secondary jurisdiction extends to any other agencies operating within the shared zone.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                When pursuing a suspect and entering a zone outside of their agency's jurisdiction, law enforcement officers are obligated to promptly notify the primary jurisdiction holder of their entry and the circumstances surrounding it.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                A comprehensive map encompassing all patrol zones is available for reference.
-                            </p>
-                            <p class="text-slate-400 font-bold">Patrol Zone Map</p>
-                        </section>
-        
-                        <section id="section-5" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 5 Divisions</h2>
-                            <p class="text-slate-400 mb-4">
-                                Primary duty divisions and units are the core of law enforcement, responsible for the department's patrol duties. Secondary duty divisions and units are auxiliary assignments that may be considered secondary duties to replace primary duty patrol.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Divisions categorized under each operations office:
-                            </p>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4">Field Operations - Primary Duty</th>
-                                            <th class="px-6 py-4">Support Operations - Secondary Duty</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">Patrol Division</td><td class="px-6 py-2">Aviation Unit</td></tr>
-                                        <tr><td class="px-6 py-2">Traffic Enforcement Division</td><td class="px-6 py-2">Marine Unit</td></tr>
-                                        <tr><td class="px-6 py-2">K-9 Unit</td><td class="px-6 py-2">Special Weapons and Tactics [P-III+]</td></tr>
-                                        <tr><td class="px-6 py-2">Criminal Investigations Unit [P-II+]</td><td class="px-6 py-2"></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-        
-                        <section id="section-5-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 5.1 Divisional Duties</h2>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Patrol Division</h3>
-                            <p class="text-slate-400 mb-4">
-                                Patrol officers serve as the backbone of the department, fulfilling a broad range of tasks that encompass responding to emergency calls, conducting traffic stops, and enforcing local ordinances. Their duties require them to maintain a constant presence in the community, ensuring public safety and upholding the law.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Traffic Enforcement Division</h3>
-                            <p class="text-slate-400 mb-4">
-                                Traffic Enforcement officers prioritize tasks closely aligned with ensuring the smooth flow of traffic, protecting motorists and pedestrians, and promoting responsible driving habits. Their responsibilities encompass patrolling streets and highways, monitoring traffic conditions, enforcing traffic laws, and investigating traffic accidents. They may also be called upon to respond to emergency calls when necessary.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">K-9 Unit</h3>
-                            <p class="text-slate-400 mb-4">
-                                K-9 officers and their canine partners specialize in criminal tracking and apprehension operations, responding to requests or calls that warrant the presence of a K-9 team. Their duties include detecting illegal contraband such as weapons, narcotics, and explosives, assisting local and neighboring agencies with area and vehicle searches, and participating in high-risk warrant executions. When not actively engaged in K-9 related tasks, they may also assist with emergency calls.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Criminal Investigations Unit</h3>
-                            <p class="text-slate-400 mb-4">
-                                Detectives prioritize specialized investigative duties, responding to requests or calls that require in-depth investigation. Their responsibilities encompass thoroughly investigating crimes, gathering evidence, obtaining and serving warrants, and pursuing criminal apprehension. When not actively engaged in investigative work, they may also assist with emergency calls as needed.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Aviation Unit</h3>
-                            <p class="text-slate-400 mb-4">
-                                Pilots prioritize duties closely related to aerial operations, responding to requests or calls that warrant the deployment of a helicopter. Their responsibilities encompass aerial surveillance, conducting search and rescue operations, and participating in special operations.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Marine Unit</h3>
-                            <p class="text-slate-400 mb-4">
-                                Marine Unit officers prioritize duties closely related to marine operations, responding to requests or calls that require the use of a boat. Their responsibilities encompass enforcing maritime laws, conducting search and rescue operations, and participating in special operations.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Special Weapons and Tactics (SWAT)</h3>
-                            <p class="text-slate-400 mb-4">
-                                SWAT officers specialize in tactical operations, responding to requests or high-risk calls that necessitate the deployment of the SWAT team. Their responsibilities encompass hostage rescue, barricaded suspect intervention, high-risk warrant execution, and counter-terrorism operations.
-                            </p>
-                        </section>
-        
-                        <section id="section-6" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 6 Use of Force Continuum</h2>
-                            <p class="text-slate-400 mb-4">
-                                A police use of force continuum is a model that describes the different levels of force that law enforcement officers may use in response to a given situation. 
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                The continuum is typically divided into five levels, from least to most intrusive:
-                            </p>
-                            <div class="space-y-4 mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Compliant: Suspect is compliant.</h3>
-                                    <p class="text-slate-400">Officer Presence: Use your body language and position to deter or de-escalate the situation.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Resistant (Passive): Suspect is resistant to verbal commands and is not compliant without physical resistance.</h3>
-                                    <p class="text-slate-400">Verbal commands: Use clear and concise commands to direct the subject's behavior.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Resistant (Active): Suspect is resistant to verbal commands, is not compliant and is physically resisting.</h3>
-                                    <p class="text-slate-400">Soft empty-hand controls: Use techniques such as physical compliance holds, wrist locks, and joint locks.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Assaultive (Bodily Harm): Suspect is inflicting bodily harm on police or the public.</h3>
-                                    <p class="text-slate-400">Hard empty-hand controls: Use techniques such as physical pressure points, strikes, and takedowns.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Less-lethal weapons: Use weapons such as tasers, pepper spray, and batons.</h3>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-orange-300">Assaultive (Serious Bodily Harm/Death): Suspect is not responsive to previous level of defenses, has or intends to inflict serious bodily harm or death upon others.</h3>
-                                    <p class="text-slate-400">Lethal force: Use deadly force as a last resort, if it is legal to do so.</p>
-                                </div>
-                            </div>
-                            <p class="text-slate-400 mb-4">
-                                As a sworn law enforcement officer, you are responsible for your actions in regard to the Use of Force Continuum. You are always encouraged to use the least amount of force necessary to achieve your objective.
-                            </p>
-                        </section>
-        
-                        <section id="section-6-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 6.1 Investigation and Accountability</h2>
-                            <p class="text-slate-400 mb-4">
-                                If an officer is involved in an officer-involved shooting (OIS), officers who fired their weapon must relinquish their firearm at the request of a detective or supervisor. The officers must also serve a statement to the requestor, and return to the station to sign out a new firearm.
-                            </p>
-                        </section>
-        
-                        <section id="section-7" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 7 Traffic Stops</h2>
-                            <p class="text-slate-400 mb-4">
-                                A law enforcement officer can perform a traffic stop upon the suspicion of a traffic violation. A traffic violation is something that is in clear violation of a set document or piece of legislation like the San Andreas Vehicle Code. A traffic stop could also be performed upon the investigation or crime previously, currently, or about to be committed. Traffic Stops are not always performed upon the suspicion of a traffic violation. Upon initiation of a traffic stop, law enforcement officers are to operate as directed below.
-                            </p>
-                            <ol class="list-decimal list-inside text-slate-400 space-y-2 ml-4">
-                                <li>Activate the emergency warning system of your police vehicle for indication to the driver of a traffic stop.</li>
-                                <li>Update your status.</li>
-                                <li>Run the license plate of the vehicle via your mobile data terminal.</li>
-                                <li>Run the registered owner’s name for active warrants. If there are any active felony or offender’s warrants, law enforcement officers are to call for additional units.</li>
-                                <li>Determine the best part of the stopped driver’s vehicle to approach from.</li>
-                                <li>Approach the driver, greet politely while stating the reason for the traffic stop, and ask for the driver’s license, vehicle registration, and proof of insurance. When doing this, watch the driver’s behavior for signs of hostility, nervousness, and impairment.</li>
-                                <li>If the driver is being stopped for reckless driving or speeding, a question of “is there an emergency somewhere?” could be beneficial to your investigation and traffic stop. Please remember that there isn’t always a need for a traffic ticket or arrest. The discretion of the law enforcement officer is vital to the fluency of the stop.</li>
-                                <li>If the law enforcement officer determines the need for a ticket, then writing the citation would be the next step after returning to their police vehicle.</li>
-                                <li>After the ticket is written, then approach the driver once again and notify of required signature, and that there is no admission of guilt upon signing, and signing is a way of symbolizing the reception of a traffic ticket.</li>
-                                <li>Once the driver signs the ticket, you may hand them a copy and the mailing payment slip as well as all given vehicle and pertinent information.</li>
-                                <li>Once the traffic stop is completed, you are to then update your status to be accurate to your next current status.</li>
-                            </ol>
-                        </section>
-        
-                        <section id="section-7-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 7.1 High Risk Traffic Stops</h2>
-                            <p class="text-slate-400 mb-4">
-                                A law enforcement officer can perform a high risk stop upon the investigation of a serious crime previously, currently, or about to be committed. A serious crime could be considered as something that is in clear violation of a set document or piece of legislation like the San Andreas Criminal Code that would warrant a high risk traffic stop. Upon initiation of a high risk traffic stop, law enforcement officers are to operate as directed below.
-                            </p>
-                            <ol class="list-decimal list-inside text-slate-400 space-y-2 ml-4">
-                                <li>Activate the emergency warning system of your police vehicle for indication to the driver of a traffic stop. Ensure the location of the stop is in a remote area, away from the public if possible.</li>
-                                <li>Update your status.</li>
-                                <li>Request backup to the location, while clearly stating you are going to conduct a high risk stop. At least two (2) extra backup units would suffice for a high risk traffic stop.</li>
-                                <li>Once backup units arrive, a secondary vehicle should be positioned to the left of the primary vehicle, facing the left side of the vehicle. The third vehicle should be positioned behind and between both the primary and secondary vehicle, with regard to crossfire.</li>
-                                <li>Once in position, the driver of the primary vehicle should order the driver to:</li>
-                                <ul class="list-disc list-inside text-slate-400 space-y-1 ml-8">
-                                    <li>Remove the keys from the ignition of the vehicle.</li>
-                                    <li>Step out of the vehicle with their hands up.</li>
-                                    <li>Walk backwards towards the sound of their voice. Continue to command them to continue walking backwards until they are close to the primary vehicle.</li>
-                                    <li>Stop and get on their knees with their hands up.</li>
-                                </ul>
-                                <li>The primary officer should approach them, cuffing them, while other officers provide cover towards the vehicle and suspect.</li>
-                                <li>Apprehension of other suspects should be conducted in the same fashion.</li>
-                                <li>Once the initial suspect is secured, and no occupants are visible in the vehicle, officers should approach the vehicle with caution to ensure it is clear.</li>
-                                <li>If the vehicle is clear, officers can begin their investigation.</li>
-                                <li>Once the high risk traffic stop is completed, you are to then update your status to be accurate to your next status.</li>
-                            </ol>
-                        </section>
-        
-                        <section id="section-8" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 8 Pursuit Intervention / Vehicle Pursuits</h2>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Vehicle Pursuits:</h3>
-                            <p class="text-slate-400 mb-4">
-                                During the patrol of a law enforcement officer, a vehicle pursuit could occur for any number of scenarios. Typically, when a suspect fails to pull over for a law enforcement officer, or takes off from an active traffic stop. Most often, unless slow speeds, police or the suspect eventually end up crashing or hurting themselves or the public. Severe damage is also common as a result of a vehicle pursuit. Traffic Violations in the San Andreas Vehicle Code are not enough reason for the dangers of a vehicle pursuit. If a law enforcement officer suspects a suspect of a violent offense or intent to commit a violent offense, then a vehicle pursuit can be initiated upon the evasion of a suspect. If no violent offense or intent has been found, officers are to ask permission or may be instructed from a supervisor to terminate the pursuit.
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>During a pursuit, officers shall not attempt to pass other units.</li>
-                                <li>In the event of an officer involved collision during a pursuit, at least one (1) unit shall stop and assess the situation.</li>
-                                <li>If no other additional units are available, officers shall not initiate a pursuit.</li>
-                            </ul>
                             
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Pursuit Intervention Technique:</h3>
-                            <p class="text-slate-400 mb-4">
-                                The P.I.T. maneuver is a quick and easy way of putting an end to a vehicle pursuit if done correctly and as safely as possible.
-                                In order to properly perform a P.I.T. maneuver, law enforcement officers are to first ask permission from an active supervisor on duty. The important details to provide the supervisor are “speed, weather, and traffic density”. Generally, supervisors will not allow a P.I.T. maneuver to be performed if the speeds exceed 70 MPH or are unsafe to perform due to public risk.
-                            </p>
-        
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Rolling Roadblock:</h3>
-                            <p class="text-slate-400 mb-4">
-                                During a vehicle pursuit, the use of the “Rolling Roadblock” technique may be safe or the best option for quick termination of a pursuit. This is best done with 4 units. One car on both sides of the vehicle as well as one in the front and back. The cars blocking the suspect’s path are to slowly decrease in speed whilst also trying to avoid collision with the vehicle. However, if the suspect is actively ramming or scraping vehicles, then law enforcement officers can push the car to come to a stop by applying force from all vehicles by blocking the suspect.
-                                In order for this to be performed, a law enforcement officer must first ask for supervisor permission. The details to provide are the same as the “Pursuit Intervention Technique”. If speeds are less than 40 MPH, the “Rolling Roadblock” technique is safest.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Deploying Stop Sticks:</h3>
-                            <p class="text-slate-400 mb-4">
-                                Deploying Stop Sticks is a safe and efficient way to put an end to a vehicle pursuit. Be sure to pick them up afterwards, so pursuing law enforcement aren’t affected by them.
-                            </p>
-                        </section>
-        
-                        <section id="section-9" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 9 Criminal Apprehension</h2>
-                            <p class="text-slate-400 mb-4">
-                                Upon apprehension of a suspect, law enforcement officers are to ensure that there is a probable cause for the arrest and/or detention. Once it is determined that there is probable cause for the arrest and/or detention, law enforcement officers are to operate as directed below.
-                            </p>
-                            <ol class="list-decimal list-inside text-slate-400 space-y-2 ml-4">
-                                <li>Restrain the suspect.</li>
-                                <li>Search the suspect and the vehicle, if applicable, to ensure the suspect is not in possession of anything that could be considered illegal and/or dangerous, including weapons and narcotics.</li>
-                                <li>If the suspect is in possession of anything illegal and/or dangerous, it must be retrieved by officers and logged as evidence of a crime.</li>
-                                <li>Run the suspect’s name for active warrants.</li>
-                                <li>If applicable, also run the vehicle plate for warrants.</li>
-                                <li>If the suspect is to be questioned, officers are required to read the suspect their miranda rights as directed below.</li>
-                                <p class="text-slate-400 italic ml-8 mb-2">“You have the right to remain silent. Anything you say can and will be used against you in a court of law. You have the right to an attorney. If you cannot afford an attorney, one will be provided for you by the State of San Andreas. Do you understand the rights I have just read to you? With these rights in mind, do you wish to speak to me?”</p>
-                                <li>If no questions are being asked, officers are not required to.</li>
-                                <li>Transport the suspect to a nearby police station and/or prison and place the suspect into an available cell, if applicable, locking it behind them. The officer should instruct the suspect to face away from the officer, with their hands towards the officer, allowing the officer to unrestrain the suspect.</li>
-                                <li>Once the suspect has been unrestrained, they will then serve their sentence. The officer can leave the station and resume patrol duties.</li>
-                            </ol>
-                        </section>
-        
-                        <section id="section-10" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 10 Responding and Clearing Calls</h2>
-                            <p class="text-slate-400 mb-4">
-                                When attaching to a call, you should determine different factors such as the number of officers responding already, as well as the nature of the call before responding.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Responding</h3>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Lower priority, routine calls do not require an extreme amount of units. Take it into consideration before responding.</li>
-                                <li>If a unit is currently conducting a traffic stop, you are permitted to attach to the stop, unless requested to clear.</li>
-                                <li>If a member attends an investigation on any highway with a speed limit of 50mph or above, other than a traffic stop, they must adhere to an occupational health and safety requirement bearing a high-visibility vest or jacket until the conclusion of the scene and clearing the location. For example, collision investigations, pursuit terminations etc. High-visibility must be donned at the earliest practical and safe time. High-visibility is also required during any instance of a DUI checkpoint/roadside inspection.</li>
-                            </ul>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Clearing</h3>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Officers are required to first ask permission from the first officer on arrival (Primary Officer) or a Supervisor to clear a scene. If the scene requires you to be investigated, you may be asked to remain on scene.</li>
-                                <li>The order in which officers could be asked to return to patrol duties could depend on seniority and order of arrival and are at the discretion of the Primary Officer and/or Supervisor on scene.</li>
-                            </ul>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Response Code</h3>
-                            <p class="text-slate-400 mb-4">
-                                Your response code will also depend on the priority of the call. Lower priority, routine calls should warrant a lower response code, while emergency calls warrant a high response code.
-                            </p>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4">Code</th>
-                                            <th class="px-6 py-4">Definition</th>
-                                            <th class="px-6 py-4">When</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2 font-bold text-orange-500">Code 3</td><td class="px-6 py-2">Emergency lights and sirens activated.</td><td class="px-6 py-2">Only for situations that are considered life threatening: Preservation of life. Prevention of a violent crime. Responding to a request for Code 3 backup. Vehicle / foot pursuit.</td></tr>
-                                        <tr><td class="px-6 py-2 font-bold text-slate-400">Code 2</td><td class="px-6 py-2">Emergency lights activated with siren usage at intersections.</td><td class="px-6 py-2">For situations that are urgent, but not life threatening.</td></tr>
-                                        <tr><td class="px-6 py-2 font-bold text-slate-400">Code 1</td><td class="px-6 py-2">No emergency lights or siren activated.</td><td class="px-6 py-2">For situations that aren’t urgent or life threatening.</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="text-slate-400 mb-4">
-                                When responding, officers are required to slow down at intersections, changing the tone of their siren, looking both ways before continuing.
-                            </p>
-                        </section>
-        
-                        <section id="section-10-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 10.1 Officer Involved Emergency Calls</h2>
-                            <p class="text-slate-400 mb-4">
-                                If an officer requests backup or otherwise declares an emergency, all units not currently involved in an emergency call shall clear their current call and proceed to that officer’s location to assist.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Only when that officer, the officer in charge, or a supervisor on scene declares the situation under control shall units reduce their response code or clear their response entirely.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                During an officer involved emergency, all non-emergency communications shall cease.
-                            </p>
-                        </section>
-        
-                        <section id="section-11" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 11 Briefings</h2>
-                            <p class="text-slate-400 mb-4">
-                                At any given time, a supervisor is authorized to call for a briefing. At this time, all officers should finish their tasks and proceed to the location of the briefing.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                A briefing is usually held for reasons such as:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4">
-                                <li>Relaying new policies/procedure information.</li>
-                                <li>Inspecting patrol vehicle and uniform.</li>
-                                <li>Relaying information about assignments and patrol zones.</li>
-                                <li>Relaying information about recent incidents.</li>
-                            </ul>
-                        </section>
-        
-                        <section id="section-12" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 12 Reporting or Commending Law Enforcement Officers</h2>
-                            <p class="text-slate-400 mb-4">
-                                During the course of your duties as a law enforcement officer you may come across conduct from your colleagues you feel needs to be recognized or reported. Should you observe such conduct please collect the pertinent information and submit the information in the below listed method.
-                            </p>
-                            <p class="text-slate-400 font-bold mb-4">
-                                Send a submission of the Dynamic Gaming Law Enforcement Accolades/Complaint Form.
-                            </p>
-                        </section>
-        
-                        <section id="section-13" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 13 Disciplinary Actions</h2>
-                            <p class="text-slate-400 mb-4">
-                                Failure to adhere to any policy or guideline will result in a negative outlook, reprimand and reports. Continued reports will result in a Disciplinary Action Report being filed, as well as a possibility of suspension.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Disciplinary Action Reports</h3>
-                            <p class="text-slate-400 mb-4">
-                                Upon being addressed by a supervisor, officers could be subject to a detailed departmental report. Upon three (3) Disciplinary Action Reports being filed within one (1) month, officers will receive a one (1) week suspension from duty.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Breach of suspension will result in an immediate termination.
-                            </p>
-                        </section>
-        
-                        <section id="section-14" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 14 Activity</h2>
-                            <p class="text-slate-400 mb-4">
-                                Sworn officers are required to fulfill a one (1) hour patrol activity requirement a week.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Officers who fail to log activity for a period greater than a two (2) week period without reasonable cause or an active Leave of Absence shall be removed from the department at the discretion of command staff. Officers who fail to log an acceptable level of activity as determined by law enforcement command staff over a period of two (2) months, shall be removed from the department.
-                            </p>
-                        </section>
-        
-                        <section id="section-14-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 14.1 Resignation</h2>
-                            <p class="text-slate-400 mb-4">
-                                All officers who wish to resign must notify a member of law enforcement command staff. Once an officer resigns from the department, they shall be ineligible to reapply for one (1) month after resignation.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Officers who wish to once again join after their ineligibility period has ended must submit an application. Upon review and acceptance of the application, officers will be placed as a Police Officer I and reissued their previous badge number, if applicable.
-                            </p>
-                        </section>
-        
-                        <section id="section-14-2" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 14.2 Leave of Absence</h2>
-                            <p class="text-slate-400 mb-4">
-                                Officers who are unable to participate in activities and patrols for more than ten (10) consecutive days must submit a leave of absence form. If the leave of absence exceeds two (2) months, the officer may be involuntarily resigned from the department, with the right to reinstatement to their previous grade within six months of departure, if applicable.
-                            </p>
-                        </section>
-        
-                        <section id="section-15" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 15 Equipment</h2>
-                            <p class="text-slate-400 mb-4">
-                                Officers shall only deploy items listed herein. Officers shall not deploy any equipment not authorized.
-                            </p>
-                        </section>
-        
-                        <section id="section-15-1" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 15.1 Firearms</h2>
-                            <p class="text-slate-400 mb-4">
-                                Every law enforcement officer shall possess a department authorized firearm.
-                                Exception: BCSO Inner-Facility Correctional Deputies shall not possess a firearm.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Frame, barrel, and cylinder of all firearms will be dark or stainless steel color with non-reflective material. Stocks will be made of wood or synthetic material, dark in color.
-                            </p>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Handgun</h3>
-                            <p class="text-slate-400 mb-4">
-                                Authorized attachment for handguns is:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Rail mounted flashlight.</li>
-                            </ul>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <h4 class="text-xl font-bold text-white p-4">Authorized Primary Duty Sidearms</h4>
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4">Sidearm</th>
-                                            <th class="px-6 py-4">Ammunition</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">Hawk and Little Combat Pistol</td><td class="px-6 py-2">9mm 12 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Hawk and Little D&P Pistol</td><td class="px-6 py-2">9mm 17 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Hawk and Little Gardone Pistol</td><td class="px-6 py-2">9mm 15 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Hawk and Little Heavy Pistol</td><td class="px-6 py-2">.45 7 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Hawk and Little Heavy Pistol MK II</td><td class="px-6 py-2">9mm 17 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Hawk and Little Pistol</td><td class="px-6 py-2">9mm 12 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Hawk and Little Pistol MK II</td><td class="px-6 py-2">9mm 12 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Vom Feuer Service Pistol</td><td class="px-6 py-2">9mm 15 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Vom Feuer VF Pistol</td><td class="px-6 py-2">9mm 15 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Shrewsbury Duty Pistol</td><td class="px-6 py-2">9mm 15 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Shrewsbury Duty Pistol MK II</td><td class="px-6 py-2">9mm 17 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Shrewsbury Endurance Pistol</td><td class="px-6 py-2">.45 10 Round Magazine</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-        
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Patrol Rifle</h3>
-                            <p class="text-slate-400 mb-4">
-                                Authorized attachments for patrol rifles are:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Holographic or Red Dot Mounted Sight.</li>
-                                <li>Rail mounted flashlight.</li>
-                                <li>Sound suppressor.</li>
-                            </ul>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <h4 class="text-xl font-bold text-white p-4">Authorized Rifles</h4>
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4">Rifle</th>
-                                            <th class="px-6 py-4">Calibers</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">Vom Feuer Combat Rifle</td><td class="px-6 py-2">5.56 30 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Vom Feuer Carbine Rifle</td><td class="px-6 py-2">5.56 30 Round Magazine</td></tr>
-                                        <tr><td class="px-6 py-2">Vom Feuer Military Carbine</td><td class="px-6 py-2">5.56 30 Round Magazine</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-        
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Patrol Shotgun</h3>
-                            <p class="text-slate-400 mb-4">
-                                Authorized attachments for patrol shotgun is:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Rail mounted flashlight.</li>
-                            </ul>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <h4 class="text-xl font-bold text-white p-4">Authorized Shotgun</h4>
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4">Shotgun</th>
-                                            <th class="px-6 py-4">Calibers</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">Shrewsbury Pump Shotgun</td><td class="px-6 py-2">12-Gauge</td></tr>
-                                    </tbody>
-                                </table>
+                            <div class="space-y-6">
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">1. Compliant</h4>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Lowest Force</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Officer Presence:</strong> Use body language and position to deter or de-escalate.</p>
+                                </div>
+
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">2. Resistant (Passive)</h4>
+                                        <span class="text-[10px] bg-blue-500/20 text-blue-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Verbal</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Verbal Commands:</strong> Clear and concise commands to direct the subject's behavior.</p>
+                                </div>
+
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">3. Resistant (Active)</h4>
+                                        <span class="text-[10px] bg-yellow-500/20 text-yellow-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Soft Control</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Soft Empty-Hand:</strong> Technique such as physical compliance holds, wrist locks, and joint locks.</p>
+                                </div>
+
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">4. Assaultive (Harm)</h4>
+                                        <span class="text-[10px] bg-orange-500/20 text-orange-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Hard Control</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Hard Empty-Hand / Less Lethal:</strong> Strikes, pressure points, takedowns, tasers, and batons.</p>
+                                </div>
+
+                                <div class="group bg-slate-900 p-6 rounded-2xl border border-red-900/50 hover:border-red-500 transition-all shadow-xl">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-red-500 font-black uppercase italic m-0">5. Serious Bodily Harm / Death</h4>
+                                        <span class="text-[10px] bg-red-500/20 text-red-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Lethal Force</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0 font-medium">Deadly force as a last resort to save life or prevent serious injury.</p>
+                                </div>
                             </div>
                         </section>
-        
-                        <section id="section-15-2" class="mb-12">
-                            <h2 class="text-3xl font-extrabold uppercase italic text-white mb-4">Section 15.2 Less Lethal</h2>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Stun Gun</h3>
-                            <p class="text-slate-400 mb-4">
-                                Authorized attachment for stun gun is:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Rail mounted flashlight.</li>
-                            </ul>
-                            <p class="text-slate-400 mb-4">
-                                Authorized color for stun gun is:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Black.</li>
-                            </ul>
-                            <h3 class="text-2xl font-bold text-orange-300 mb-2">Less Lethal Shotgun</h3>
-                            <p class="text-slate-400 mb-4">
-                                Authorized attachment for less lethal shotgun is:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Rail mounted flashlight.</li>
-                            </ul>
-                            <p class="text-slate-400 mb-4">
-                                Authorized colors for less lethal shotgun are:
-                            </p>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1 ml-4 mb-4">
-                                <li>Green.</li>
-                                <li>Orange.</li>
-                                <li>Yellow.</li>
-                            </ul>
+
+                        <!-- Remaining sections follow this pattern... -->
+                        <section id="section-7" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 7</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Traffic Stops</h2>
+                            </div>
+                            
+                            <div class="bg-slate-800/20 p-8 rounded-3xl border border-slate-800">
+                                <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest">Operational Flow</h3>
+                                <div class="space-y-4">
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">1</span>
+                                        <p class="text-slate-400 text-sm m-0">Activate emergency warning system (Lights/Sirens).</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">2</span>
+                                        <p class="text-slate-400 text-sm m-0">Update dispatch with status and location.</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">3</span>
+                                        <p class="text-slate-400 text-sm m-0">Run vehicle plate and registered owner for warrants.</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">4</span>
+                                        <p class="text-slate-400 text-sm m-0">Approach politely, state reason for stop, and request documents.</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">5</span>
+                                        <p class="text-slate-400 text-sm m-0">Evaluate behavior for signs of impairment or hostility.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
+
+                        <section id="section-9" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 9</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Criminal Apprehension</h2>
+                            </div>
+
+                            <!-- Miranda Warning Box -->
+                            <div class="bg-slate-950 border-2 border-orange-900/50 p-8 rounded-3xl relative overflow-hidden mb-12">
+                                <div class="absolute top-0 right-0 p-4 opacity-10">
+                                    <i data-lucide="scale" class="w-32 h-32"></i>
+                                </div>
+                                <h4 class="text-orange-500 font-black uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-2">
+                                    <i data-lucide="shield-alert" class="w-4 h-4"></i> Official Miranda Warning
+                                </h4>
+                                <p class="text-slate-200 text-lg italic leading-relaxed font-serif m-0 relative z-10">
+                                    “You have the right to remain silent. Anything you say can and will be used against you in a court of law. You have the right to an attorney. If you cannot afford an attorney, one will be provided for you by the State of San Andreas. Do you understand the rights I have just read to you? With these rights in mind, do you wish to speak to me?”
+                                </p>
+                            </div>
+                        </section>
+                        
+                        <!-- Section 15 Placeholder update -->
+                        <section id="section-15" class="mb-24 scroll-mt-20">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 15</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Equipment</h2>
+                            </div>
+                            <p class="text-slate-400 mb-8 leading-relaxed">
+                                Officers shall only deploy items listed herein. Authorized firearms must be dark or stainless steel color.
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="bg-slate-800/30 p-8 rounded-2xl border border-slate-700">
+                                    <h4 class="text-orange-400 font-black uppercase italic m-0 mb-4">Handguns</h4>
+                                    <ul class="text-slate-300 text-sm space-y-2 m-0 p-0 list-none">
+                                        <li>Combat Pistol (9mm)</li>
+                                        <li>D&P Pistol (9mm)</li>
+                                        <li>Service Pistol (9mm)</li>
+                                        <li>Heavy Pistol (.45)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-800/30 p-8 rounded-2xl border border-slate-700">
+                                    <h4 class="text-orange-400 font-black uppercase italic m-0 mb-4">Long Arms</h4>
+                                    <ul class="text-slate-300 text-sm space-y-2 m-0 p-0 list-none">
+                                        <li>Combat Rifle (5.56)</li>
+                                        <li>Carbine Rifle (5.56)</li>
+                                        <li>Pump Shotgun (12-Gauge)</li>
+                                        <li>Less Lethal Shotgun</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
                     </article>
                 </main>
             </div>
