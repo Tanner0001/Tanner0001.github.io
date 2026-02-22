@@ -1214,9 +1214,11 @@
 
         async function loadAllData() {
             try {
+                // Add timestamp to bypass browser cache
+                const cacheBuster = `?v=${Date.now()}`;
                 const [penalRes, vehicleRes] = await Promise.all([
-                    fetch('penal_code.json'),
-                    fetch('vehicles.json')
+                    fetch('penal_code.json' + cacheBuster),
+                    fetch('vehicles.json' + cacheBuster)
                 ]);
                 penalData = await penalRes.json();
                 vehicleData = await vehicleRes.json();
