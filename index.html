@@ -166,88 +166,86 @@
 
             <!-- LEO TAB CONTENTS START HERE -->
             <div id="dashboard" class="tab-content active">
-            <div class="p-4 mb-8 rounded-xl text-orange-300 glassmorphism">
-                <p class="font-bold">Pinned Message:</p>
-                <p class="text-sm">Welcome to the updated Dynamic Gaming LE Portal! Please review the new manual content and familiarise yourself with the new layout.</p>
+                <div class="p-4 mb-6 rounded-xl text-orange-300 glassmorphism">
+                    <p class="font-bold">Pinned Message:</p>
+                    <p class="text-sm">Welcome to the updated Dynamic Gaming LE Portal! Please review the new manual content and familiarise yourself with the new layout.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Quick Links -->
+                    <section>
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 flex items-center gap-4">
+                            Quick Navigation <div class="h-px bg-slate-800 flex-1"></div>
+                        </h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="openTab('manual')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="book-open" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">S.O.P. Manual</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Procedures & Ethics</span>
+                            </button>
+                            <button onclick="openTab('agencies')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="building-2" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">Agencies</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Department Info</span>
+                            </button>
+                            <button onclick="openTab('vehicles')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="car" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">Vehicle Fleet</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Spawn Codes</span>
+                            </button>
+                            <button onclick="openTab('penalcode')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="gavel" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">Penal Code</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Laws & Sentencing</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Google Forms / External Links -->
+                    <section>
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 flex items-center gap-4">
+                            Official Forms <div class="h-px bg-slate-800 flex-1"></div>
+                        </h2>
+                        <div class="space-y-3">
+                            <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-orange-500/50 transition-all group">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-white">Accolades / Complaints</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Officer Conduct Reporting</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-orange-500/50 transition-all group">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="calendar-off" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-white">Leave of Absence</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">LOA Request Form</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-orange-500/50 transition-all group">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="clipboard-list" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-white">Incident Report</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Case Filing System</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
+                            </a>
+                        </div>
+                    </section>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <!-- Quick Links -->
-                <section>
-                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-6 flex items-center gap-4">
-                        Quick Navigation <div class="h-px bg-slate-800 flex-1"></div>
-                    </h2>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button onclick="openTab('manual')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
-                            <i data-lucide="book-open" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="block text-sm font-bold text-white tracking-tight">S.O.P. Manual</span>
-                            <span class="text-[10px] text-slate-500 uppercase font-black">Procedures & Ethics</span>
-                        </button>
-                        <button onclick="openTab('agencies')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
-                            <i data-lucide="building-2" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="block text-sm font-bold text-white tracking-tight">Agencies</span>
-                            <span class="text-[10px] text-slate-500 uppercase font-black">Department Info</span>
-                        </button>
-                        <button onclick="openTab('vehicles')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
-                            <i data-lucide="car" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="block text-sm font-bold text-white tracking-tight">Vehicle Fleet</span>
-                            <span class="text-[10px] text-slate-500 uppercase font-black">Spawn Codes</span>
-                        </button>
-                        <button onclick="openTab('penalcode')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
-                            <i data-lucide="gavel" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="block text-sm font-bold text-white tracking-tight">Penal Code</span>
-                            <span class="text-[10px] text-slate-500 uppercase font-black">Laws & Sentencing</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- Google Forms / External Links -->
-                <section>
-                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-6 flex items-center gap-4">
-                        Official Forms <div class="h-px bg-slate-800 flex-1"></div>
-                    </h2>
-                    <div class="space-y-3">
-                        <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-orange-500/50 transition-all group">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="file-text" class="w-4 h-4"></i></div>
-                                <div>
-                                    <span class="block text-sm font-bold text-white">Accolades / Complaints</span>
-                                    <span class="text-[10px] text-slate-500 uppercase">Officer Conduct Reporting</span>
-                                </div>
-                            </div>
-                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
-                        </a>
-                        <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-orange-500/50 transition-all group">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="calendar-off" class="w-4 h-4"></i></div>
-                                <div>
-                                    <span class="block text-sm font-bold text-white">Leave of Absence</span>
-                                    <span class="text-[10px] text-slate-500 uppercase">LOA Request Form</span>
-                                </div>
-                            </div>
-                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
-                        </a>
-                        <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-orange-500/50 transition-all group">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="clipboard-list" class="w-4 h-4"></i></div>
-                                <div>
-                                    <span class="block text-sm font-bold text-white">Incident Report</span>
-                                    <span class="text-[10px] text-slate-500 uppercase">Case Filing System</span>
-                                </div>
-                            </div>
-                            <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
-                        </a>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        </div>
-
-        <div id="manual" class="tab-content">
-            <div class="flex flex-1 relative min-h-[calc(100vh-20rem)]">
-                <aside class="hidden lg:block w-80 bg-slate-900 border-r border-slate-800 p-6 sidebar-scroll overflow-y-auto sticky top-0 h-screen">
-                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Navigation</h2>
+            <div id="manual" class="tab-content">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <aside class="hidden lg:block w-72 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 h-fit sticky top-24">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Navigation</h2>
                     
                     <div class="space-y-4">
                         <!-- Category: General -->
@@ -1338,11 +1336,30 @@
             for (i = 0; i < tabs.length; i++) {
                 tabs[i].classList.remove("active");
             }
-            event.currentTarget.classList.add("active");
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add("active");
+            }
             
+            // Auto-hide manual sidebar on mobile when changing main tabs
+            const sidebar = document.querySelector('#manual aside');
+            if (sidebar && !sidebar.classList.contains('hidden')) {
+                toggleManualSidebar();
+            }
+
             // Re-create icons for the newly visible tab content
             lucide.createIcons();
         }
+
+        // Add specialized listener for manual links
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('#manual aside a')) {
+                const sidebar = document.querySelector('#manual aside');
+                // If sidebar is in mobile mode (fixed/full screen), hide it after click
+                if (sidebar && sidebar.classList.contains('fixed')) {
+                    toggleManualSidebar();
+                }
+            }
+        });
 
         // Vehicle Sub-tab Functionality
         function openSubTab(subTabName, event) {
