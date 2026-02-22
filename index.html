@@ -1105,16 +1105,20 @@
 
                 <!-- Sub-navigation for Code Types -->
                 <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
-                    <button class="sub-tab-penal active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openPenalSubTab('p-criminal', event)">Criminal Code</button>
+                    <button class="sub-tab-penal active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openPenalSubTab('p-policy', event)">Legal Policy</button>
+                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-criminal', event)">Criminal Code</button>
                     <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-vehicle', event)">Vehicle Code</button>
                     <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-wildlife', event)">Fish & Wildlife</button>
+                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-federal', event)">Federal Laws</button>
                 </div>
 
                 <div id="penal-data-container">
                     <!-- Dynamic content will be injected here -->
-                    <div id="p-criminal" class="penal-sub-content active space-y-6"></div>
+                    <div id="p-policy" class="penal-sub-content active space-y-6"></div>
+                    <div id="p-criminal" class="penal-sub-content hidden space-y-6"></div>
                     <div id="p-vehicle" class="penal-sub-content hidden space-y-6"></div>
                     <div id="p-wildlife" class="penal-sub-content hidden space-y-6"></div>
+                    <div id="p-federal" class="penal-sub-content hidden space-y-6"></div>
                 </div>
             </main>
         </div>
@@ -1245,13 +1249,17 @@
             const searchTerm = filter.toLowerCase();
             
             const containers = {
+                'policy': document.getElementById('p-policy'),
                 'criminal': document.getElementById('p-criminal'),
                 'vehicle': document.getElementById('p-vehicle'),
-                'wildlife': document.getElementById('p-wildlife')
+                'wildlife': document.getElementById('p-wildlife'),
+                'federal': document.getElementById('p-federal')
             };
 
             Object.keys(containers).forEach(key => {
                 let html = '';
+                if (!penalData[key]) return;
+                
                 penalData[key].forEach(section => {
                     const filteredLaws = section.laws.filter(law => 
                         law.name.toLowerCase().includes(searchTerm) || 
@@ -1278,7 +1286,7 @@
                         `;
                     }
                 });
-                containers[key].innerHTML = html || `<p class="text-slate-500 text-sm italic">No matching laws found in this section.</p>`;
+                containers[key].innerHTML = html || `<p class="text-slate-500 text-sm italic">No matching records found in this section.</p>`;
             });
             lucide.createIcons();
         }
@@ -1286,8 +1294,12 @@
         function getClassStyle(cls) {
             switch(cls) {
                 case 'FELONY': return 'bg-red-500/10 text-red-500 border-red-500/20';
+                case 'CAPITAL': return 'bg-red-600 text-white border-red-600';
                 case 'MISDEMEANOR': return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20';
                 case 'INFRACTION': return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
+                case 'DEFINITION': return 'bg-slate-700/50 text-slate-300 border-slate-600';
+                case 'PROCEDURE': return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+                case 'ENHANCEMENT': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
                 default: return 'bg-slate-500/10 text-slate-500 border-slate-500/20';
             }
         }

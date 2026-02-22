@@ -1,36 +1,83 @@
 {
-  "criminal": [
+  "policy": [
     {
-      "title": "Title I: Violent Offenses",
+      "title": "Definitions & Legal Framework",
       "laws": [
-        {"id": "101", "name": "First Degree Murder", "description": "Unlawful killing of a human with premeditation.", "class": "FELONY"},
-        {"id": "102", "name": "Armed Robbery", "description": "Taking property by force using a deadly weapon.", "class": "FELONY"},
-        {"id": "103", "name": "Aggravated Battery", "description": "Intentional touch or strike causing great bodily harm.", "class": "FELONY"}
+        {"id": "DEF-01", "name": "Person", "description": "Any individual or living human being.", "class": "DEFINITION"},
+        {"id": "DEF-02", "name": "Peace Officer", "description": "An on-duty individual identified as an officer of the law through badge or protocol.", "class": "DEFINITION"},
+        {"id": "DEF-03", "name": "Weapon", "description": "Any item or tool used to inflict or threaten physical harm.", "class": "DEFINITION"},
+        {"id": "DEF-04", "name": "MDC", "description": "Mobile Database of Criminals; the official state system for ID and records.", "class": "DEFINITION"},
+        {"id": "ENH-01", "name": "Stacking Charges", "description": " Suspect committing the same offense multiple times; counts are added to the record.", "class": "ENHANCEMENT"}
       ]
     },
     {
-      "title": "Title II: Property & Narcotics",
+      "title": "Title 10: Legal Procedures",
       "laws": [
-        {"id": "201", "name": "Grand Theft Auto", "description": "Unlawful taking of a motor vehicle.", "class": "FELONY"},
-        {"id": "202", "name": "Possession with Intent", "description": "Possession of a controlled substance in amount for distribution.", "class": "FELONY"}
+        {"id": "1002", "name": "Self Defense / Castle Doctrine", "description": "Use of necessary force to prevent imminent death or serious injury to self or others.", "class": "PROCEDURE"},
+        {"id": "1006", "name": "Suspicion & Detainment", "description": "Justifiable suspicion allows for temporary detainment and Terry Frisks for safety.", "class": "PROCEDURE"},
+        {"id": "1007", "name": "Officer Discretion", "description": "Authority to forego penalties for infractions or select misdemeanors based on judgment.", "class": "PROCEDURE"}
+      ]
+    }
+  ],
+  "criminal": [
+    {
+      "title": "Title 1: Crimes Against the Person",
+      "laws": [
+        {"id": "101", "name": "Verbal Intimidation", "description": "Willfully threatening a crime that results in fear for safety or serious injury.", "class": "MISDEMEANOR"},
+        {"id": "102", "name": "Attempted Assault", "description": "Unlawful attempt to commit violent injury without physical contact.", "class": "MISDEMEANOR"},
+        {"id": "103", "name": "Assault with Lethal Weapon", "description": "Attempted assault or battery utilizing a deadly instrument or firearm.", "class": "FELONY"},
+        {"id": "104", "name": "Unlawful Battery", "description": "Willful and illegal use of physical force against another individual.", "class": "MISDEMEANOR"},
+        {"id": "105", "name": "Aggravated Battery", "description": "Physical battery resulting in serious or permanent bodily injury.", "class": "FELONY"},
+        {"id": "108", "name": "Attempted Homicide", "description": "Taking a direct step with the specific intent to end a human life.", "class": "FELONY"},
+        {"id": "110", "name": "Premeditated Murder", "description": "Unlawful killing of a human with malice aforethought and planning.", "class": "FELONY"},
+        {"id": "111", "name": "Capital Homicide", "description": "Murder of a public official, officer, or during a kidnapping/hostage event.", "class": "CAPITAL"}
+      ]
+    },
+    {
+      "title": "Title 2: Property & Profiteering",
+      "laws": [
+        {"id": "201", "name": "Malicious Arson", "description": "Intentionally setting fire to structures, land, or personal property.", "class": "FELONY"},
+        {"id": "202", "name": "Trespassing", "description": "Entering private or closed property without valid authorization.", "class": "MISDEMEANOR"},
+        {"id": "204", "name": "Burglary", "description": "Illegal entry into a secured premises with the intent to commit theft or a felony.", "class": "MISDEMEANOR"},
+        {"id": "209", "name": "Grand Theft Auto", "description": "Theft or unauthorized taking of any motor vehicle.", "class": "FELONY"},
+        {"id": "212", "name": "Armed Robbery", "description": "Theft of property using force or fear facilitated by a weapon.", "class": "FELONY"}
+      ]
+    },
+    {
+      "title": "Title 8: Weaponry Control",
+      "laws": [
+        {"id": "801", "name": "Illegal Weapon Possession", "description": "Possessing unregistered firearms, explosive rounds, or carrying while a felon.", "class": "MISDEMEANOR"},
+        {"id": "803", "name": "Negligent Discharge", "description": "Willfully firing a weapon in a manner that creates risk of death or injury.", "class": "FELONY"},
+        {"id": "804", "name": "Drive-By Shooting", "description": "Discharging a weapon from a vehicle or facilitating such an act.", "class": "FELONY"}
       ]
     }
   ],
   "vehicle": [
     {
-      "title": "Title III: Moving Violations",
+      "title": "Title 11: Traffic & Transit",
       "laws": [
-        {"id": "301", "name": "Reckless Driving", "description": "Driving with willful or wanton disregard for safety.", "class": "MISDEMEANOR"},
-        {"id": "302", "name": "DUI", "description": "Operating a vehicle under the influence of alcohol or drugs.", "class": "MISDEMEANOR"}
+        {"id": "1104", "name": "Transit Interference", "description": "Obstructing or endangering the operation of public transit systems.", "class": "INFRACTION"},
+        {"id": "V-01", "name": "Excessive Speed", "description": "Operating a vehicle above the legally posted speed limit.", "class": "INFRACTION"},
+        {"id": "V-02", "name": "Failure to Yield", "description": "Neglecting to yield right-of-way to emergency vehicles or pedestrians.", "class": "INFRACTION"}
       ]
     }
   ],
   "wildlife": [
     {
-      "title": "Title IV: Conservation Violations",
+      "title": "Fish & Wildlife Code",
       "laws": [
-        {"id": "401", "name": "Poaching Out of Season", "description": "Taking wildlife outside of established legal seasons.", "class": "MISDEMEANOR"},
-        {"id": "402", "name": "Fishing Without License", "description": "Engaging in fishing activities without valid state permit.", "class": "INFRACTION"}
+        {"id": "W-01", "name": "Unlicensed Harvesting", "description": "Hunting or fishing without the required state permits.", "class": "MISDEMEANOR"},
+        {"id": "W-02", "name": "Poaching", "description": "Taking wildlife out of season or exceeding legal bag limits.", "class": "MISDEMEANOR"}
+      ]
+    }
+  ],
+  "federal": [
+    {
+      "title": "U.S. Federal Code",
+      "laws": [
+        {"id": "FED-01", "name": "Human Trafficking", "description": "Recruitment or transport of persons via force or deception for labor/sex.", "class": "FELONY"},
+        {"id": "FED-02", "name": "Counterfeiting", "description": "Forgery or creation of fake government securities or currency.", "class": "FELONY"},
+        {"id": "FED-03", "name": "Terrorism", "description": "Acts dangerous to human life intended to intimidate or coerce a population.", "class": "CAPITAL"}
       ]
     }
   ]
