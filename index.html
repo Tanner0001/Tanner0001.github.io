@@ -62,7 +62,10 @@
         <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
             <!-- LEO Card -->
             <button onclick="enterPortal('leo')" class="group relative aspect-video md:aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-orange-500 transition-all duration-500 shadow-2xl">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700"></div>
+                <div class="absolute inset-0 bg-orange-600/5 group-hover:bg-orange-600/10 transition-colors duration-700"></div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="shield" class="w-32 h-32 text-orange-500"></i>
+                </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute bottom-8 left-8 text-left">
                     <div class="bg-orange-600 w-12 h-1 mb-4 group-hover:w-20 transition-all duration-500"></div>
@@ -73,7 +76,10 @@
 
             <!-- FD/EMS Card -->
             <button onclick="enterPortal('fd')" class="group relative aspect-video md:aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-red-500 transition-all duration-500 shadow-2xl">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1582213726892-25b799458416?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700"></div>
+                <div class="absolute inset-0 bg-red-600/5 group-hover:bg-red-600/10 transition-colors duration-700"></div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="flame" class="w-32 h-32 text-red-500"></i>
+                </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute bottom-8 left-8 text-left">
                     <div class="bg-red-600 w-12 h-1 mb-4 group-hover:w-20 transition-all duration-500"></div>
@@ -84,7 +90,10 @@
 
             <!-- Civilian Card -->
             <button onclick="enterPortal('civ')" class="group relative aspect-video md:aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-500 transition-all duration-500 shadow-2xl">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700"></div>
+                <div class="absolute inset-0 bg-emerald-600/5 group-hover:bg-emerald-600/10 transition-colors duration-700"></div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="users" class="w-32 h-32 text-emerald-500"></i>
+                </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
                 <div class="absolute bottom-8 left-8 text-left">
                     <div class="bg-emerald-600 w-12 h-1 mb-4 group-hover:w-20 transition-all duration-500"></div>
@@ -92,6 +101,34 @@
                     <p class="text-slate-400 text-xs mt-2 uppercase font-bold tracking-widest">Business & Services</p>
                 </div>
             </button>
+        </div>
+    </div>
+
+    <!-- FD/EMS PORTAL (Placeholder) -->
+    <div id="fd-portal" class="hidden min-h-screen">
+        <nav class="bg-slate-900 border-b border-slate-800 px-6 py-3">
+            <button onclick="showHub()" class="text-slate-500 hover:text-white flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+            </button>
+        </nav>
+        <div class="flex flex-col items-center justify-center py-40">
+            <i data-lucide="flame" class="w-20 h-20 text-red-500 mb-8"></i>
+            <h1 class="text-4xl font-black uppercase italic">Fire & EMS Portal</h1>
+            <p class="text-slate-500 mt-4 font-bold uppercase tracking-widest text-xs border-2 border-red-500/20 px-4 py-2 rounded-full">Coming Soon</p>
+        </div>
+    </div>
+
+    <!-- CIV PORTAL (Placeholder) -->
+    <div id="civ-portal" class="hidden min-h-screen">
+        <nav class="bg-slate-900 border-b border-slate-800 px-6 py-3">
+            <button onclick="showHub()" class="text-slate-500 hover:text-white flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+            </button>
+        </nav>
+        <div class="flex flex-col items-center justify-center py-40">
+            <i data-lucide="users" class="w-20 h-20 text-emerald-500 mb-8"></i>
+            <h1 class="text-4xl font-black uppercase italic">Civilian Life Portal</h1>
+            <p class="text-slate-500 mt-4 font-bold uppercase tracking-widest text-xs border-2 border-emerald-500/20 px-4 py-2 rounded-full">Coming Soon</p>
         </div>
     </div>
 
@@ -126,38 +163,9 @@
                 <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
                 <button class="tab p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('uniforms')">Uniforms</button>
             </div>
-            <!-- LEO content continues... -->
-    </div>
 
-    <!-- FD/EMS PORTAL (Placeholder) -->
-    <div id="fd-portal" class="hidden min-h-screen">
-        <nav class="bg-slate-900 border-b border-slate-800 p-4">
-            <button onclick="showHub()" class="text-slate-500 hover:text-white flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
-            </button>
-        </nav>
-        <div class="flex flex-col items-center justify-center py-40">
-            <i data-lucide="flame" class="w-20 h-20 text-red-500 mb-8"></i>
-            <h1 class="text-4xl font-black uppercase italic">Fire & EMS Portal</h1>
-            <p class="text-slate-500 mt-4 font-bold uppercase tracking-widest text-xs border-2 border-red-500/20 px-4 py-2 rounded-full">Coming Soon</p>
-        </div>
-    </div>
-
-    <!-- CIV PORTAL (Placeholder) -->
-    <div id="civ-portal" class="hidden min-h-screen">
-        <nav class="bg-slate-900 border-b border-slate-800 p-4">
-            <button onclick="showHub()" class="text-slate-500 hover:text-white flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
-            </button>
-        </nav>
-        <div class="flex flex-col items-center justify-center py-40">
-            <i data-lucide="users" class="w-20 h-20 text-emerald-500 mb-8"></i>
-            <h1 class="text-4xl font-black uppercase italic">Civilian Life Portal</h1>
-            <p class="text-slate-500 mt-4 font-bold uppercase tracking-widest text-xs border-2 border-emerald-500/20 px-4 py-2 rounded-full">Coming Soon</p>
-        </div>
-    </div>
-
-        <div id="dashboard" class="tab-content active">
+            <!-- LEO TAB CONTENTS START HERE -->
+            <div id="dashboard" class="tab-content active">
             <div class="p-4 mb-8 rounded-xl text-orange-300 glassmorphism">
                 <p class="font-bold">Pinned Message:</p>
                 <p class="text-sm">Welcome to the updated Dynamic Gaming LE Portal! Please review the new manual content and familiarise yourself with the new layout.</p>
