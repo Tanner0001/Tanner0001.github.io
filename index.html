@@ -51,56 +51,121 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen">
     <!-- MAIN HUB (Initial View) -->
-    <div id="main-hub" class="min-h-screen flex flex-col items-center justify-center p-6 bg-[url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png')] bg-cover bg-center relative">
-        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <div id="main-hub" class="min-h-screen flex flex-col items-center p-6 bg-[url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png')] bg-cover bg-center bg-fixed relative overflow-y-auto">
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>
         
-        <div class="relative z-10 text-center mb-16">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic text-white mb-2">Dynamic <span class="text-orange-500">Gaming</span></h1>
-            <p class="text-slate-400 uppercase tracking-[0.5em] text-sm font-bold">Community Resource Hub</p>
+        <!-- Pinned Announcement -->
+        <div class="relative z-10 w-full max-w-6xl mb-12">
+            <div class="bg-orange-500/10 border border-orange-500/20 p-4 rounded-2xl flex items-center gap-4">
+                <div class="bg-orange-500 p-2 rounded-lg animate-pulse">
+                    <i data-lucide="pin" class="w-4 h-4 text-white"></i>
+                </div>
+                <div>
+                    <span class="block text-[10px] font-black uppercase tracking-[0.2em] text-orange-500">Pinned Announcement</span>
+                    <p class="text-white text-sm font-bold">Server Version 2.0 is now LIVE! Check the LEO manual for new SOP updates.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+        <div class="relative z-10 text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic text-white mb-2">Dynamic <span class="text-orange-500">Gaming</span></h1>
+            <p class="text-slate-400 uppercase tracking-[0.5em] text-sm font-bold border-t border-slate-800 pt-4 inline-block">Community Resource Hub</p>
+        </div>
+
+        <!-- Smaller Department Cards -->
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full mb-24">
             <!-- LEO Card -->
-            <button onclick="enterPortal('leo')" class="group relative aspect-video md:aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-orange-500 transition-all duration-500 shadow-2xl">
+            <button onclick="enterPortal('leo')" class="group relative aspect-[16/9] md:aspect-square bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-orange-500 transition-all duration-500 shadow-2xl">
                 <div class="absolute inset-0 bg-orange-600/5 group-hover:bg-orange-600/10 transition-colors duration-700"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
-                    <i data-lucide="shield" class="w-32 h-32 text-orange-500"></i>
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-30 transition-all group-hover:scale-110">
+                    <i data-lucide="shield" class="w-24 h-24 text-orange-500"></i>
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <div class="absolute bottom-8 left-8 text-left">
-                    <div class="bg-orange-600 w-12 h-1 mb-4 group-hover:w-20 transition-all duration-500"></div>
-                    <h2 class="text-3xl font-black uppercase italic text-white leading-none">Law Enforcement</h2>
-                    <p class="text-slate-400 text-xs mt-2 uppercase font-bold tracking-widest">Patrol & Investigation</p>
+                <div class="absolute bottom-6 left-6 text-left">
+                    <h2 class="text-2xl font-black uppercase italic text-white leading-none">Law Enforcement</h2>
+                    <p class="text-slate-500 text-[10px] mt-1 uppercase font-bold tracking-widest">Entry Portal</p>
                 </div>
             </button>
 
             <!-- FD/EMS Card -->
-            <button onclick="enterPortal('fd')" class="group relative aspect-video md:aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-red-500 transition-all duration-500 shadow-2xl">
+            <button onclick="enterPortal('fd')" class="group relative aspect-[16/9] md:aspect-square bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-red-500 transition-all duration-500 shadow-2xl">
                 <div class="absolute inset-0 bg-red-600/5 group-hover:bg-red-600/10 transition-colors duration-700"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
-                    <i data-lucide="flame" class="w-32 h-32 text-red-500"></i>
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-30 transition-all group-hover:scale-110">
+                    <i data-lucide="flame" class="w-24 h-24 text-red-500"></i>
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <div class="absolute bottom-8 left-8 text-left">
-                    <div class="bg-red-600 w-12 h-1 mb-4 group-hover:w-20 transition-all duration-500"></div>
-                    <h2 class="text-3xl font-black uppercase italic text-white leading-none">Fire & EMS</h2>
-                    <p class="text-slate-400 text-xs mt-2 uppercase font-bold tracking-widest">Rescue & Medical</p>
+                <div class="absolute bottom-6 left-6 text-left">
+                    <h2 class="text-2xl font-black uppercase italic text-white leading-none">Fire & EMS</h2>
+                    <p class="text-slate-500 text-[10px] mt-1 uppercase font-bold tracking-widest">Entry Portal</p>
                 </div>
             </button>
 
             <!-- Civilian Card -->
-            <button onclick="enterPortal('civ')" class="group relative aspect-video md:aspect-[3/4] bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-500 transition-all duration-500 shadow-2xl">
+            <button onclick="enterPortal('civ')" class="group relative aspect-[16/9] md:aspect-square bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-500 transition-all duration-500 shadow-2xl">
                 <div class="absolute inset-0 bg-emerald-600/5 group-hover:bg-emerald-600/10 transition-colors duration-700"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
-                    <i data-lucide="users" class="w-32 h-32 text-emerald-500"></i>
+                <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-30 transition-all group-hover:scale-110">
+                    <i data-lucide="users" class="w-24 h-24 text-emerald-500"></i>
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                <div class="absolute bottom-8 left-8 text-left">
-                    <div class="bg-emerald-600 w-12 h-1 mb-4 group-hover:w-20 transition-all duration-500"></div>
-                    <h2 class="text-3xl font-black uppercase italic text-white leading-none">Civ Operations</h2>
-                    <p class="text-slate-400 text-xs mt-2 uppercase font-bold tracking-widest">Business & Services</p>
+                <div class="absolute bottom-6 left-6 text-left">
+                    <h2 class="text-2xl font-black uppercase italic text-white leading-none">Civ Life</h2>
+                    <p class="text-slate-500 text-[10px] mt-1 uppercase font-bold tracking-widest">Entry Portal</p>
                 </div>
             </button>
+        </div>
+
+        <!-- About & Gallery Section -->
+        <div class="relative z-10 w-full max-w-6xl grid lg:grid-cols-2 gap-12 mb-20">
+            <!-- About Us -->
+            <section class="space-y-6">
+                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] flex items-center gap-4">
+                    About The Server <div class="h-px bg-slate-800 flex-1"></div>
+                </h2>
+                <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl">
+                    <p class="text-slate-300 leading-relaxed">Dynamic Gaming provides a high-fidelity roleplay experience focused on immersive storytelling and realistic departmental operations. Founded in 2026, we pride ourselves on a professional community and custom-tailored resources for every player.</p>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="bg-slate-800/50 p-4 rounded-2xl">
+                            <span class="block text-2xl font-black text-orange-500">100+</span>
+                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Active Members</span>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-2xl">
+                            <span class="block text-2xl font-black text-orange-500">24/7</span>
+                            <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Server Uptime</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery -->
+            <section class="space-y-6">
+                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] flex items-center gap-4">
+                    Community Gallery <div class="h-px bg-slate-800 flex-1"></div>
+                </h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
+                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
+                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
+                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="aspect-video bg-slate-900 rounded-2xl border border-slate-800 flex items-center justify-center group overflow-hidden">
+                        <i data-lucide="image" class="w-8 h-8 text-slate-800 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Quick Info Footer -->
+        <div class="relative z-10 w-full max-w-6xl border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex gap-8">
+                <a href="#" class="text-slate-500 hover:text-orange-500 text-xs font-bold uppercase tracking-widest transition-colors">Server Rules</a>
+                <a href="#" class="text-slate-500 hover:text-orange-500 text-xs font-bold uppercase tracking-widest transition-colors">Discord</a>
+                <a href="#" class="text-slate-500 hover:text-orange-500 text-xs font-bold uppercase tracking-widest transition-colors">Apply Now</a>
+            </div>
+            <p class="text-slate-700 text-[10px] uppercase font-black tracking-widest">© 2026 Dynamic Gaming Network</p>
         </div>
     </div>
 
