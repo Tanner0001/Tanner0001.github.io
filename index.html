@@ -1072,20 +1072,12 @@
                 <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official fleet inventory and authorized spawn codes.</p>
             </header>
 
-            <!-- Sub-navigation for departments -->
-            <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
-                <button class="sub-tab active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openSubTab('v-lspd', event)">LSPD</button>
-                <button class="sub-tab px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openSubTab('v-lscso', event)">LSCSO</button>
-                <button class="sub-tab px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openSubTab('v-bcso', event)">BCSO</button>
-                <button class="sub-tab px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openSubTab('v-sasp', event)">SASP</button>
+            <!-- Sub-navigation for departments (Generated Dynamically) -->
+            <div id="vehicle-tabs" class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
             </div>
 
             <div id="vehicle-data-container">
                 <!-- Dynamic content will be injected here -->
-                <div id="v-lspd" class="sub-tab-content active space-y-8"></div>
-                <div id="v-lscso" class="sub-tab-content hidden space-y-8"></div>
-                <div id="v-bcso" class="sub-tab-content hidden space-y-8"></div>
-                <div id="v-sasp" class="sub-tab-content hidden space-y-8"></div>
             </div>
         </div>
 
@@ -1103,23 +1095,15 @@
                     </div>
                 </header>
 
-                <!-- Sub-navigation for Code Types -->
-                <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
-                    <button class="sub-tab-penal active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openPenalSubTab('p-policy', event)">Legal Policy</button>
-                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-criminal', event)">Criminal Code</button>
-                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-vehicle', event)">Vehicle Code</button>
-                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-wildlife', event)">Fish & Wildlife</button>
-                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-federal', event)">Federal Laws</button>
+                <!-- Sub-navigation for Code Types (Generated Dynamically) -->
+                <div id="penal-tabs" class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
                 </div>
 
                 <div id="penal-data-container">
                     <!-- Dynamic content will be injected here -->
-                    <div id="p-policy" class="penal-sub-content active space-y-6"></div>
-                    <div id="p-criminal" class="penal-sub-content hidden space-y-6"></div>
-                    <div id="p-vehicle" class="penal-sub-content hidden space-y-6"></div>
-                    <div id="p-wildlife" class="penal-sub-content hidden space-y-6"></div>
-                    <div id="p-federal" class="penal-sub-content hidden space-y-6"></div>
                 </div>
+            </main>
+        </div>
             </main>
         </div>
 
@@ -1248,18 +1232,24 @@
             if (!penalData) return;
             const searchTerm = filter.toLowerCase();
             
-            const containers = {
-                'policy': document.getElementById('p-policy'),
-                'criminal': document.getElementById('p-criminal'),
-                'vehicle': document.getElementById('p-vehicle'),
-                'wildlife': document.getElementById('p-wildlife'),
-                'federal': document.getElementById('p-federal')
-            };
+            const tabContainer = document.getElementById('penal-tabs');
+            const dataContainer = document.getElementById('penal-data-container');
+            
+            // Only generate tab buttons on initial load (when tabContainer is empty)
+            if (tabContainer.innerHTML.trim() === "") {
+                tabContainer.innerHTML = Object.keys(penalData).map((key, index) => `
+                    <button class="sub-tab-penal ${index === 0 ? 'active bg-orange-600 text-white' : 'text-slate-500 hover:text-white'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+                            onclick="openPenalSubTab('p-${key}', event)">
+                        ${getDisplayName(key)}
+                    </button>
+                `).join('');
+            }
 
-            Object.keys(containers).forEach(key => {
-                let html = '';
-                if (!penalData[key]) return;
+            // Generate content containers
+            dataContainer.innerHTML = Object.keys(penalData).map((key, index) => {
+                let html = `<div id="p-${key}" class="penal-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-6">`;
                 
+                let foundMatch = false;
                 penalData[key].forEach(section => {
                     const filteredLaws = section.laws.filter(law => 
                         law.name.toLowerCase().includes(searchTerm) || 
@@ -1268,6 +1258,7 @@
                     );
 
                     if (filteredLaws.length > 0) {
+                        foundMatch = true;
                         html += `
                             <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700 mb-6">
                                 <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">${section.title}</div>
@@ -1286,9 +1277,31 @@
                         `;
                     }
                 });
-                containers[key].innerHTML = html || `<p class="text-slate-500 text-sm italic">No matching records found in this section.</p>`;
-            });
+                
+                if (!foundMatch) {
+                    html += `<p class="text-slate-500 text-sm italic">No matching records found in this section.</p>`;
+                }
+                
+                html += `</div>`;
+                return html;
+            }).join('');
+
             lucide.createIcons();
+        }
+
+        function getDisplayName(key) {
+            const names = {
+                'policy': 'Legal Policy',
+                'criminal': 'Criminal Code',
+                'vehicle': 'Vehicle Code',
+                'wildlife': 'Fish & Wildlife',
+                'federal': 'Federal Laws',
+                'lspd': 'LSPD',
+                'lscso': 'LSCSO',
+                'bcso': 'BCSO',
+                'sasp': 'SASP'
+            };
+            return names[key] || key.toUpperCase();
         }
 
         function getClassStyle(cls) {
@@ -1306,17 +1319,20 @@
 
         function renderVehicles() {
             if (!vehicleData) return;
-            const mappings = {
-                'lspd': 'v-lspd',
-                'lscso': 'v-lscso',
-                'bcso': 'v-bcso',
-                'sasp': 'v-sasp'
-            };
+            const tabContainer = document.getElementById('vehicle-tabs');
+            const dataContainer = document.getElementById('vehicle-data-container');
 
-            Object.keys(mappings).forEach(key => {
-                const container = document.getElementById(mappings[key]);
-                const fleet = vehicleData[key];
-                container.innerHTML = `
+            // Generate Tabs
+            tabContainer.innerHTML = Object.keys(vehicleData).map((key, index) => `
+                <button class="sub-tab ${index === 0 ? 'active bg-orange-600 text-white' : 'text-slate-500 hover:text-white'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+                        onclick="openSubTab('v-${key}', event)">
+                    ${key.toUpperCase()}
+                </button>
+            `).join('');
+
+            // Generate Fleet Sheets
+            dataContainer.innerHTML = Object.keys(vehicleData).map((key, index) => `
+                <div id="v-${key}" class="sub-tab-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
                     <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
                         <div class="bg-slate-800/80 p-6 border-b border-slate-700">
                             <h3 class="text-white font-black uppercase italic m-0">${key.toUpperCase()} Fleet</h3>
@@ -1330,7 +1346,7 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-800 text-sm">
-                                ${fleet.map(v => `
+                                ${vehicleData[key].map(v => `
                                     <tr class="hover:bg-slate-800/30 transition-colors">
                                         <td class="px-8 py-4 text-slate-500 font-bold">${v.role}</td>
                                         <td class="px-8 py-4 text-white">${v.model}</td>
@@ -1340,8 +1356,8 @@
                             </tbody>
                         </table>
                     </div>
-                `;
-            });
+                </div>
+            `).join('');
         }
 
         // Initialize Search Listener
