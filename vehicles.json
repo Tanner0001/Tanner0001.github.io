@@ -13,7 +13,7 @@
     {"role": "Patrol", "model": "Alamo 2600LS ", "code": "LSALAMO2"},
     {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "LSSCOUT"},
     {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "LSSCOUT2"},
-    {"role": "Supervisor/SWAT", "model": "Alamo 2600LS ", "code": "LSALAMO3"},
+    {"role": "Supervisor/SWAT", "model": "Alamo 2600LS ", "code": "LSALAMO3"}
   ],
   "bcso": [
     {"role": "Patrol", "model": "Vapid Scout Interceptor 2014", "code": "BCSO6"},
@@ -23,7 +23,7 @@
     {"role": "Supervisor/Traffic", "model": "Vapid Scout Interceptor 2020", "code": "BCSO4"},
     {"role": "Supervisor/Traffic", "model": "Vapid Scout Interceptor 2016", "code": "BCSO2"}
   ],
-    "pbpd": [
+  "pbpd": [
     {"role": "Patrol/Supervisor", "model": "Vapid Scout Interceptor 2020", "code": "pbpdscout"},
     {"role": "Patrol", "model": "Vapid Scout Interceptor 2020", "code": "pbpdstanier"}
   ],
@@ -36,17 +36,17 @@
     {"role": "Traffic", "model": "Vapid Scout Interceptor 2016", "code": "SPSCOUT2CVE"}, 
     {"role": "Traffic", "model": "Dinka Thrust", "code": "SPTHRUST"}, 
     {"role": "Supervisor", "model": "Vapid Scout Interceptor 2020", "code": "SPSCOUT3UM"}
-  ]
-    "sadfw": [
-    {"role": "Patrol", "model": "Vapid Caracara 4x4", "code": "WILDLIFE2"},
-  ]
-      "nps": [
+  ],
+  "sadfw": [
+    {"role": "Patrol", "model": "Vapid Caracara 4x4", "code": "WILDLIFE2"}
+  ],
+  "nps": [
     {"role": "Patrol", "model": "Alamo 2500LS", "code": "NPSALAMO"},
     {"role": "Patrol", "model": "Vapid Scout Interceptor 2016", "code": "NPSSCOUT2"},
     {"role": "Supervisor", "model": "Alamo 2500LS", "code": "NPSALAMO2"},
     {"role": "Supervisor", "model": "Vapid Scout Interceptor 2016", "code": "NPSSCOUT"}
-  ]
-      "Unmarked": [
+  ],
+  "unmarked": [
     {"role": "Traffic", "model": "Alamo 2600LS ", "code": "nalamoum"},
     {"role": "Swat/Traffic", "model": "SandStorm ", "code": "NLSPDSTORMU"},
     {"role": "Multipurpose", "model": "Aleutian ", "code": "nlspdaleutianu"},
@@ -54,7 +54,4 @@
     {"role": "Multipurpose", "model": "Vapid Sadler ", "code": "sadlerdet"},
     {"role": "Swat", "model": "Centurion ", "code": "riot3"}
   ]
-  
-
-
 }

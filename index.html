@@ -1220,6 +1220,10 @@
                     fetch('penal_code.json' + cacheBuster),
                     fetch('vehicles.json' + cacheBuster)
                 ]);
+                
+                if (!penalRes.ok) throw new Error("Could not find penal_code.json");
+                if (!vehicleRes.ok) throw new Error("Could not find vehicles.json");
+
                 penalData = await penalRes.json();
                 vehicleData = await vehicleRes.json();
                 
@@ -1227,6 +1231,7 @@
                 renderVehicles();
             } catch (err) {
                 console.error("Error loading data sheets:", err);
+                alert("CRITICAL ERROR: The database files could not be loaded. This is usually caused by a syntax error (like a missing comma or quote) in your .json files. Check the browser console (F12) for details.");
             }
         }
 
