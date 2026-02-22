@@ -1174,28 +1174,110 @@
         </div>
 
         <div id="penalcode" class="tab-content">
-            <main class="max-w-4xl mx-auto px-6 py-12">
+            <main class="max-w-5xl mx-auto px-6 py-12">
                 <header class="mb-10">
-                    <h1 class="text-4xl font-black uppercase italic italic text-white">Criminal Penal Code</h1>
-                    <p class="text-slate-400">Statutory definitions and sentencing guidelines.</p>
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Statutory Penal Code</h1>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official legal definitions and sentencing guidelines for San Andreas.</p>
                 </header>
-        
-                <div class="space-y-4">
-                                <div class="rounded-2xl overflow-hidden glassmorphism">
-                                    <div class="bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">I. Violent Offenses</div>
-                                    <div class="p-6 space-y-4">                            <div class="flex justify-between items-start">
+
+                <!-- Sub-navigation for Code Types -->
+                <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
+                    <button class="sub-tab-penal active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openPenalSubTab('p-criminal', event)">Criminal Code</button>
+                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-vehicle', event)">Vehicle Code</button>
+                    <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-wildlife', event)">Fish & Wildlife</button>
+                </div>
+
+                <!-- Criminal Code Sheet -->
+                <div id="p-criminal" class="penal-sub-content active space-y-6">
+                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
+                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title I: Violent Offenses</div>
+                        <div class="p-6 divide-y divide-slate-800 space-y-4">
+                            <div class="flex justify-between items-start pt-4 first:pt-0">
                                 <div>
-                                    <h4 class="font-bold text-white">101. First Degree Murder</h4>
-                                    <p class="text-sm text-slate-500">Unlawful killing of a human with premeditation.</p>
+                                    <h4 class="font-bold text-white text-sm">101. First Degree Murder</h4>
+                                    <p class="text-xs text-slate-500">Unlawful killing of a human with premeditation.</p>
                                 </div>
-                                <span class="bg-orange-500/10 text-orange-500 px-3 py-1 rounded-full text-xs font-bold border border-orange-500/20">FELONY</span>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
                             </div>
-                            <div class="flex justify-between items-start">
+                            <div class="flex justify-between items-start pt-4">
                                 <div>
-                                    <h4 class="font-bold text-white">102. Armed Robbery</h4>
-                                    <p class="text-sm text-slate-500">Taking property by force using a deadly weapon.</p>
+                                    <h4 class="font-bold text-white text-sm">102. Armed Robbery</h4>
+                                    <p class="text-xs text-slate-500">Taking property by force using a deadly weapon.</p>
                                 </div>
-                                <span class="bg-orange-500/10 text-orange-500 px-3 py-1 rounded-full text-xs font-bold border border-orange-500/20">FELONY</span>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
+                            </div>
+                            <div class="flex justify-between items-start pt-4">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">103. Aggravated Battery</h4>
+                                    <p class="text-xs text-slate-500">Intentional touch or strike causing great bodily harm.</p>
+                                </div>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
+                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title II: Property & Narcotics</div>
+                        <div class="p-6 divide-y divide-slate-800 space-y-4">
+                            <div class="flex justify-between items-start pt-4 first:pt-0">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">201. Grand Theft Auto</h4>
+                                    <p class="text-xs text-slate-500">Unlawful taking of a motor vehicle.</p>
+                                </div>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
+                            </div>
+                            <div class="flex justify-between items-start pt-4">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">202. Possession with Intent</h4>
+                                    <p class="text-xs text-slate-500">Possession of a controlled substance in amount for distribution.</p>
+                                </div>
+                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Code Sheet -->
+                <div id="p-vehicle" class="penal-sub-content hidden space-y-6">
+                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
+                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title III: Moving Violations</div>
+                        <div class="p-6 divide-y divide-slate-800 space-y-4">
+                            <div class="flex justify-between items-start pt-4 first:pt-0">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">301. Reckless Driving</h4>
+                                    <p class="text-xs text-slate-500">Driving with willful or wanton disregard for safety.</p>
+                                </div>
+                                <span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-bold border border-yellow-500/20">MISDEMEANOR</span>
+                            </div>
+                            <div class="flex justify-between items-start pt-4">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">302. DUI</h4>
+                                    <p class="text-xs text-slate-500">Operating a vehicle under the influence of alcohol or drugs.</p>
+                                </div>
+                                <span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-bold border border-yellow-500/20">MISDEMEANOR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wildlife Code Sheet -->
+                <div id="p-wildlife" class="penal-sub-content hidden space-y-6">
+                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
+                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title IV: Conservation Violations</div>
+                        <div class="p-6 divide-y divide-slate-800 space-y-4">
+                            <div class="flex justify-between items-start pt-4 first:pt-0">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">401. Poaching Out of Season</h4>
+                                    <p class="text-xs text-slate-500">Taking wildlife outside of established legal seasons.</p>
+                                </div>
+                                <span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-bold border border-yellow-500/20">MISDEMEANOR</span>
+                            </div>
+                            <div class="flex justify-between items-start pt-4">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">402. Fishing Without License</h4>
+                                    <p class="text-xs text-slate-500">Engaging in fishing activities without valid state permit.</p>
+                                </div>
+                                <span class="bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full text-[10px] font-bold border border-blue-500/20">INFRACTION</span>
                             </div>
                         </div>
                     </div>
@@ -1238,6 +1320,30 @@
             }
             
             const buttons = document.getElementsByClassName("sub-tab");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active", "bg-orange-600", "text-white");
+                buttons[i].classList.add("text-slate-500");
+            }
+            
+            const target = document.getElementById(subTabName);
+            target.classList.remove("hidden");
+            target.classList.add("active");
+            
+            event.currentTarget.classList.add("active", "bg-orange-600", "text-white");
+            event.currentTarget.classList.remove("text-slate-500");
+            
+            lucide.createIcons();
+        }
+
+        // Penal Code Sub-tab Functionality
+        function openPenalSubTab(subTabName, event) {
+            const contents = document.getElementsByClassName("penal-sub-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.add("hidden");
+                contents[i].classList.remove("active");
+            }
+            
+            const buttons = document.getElementsByClassName("sub-tab-penal");
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("active", "bg-orange-600", "text-white");
                 buttons[i].classList.add("text-slate-500");
