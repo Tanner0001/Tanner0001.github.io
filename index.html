@@ -406,7 +406,206 @@
             </div>
 
             <div id="fd-manual" class="fd-tab-content hidden">
-                <p class="text-slate-500 italic text-center py-20">Fire & EMS Standard Operating Procedures coming soon.</p>
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- FD Manual Sidebar -->
+                    <aside class="hidden lg:block w-72 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 h-fit sticky top-24">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6 text-left">FD Manual Navigation</h2>
+                        <div class="space-y-4">
+                            <!-- Category: General -->
+                            <div class="space-y-2">
+                                <button onclick="toggleAccordion('fd-cat-gen')" class="w-full flex justify-between items-center text-red-400 font-bold text-xs uppercase tracking-wider bg-slate-800/50 p-3 rounded-xl">
+                                    <span>General Info</span>
+                                    <i data-lucide="chevron-down" id="fd-cat-gen-icon" class="w-4 h-4"></i>
+                                </button>
+                                <ul id="fd-cat-gen" class="space-y-1 ml-2">
+                                    <li><a href="#fd-section-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 1 Intro</a></li>
+                                    <li><a href="#fd-section-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 2 CoC</a></li>
+                                </ul>
+                            </div>
+                            <!-- Category: Comms -->
+                            <div class="space-y-2">
+                                <button onclick="toggleAccordion('fd-cat-comm')" class="w-full flex justify-between items-center text-red-400 font-bold text-xs uppercase tracking-wider bg-slate-800/50 p-3 rounded-xl">
+                                    <span>Communications</span>
+                                    <i data-lucide="chevron-down" id="fd-cat-comm-icon" class="w-4 h-4"></i>
+                                </button>
+                                <ul id="fd-cat-comm" class="hidden space-y-1 ml-2">
+                                    <li><a href="#fd-section-3" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 3 Radio</a></li>
+                                </ul>
+                            </div>
+                            <!-- Category: Field Ops -->
+                            <div class="space-y-2">
+                                <button onclick="toggleAccordion('fd-cat-field')" class="w-full flex justify-between items-center text-red-400 font-bold text-xs uppercase tracking-wider bg-slate-800/50 p-3 rounded-xl">
+                                    <span>Field Operations</span>
+                                    <i data-lucide="chevron-down" id="fd-cat-field-icon" class="w-4 h-4"></i>
+                                </button>
+                                <ul id="fd-cat-field" class="hidden space-y-1 ml-2">
+                                    <li><a href="#fd-section-4" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 4 Zones</a></li>
+                                    <li><a href="#fd-section-5" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 5 Divisions</a></li>
+                                    <li><a href="#fd-section-6" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 6 Command</a></li>
+                                    <li><a href="#fd-section-8" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 8 Response</a></li>
+                                </ul>
+                            </div>
+                            <!-- Category: Medical -->
+                            <div class="space-y-2">
+                                <button onclick="toggleAccordion('fd-cat-med')" class="w-full flex justify-between items-center text-red-400 font-bold text-xs uppercase tracking-wider bg-slate-800/50 p-3 rounded-xl">
+                                    <span>EMS Operations</span>
+                                    <i data-lucide="chevron-down" id="fd-cat-med-icon" class="w-4 h-4"></i>
+                                </button>
+                                <ul id="fd-cat-med" class="hidden space-y-1 ml-2">
+                                    <li><a href="#fd-section-7" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 7 Policies</a></li>
+                                    <li><a href="#fd-section-7-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 7.1 Guide</a></li>
+                                </ul>
+                            </div>
+                            <!-- Category: Personnel -->
+                            <div class="space-y-2">
+                                <button onclick="toggleAccordion('fd-cat-pers')" class="w-full flex justify-between items-center text-red-400 font-bold text-xs uppercase tracking-wider bg-slate-800/50 p-3 rounded-xl">
+                                    <span>Professionalism</span>
+                                    <i data-lucide="chevron-down" id="fd-cat-pers-icon" class="w-4 h-4"></i>
+                                </button>
+                                <ul id="fd-cat-pers" class="hidden space-y-1 ml-2">
+                                    <li><a href="#fd-section-11" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 11 Ethics</a></li>
+                                    <li><a href="#fd-section-12" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 12 Discipline</a></li>
+                                    <li><a href="#fd-section-13" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-xs transition-all">Section 13 Activity</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <article class="flex-1 prose prose-invert max-w-none text-left">
+                        <section id="fd-section-1" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-red-900/50">Section 1</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Introduction</h2>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed mb-12">This document sets forth the policies and procedures of the agency that all fire department personnel must adhere to in order to perform their duties to the highest standard. It is the responsibility of each firefighter to comply with these rules and policies.</p>
+
+                            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                                <div id="fd-section-1-1" class="bg-red-900/10 border border-red-900/20 p-8 rounded-3xl backdrop-blur-xl">
+                                    <h3 class="text-xl font-black text-red-500 uppercase italic mb-6 flex items-center gap-2"><i data-lucide="heart"></i> 1.1 Core Ethics</h3>
+                                    <div class="space-y-4">
+                                        <div><strong class="text-white block text-sm">Pride</strong><span class="text-slate-400 text-xs">Perform your duties with the utmost pride and dignity.</span></div>
+                                        <div><strong class="text-white block text-sm">Integrity</strong><span class="text-slate-400 text-xs">Honesty and professionalism, even in challenging circumstances.</span></div>
+                                        <div><strong class="text-white block text-sm">Professionalism</strong><span class="text-slate-400 text-xs">Impeccable presentation of stations, apparatus, and equipment.</span></div>
+                                    </div>
+                                </div>
+                                <div id="fd-section-1-2" class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl">
+                                    <h3 class="text-xl font-black text-white uppercase italic mb-6 flex items-center gap-2"><i data-lucide="shield"></i> 1.2 Duties</h3>
+                                    <ul class="list-none p-0 space-y-4">
+                                        <li class="flex gap-3"><i data-lucide="flame" class="w-4 h-4 text-red-500 mt-1"></i> <span class="text-xs text-slate-300"><strong>Protect Life:</strong> Suppress fires and assess hazards promptly.</span></li>
+                                        <li class="flex gap-3"><i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mt-1"></i> <span class="text-xs text-slate-300"><strong>Mitigate Risk:</strong> Inspections, education, and continuous training.</span></li>
+                                        <li class="flex gap-3"><i data-lucide="activity" class="w-4 h-4 text-red-500 mt-1"></i> <span class="text-xs text-slate-300"><strong>Excel Operations:</strong> Maintain operational readiness and equipment.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="fd-section-2" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-red-900/50">Section 2</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Chain of Command</h2>
+                            </div>
+                            <div class="rounded-3xl overflow-hidden glassmorphism border border-slate-700">
+                                <table class="w-full text-left m-0">
+                                    <thead class="bg-red-900/20 text-red-400 text-[10px] uppercase font-black tracking-widest">
+                                        <tr><th class="px-8 py-4">Command Grade</th><th class="px-8 py-4">Supervisory Grade</th><th class="px-8 py-4">Field Grade</th></tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-800 text-sm text-white">
+                                        <tr><td class="px-8 py-4">Fire Chief</td><td class="px-8 py-4">Captain</td><td class="px-8 py-4">Senior Firefighter</td></tr>
+                                        <tr><td class="px-8 py-4">Asst. Chief</td><td class="px-8 py-4">Lieutenant</td><td class="px-8 py-4">Firefighter</td></tr>
+                                        <tr><td class="px-8 py-4">Battalion Chief</td><td class="px-8 py-4">---</td><td class="px-8 py-4">---</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section id="fd-section-3" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-red-900/50">Section 3</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Radio Communications</h2>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-red-500 font-bold uppercase text-[10px] tracking-widest mb-4">Radio Frequencies</h4>
+                                    <div class="space-y-4">
+                                        <div><span class="block text-xs text-white font-bold">Los Santos County</span><span class="text-slate-400 text-[10px]">Base: 73 | OPS 1: 74 | OPS 2: 75</span></div>
+                                        <div><span class="block text-xs text-white font-bold">Blaine County</span><span class="text-slate-400 text-[10px]">Base: 83 | OPS 1: 84 | OPS 2: 85</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-red-500 font-bold uppercase text-[10px] tracking-widest mb-4">Unit Callsigns</h4>
+                                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                                        <div class="text-slate-300">Engine Co: <span class="text-red-400">ENG-00</span></div>
+                                        <div class="text-slate-300">BLS Aid: <span class="text-red-400">AID-00</span></div>
+                                        <div class="text-slate-300">ALS Med: <span class="text-red-400">MED-00</span></div>
+                                        <div class="text-slate-300">Rescue: <span class="text-red-400">RESCUE-00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="fd-section-5" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-red-900/50">Section 5</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Divisions</h2>
+                            </div>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-white font-bold text-sm mb-2">Engine Company</h4>
+                                    <p class="text-slate-400 text-[10px] m-0">First responders for fire suppression, prevention, and medical assistance.</p>
+                                </div>
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-white font-bold text-sm mb-2">BLS / ALS</h4>
+                                    <p class="text-slate-400 text-[10px] m-0">Emergency medical transport ranging from stabilization to advanced drug administration.</p>
+                                </div>
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-white font-bold text-sm mb-2">USAR</h4>
+                                    <p class="text-slate-400 text-[10px] m-0">Urban Search and Rescue: Specialized teams for complex urban extraction and care.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="fd-section-7" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-red-900/50">Section 7</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">EMS Guide</h2>
+                            </div>
+                            <div id="fd-section-7-1" class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-8 opacity-10 text-red-500"><i data-lucide="activity" class="w-32 h-32"></i></div>
+                                <h3 class="text-xl font-bold text-white mb-8 uppercase tracking-widest">Patient Assessment (ABCD)</h3>
+                                <div class="space-y-6 relative z-10">
+                                    <div class="flex gap-6">
+                                        <span class="text-red-500 font-black italic text-2xl">A</span>
+                                        <div><strong class="text-white block">Airways</strong><p class="text-slate-400 text-xs m-0">Observe for obstructions or trauma. Response: Heimlich or airway insertion if compromised.</p></div>
+                                    </div>
+                                    <div class="flex gap-6">
+                                        <span class="text-red-500 font-black italic text-2xl">B</span>
+                                        <div><strong class="text-white block">Breathing</strong><p class="text-slate-400 text-xs m-0">Observe respiratory rate. Check oxygen levels. Response: Provide supplemental oxygen if inadequate.</p></div>
+                                    </div>
+                                    <div class="flex gap-6">
+                                        <span class="text-red-500 font-black italic text-2xl">C</span>
+                                        <div><strong class="text-white block">Circulation</strong><p class="text-slate-400 text-xs m-0">Check pulse (60-100 BPM avg). Response: Initiate CPR/AED if no pulse is detected.</p></div>
+                                    </div>
+                                    <div class="flex gap-6">
+                                        <span class="text-red-500 font-black italic text-2xl">D</span>
+                                        <div><strong class="text-white block">Disability</strong><p class="text-slate-400 text-xs m-0">Check consciousness (Alert, Verbal, Pain, Unresponsive). Response: Load and go if applicable.</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="fd-section-12" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-red-900/30 text-red-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-red-900/50">Section 12</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Disciplinary Action</h2>
+                            </div>
+                            <div class="bg-red-950/20 border border-red-900/30 p-8 rounded-3xl relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-4 opacity-5 text-red-500"><i data-lucide="alert-octagon" class="w-32 h-32"></i></div>
+                                <h4 class="text-red-500 font-black uppercase tracking-widest text-[10px] mb-4">Sanction Escalation</h4>
+                                <p class="text-slate-300 text-sm leading-relaxed m-0">Three (3) Disciplinary Action Reports within one month results in a **one-week suspension**. <span class="text-red-500 font-bold italic">Breach of suspension results in immediate termination.</span></p>
+                            </div>
+                        </section>
+                    </article>
+                </div>
             </div>
 
             <div id="fd-apparatus" class="fd-tab-content hidden">
