@@ -44,7 +44,7 @@
         <div class="flex border-b border-slate-700 mb-8">
             <button class="tab active p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard')">Dashboard</button>
             <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('manual')">Manual</button>
-            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('radiocodes')">Radio Codes</button>
+            <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('agencies')">Agencies</button>
             <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles')">Vehicles</button>
             <button class="tab p-4 text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
         </div>
@@ -293,42 +293,118 @@
                             <p class="text-slate-400 mb-4">
                                 Callsigns are different for each agency to assist with distinction. Below is a list of all agency callsigns and their structure.
                             </p>
-                            <p class="text-slate-400 mb-4">
-                                Callsigns must include two (2) digits. 
-                                Partnered units should utilize the same unit number.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                An example:
-                            </p>
-                            <div class="bg-slate-900 p-3 rounded-xl text-xs font-mono text-slate-500 mb-4">4K-70 - San Andreas State Police K-9 Unit</div>
-                            <p class="text-slate-400 mb-4">
-                                If your callsign is already taken, select another.
-                            </p>
-                            <p class="text-slate-400 mb-4">
-                                Below is a list of all available radio callsigns:
-                            </p>
-                            <div class="rounded-2xl overflow-hidden shadow-2xl my-4 glassmorphism">
-                                <table class="w-full text-left">
-                                    <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                                        <tr>
-                                            <th class="px-6 py-4">Agency</th>
-                                            <th class="px-6 py-4">Callsign</th>
-                                            <th class="px-6 py-4">Assignment [*]</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-700">
-                                        <tr><td class="px-6 py-2">Los Santos Police Department</td><td class="px-6 py-2">1[*]-00</td><td class="px-6 py-2">L - Patrol Unit</td></tr>
-                                        <tr><td class="px-6 py-2">Los Santos Sheriff’s Department</td><td class="px-6 py-2">2[*]-00</td><td class="px-6 py-2">S - Supervisor</td></tr>
-                                        <tr><td class="px-6 py-2">Blaine County Sheriff’s Office</td><td class="px-6 py-2">3[*]-00</td><td class="px-6 py-2">D - Detective</td></tr>
-                                        <tr><td class="px-6 py-2">San Andreas State Patrol</td><td class="px-6 py-2">4[*]-00</td><td class="px-6 py-2">T - Traffic</td></tr>
-                                        <tr><td class="px-6 py-2">National Park Service</td><td class="px-6 py-2">5[*]-00</td><td class="px-6 py-2">R - Tactical Unit</td></tr>
-                                        <tr><td class="px-6 py-2">Davis Police Department</td><td class="px-6 py-2">2[*]-00</td><td class="px-6 py-2">K - K-9</td></tr>
-                                        <tr><td class="px-6 py-2">Paleto Bay Police Department</td><td class="px-6 py-2">6[*]-00</td><td class="px-6 py-2"></td></tr>
-                                        <tr><td class="px-6 py-2">Los Santos Port Police</td><td class="px-6 py-2">7[*]-00</td><td class="px-6 py-2"></td></tr>
-                                        <tr><td class="px-6 py-2">N.O.O.S.E.</td><td class="px-6 py-2">8[*]-00</td><td class="px-6 py-2"></td></tr>
-                                        <tr><td class="px-6 py-2">Air Unit</td><td class="px-6 py-2">AIR-00</td><td class="px-6 py-2"></td></tr>
-                                    </tbody>
-                                </table>
+                            
+                            <div class="space-y-8 mt-6">
+                                <!-- LSPD -->
+                                <div class="border-l-4 border-orange-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Los Santos Police Department</h4>
+                                    <div class="space-y-4 text-sm text-slate-400">
+                                        <div><span class="text-orange-300 font-bold block">Chief of Police</span> Car followed by 1 (e.g. CAR-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Deputy Chief</span> Car followed by 2 (e.g. CAR-2)</div>
+                                        <div><span class="text-orange-300 font-bold block">Assistant Chief</span> Car followed by a single digit number 3-7 (e.g. CAR-5)</div>
+                                        <div><span class="text-orange-300 font-bold block">Captains</span> Car followed by a single or two digit number 8-12 (e.g. CAR-8)</div>
+                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> Car followed by a single or two digit number 13-33 (e.g. CAR-20)</div>
+                                        <div><span class="text-orange-300 font-bold block">Detectives</span> Watch followed by David and a single or two digit number (e.g. 2-DAVID-10)</div>
+                                        <div><span class="text-orange-300 font-bold block">Patrol Sergeants</span> Watch followed by precinct identifier (e.g. 2-NORA)<br><span class="text-xs italic">(2-NORA would be a 2nd shift Sergeant assigned to Nora/North precinct)</span></div>
+                                        <div><span class="text-orange-300 font-bold block">Patrol District Units</span> Watch followed by precinct identifier and 1 or 2 digit number (e.g. 2-SAM-1)<br><span class="text-xs italic">(2-SAM-1 would be a patrol car on 2nd watch, assigned to Sam/South precinct, and they would be the 1st car. Additional units assigned to South precinct would be a number from 2-13 e.g. 2-SAM-2, 2-SAM-11)</span></div>
+                                        <div><span class="text-orange-300 font-bold block">Uniformed Walking Beat Units</span> Designated by the watch, precinct, and a two digit number 61-69. (e.g. 2-NORA-61). Walking Beat Sergeants are identified by the watch, precinct and the number 70 (e.g. 2-NORA-70)</div>
+                                        <div><span class="text-orange-300 font-bold block">Uniformed Bicycle Beat Units</span> Designated by the watch, precinct, and a 2 digit number 81-89 (e.g. 2-WILLIAM-81). Bicycle Beat Sergeants are identified by the watch, precinct and the number 80 (e.g. 2-WILLIAM-80)</div>
+                                        <div><span class="text-orange-300 font-bold block">Patrol Wagons</span> Identified by the precinct, watch and the number 10 (e.g. 2-NORA-10)</div>
+                                        <div><span class="text-orange-300 font-bold block">Harbor Units</span> HBR followed by a 1 or 2 digit number (e.g. HARBOR-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Traffic Units</span> T followed by a 2 digit number (e.g. TOM-15)</div>
+                                        <div><span class="text-orange-300 font-bold block">Parking Enforcement</span> P followed by a 2 or 3 digit number (e.g. PAUL-254)</div>
+                                        <div><span class="text-orange-300 font-bold block">Crisis Response Unit</span> CRT followed by a single digit number 1-9 (e.g. CRT-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Anti-Crime Team</span> Precinct letter followed by a number from 95-99 (e.g. EDWARD-95)</div>
+                                        <div><span class="text-orange-300 font-bold block">SWAT</span> Z followed by a 2 digit number (e.g. ZEBRA-20)</div>
+                                        <div><span class="text-orange-300 font-bold block">K-9</span> K-9 followed by a 1 or 2 digit number 1-15</div>
+                                    </div>
+                                </div>
+
+                                <!-- LSPP -->
+                                <div class="border-l-4 border-slate-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Los Santos Port Police</h4>
+                                    <p class="text-sm text-slate-500 italic">Callsign information pending.</p>
+                                </div>
+
+                                <!-- LSCSO -->
+                                <div class="border-l-4 border-orange-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Los Santos County Sheriff’s Office</h4>
+                                    <div class="space-y-4 text-sm text-slate-400">
+                                        <div><span class="text-orange-300 font-bold block">Sheriff</span> County followed by 1 (e.g. COUNTY-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Undersheriff</span> County followed by 2 (e.g. COUNTY-2)</div>
+                                        <div><span class="text-orange-300 font-bold block">Division Chiefs</span> County a single digit number 3-7 (e.g. COUNTY-5)</div>
+                                        <div><span class="text-orange-300 font-bold block">K-9</span> K-9 followed by a 1 or 2 digit number 1-15</div>
+                                        <div><span class="text-orange-300 font-bold block">North Precinct Unincorporated Units</span> Letter C followed by a 2 digit number 90-99 (e.g CHARLES-92). Sergeants will be watch followed by C (e.g. 2-CHARLES)</div>
+                                        <div><span class="text-orange-300 font-bold block">South Precinct Unincorporated Units</span> Letter G followed by a 2 digit number 90-99 (e.g. GEORGE-90). Sergeants will be watch followed by G (e.g. 2-GEORGE)</div>
+                                        <div><span class="text-orange-300 font-bold block">City of Davis Police Department</span> Letter L followed by a 2 digit number 90-99 (e.g. LINCOLN-90). Sergeants will be watch followed by L (e.g. 2-LINCOLN)</div>
+                                        <div><span class="text-orange-300 font-bold block">City of Rockford Hills Police Department</span> Letter H followed by 3 digit number 290-299 (e.g. HENRY-299). Sergeants will be watch followed by H (e.g. 2-HENRY)</div>
+                                        <div><span class="text-orange-300 font-bold block">Los Santos METRO Transit units</span> METRO 40-49 (LS city limits), METRO 50-59 (outside LS city limits). Sergeants will be watch followed by METRO. Bicycle (BEES): METRO 91-99.</div>
+                                        <div><span class="text-orange-300 font-bold block">Marine Unit</span> MARINE 1-59</div>
+                                        <div><span class="text-orange-300 font-bold block">Detectives</span> County 120-160</div>
+                                        <div><span class="text-orange-300 font-bold block">Air Support</span> LE Ops helicopters: GUARDIAN-1. SAR ops: GUARDIAN-2.</div>
+                                    </div>
+                                </div>
+
+                                <!-- BCSD -->
+                                <div class="border-l-4 border-orange-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Blaine County Sheriff’s Department</h4>
+                                    <div class="space-y-4 text-sm text-slate-400">
+                                        <div><span class="text-orange-300 font-bold block">Sheriff</span> County followed by 1 (e.g. COUNTY-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Undersheriff</span> County followed by 2 (e.g. COUNTY-2)</div>
+                                        <div><span class="text-orange-300 font-bold block">Bureau Chiefs</span> County a single digit number 3-6 (e.g. COUNTY-5)</div>
+                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> County and a single or two digit number 7-25 (e.g. County-15)</div>
+                                        <div><span class="text-orange-300 font-bold block">Sergeants</span> County and a two digit number 26-70 (e.g. County-35)</div>
+                                        <div><span class="text-orange-300 font-bold block">Corporals and Deputies</span> County a three digit number 100-600 (e.g. County-255)</div>
+                                        <div><span class="text-orange-300 font-bold block">K-9</span> K-9 followed by a 1 or 2 digit number 1-10</div>
+                                    </div>
+                                </div>
+
+                                <!-- PBPD -->
+                                <div class="border-l-4 border-orange-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Paleto Bay Police Department</h4>
+                                    <div class="space-y-4 text-sm text-slate-400">
+                                        <div><span class="text-orange-300 font-bold block">Chief of Police</span> Car followed by 1 (e.g. CAR-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Deputy Chief</span> Car followed by 2 (e.g. CAR-2)</div>
+                                        <div><span class="text-orange-300 font-bold block">Assistant Chiefs</span> Car followed by a single digit number 3-5 (e.g. CAR-4)</div>
+                                        <div><span class="text-orange-300 font-bold block">Captains</span> Car followed by a single digit number 6-9 (e.g. CAR-8)</div>
+                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> Lincoln followed by a two digit number 10-22 (e.g. LINCOLN-15)</div>
+                                        <div><span class="text-orange-300 font-bold block">Sergeants</span> Sam followed by a three digit number 100-300 (e.g. SAM-133)</div>
+                                        <div><span class="text-orange-300 font-bold block">Detectives</span> David followed by a three digit number 100-300 (e.g. DAVID-122)</div>
+                                        <div><span class="text-orange-300 font-bold block">Two Man Patrol Cars</span> Baker followed by a three digit number 100-400 (e.g. BAKER-257)</div>
+                                        <div><span class="text-orange-300 font-bold block">One Man Patrol Car</span> Paul followed by a three digit number 100-400 (e.g. PAUL-368)</div>
+                                        <div><span class="text-orange-300 font-bold block">Motorcycle Units</span> Mary followed by a three digit number 100-400 (e.g. MARY-134)</div>
+                                    </div>
+                                </div>
+
+                                <!-- SASP -->
+                                <div class="border-l-4 border-orange-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">San Andreas State Patrol & Other State Agencies</h4>
+                                    <div class="space-y-4 text-sm text-slate-400">
+                                        <div><span class="text-orange-300 font-bold block">Chief</span> State followed by 1 (e.g. STATE-1)</div>
+                                        <div><span class="text-orange-300 font-bold block">Deputy Chiefs</span> State followed by a single digit number 2-5 (e.g. STATE-3)</div>
+                                        <div><span class="text-orange-300 font-bold block">Majors</span> State followed by a single or two digit number 6-14 (e.g. STATE-7)</div>
+                                        <div><span class="text-orange-300 font-bold block">Captains</span> State followed by a two digit number 15-39 (e.g. STATE-20)</div>
+                                        <div><span class="text-orange-300 font-bold block">Lieutenants</span> State followed by a two digit number 40-99 (e.g. STATE-50)</div>
+                                        <div><span class="text-orange-300 font-bold block">Sergeants</span> State followed by a three digit number 100-299 (e.g. STATE-141)</div>
+                                        <div><span class="text-orange-300 font-bold block">Corporals and Troopers</span> State followed by a three digit number 300-1299 (e.g. STATE-978)</div>
+                                        <div><span class="text-orange-300 font-bold block">Motorcycle Troopers</span> Mary followed by a three digit number 300-1299 (e.g. MARY-356)</div>
+                                        <div><span class="text-orange-300 font-bold block">Commercial Vehicle Enforcement Officers</span> X-Ray followed by a three digit number 700-999 (e.g. XRAY-750)</div>
+                                        <div><span class="text-orange-300 font-bold block">Air Support</span> Smokey followed by a single digit number 1-3 (e.g. SMOKEY-3)</div>
+                                        <div><span class="text-orange-300 font-bold block">San Andreas State Parks</span> Parks followed by a three digit number 100-300 (e.g. PARKS-283)</div>
+                                        <div><span class="text-orange-300 font-bold block">San Andreas Department of Fish and Wildlife</span> Police Officers: Wildlife 100-200. Sergeants: Wildlife 20-50. Captains: Wildlife 5-11.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Federal -->
+                                <div class="border-l-4 border-orange-500 pl-6 py-2">
+                                    <h4 class="text-xl font-black text-white uppercase italic mb-4">Federal Agencies</h4>
+                                    <div class="space-y-4 text-sm text-slate-400">
+                                        <div><span class="text-orange-300 font-bold block">United States Forest Service Law Enforcement</span> Forest followed by a three digit number 100-200 (e.g. FOREST-156)</div>
+                                        <div><span class="text-orange-300 font-bold block">National Parks Service</span> NPS followed by a three digit number 100-200 (e.g. NPS-138)</div>
+                                        <div><span class="text-orange-300 font-bold block">United States Border Patrol</span> USBP followed by a three digit number 100-200 (e.g. USBP-110)</div>
+                                        <div><span class="text-orange-300 font-bold block">United States Department of Homeland Security</span> DHS followed by a three digit number 100-200 (e.g. DHS-178)</div>
+                                    </div>
+                                </div>
                             </div>
         
                             <h3 class="text-xl font-bold text-white mb-2">Phonetics Information</h3>
@@ -824,49 +900,90 @@
             </div>
         </div>
 
-        <div id="radiocodes" class="tab-content">
+        <div id="agencies" class="tab-content">
             <main class="max-w-4xl mx-auto px-6 py-12">
                 <header class="mb-10">
-                    <h1 class="text-4xl font-black uppercase italic italic">Radio Codes</h1>
-                    <p class="text-slate-400">Communication protocols and 10-code quick reference.</p>
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Law Enforcement Agencies</h1>
+                    <p class="text-slate-400">Detailed information about each department.</p>
                 </header>
-        
-                <div class="mb-8 relative">
-                    <input type="text" id="radioCodeSearch" placeholder="Search codes..." class="w-full rounded-xl py-3 px-12 focus:outline-none focus:border-orange-500 glassmorphism">
-                    <i data-lucide="search" class="absolute left-4 top-3.5 text-slate-500 w-5 h-5"></i>
-                </div>
-        
-                <div class="rounded-2xl overflow-hidden shadow-2xl glassmorphism">
-                    <table class="w-full text-left" id="radioCodesTable">
-                        <thead class="bg-slate-700/50 text-slate-300 text-xs uppercase font-bold">
-                            <tr>
-                                <th class="px-6 py-4">Code</th>
-                                <th class="px-6 py-4">Meaning</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700">
-                            <tr>
-                                <td class="px-6 py-4 font-mono text-orange-300">10-4</td>
-                                <td class="px-6 py-4">Acknowledgment / Message Received</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-mono text-orange-300">10-7</td>
-                                <td class="px-6 py-4 text-red-400">Out of Service</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-mono text-orange-300">10-8</td>
-                                <td class="px-6 py-4 text-green-400">In Service / Available</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-mono text-orange-300">10-20</td>
-                                <td class="px-6 py-4 text-slate-300">Location Request</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-mono text-orange-300">10-99</td>
-                                <td class="px-6 py-4 text-orange-400 font-bold">Warrant / Wanted Person</td>
-                            </tr>
-                            </tbody>
-                    </table>
+
+                <div class="space-y-4">
+                    <!-- LSPD -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('lspd-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Los Santos Police Department</span>
+                            <i data-lucide="chevron-down" id="lspd-info-icon"></i>
+                        </button>
+                        <div id="lspd-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Los Santos Police Department (LSPD) is the primary law enforcement agency for the City of Los Santos. Its mission is to protect the lives and property of the people of Los Santos, to maintain public order, and to enforce the law with impartiality and integrity.</p>
+                        </div>
+                    </div>
+
+                    <!-- LSPP -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('lspp-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Los Santos Port Police</span>
+                            <i data-lucide="chevron-down" id="lspp-info-icon"></i>
+                        </button>
+                        <div id="lspp-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Los Santos Port Police (LSPP) is a specialized law enforcement agency responsible for policing the Port of Los Santos and the Los Santos International Airport. Its mission is to ensure the security of the port and airport facilities, and to protect the flow of commerce through these vital transportation hubs.</p>
+                        </div>
+                    </div>
+
+                    <!-- LSCSO -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('lscso-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Los Santos County Sheriff’s Office</span>
+                            <i data-lucide="chevron-down" id="lscso-info-icon"></i>
+                        </button>
+                        <div id="lscso-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Los Santos County Sheriff's Office (LSCSO) is the primary law enforcement agency for the unincorporated areas of Los Santos County and the City of Davis and Rockford Hills. Its mission is to provide professional law enforcement services to the community, and to maintain public safety through proactive policing and community engagement.</p>
+                        </div>
+                    </div>
+
+                    <!-- BCSD -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('bcsd-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Blaine County Sheriff’s Department</span>
+                            <i data-lucide="chevron-down" id="bcsd-info-icon"></i>
+                        </button>
+                        <div id="bcsd-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Blaine County Sheriff's Department (BCSD) is the primary law enforcement agency for Blaine County. Its mission is to provide safe and secure communities for the residents and visitors of Blaine County, and to uphold the law with professionalism and respect.</p>
+                        </div>
+                    </div>
+
+                    <!-- PBPD -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('pbpd-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Paleto Bay Police Department</span>
+                            <i data-lucide="chevron-down" id="pbpd-info-icon"></i>
+                        </button>
+                        <div id="pbpd-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Paleto Bay Police Department (PBPD) is the primary law enforcement agency for the City of Paleto Bay. Its mission is to maintain a safe and peaceful environment for the community, and to provide professional law enforcement services with integrity and dedication.</p>
+                        </div>
+                    </div>
+
+                    <!-- SASP -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('sasp-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>San Andreas State Patrol & Other State Agencies</span>
+                            <i data-lucide="chevron-down" id="sasp-info-icon"></i>
+                        </button>
+                        <div id="sasp-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The San Andreas State Patrol (SASP) is the primary highway patrol agency for the State of San Andreas. Its mission is to ensure the safety of the state's highways, and to provide assistance to local law enforcement agencies when needed. Other state agencies include San Andreas State Parks and the San Andreas Department of Fish and Wildlife.</p>
+                        </div>
+                    </div>
+
+                    <!-- Federal -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('federal-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Federal Agencies</span>
+                            <i data-lucide="chevron-down" id="federal-info-icon"></i>
+                        </button>
+                        <div id="federal-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>Federal agencies include the United States Forest Service Law Enforcement, the National Parks Service, the United States Border Patrol, and the United States Department of Homeland Security. Their mission is to enforce federal laws and regulations within their respective jurisdictions, and to protect the nation's natural resources and borders.</p>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
@@ -957,30 +1074,19 @@
             lucide.createIcons();
         }
 
-        // Radio Codes Search Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const radioCodeSearch = document.getElementById('radioCodeSearch');
-            if (radioCodeSearch) {
-                radioCodeSearch.addEventListener('keyup', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    const table = document.getElementById('radioCodesTable');
-                    const rows = table.getElementsByTagName('tr');
-
-                    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header row
-                        const cells = rows[i].getElementsByTagName('td');
-                        let rowText = '';
-                        for (let j = 0; j < cells.length; j++) {
-                            rowText += cells[j].textContent.toLowerCase() + ' ';
-                        }
-                        if (rowText.indexOf(searchTerm) > -1) {
-                            rows[i].style.display = '';
-                        } else {
-                            rows[i].style.display = 'none';
-                        }
-                    }
-                });
+        // Accordion Toggle Functionality
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                if (icon) icon.setAttribute('data-lucide', 'chevron-up');
+            } else {
+                content.classList.add('hidden');
+                if (icon) icon.setAttribute('data-lucide', 'chevron-down');
             }
-        });
+            lucide.createIcons();
+        }
 
         // Manual Sidebar Mobile Toggle
         function toggleManualSidebar() {
