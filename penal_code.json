@@ -1,0 +1,37 @@
+{
+  "criminal": [
+    {
+      "title": "Title I: Violent Offenses",
+      "laws": [
+        {"id": "101", "name": "First Degree Murder", "description": "Unlawful killing of a human with premeditation.", "class": "FELONY"},
+        {"id": "102", "name": "Armed Robbery", "description": "Taking property by force using a deadly weapon.", "class": "FELONY"},
+        {"id": "103", "name": "Aggravated Battery", "description": "Intentional touch or strike causing great bodily harm.", "class": "FELONY"}
+      ]
+    },
+    {
+      "title": "Title II: Property & Narcotics",
+      "laws": [
+        {"id": "201", "name": "Grand Theft Auto", "description": "Unlawful taking of a motor vehicle.", "class": "FELONY"},
+        {"id": "202", "name": "Possession with Intent", "description": "Possession of a controlled substance in amount for distribution.", "class": "FELONY"}
+      ]
+    }
+  ],
+  "vehicle": [
+    {
+      "title": "Title III: Moving Violations",
+      "laws": [
+        {"id": "301", "name": "Reckless Driving", "description": "Driving with willful or wanton disregard for safety.", "class": "MISDEMEANOR"},
+        {"id": "302", "name": "DUI", "description": "Operating a vehicle under the influence of alcohol or drugs.", "class": "MISDEMEANOR"}
+      ]
+    }
+  ],
+  "wildlife": [
+    {
+      "title": "Title IV: Conservation Violations",
+      "laws": [
+        {"id": "401", "name": "Poaching Out of Season", "description": "Taking wildlife outside of established legal seasons.", "class": "MISDEMEANOR"},
+        {"id": "402", "name": "Fishing Without License", "description": "Engaging in fishing activities without valid state permit.", "class": "INFRACTION"}
+      ]
+    }
+  ]
+}

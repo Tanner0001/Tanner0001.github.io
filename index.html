@@ -1074,110 +1074,33 @@
 
             <!-- Sub-navigation for departments -->
             <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
-                <button class="sub-tab active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" onclick="openSubTab('v-lspd', event)">LSPD</button>
+                <button class="sub-tab active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-orange-600 text-white" onclick="openSubTab('v-lspd', event)">LSPD</button>
                 <button class="sub-tab px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openSubTab('v-lscso', event)">LSCSO</button>
                 <button class="sub-tab px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openSubTab('v-bcso', event)">BCSO</button>
                 <button class="sub-tab px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openSubTab('v-sasp', event)">SASP</button>
             </div>
 
-            <!-- LSPD Sheet -->
-            <div id="v-lspd" class="sub-tab-content active space-y-8">
-                <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
-                    <div class="bg-slate-800/80 p-6 border-b border-slate-700">
-                        <h3 class="text-white font-black uppercase italic m-0">LSPD Fleet</h3>
-                    </div>
-                    <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
-                            <tr>
-                                <th class="px-8 py-4">Role</th>
-                                <th class="px-8 py-4">Vehicle Model</th>
-                                <th class="px-8 py-4 text-right">Spawn Code</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-sm">
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Patrol</td><td class="px-8 py-4 text-white">Vapid Stanier Gen II</td><td class="px-8 py-4 text-right font-mono text-orange-400">POLICE</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Patrol</td><td class="px-8 py-4 text-white">Bravado Buffalo S</td><td class="px-8 py-4 text-right font-mono text-orange-400">POLICE2</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Patrol</td><td class="px-8 py-4 text-white">Bravado Buffalo STX</td><td class="px-8 py-4 text-right font-mono text-orange-400">POLICE3</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Supervisor</td><td class="px-8 py-4 text-white">Vapid Scout</td><td class="px-8 py-4 text-right font-mono text-orange-400">POLICESCE</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Specialized</td><td class="px-8 py-4 text-white">High Speed Interceptor</td><td class="px-8 py-4 text-right font-mono text-orange-400">INTERCEPTOR1</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- LSCSO Sheet -->
-            <div id="v-lscso" class="sub-tab-content hidden space-y-8">
-                <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
-                    <div class="bg-slate-800/80 p-6 border-b border-slate-700">
-                        <h3 class="text-white font-black uppercase italic m-0">LSCSO Fleet</h3>
-                    </div>
-                    <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
-                            <tr>
-                                <th class="px-8 py-4">Role</th>
-                                <th class="px-8 py-4">Vehicle Model</th>
-                                <th class="px-8 py-4 text-right">Spawn Code</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-sm">
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">County Patrol</td><td class="px-8 py-4 text-white">Declasse Granger 3600LX</td><td class="px-8 py-4 text-right font-mono text-orange-400">SHERIFF</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">County Patrol</td><td class="px-8 py-4 text-white">Vapid Stanier</td><td class="px-8 py-4 text-right font-mono text-orange-400">SHERIFF2</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Supervisor</td><td class="px-8 py-4 text-white">Patrol SUV</td><td class="px-8 py-4 text-right font-mono text-orange-400">PATROLSUV2</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- BCSO Sheet -->
-            <div id="v-bcso" class="sub-tab-content hidden space-y-8">
-                <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
-                    <div class="bg-slate-800/80 p-6 border-b border-slate-700">
-                        <h3 class="text-white font-black uppercase italic m-0">BCSO Fleet</h3>
-                    </div>
-                    <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
-                            <tr>
-                                <th class="px-8 py-4">Role</th>
-                                <th class="px-8 py-4">Vehicle Model</th>
-                                <th class="px-8 py-4 text-right">Spawn Code</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-sm">
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Rural Patrol</td><td class="px-8 py-4 text-white">Vapid Caracara 4x4</td><td class="px-8 py-4 text-right font-mono text-orange-400">BCSO1</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Sgt/Command</td><td class="px-8 py-4 text-white">Dundreary Landstalker XL</td><td class="px-8 py-4 text-right font-mono text-orange-400">BCSO2</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- SASP Sheet -->
-            <div id="v-sasp" class="sub-tab-content hidden space-y-8">
-                <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
-                    <div class="bg-slate-800/80 p-6 border-b border-slate-700">
-                        <h3 class="text-white font-black uppercase italic m-0">SASP Fleet</h3>
-                    </div>
-                    <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
-                            <tr>
-                                <th class="px-8 py-4">Role</th>
-                                <th class="px-8 py-4">Vehicle Model</th>
-                                <th class="px-8 py-4 text-right">Spawn Code</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-sm">
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Highway</td><td class="px-8 py-4 text-white">Bravado Buffalo STX Interceptor</td><td class="px-8 py-4 text-right font-mono text-orange-400">SASP1</td></tr>
-                            <tr class="hover:bg-slate-800/30 transition-colors"><td class="px-8 py-4 text-slate-500 font-bold">Traffic</td><td class="px-8 py-4 text-white">Vapid Dominator Interceptor</td><td class="px-8 py-4 text-right font-mono text-orange-400">SASP2</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div id="vehicle-data-container">
+                <!-- Dynamic content will be injected here -->
+                <div id="v-lspd" class="sub-tab-content active space-y-8"></div>
+                <div id="v-lscso" class="sub-tab-content hidden space-y-8"></div>
+                <div id="v-bcso" class="sub-tab-content hidden space-y-8"></div>
+                <div id="v-sasp" class="sub-tab-content hidden space-y-8"></div>
             </div>
         </div>
 
         <div id="penalcode" class="tab-content">
             <main class="max-w-5xl mx-auto px-6 py-12">
-                <header class="mb-10">
-                    <h1 class="text-4xl font-black uppercase italic italic text-white">Statutory Penal Code</h1>
-                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official legal definitions and sentencing guidelines for San Andreas.</p>
+                <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <h1 class="text-4xl font-black uppercase italic italic text-white">Statutory Penal Code</h1>
+                        <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official legal definitions and sentencing guidelines.</p>
+                    </div>
+                    <!-- Search Bar -->
+                    <div class="relative w-full md:w-80">
+                        <input type="text" id="penalSearch" placeholder="Search laws or IDs..." class="w-full bg-slate-800/50 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-all shadow-xl">
+                        <i data-lucide="search" class="absolute left-4 top-3 w-4 h-4 text-slate-500"></i>
+                    </div>
                 </header>
 
                 <!-- Sub-navigation for Code Types -->
@@ -1187,100 +1110,11 @@
                     <button class="sub-tab-penal px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openPenalSubTab('p-wildlife', event)">Fish & Wildlife</button>
                 </div>
 
-                <!-- Criminal Code Sheet -->
-                <div id="p-criminal" class="penal-sub-content active space-y-6">
-                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
-                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title I: Violent Offenses</div>
-                        <div class="p-6 divide-y divide-slate-800 space-y-4">
-                            <div class="flex justify-between items-start pt-4 first:pt-0">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">101. First Degree Murder</h4>
-                                    <p class="text-xs text-slate-500">Unlawful killing of a human with premeditation.</p>
-                                </div>
-                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
-                            </div>
-                            <div class="flex justify-between items-start pt-4">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">102. Armed Robbery</h4>
-                                    <p class="text-xs text-slate-500">Taking property by force using a deadly weapon.</p>
-                                </div>
-                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
-                            </div>
-                            <div class="flex justify-between items-start pt-4">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">103. Aggravated Battery</h4>
-                                    <p class="text-xs text-slate-500">Intentional touch or strike causing great bodily harm.</p>
-                                </div>
-                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
-                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title II: Property & Narcotics</div>
-                        <div class="p-6 divide-y divide-slate-800 space-y-4">
-                            <div class="flex justify-between items-start pt-4 first:pt-0">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">201. Grand Theft Auto</h4>
-                                    <p class="text-xs text-slate-500">Unlawful taking of a motor vehicle.</p>
-                                </div>
-                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
-                            </div>
-                            <div class="flex justify-between items-start pt-4">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">202. Possession with Intent</h4>
-                                    <p class="text-xs text-slate-500">Possession of a controlled substance in amount for distribution.</p>
-                                </div>
-                                <span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold border border-red-500/20">FELONY</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vehicle Code Sheet -->
-                <div id="p-vehicle" class="penal-sub-content hidden space-y-6">
-                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
-                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title III: Moving Violations</div>
-                        <div class="p-6 divide-y divide-slate-800 space-y-4">
-                            <div class="flex justify-between items-start pt-4 first:pt-0">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">301. Reckless Driving</h4>
-                                    <p class="text-xs text-slate-500">Driving with willful or wanton disregard for safety.</p>
-                                </div>
-                                <span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-bold border border-yellow-500/20">MISDEMEANOR</span>
-                            </div>
-                            <div class="flex justify-between items-start pt-4">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">302. DUI</h4>
-                                    <p class="text-xs text-slate-500">Operating a vehicle under the influence of alcohol or drugs.</p>
-                                </div>
-                                <span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-bold border border-yellow-500/20">MISDEMEANOR</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wildlife Code Sheet -->
-                <div id="p-wildlife" class="penal-sub-content hidden space-y-6">
-                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700">
-                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">Title IV: Conservation Violations</div>
-                        <div class="p-6 divide-y divide-slate-800 space-y-4">
-                            <div class="flex justify-between items-start pt-4 first:pt-0">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">401. Poaching Out of Season</h4>
-                                    <p class="text-xs text-slate-500">Taking wildlife outside of established legal seasons.</p>
-                                </div>
-                                <span class="bg-yellow-500/10 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-bold border border-yellow-500/20">MISDEMEANOR</span>
-                            </div>
-                            <div class="flex justify-between items-start pt-4">
-                                <div>
-                                    <h4 class="font-bold text-white text-sm">402. Fishing Without License</h4>
-                                    <p class="text-xs text-slate-500">Engaging in fishing activities without valid state permit.</p>
-                                </div>
-                                <span class="bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full text-[10px] font-bold border border-blue-500/20">INFRACTION</span>
-                            </div>
-                        </div>
-                    </div>
+                <div id="penal-data-container">
+                    <!-- Dynamic content will be injected here -->
+                    <div id="p-criminal" class="penal-sub-content active space-y-6"></div>
+                    <div id="p-vehicle" class="penal-sub-content hidden space-y-6"></div>
+                    <div id="p-wildlife" class="penal-sub-content hidden space-y-6"></div>
                 </div>
             </main>
         </div>
@@ -1385,6 +1219,129 @@
                 sidebar.classList.toggle('z-40');
             }
         }
+
+        // --- Data Loading & Search Logic ---
+        let penalData = null;
+        let vehicleData = null;
+
+        async function loadAllData() {
+            try {
+                const [penalRes, vehicleRes] = await Promise.all([
+                    fetch('penal_code.json'),
+                    fetch('vehicles.json')
+                ]);
+                penalData = await penalRes.json();
+                vehicleData = await vehicleRes.json();
+                
+                renderPenalCode();
+                renderVehicles();
+            } catch (err) {
+                console.error("Error loading data sheets:", err);
+            }
+        }
+
+        function renderPenalCode(filter = '') {
+            if (!penalData) return;
+            const searchTerm = filter.toLowerCase();
+            
+            const containers = {
+                'criminal': document.getElementById('p-criminal'),
+                'vehicle': document.getElementById('p-vehicle'),
+                'wildlife': document.getElementById('p-wildlife')
+            };
+
+            Object.keys(containers).forEach(key => {
+                let html = '';
+                penalData[key].forEach(section => {
+                    const filteredLaws = section.laws.filter(law => 
+                        law.name.toLowerCase().includes(searchTerm) || 
+                        law.id.toLowerCase().includes(searchTerm) ||
+                        law.description.toLowerCase().includes(searchTerm)
+                    );
+
+                    if (filteredLaws.length > 0) {
+                        html += `
+                            <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700 mb-6">
+                                <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">${section.title}</div>
+                                <div class="p-6 divide-y divide-slate-800 space-y-4">
+                                    ${filteredLaws.map(law => `
+                                        <div class="flex justify-between items-start pt-4 first:pt-0">
+                                            <div>
+                                                <h4 class="font-bold text-white text-sm">${law.id}. ${law.name}</h4>
+                                                <p class="text-xs text-slate-500">${law.description}</p>
+                                            </div>
+                                            <span class="${getClassStyle(law.class)} px-3 py-1 rounded-full text-[10px] font-bold border">${law.class}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                containers[key].innerHTML = html || `<p class="text-slate-500 text-sm italic">No matching laws found in this section.</p>`;
+            });
+            lucide.createIcons();
+        }
+
+        function getClassStyle(cls) {
+            switch(cls) {
+                case 'FELONY': return 'bg-red-500/10 text-red-500 border-red-500/20';
+                case 'MISDEMEANOR': return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20';
+                case 'INFRACTION': return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
+                default: return 'bg-slate-500/10 text-slate-500 border-slate-500/20';
+            }
+        }
+
+        function renderVehicles() {
+            if (!vehicleData) return;
+            const mappings = {
+                'lspd': 'v-lspd',
+                'lscso': 'v-lscso',
+                'bcso': 'v-bcso',
+                'sasp': 'v-sasp'
+            };
+
+            Object.keys(mappings).forEach(key => {
+                const container = document.getElementById(mappings[key]);
+                const fleet = vehicleData[key];
+                container.innerHTML = `
+                    <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                        <div class="bg-slate-800/80 p-6 border-b border-slate-700">
+                            <h3 class="text-white font-black uppercase italic m-0">${key.toUpperCase()} Fleet</h3>
+                        </div>
+                        <table class="w-full text-left m-0">
+                            <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
+                                <tr>
+                                    <th class="px-8 py-4">Role</th>
+                                    <th class="px-8 py-4">Vehicle Model</th>
+                                    <th class="px-8 py-4 text-right">Spawn Code</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-sm">
+                                ${fleet.map(v => `
+                                    <tr class="hover:bg-slate-800/30 transition-colors">
+                                        <td class="px-8 py-4 text-slate-500 font-bold">${v.role}</td>
+                                        <td class="px-8 py-4 text-white">${v.model}</td>
+                                        <td class="px-8 py-4 text-right font-mono text-orange-400">${v.code}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+        }
+
+        // Initialize Search Listener
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllData();
+            const penalSearch = document.getElementById('penalSearch');
+            if (penalSearch) {
+                penalSearch.addEventListener('input', (e) => {
+                    renderPenalCode(e.target.value);
+                });
+            }
+        });
     </script>
 </body>
 </html>
