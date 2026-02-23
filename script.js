@@ -344,6 +344,7 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadAllData();
+    
     const penalSearch = document.getElementById('penalSearch');
     if (penalSearch) penalSearch.addEventListener('input', (e) => renderPenalCode(e.target.value));
 });

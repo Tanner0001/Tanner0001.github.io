@@ -15,66 +15,6 @@
     <div id="main-hub" class="min-h-screen flex flex-col items-center p-6 bg-[url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png')] bg-cover bg-center bg-fixed relative overflow-y-auto pt-20">
         <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>
         
-        <!-- SERVER PULSE BAR -->
-        <div class="fixed top-0 left-0 right-0 z-[70] bg-slate-950/80 backdrop-blur-md border-b border-white/5 px-6 py-3">
-            <div class="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-4 md:gap-8">
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                    <span class="text-[9px] font-black text-white uppercase tracking-[0.2em]">Server Status: <span class="text-emerald-500 font-black">Operational</span></span>
-                </div>
-                <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="users" class="w-3 h-3 text-slate-500"></i>
-                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Players: <span class="text-white">42/128</span></span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="shield" class="w-3 h-3 text-slate-500"></i>
-                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">LEO: <span class="text-orange-500 font-black">08</span></span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="flame" class="w-3 h-3 text-slate-500"></i>
-                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">EMS: <span class="text-red-500 font-black">04</span></span>
-                    </div>
-                </div>
-                <div class="hidden lg:flex items-center gap-2">
-                    <i data-lucide="clock" class="w-3 h-3 text-slate-500"></i>
-                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Uptime: <span class="text-white">14d 02h</span></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- BULLETIN TICKER -->
-        <div class="relative z-10 w-full max-w-4xl bg-orange-500/10 border border-orange-500/20 rounded-full py-2 px-6 overflow-hidden mb-12">
-            <div class="flex items-center gap-4">
-                <span class="flex-shrink-0 bg-orange-500 text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-full">Updates</span>
-                <div class="flex-1 overflow-hidden whitespace-nowrap relative">
-                    <div class="flex gap-12 animate-marquee hover:pause-marquee text-[10px] font-black text-orange-200 uppercase tracking-[0.2em]">
-                        <span>• RCSA Penal Code Updated to Version 2.1</span>
-                        <span>• New LSPD & SASP Fleet Liveries Installed</span>
-                        <span>• Fire Marshal Certification Course Now Open</span>
-                        <span>• Public Works Division restructured for efficiency</span>
-                        <span>• New Civilian Logistics Job: Long-Haul Trucking</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GLOBAL SEARCH HUB -->
-        <div class="relative z-10 w-full max-w-4xl mb-12">
-            <div class="bg-white/5 border border-white/10 p-2 rounded-[2.5rem] backdrop-blur-2xl shadow-2xl flex items-center gap-2 group focus-within:border-orange-500/50 transition-all duration-500">
-                <div class="bg-orange-500 p-4 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.3)]">
-                    <i data-lucide="search" class="w-6 h-6 text-white"></i>
-                </div>
-                <input type="text" id="globalSearch" placeholder="Search the database... (e.g. '3.24', 'PIT', 'Uniform')" 
-                       class="bg-transparent border-none outline-none flex-1 px-4 text-white font-medium placeholder:text-slate-600 placeholder:uppercase placeholder:text-[10px] placeholder:tracking-[0.2em]">
-                <div class="hidden md:flex gap-2 pr-4">
-                    <span class="text-[8px] font-black bg-white/5 text-slate-500 px-2 py-1 rounded-md uppercase">Penal Code</span>
-                    <span class="text-[8px] font-black bg-white/5 text-slate-500 px-2 py-1 rounded-md uppercase">S.O.P.</span>
-                    <span class="text-[8px] font-black bg-white/5 text-slate-500 px-2 py-1 rounded-md uppercase">Vehicles</span>
-                </div>
-            </div>
-        </div>
-
         <div class="relative z-10 text-center mb-12">
             <h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic text-white mb-2">Dynamic <span class="text-orange-500">Gaming</span></h1>
             <p class="text-slate-400 uppercase tracking-[0.5em] text-sm font-bold border-t border-slate-800 pt-4 inline-block mb-8">Community Resource Hub</p>
