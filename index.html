@@ -1830,7 +1830,7 @@
                                 <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">02</span> Comms & Radio
                             </a>
                             <a href="#t-page-3" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
-                                <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">03</span> Patrol Ops
+                                <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">03</span> Pursuit Tactics
                             </a>
                             <a href="#t-page-4" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
                                 <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">04</span> Tactical Gear
@@ -1863,6 +1863,24 @@
                                     <p class="text-xs text-slate-500 text-left">Personnel are authorized to enforce the Penal Code and protect the life and property of San Andreas residents.</p>
                                 </div>
                             </div>
+
+                            <div class="space-y-4 pt-6">
+                                <h3 class="text-white font-bold uppercase text-xs tracking-widest">Training Milestones</h3>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-3 p-3 bg-slate-800/30 rounded-xl border border-slate-700">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                                        <span class="text-xs text-slate-300">Phase 1: Knowledge of the RCSA (Penal Code)</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-3 bg-slate-800/30 rounded-xl border border-slate-700">
+                                        <i data-lucide="circle" class="w-4 h-4 text-slate-600"></i>
+                                        <span class="text-xs text-slate-300">Phase 2: Technical Comms and MDT Operation</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-3 bg-slate-800/30 rounded-xl border border-slate-700">
+                                        <i data-lucide="circle" class="w-4 h-4 text-slate-600"></i>
+                                        <span class="text-xs text-slate-300">Phase 3: Field Competency & Pursuit Authorization</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
@@ -1880,14 +1898,21 @@
                                         <span class="text-orange-500 font-black italic">01</span>
                                         <div class="text-left">
                                             <strong class="text-white block text-sm text-left">Key-Up & Identification</strong>
-                                            <p class="text-xs text-slate-400 text-left">Always state your callsign first. Wait for a clear channel before broadcasting.</p>
+                                            <p class="text-xs text-slate-400 text-left">Always state your callsign first. Wait for a clear channel before broadcasting. Avoid "stepping" on other units.</p>
                                         </div>
                                     </li>
                                     <li class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
                                         <span class="text-orange-500 font-black italic">02</span>
                                         <div class="text-left">
                                             <strong class="text-white block text-sm text-left">The 3-W's Rule</strong>
-                                            <p class="text-xs text-slate-400 text-left">WHO are you, WHERE are you, WHAT is happening? Keep transmissions concise.</p>
+                                            <p class="text-xs text-slate-400 text-left">WHO are you, WHERE are you, WHAT is happening? Keep transmissions under 10 seconds.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
+                                        <span class="text-orange-500 font-black italic">03</span>
+                                        <div class="text-left">
+                                            <strong class="text-white block text-sm text-left">Status Codes</strong>
+                                            <p class="text-xs text-slate-400 text-left">Utilize standard codes: 10-8 (On Duty), 10-7 (Off Duty), 10-6 (Busy), 10-4 (Understood).</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -1895,62 +1920,88 @@
                         </div>
                     </section>
 
-                    <!-- Page 3: Patrol Operations -->
+                    <!-- Page 3: Pursuit Operations -->
                     <section id="t-page-3" class="scroll-mt-32">
                         <div class="flex items-center gap-4 mb-8">
                             <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 03</span>
-                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Patrol Operations</h2>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Pursuit & PIT Tactics</h2>
                         </div>
                         <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-12 text-left">
-                            <div class="text-left">
-                                <h3 class="text-orange-500 font-black uppercase tracking-widest text-xs mb-6 text-left">Traffic Stop Sequence</h3>
-                                <div class="grid md:grid-cols-3 gap-4">
-                                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700 text-center">
-                                        <span class="block text-white font-bold text-xs mb-1">Pre-Stop</span>
-                                        <p class="text-[10px] text-slate-500">Radio in location, vehicle description, and plate.</p>
-                                    </div>
-                                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700 text-center">
-                                        <span class="block text-white font-bold text-xs mb-1">Contact</span>
-                                        <p class="text-[10px] text-slate-500">Approach safely, identify yourself, and state reason for stop.</p>
-                                    </div>
-                                    <div class="p-4 bg-slate-800/50 rounded-xl border border-slate-700 text-center">
-                                        <span class="block text-white font-bold text-xs mb-1">Processing</span>
-                                        <p class="text-[10px] text-slate-500">Request ID/Registration, run through MDT, issue citation/warning.</p>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="space-y-4">
+                                    <h3 class="text-orange-500 font-black uppercase tracking-widest text-xs">Pursuit Authorization</h3>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Pursuits may only be initiated for felonies or dangerous driving. Units must maintain a safe distance and call out speeds, directions, and occupants.</p>
+                                    <ul class="list-disc list-inside text-[10px] text-slate-500 space-y-1">
+                                        <li>Primary Unit: Maintains contact and calls out.</li>
+                                        <li>Secondary Unit: Handles radio traffic and backup.</li>
+                                        <li>Air Support: High-altitude tracking.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                    <h4 class="text-white font-bold text-sm mb-4">Termination Techniques</h4>
+                                    <div class="space-y-3">
+                                        <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-700">
+                                            <span class="text-orange-400 font-bold text-[10px] block">PIT Maneuver</span>
+                                            <p class="text-[10px] text-slate-500">Authorized below 35 MPH. Contact rear quarter panel to spin suspect.</p>
+                                        </div>
+                                        <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-700">
+                                            <span class="text-orange-400 font-bold text-[10px] block">Box-In</span>
+                                            <p class="text-[10px] text-slate-500">Requires 3+ units to surround and slowly halt the suspect vehicle.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Page 4: Tactical Gear -->
+                    <!-- Page 4: Tactical Gear & Scenarios -->
                     <section id="t-page-4" class="scroll-mt-32">
                         <div class="flex items-center gap-4 mb-8">
                             <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 04</span>
-                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Equipment & Force</h2>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Tactical Engagement</h2>
                         </div>
                         <div class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] relative overflow-hidden text-left">
                             <div class="absolute top-0 right-0 p-8 opacity-5 text-orange-500"><i data-lucide="shield-alert" class="w-48 h-48"></i></div>
-                            <h3 class="text-xl font-bold text-white mb-8 text-left">Use of Force Continuum</h3>
-                            <div class="space-y-4 text-left">
-                                <div class="flex items-center justify-between p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
-                                    <span class="text-emerald-500 font-bold text-xs uppercase">Level 1: Presence</span>
-                                    <span class="text-slate-500 text-[10px]">Officer in uniform, marked vehicle.</span>
+                            
+                            <div class="grid lg:grid-cols-2 gap-12">
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-bold text-white text-left">Use of Force Continuum</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-left">
+                                            <span class="text-emerald-500 font-bold text-[10px] uppercase">Level 1: Presence</span>
+                                            <span class="text-slate-500 text-[9px]">Uniform/Marked Vehicle.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl text-left">
+                                            <span class="text-blue-500 font-bold text-[10px] uppercase">Level 2: Verbal</span>
+                                            <span class="text-slate-500 text-[9px]">Commands/Warnings.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-xl text-left">
+                                            <span class="text-yellow-500 font-bold text-[10px] uppercase">Level 3: Physical</span>
+                                            <span class="text-slate-500 text-[9px]">Soft/Hard Control.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl text-left">
+                                            <span class="text-orange-500 font-bold text-[10px] uppercase">Level 4: Less Lethal</span>
+                                            <span class="text-slate-500 text-[9px]">Taser/OC/Baton.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-left">
+                                            <span class="text-red-500 font-bold text-[10px] uppercase">Level 5: Lethal</span>
+                                            <span class="text-slate-500 text-[9px]">Grave Threat Only.</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
-                                    <span class="text-blue-500 font-bold text-xs uppercase">Level 2: Verbal</span>
-                                    <span class="text-slate-500 text-[10px]">Persuasion, advice, warnings.</span>
-                                </div>
-                                <div class="flex items-center justify-between p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
-                                    <span class="text-yellow-500 font-bold text-xs uppercase">Level 3: Physical Control</span>
-                                    <span class="text-slate-500 text-[10px]">Handcuffing, pressure points.</span>
-                                </div>
-                                <div class="flex items-center justify-between p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
-                                    <span class="text-orange-500 font-bold text-xs uppercase">Level 4: Less Lethal</span>
-                                    <span class="text-slate-500 text-[10px]">Taser, OC spray, baton.</span>
-                                </div>
-                                <div class="flex items-center justify-between p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                                    <span class="text-red-500 font-bold text-xs uppercase">Level 5: Lethal</span>
-                                    <span class="text-slate-500 text-[10px]">Firearms (Grave threat only).</span>
+
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-bold text-white text-left">Field Scenarios</h3>
+                                    <div class="space-y-4">
+                                        <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                            <h4 class="text-white font-bold text-xs mb-1 italic">Active Shooter</h4>
+                                            <p class="text-[10px] text-slate-500">Immediate deployment. Form a diamond stack. Neutralize threat, then coordinate EMS.</p>
+                                        </div>
+                                        <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                            <h4 class="text-white font-bold text-xs mb-1 italic">Hostage Situation</h4>
+                                            <p class="text-[10px] text-slate-500">Establish hard perimeter. Initiate negotiations. Do not enter unless life is at immediate risk.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1963,18 +2014,31 @@
                             <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Admin & Technical</h2>
                         </div>
                         <div class="space-y-8 text-left">
-                            <!-- How to Use MDT Placeholder -->
-                            <div class="bg-slate-900 border-2 border-dashed border-slate-800 p-12 rounded-[3rem] text-center">
-                                <i data-lucide="laptop" class="w-12 h-12 text-slate-700 mx-auto mb-4"></i>
-                                <h3 class="text-white font-bold mb-2 uppercase tracking-widest text-center">How to Use MDT</h3>
-                                <p class="text-slate-500 text-sm max-w-md mx-auto italic text-center">[PLACEHOLDER: Please provide specific technical instructions or screenshots for operating the Mobile Data Terminal here.]</p>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <!-- Scene Management -->
+                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
+                                    <h3 class="text-white font-bold mb-4 uppercase tracking-widest text-xs">Scene Management</h3>
+                                    <ul class="text-slate-400 text-xs space-y-3">
+                                        <li class="flex gap-2"><strong>1.</strong> Secure the perimeter with tape/vehicles.</li>
+                                        <li class="flex gap-2"><strong>2.</strong> Log all personnel entering the scene.</li>
+                                        <li class="flex gap-2"><strong>3.</strong> Photograph and bag evidence before moving.</li>
+                                        <li class="flex gap-2"><strong>4.</strong> Clear scene once investigators finish.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- MDT Operations -->
+                                <div class="bg-slate-900 border-2 border-dashed border-slate-800 p-8 rounded-[3rem] text-center flex flex-col justify-center">
+                                    <i data-lucide="laptop" class="w-10 h-10 text-slate-700 mx-auto mb-4"></i>
+                                    <h3 class="text-white font-bold mb-2 uppercase tracking-widest text-xs text-center">How to Use MDT</h3>
+                                    <p class="text-slate-500 text-[10px] max-w-xs mx-auto italic text-center">[PLACEHOLDER: Please provide technical instructions for operating the Mobile Data Terminal.]</p>
+                                </div>
                             </div>
 
                             <!-- Report Writing Placeholder -->
                             <div class="bg-slate-900 border-2 border-dashed border-slate-800 p-12 rounded-[3rem] text-center">
                                 <i data-lucide="file-text" class="w-12 h-12 text-slate-700 mx-auto mb-4"></i>
                                 <h3 class="text-white font-bold mb-2 uppercase tracking-widest text-center">Report Writing Standards</h3>
-                                <p class="text-slate-500 text-sm max-w-md mx-auto italic text-center">[PLACEHOLDER: Provide examples of proper report formatting and required information for booking files.]</p>
+                                <p class="text-slate-500 text-sm max-w-md mx-auto italic text-center">[PLACEHOLDER: Provide examples of proper report formatting and booking files.]</p>
                             </div>
                         </div>
                     </section>

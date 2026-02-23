@@ -1,723 +1,116 @@
 {
     "policy": [
         {
-            "title": "Preamble & Definitions",
+            "title": "General Definitions",
             "laws": [
-                {
-                    "id": "PREAMBLE",
-                    "name": "Policy and Guideline",
-                    "description": "This document ensures the safety of the people of San Andreas and a fair, well-documented process for the enforcement of criminal penalties. This document is only for use in-game/in-character infractions.",
-                    "class": "DEFINITION"
-                },
-                {
-                    "id": "DEF-01",
-                    "name": "Person",
-                    "description": "Refers to any living human being or individual.",
-                    "class": "DEFINITION"
-                },
-                {
-                    "id": "DEF-02",
-                    "name": "Civilian",
-                    "description": "Refers to any individual who is not an on-duty peace officer or national guardsman.",
-                    "class": "DEFINITION"
-                },
-                {
-                    "id": "DEF-03",
-                    "name": "Peace Officer",
-                    "description": "Refers to an individual who is, through a badge, unique identifier, or other internal police protocol, an on-duty officer of the law.",
-                    "class": "DEFINITION"
-                },
-                {
-                    "id": "DEF-05",
-                    "name": "Weapon",
-                    "description": "Refers to any object, tool or item utilized to inflict harm, threaten harm, or utilize in lieu of a regulated item.",
-                    "class": "DEFINITION"
-                },
-                {
-                    "id": "DEF-08",
-                    "name": "Stacking Charges",
-                    "description": "Refers to a suspect committing a specific crime on multiple occasions or during multiple incidents. Each count includes all related punishments.",
-                    "class": "PROCEDURE"
-                }
-            ]
-        },
-        {
-            "title": "Title 14. Code Policy and Legal Procedures",
-            "laws": [
-                {
-                    "id": "(14)01",
-                    "name": "Involuntary Intoxication",
-                    "description": "A person found to be involuntarily intoxicated cannot be found guilty of an offense as they did not have the adequate state of mind.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)02",
-                    "name": "Self Defense & Castle Doctrine",
-                    "description": "Absolves criminal liability for Title 1 crimes if imminent danger exists and necessary force is used. Does not apply to gang violence or criminal involvement.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)06",
-                    "name": "Suspicion Policy",
-                    "description": "Allows temporary detainment for questioning based on justifiable suspicion but limits searches to Terry Frisks without probable cause.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)07",
-                    "name": "Officer Discretion",
-                    "description": "Officers may forego charging infractions or misdemeanors based on personal judgment, unless a victim presses charges.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)08",
-                    "name": "Good Samaritan Clause",
-                    "description": "Allows citizens to perform arrests for misdemeanors+ and assist government workers upon request or during duress.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)11",
-                    "name": "Police Exigency & Hot Pursuit",
-                    "description": "Authorizes entry into private property during active pursuit or when believing a crime/emergency is occurring.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)12",
-                    "name": "Probable Cause & Plain View",
-                    "description": "Authorizes seizure of evidence in plain view. Probable cause implies a probable situation of criminality authorizing a search.",
-                    "class": "PROCEDURE"
-                },
-                {
-                    "id": "(14)13",
-                    "name": "Warrant Policy",
-                    "description": "Defines warrantless searches (Terry Frisk, Vehicle PC, Arrest Search, Consent, Administrative) and warrant requirements.",
-                    "class": "PROCEDURE"
-                }
+                { "id": "DEF", "name": "Natural Person", "description": "Refers to a human being.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Pedestrian", "description": "Any person afoot or using a wheelchair/conveyance propelled by human power (excluding bicycles).", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Vehicle", "description": "Device capable of moving on public highway (Excludes golf carts, bicycles, mobility scooters).", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Motor Vehicle", "description": "Refers to a vehicle that is self-propelled.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Commercial Vehicle", "description": "Vehicle used primarily for transportation of commodities, freight, animals, or passengers for hire.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Peace Officer", "description": "Full-time, commissioned officer authorized to enforce criminal laws of San Andreas.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Drifting", "description": "Intentional oversteer causing loss of traction while maneuvering in a turning direction.", "class": "DEFINITION" }
             ]
         }
     ],
     "criminal": [
         {
-            "title": "Title 1. Crimes Against The Person",
+            "title": "Title I - Criminal Code (General)",
             "laws": [
-                {
-                    "id": "(1)01",
-                    "name": "Criminal Threats",
-                    "description": "Willfully threatening to commit a crime resulting in death/GBI with specific intent, causing sustained fear.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)02",
-                    "name": "Assault",
-                    "description": "Unlawful attempt, coupled with present ability, to commit a violent injury on another (No physical contact).",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)03",
-                    "name": "Assault With A Deadly Weapon",
-                    "description": "Committing assault or battery with a deadly weapon or instrument.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)04",
-                    "name": "Battery",
-                    "description": "Willful and unlawful use of force or violence upon the person of another.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)05",
-                    "name": "Aggravated Battery",
-                    "description": "Battery where serious bodily injury is inflicted upon the person of another.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)06",
-                    "name": "Assault on a Protected Person",
-                    "description": "Assault against a peace officer, EMT, firefighter, or other protected official.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)07",
-                    "name": "Battery on a Protected Person",
-                    "description": "Use of force or violence to cause harm to a protected official. Felony if medical treatment required.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)08",
-                    "name": "Attempted Murder",
-                    "description": "Taking a direct step towards killing another person with intent to kill.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)09",
-                    "name": "Manslaughter",
-                    "description": "Unintentionally killing another via criminal accident or negligence, or without malice aforethought.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)10",
-                    "name": "Murder",
-                    "description": "Unlawfully killing another with malice aforethought or during a premeditated felony.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)11",
-                    "name": "Capital Murder",
-                    "description": "Killing an on-duty official, killing during kidnapping/hostage taking, or killing off-duty LEO for job reasons.",
-                    "class": "CAPITAL"
-                },
-                {
-                    "id": "(1)12",
-                    "name": "False Imprisonment",
-                    "description": "Intentionally restraining, detaining, or confining a person against their will.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)13",
-                    "name": "Kidnapping",
-                    "description": "Forcibly taking, holding, or detaining a person. Includes taking hostages.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)14",
-                    "name": "Torture",
-                    "description": "Intentionally causing extreme pain/suffering for revenge, extortion, or sadistic purposes.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(1)15",
-                    "name": "Reckless Endangerment - Misdemeanor",
-                    "description": "Conduct creating a substantial serious risk of injury to another.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(1)16",
-                    "name": "Reckless Endangerment - Felony",
-                    "description": "Conduct creating a grave risk of death indicating depraved indifference to human life.",
-                    "class": "FELONY"
-                }
+                { "id": "1.01", "name": "Sabotage", "description": "Intentional injury or interference with management/control of any commercial or building enterprise.", "class": "FELONY" },
+                { "id": "1.02", "name": "Identity Theft", "description": "Knowingly obtaining/using identification of another with intent to commit a crime.", "class": "FELONY" },
+                { "id": "1.08", "name": "Threats to Bomb/Injure", "description": "Unlawful threat to bomb or injure property/public assembly, or communicating false info.", "class": "FELONY" },
+                { "id": "1.09", "name": "Telephone Harassment", "description": "Intent to harass/torment using lewd language or anonymous/repeated calls.", "class": "MISDEMEANOR" },
+                { "id": "1.20", "name": "Failing to Summon Assistance", "description": "Failure to call for help when present during a crime resulting in substantial bodily harm.", "class": "MISDEMEANOR" }
             ]
         },
         {
-            "title": "Title 2. Crimes Against Property",
+            "title": "Firearms & Weapons",
             "laws": [
-                {
-                    "id": "(2)01",
-                    "name": "Arson",
-                    "description": "Intentionally setting fire to structure/forest/property or causing fire via criminal negligence.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)02",
-                    "name": "Trespassing",
-                    "description": "Entering closed property or restricted areas without permission. Does not stack with Burglary.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(2)03",
-                    "name": "Trespassing Restricted Facility",
-                    "description": "Entering secure government facilities (prisons, airports, military). Felony offense.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)04",
-                    "name": "Burglary",
-                    "description": "Entering locked/restricted property with intent to commit a crime (typically theft).",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(2)05",
-                    "name": "Possession Of Burglary Tools",
-                    "description": "Possessing tools (pick, tension bar, etc.) in a context assuming usage for burglary.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(2)06",
-                    "name": "Receiving Stolen Property",
-                    "description": "Knowingly buying or receiving stolen property.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)07",
-                    "name": "Petty Theft",
-                    "description": "Taking property worth $950 or less.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(2)08",
-                    "name": "Grand Theft",
-                    "description": "Taking property worth more than $950 or any firearm.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)09",
-                    "name": "Grand Theft Auto",
-                    "description": "Theft of any motor vehicle. Does not stack with Trespassing/Burglary of vehicle.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)11",
-                    "name": "Robbery",
-                    "description": "Taking property from another by force or fear. Stacks with Title 1 crimes.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)12",
-                    "name": "Armed Robbery",
-                    "description": "Taking property from another by force facilitated with a gun.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)13",
-                    "name": "Extortion",
-                    "description": "Intimidating or influencing another to provide property/services via threats or authority.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)14",
-                    "name": "Forgery/Fraud",
-                    "description": "Altering documents or misrepresenting facts to deceive another for disadvantage.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(2)15",
-                    "name": "Vandalism",
-                    "description": "Defacing, damaging, or destroying property of another.",
-                    "class": "MISDEMEANOR"
-                }
+                { "id": "1.04", "name": "Carrying Firearms", "description": "Carrying a concealed pistol without a license. License must be displayed on demand.", "class": "MISDEMEANOR" },
+                { "id": "1.05", "name": "Unlawful Firearms/Parts", "description": "Possession of machine guns, short-barreled shotguns, or conversion parts. Contraband.", "class": "FELONY" },
+                { "id": "1.06", "name": "Alteration of ID Marks", "description": "Removing or obliterating manufacturer name/serial on a firearm.", "class": "FELONY" },
+                { "id": "1.07", "name": "Aiming or Discharging", "description": "Aiming at human beings or willfully discharging in public/endangered places.", "class": "FELONY" }
             ]
         },
         {
-            "title": "Title 3. Crimes Against Public Decency",
+            "title": "Homicide & Assault",
             "laws": [
-                {
-                    "id": "(3)01",
-                    "name": "Lewd Conduct in Public",
-                    "description": "Soliciting sexual conduct or touching private parts in public view.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(3)02",
-                    "name": "Indecent Exposure",
-                    "description": "Exposing naked body/genitals in public or without consent. Felony.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(3)03",
-                    "name": "Prostitution",
-                    "description": "Engaging in sexual acts for payment.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(3)04",
-                    "name": "Pandering / Pimping",
-                    "description": "Receiving earnings from prostitution or soliciting customers for a prostitute.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(3)05",
-                    "name": "Sexual Battery",
-                    "description": "Unwanted touching or sexual contact for arousal/abuse.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(3)06",
-                    "name": "Rape",
-                    "description": "Forcing another to engage in sexual intercourse or with an incapacitated person.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(3)07",
-                    "name": "Stalking",
-                    "description": "Intentionally following/harassing another, causing fear, or violating a restraining order.",
-                    "class": "FELONY"
-                }
+                { "id": "1.10", "name": "Murder 1st Degree", "description": "Premeditated intent to cause death, extreme indifference to life, or killing during major felony.", "class": "FELONY" },
+                { "id": "1.11", "name": "Murder 2nd Degree", "description": "Intent to kill without premeditation, or killing during any other felony.", "class": "FELONY" },
+                { "id": "1.12", "name": "Manslaughter 1st Degree", "description": "Recklessly causing the death of another person.", "class": "FELONY" },
+                { "id": "1.13", "name": "Manslaughter 2nd Degree", "description": "Criminal negligence causing the death of another person.", "class": "FELONY" },
+                { "id": "1.14", "name": "Assault 1st Degree", "description": "Intent to inflict great bodily harm using firearm/weapon or force.", "class": "FELONY" },
+                { "id": "1.15", "name": "Assault 2nd Degree", "description": "Intentionally assaulting another and recklessly inflicting substantial harm or using deadly weapon.", "class": "FELONY" },
+                { "id": "1.16", "name": "Assault 3rd Degree", "description": "Assaulting protected persons (LEO, FD, Medical, Transit) or negligent injury with weapon.", "class": "FELONY" },
+                { "id": "1.17", "name": "Assault 4th Degree", "description": "Simple assault not amounting to 1st, 2nd, or 3rd degree.", "class": "MISDEMEANOR" },
+                { "id": "1.18", "name": "Drive-by Shooting", "description": "Recklessly discharging firearm from a motor vehicle creating risk of death/injury.", "class": "FELONY" }
             ]
         },
         {
-            "title": "Title 4. Crimes Against Public Justice",
+            "title": "Theft, Robbery & Burglary",
             "laws": [
-                {
-                    "id": "(4)01",
-                    "name": "Bribery",
-                    "description": "Offering gifts/services to a public official to influence duties.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(4)03",
-                    "name": "False Information To Gov Employee",
-                    "description": "Providing false info to a peace officer during investigation/detainment.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)05",
-                    "name": "Failure To Identify",
-                    "description": "Failing to provide name/ID to a peace officer while detained/arrested.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)06",
-                    "name": "Impersonation Of Gov Employee",
-                    "description": "Pretending to be a government worker or wearing official uniforms to deceive.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)07",
-                    "name": "Obstruction Of Gov Employee",
-                    "description": "Preventing a government employee from conducting duties or failing to comply with lawful orders.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)08",
-                    "name": "Resisting A Peace Officer",
-                    "description": "Avoiding apprehension by non-vehicular means or resisting physically.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)09",
-                    "name": "Escape From Custody",
-                    "description": "Escaping from physical detainment/arrest of a peace officer.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)10",
-                    "name": "Escape",
-                    "description": "Escaping from jail, prison, or custody of Correctional/Parole Officer.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(4)11",
-                    "name": "Prisoner Breakout",
-                    "description": "Aiding or assisting an inmate/prisoner in escaping custody.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(4)12",
-                    "name": "Misuse Of A Government Hotline",
-                    "description": "Using 911/hotlines for non-emergencies or prank calls.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)13",
-                    "name": "Tampering With Evidence",
-                    "description": "Destroying, concealing, or altering evidence relevant to investigation.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)14",
-                    "name": "Introduction Of Contraband",
-                    "description": "Providing controlled substances or alcohol to an inmate.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(4)16",
-                    "name": "Failure to Appear",
-                    "description": "Failing to appear in court or pay a citation.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)17",
-                    "name": "Gang Association",
-                    "description": "Participating in a criminal street gang and assisting in felonious conduct.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(4)19",
-                    "name": "Bail Violation",
-                    "description": "Willfully failing to appear while on bail for a felony.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(4)20",
-                    "name": "Parole Violation",
-                    "description": "Violating parole conditions.",
-                    "class": "MISDEMEANOR"
-                }
+                { "id": "1.27", "name": "Burglary 1st Degree", "description": "Entering building with intent to commit crime while armed or committing assault.", "class": "FELONY" },
+                { "id": "1.29", "name": "Residential Burglary", "description": "Entering a dwelling with intent to commit a crime.", "class": "FELONY" },
+                { "id": "1.30", "name": "Burglar Tools", "description": "Possession or making of tools designed for burglary with intent to employ them.", "class": "MISDEMEANOR" },
+                { "id": "1.35", "name": "Theft 1st Degree", "description": "Theft of property/services > $5,000 or taken from a person.", "class": "FELONY" },
+                { "id": "1.37", "name": "Theft 3rd Degree", "description": "Theft of property/services <= $750.", "class": "MISDEMEANOR" },
+                { "id": "1.38", "name": "Possession Stolen Vehicle", "description": "Possessing a stolen motor vehicle.", "class": "FELONY" },
+                { "id": "1.39", "name": "Taking Vehicle 1st Degree", "description": "Taking vehicle without permission to alter, sell, or export.", "class": "FELONY" },
+                { "id": "1.44", "name": "Robbery 1st Degree", "description": "Robbery while armed, inflicting injury, or against a financial institution.", "class": "FELONY" },
+                { "id": "1.49", "name": "Organized Retail Theft", "description": "Retail theft > $750 committed with an accomplice.", "class": "FELONY" }
             ]
         },
         {
-            "title": "Title 5. Crimes Against Public Peace",
+            "title": "Governmental & Public Peace",
             "laws": [
-                {
-                    "id": "(5)01",
-                    "name": "Disturbing The Peace",
-                    "description": "Fighting in public, unreasonable noise, offensive words likely to provoke violence, or refusing to disperse.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(5)02",
-                    "name": "Unlawful Assembly",
-                    "description": "Two or more persons assembling to do an unlawful act or act in a violent manner.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(5)03",
-                    "name": "Incitement To Riot",
-                    "description": "Urging a riot or acts of force/violence creating clear and present danger.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(5)04",
-                    "name": "Loitering",
-                    "description": "Lingering on private property without purpose or peeking into inhabited buildings.",
-                    "class": "MISDEMEANOR"
-                }
+                { "id": "1.50", "name": "Obstructing LEO", "description": "Willfully hindering, delaying, or obstructing any LEO in official duties.", "class": "MISDEMEANOR" },
+                { "id": "1.51", "name": "Disarming LEO/CO", "description": "Removing or depriving an officer of their weapon/firearm.", "class": "FELONY" },
+                { "id": "1.52", "name": "Resisting Arrest", "description": "Intentionally preventing or attempting to prevent a lawful arrest.", "class": "MISDEMEANOR" },
+                { "id": "1.56", "name": "False Statement", "description": "Knowingly making a false or misleading material statement to a public servant.", "class": "MISDEMEANOR" },
+                { "id": "1.58", "name": "Harming Police Dog", "description": "Maliciously injuring or killing a K9 or detection dog.", "class": "FELONY" },
+                { "id": "1.63", "name": "Disorderly Conduct", "description": "Abusive language, disrupting assemblies, or obstructing traffic.", "class": "MISDEMEANOR" },
+                { "id": "1.64", "name": "False Reporting", "description": "Initiating false reports of emergencies likely to cause evacuation or alarm.", "class": "MISDEMEANOR" }
             ]
         },
         {
-            "title": "Title 6. Crimes Against Public Health",
+            "title": "Title IV & V - Health & Drugs",
             "laws": [
-                {
-                    "id": "(6)01",
-                    "name": "Possession Of Controlled Substance",
-                    "description": "Possessing controlled substances without prescription. >1oz cannabis.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(6)02",
-                    "name": "Possession with Intent to Sell",
-                    "description": "Possession of large quantities or individually packaged controlled substances.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(6)05",
-                    "name": "Manufacture Of Controlled Substance",
-                    "description": "Manufacturing or cultivating illegal substances (>6 plants without license).",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(6)06",
-                    "name": "Sale Of Controlled Substance",
-                    "description": "Selling or transporting controlled substances.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(6)07",
-                    "name": "Public Intoxication",
-                    "description": "Unable to care for safety due to intoxication or obstructing public ways.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(6)08",
-                    "name": "Under Influence Of Controlled Substance",
-                    "description": "Using controlled substances without permit/prescription.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(6)12",
-                    "name": "Littering",
-                    "description": "Discarding waste matter in proper receptacles.",
-                    "class": "INFRACTION"
-                }
-            ]
-        },
-        {
-            "title": "Title 9. Deadly Weapons",
-            "laws": [
-                {
-                    "id": "(9)01",
-                    "name": "Possession Of Illegal Weapon",
-                    "description": "Possessing unregistered firearms, fixed blade knives concealed, or carrying while intoxicated.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(9)02",
-                    "name": "Brandishing A Weapon",
-                    "description": "Drawing/exhibiting a deadly weapon in a rude/threatening manner.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(9)03",
-                    "name": "Weapons Discharge Violation",
-                    "description": "Willfully firing negligently, inside municipality limits, or at buildings/cars.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(9)04",
-                    "name": "Drive-By Shooting",
-                    "description": "Discharging a firearm from a vehicle.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(9)06",
-                    "name": "Open Carry Violation",
-                    "description": "Open carrying in Los Santos County or Blaine County without permit.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(9)07",
-                    "name": "Possession of Stolen Firearm",
-                    "description": "Possessing a firearm known to be stolen.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(9)10",
-                    "name": "Concealed Carry Violation",
-                    "description": "Carrying concealed without a CCW Permit.",
-                    "class": "MISDEMEANOR"
-                }
-            ]
-        },
-        {
-            "title": "Title 15. State Code Violations",
-            "laws": [
-                {
-                    "id": "(15)01",
-                    "name": "Racketeering",
-                    "description": "Association with criminal org committing extortion, bribery, murder, etc.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(15)02",
-                    "name": "Money Laundering",
-                    "description": "Hiding or cleaning funds from criminal activities.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(15)05",
-                    "name": "Unlicensed Activity",
-                    "description": "Practicing business/trade without required license.",
-                    "class": "MISDEMEANOR"
-                }
+                { "id": "4.01", "name": "Legend Drugs Fraud", "description": "Obtaining prescription drugs via fraud, forgery, or false names.", "class": "FELONY" },
+                { "id": "4.04", "name": "Drug Manufacturing/Delivery", "description": "Unlawful manufacture, delivery, or possession with intent to deliver.", "class": "FELONY" },
+                { "id": "4.05", "name": "Drug Possession", "description": "Possession or public use of controlled substance without prescription.", "class": "MISDEMEANOR" },
+                { "id": "5.01", "name": "Malicious Explosion", "description": "Destroying property or structures via explosives.", "class": "FELONY" }
             ]
         }
     ],
     "vehicle": [
         {
-            "title": "Title 8. Vehicle Code",
+            "title": "Title III - Motor Vehicle Code",
             "laws": [
-                {
-                    "id": "(8)01",
-                    "name": "Vehicle Registration",
-                    "description": "Driving unregistered vehicle or without proper plates.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)02",
-                    "name": "Drivers Licenses",
-                    "description": "Driving without appropriate license in possession.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)03",
-                    "name": "Driving Without a License",
-                    "description": "Driving without ever having been issued a license.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)04",
-                    "name": "Driving Suspended/Revoked",
-                    "description": "Driving while privilege is suspended/revoked.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)05",
-                    "name": "Hit & Run (Property)",
-                    "description": "Leaving scene of accident with property damage >$1000 without reporting.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)06",
-                    "name": "Hit & Run (Injury/Death)",
-                    "description": "Leaving scene of accident resulting in injury or death.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(8)09",
-                    "name": "Running a Red Light",
-                    "description": "Failure to stop at a steady circular red signal.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)16",
-                    "name": "Speeding",
-                    "description": "Exceeding posted limits or driving at unsafe speeds.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)16.F",
-                    "name": "Excessive Speeding (>100mph)",
-                    "description": "Driving at a speed greater than 100 mph.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)17",
-                    "name": "Running a Stop Sign",
-                    "description": "Failure to stop at a limit line or crosswalk at a stop sign.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)18",
-                    "name": "Illegal Parking",
-                    "description": "Parking in red zones, blocking lanes, hydrants, or sidewalks.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(8)19",
-                    "name": "Reckless Driving",
-                    "description": "Willful or wanton disregard for safety (e.g. driving on sidewalk).",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)20",
-                    "name": "Street Racing",
-                    "description": "Engaging in motor vehicle speed contest.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)22",
-                    "name": "DUI",
-                    "description": "Driving under influence of alcohol (>0.08%) or drugs.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)25",
-                    "name": "Evading A Peace Officer",
-                    "description": "Willfully fleeing a pursuing officer in a vehicle.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(8)26",
-                    "name": "Felony Evading",
-                    "description": "Evading while driving recklessly (8)19.",
-                    "class": "FELONY"
-                },
-                {
-                    "id": "(8)30",
-                    "name": "Distracted Driving",
-                    "description": "Using mobile phone while driving.",
-                    "class": "INFRACTION"
-                }
+                { "id": "3.02", "name": "Registration Required", "description": "Operating vehicle without current registration or displaying plates.", "class": "INFRACTION" },
+                { "id": "3.04", "name": "Driving Without License", "description": "Driving on highway without a valid license.", "class": "MISDEMEANOR" },
+                { "id": "3.07", "name": "Driving While Invalidated", "description": "Driving while license is suspended or revoked.", "class": "MISDEMEANOR" },
+                { "id": "3.09", "name": "Lights Required", "description": "Failure to display headlights/signals during sunset-sunrise or low visibility.", "class": "INFRACTION" },
+                { "id": "3.15", "name": "Hit & Run (Injury/Death)", "description": "Failure to stop and remain at scene of accident involving injury/death.", "class": "FELONY" },
+                { "id": "3.17", "name": "Attempting to Elude", "description": "Willful failure to stop and reckless driving while eluding a LEO vehicle.", "class": "FELONY" },
+                { "id": "3.22", "name": "Speeding", "description": "Exceeding posted limits or driving at unsafe speeds for conditions.", "class": "INFRACTION" },
+                { "id": "3.23", "name": "Reckless Driving", "description": "Driving in willful or wanton disregard for safety of persons/property.", "class": "MISDEMEANOR" },
+                { "id": "3.24", "name": "DUI", "description": "Driving under influence of alcohol (>0.08%), Cannabis (>5.00 THC), or drugs.", "class": "MISDEMEANOR" },
+                { "id": "3.30", "name": "Street Racing", "description": "Comparing or contesting relative speeds on public highway.", "class": "MISDEMEANOR" },
+                { "id": "3.31", "name": "Illegal Parking", "description": "Parking on sidewalks, intersections, near hydrants, or prohibited zones.", "class": "INFRACTION" },
+                { "id": "3.33", "name": "Electronic Device Use", "description": "Using personal electronic device while driving.", "class": "INFRACTION" }
             ]
         }
     ],
     "wildlife": [
         {
-            "title": "Title 16. Fish and Game",
+            "title": "Title VI & VII - Environment & Wildlife",
             "laws": [
-                {
-                    "id": "(16)01",
-                    "name": "Prohibition on Hunting",
-                    "description": "Hunting protected animals (Cats, Dogs, Whales, etc).",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(16)02",
-                    "name": "Hunting Without Permit",
-                    "description": "Hunting regulated animals (Deer, Boar, etc) without permit.",
-                    "class": "INFRACTION"
-                },
-                {
-                    "id": "(16)03",
-                    "name": "Limit Violation",
-                    "description": "Exceeding daily bag or possession limits.",
-                    "class": "MISDEMEANOR"
-                },
-                {
-                    "id": "(16)08",
-                    "name": "Poaching",
-                    "description": "Illegally trading/selling animal parts for profit.",
-                    "class": "FELONY"
-                }
+                { "id": "6.01", "name": "Reckless Burning", "description": "Knowingly causing fire/explosion endangering forestlands.", "class": "FELONY" },
+                { "id": "6.03", "name": "Illegal Dumping", "description": "Dumping solid waste without permit onto ground or into waters.", "class": "MISDEMEANOR" },
+                { "id": "7.01", "name": "License Required", "description": "Hunting, fishing, or taking wildlife without recreational license.", "class": "INFRACTION" },
+                { "id": "7.04", "name": "Unlawful Fishing 1st Degree", "description": "Taking 2x bag limit or using prohibited methods (gaffs, snares, stones).", "class": "MISDEMEANOR" },
+                { "id": "7.06", "name": "Loaded Firearm in Vehicle", "description": "Carrying loaded rifle/shotgun in motor vehicle or ORV.", "class": "MISDEMEANOR" }
             ]
         }
     ]
