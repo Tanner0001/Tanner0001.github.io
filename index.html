@@ -832,31 +832,30 @@
                 <button class="civ-tab active p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-dashboard', event)">Dashboard</button>
                 <button class="civ-tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-jobs', event)">Job Guide</button>
                 <button class="civ-tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-business', event)">Business</button>
-                <button class="civ-tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-assets', event)">Assets</button>
             </div>
 
             <!-- Civ Tab Contents -->
             <div id="civ-dashboard" class="civ-tab-content active text-left">
-                <div class="p-4 mb-8 rounded-xl text-emerald-300 glassmorphism border-emerald-900/20">
-                    <p class="font-bold uppercase text-[10px] tracking-widest">Public Notice:</p>
-                    <p class="text-sm">Welcome to the Civilian Resource Portal. Here you can find information on public service jobs, starting a business, and registering assets.</p>
+                <div class="p-4 mb-8 rounded-xl text-emerald-300 glassmorphism border-emerald-900/20 text-left">
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-left">Public Notice:</p>
+                    <p class="text-sm text-left">Welcome to the Civilian Resource Portal. Here you can find information on public service jobs, starting a business, and registering factions.</p>
                 </div>
                 
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all">
+                    <div onclick="openCivTab('civ-jobs', event)" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all cursor-pointer text-left">
                         <i data-lucide="briefcase" class="w-8 h-8 text-emerald-500 mb-4"></i>
                         <h3 class="text-white font-bold uppercase italic mb-2">Employment</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">Discover public sector roles including Towing, Public Works, and the Medical Examiner's office.</p>
+                        <p class="text-slate-500 text-xs leading-relaxed">View all civilian job SOPs and requirements.</p>
                     </div>
-                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all">
+                    <div onclick="openCivTab('civ-business', event)" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all cursor-pointer text-left">
                         <i data-lucide="building" class="w-8 h-8 text-emerald-500 mb-4"></i>
-                        <h3 class="text-white font-bold uppercase italic mb-2">Business Registry</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">Ready to work for yourself? Submit your business plan and get licensed by the state.</p>
+                        <h3 class="text-white font-bold uppercase italic mb-2">Registration</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">Register your business as an official server faction.</p>
                     </div>
-                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all">
-                        <i data-lucide="shield-check" class="w-8 h-8 text-emerald-500 mb-4"></i>
-                        <h3 class="text-white font-bold uppercase italic mb-2">Safety First</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">Review the Penal Code and local ordinances to ensure your operations stay within the law.</p>
+                    <div onclick="showHub()" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all cursor-pointer text-left">
+                        <i data-lucide="home" class="w-8 h-8 text-emerald-500 mb-4"></i>
+                        <h3 class="text-white font-bold uppercase italic mb-2">Hub Home</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">Return to the main server dashboard.</p>
                     </div>
                 </div>
             </div>
