@@ -4,82 +4,89 @@
             "title": "General Definitions",
             "laws": [
                 { "id": "DEF", "name": "Natural Person", "description": "Refers to a human being.", "class": "DEFINITION" },
-                { "id": "DEF", "name": "Pedestrian", "description": "Any person afoot or using a wheelchair/conveyance propelled by human power (excluding bicycles).", "class": "DEFINITION" },
-                { "id": "DEF", "name": "Vehicle", "description": "Device capable of moving on public highway (Excludes golf carts, bicycles, mobility scooters).", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Pedestrian", "description": "Any person afoot or using a wheelchair or means of conveyance propelled by human power other than a bicycle.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Registered Owner", "description": "The person whose lawful right of possession of a vehicle has most recently been recorded.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Vehicle", "description": "Device capable of being moved upon a public highway (excludes golf carts, bicycles, mobility scooters).", "class": "DEFINITION" },
                 { "id": "DEF", "name": "Motor Vehicle", "description": "Refers to a vehicle that is self-propelled.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Off Road Vehicle (ORV)", "description": "Non-street registered vehicle for recreational use (ATVs, motorcycles, 4WD, dune buggies).", "class": "DEFINITION" },
                 { "id": "DEF", "name": "Commercial Vehicle", "description": "Vehicle used primarily for transportation of commodities, freight, animals, or passengers for hire.", "class": "DEFINITION" },
-                { "id": "DEF", "name": "Peace Officer", "description": "Full-time, commissioned officer authorized to enforce criminal laws of San Andreas.", "class": "DEFINITION" },
-                { "id": "DEF", "name": "Drifting", "description": "Intentional oversteer causing loss of traction while maneuvering in a turning direction.", "class": "DEFINITION" }
+                { "id": "DEF", "name": "Drifting", "description": "Intentional oversteer causing loss of traction while maneuvering in a turning direction.", "class": "DEFINITION" },
+                { "id": "DEF", "name": "Peace Officer", "description": "Full-time, commissioned officer authorized to enforce criminal laws of San Andreas.", "class": "DEFINITION" }
             ]
         }
     ],
     "criminal": [
         {
-            "title": "Title I - Criminal Code (General)",
+            "title": "Title I - Criminal Code",
             "laws": [
-                { "id": "1.01", "name": "Sabotage", "description": "Intentional injury or interference with management/control of any commercial or building enterprise.", "class": "FELONY" },
-                { "id": "1.02", "name": "Identity Theft", "description": "Knowingly obtaining/using identification of another with intent to commit a crime.", "class": "FELONY" },
-                { "id": "1.08", "name": "Threats to Bomb/Injure", "description": "Unlawful threat to bomb or injure property/public assembly, or communicating false info.", "class": "FELONY" },
-                { "id": "1.09", "name": "Telephone Harassment", "description": "Intent to harass/torment using lewd language or anonymous/repeated calls.", "class": "MISDEMEANOR" },
-                { "id": "1.20", "name": "Failing to Summon Assistance", "description": "Failure to call for help when present during a crime resulting in substantial bodily harm.", "class": "MISDEMEANOR" }
-            ]
-        },
-        {
-            "title": "Firearms & Weapons",
-            "laws": [
-                { "id": "1.04", "name": "Carrying Firearms", "description": "Carrying a concealed pistol without a license. License must be displayed on demand.", "class": "MISDEMEANOR" },
+                { "id": "1.01", "name": "Sabotage", "description": "Intentional injury or interference with management/control of any agricultural, manufacturing, or commercial enterprise.", "class": "FELONY" },
+                { "id": "1.02", "name": "Identity Theft", "description": "Knowingly using/transferring means of identification of another with intent to commit a crime.", "class": "FELONY" },
+                { "id": "1.03", "name": "Carrying Firearms (License)", "description": "Regulations regarding the issuance of concealed pistol licenses (5-year term).", "class": "PROCEDURE" },
+                { "id": "1.04", "name": "Carrying Firearms (Illegal)", "description": "Carrying a concealed pistol without a license. License must be displayed on demand.", "class": "MISDEMEANOR" },
                 { "id": "1.05", "name": "Unlawful Firearms/Parts", "description": "Possession of machine guns, short-barreled shotguns, or conversion parts. Contraband.", "class": "FELONY" },
                 { "id": "1.06", "name": "Alteration of ID Marks", "description": "Removing or obliterating manufacturer name/serial on a firearm.", "class": "FELONY" },
-                { "id": "1.07", "name": "Aiming or Discharging", "description": "Aiming at human beings or willfully discharging in public/endangered places.", "class": "FELONY" }
-            ]
-        },
-        {
-            "title": "Homicide & Assault",
-            "laws": [
+                { "id": "1.07", "name": "Aiming or Discharging", "description": "Aiming at human beings or willfully discharging in public/endangered places.", "class": "FELONY" },
+                { "id": "1.08", "name": "Threats to Bomb/Injure", "description": "Unlawful threat to bomb or injure property/public assembly, or communicating false info.", "class": "FELONY" },
+                { "id": "1.09", "name": "Telephone Harassment", "description": "Intent to harass using lewd language, anonymous/repeated calls, or threatening injury.", "class": "MISDEMEANOR" },
                 { "id": "1.10", "name": "Murder 1st Degree", "description": "Premeditated intent to cause death, extreme indifference to life, or killing during major felony.", "class": "FELONY" },
-                { "id": "1.11", "name": "Murder 2nd Degree", "description": "Intent to kill without premeditation, or killing during any other felony.", "class": "FELONY" },
+                { "id": "1.11", "name": "Murder 2nd Degree", "description": "Intent to kill without premeditation, or killing during any felony (including assault).", "class": "FELONY" },
                 { "id": "1.12", "name": "Manslaughter 1st Degree", "description": "Recklessly causing the death of another person.", "class": "FELONY" },
                 { "id": "1.13", "name": "Manslaughter 2nd Degree", "description": "Criminal negligence causing the death of another person.", "class": "FELONY" },
                 { "id": "1.14", "name": "Assault 1st Degree", "description": "Intent to inflict great bodily harm using firearm/weapon or force.", "class": "FELONY" },
                 { "id": "1.15", "name": "Assault 2nd Degree", "description": "Intentionally assaulting another and recklessly inflicting substantial harm or using deadly weapon.", "class": "FELONY" },
                 { "id": "1.16", "name": "Assault 3rd Degree", "description": "Assaulting protected persons (LEO, FD, Medical, Transit) or negligent injury with weapon.", "class": "FELONY" },
-                { "id": "1.17", "name": "Assault 4th Degree", "description": "Simple assault not amounting to 1st, 2nd, or 3rd degree.", "class": "MISDEMEANOR" },
-                { "id": "1.18", "name": "Drive-by Shooting", "description": "Recklessly discharging firearm from a motor vehicle creating risk of death/injury.", "class": "FELONY" }
-            ]
-        },
-        {
-            "title": "Theft, Robbery & Burglary",
-            "laws": [
+                { "id": "1.17", "name": "Assault 4th Degree", "description": "Simple assault not amounting to higher degrees.", "class": "MISDEMEANOR" },
+                { "id": "1.18", "name": "Drive-by Shooting", "description": "Recklessly discharging firearm from a motor vehicle creating risk of death/injury.", "class": "FELONY" },
+                { "id": "1.19", "name": "Reckless Endangerment", "description": "Reckless conduct creating substantial risk of death or serious injury.", "class": "MISDEMEANOR" },
+                { "id": "1.20", "name": "Failing to Summon Assistance", "description": "Failure to call for help when present during a crime resulting in substantial bodily harm.", "class": "MISDEMEANOR" },
+                { "id": "1.21", "name": "Kidnapping 1st Degree", "description": "Abducting person for ransom, hostage, or to facilitate felony/injury.", "class": "FELONY" },
+                { "id": "1.22", "name": "Kidnapping 2nd Degree", "description": "Intentional abduction without aggravating factors.", "class": "FELONY" },
+                { "id": "1.23", "name": "Stalking", "description": "Repeated harassment, following, or tracking after notice to stop.", "class": "FELONY" },
+                { "id": "1.24", "name": "Arson 1st Degree", "description": "Fire/explosion dangerous to human life or damaging a dwelling.", "class": "FELONY" },
+                { "id": "1.25", "name": "Arson 2nd Degree", "description": "Fire/explosion damaging structure, vehicle, wharf, or timber.", "class": "FELONY" },
+                { "id": "1.26", "name": "Malicious Mischief", "description": "Physical damage to property or interruption of public services.", "class": "MISDEMEANOR" },
                 { "id": "1.27", "name": "Burglary 1st Degree", "description": "Entering building with intent to commit crime while armed or committing assault.", "class": "FELONY" },
+                { "id": "1.28", "name": "Burglary 2nd Degree", "description": "Entering building (not vehicle/dwelling) with intent to commit crime.", "class": "FELONY" },
                 { "id": "1.29", "name": "Residential Burglary", "description": "Entering a dwelling with intent to commit a crime.", "class": "FELONY" },
-                { "id": "1.30", "name": "Burglar Tools", "description": "Possession or making of tools designed for burglary with intent to employ them.", "class": "MISDEMEANOR" },
+                { "id": "1.30", "name": "Making/Having Burglar Tools", "description": "Possession or making of tools designed for burglary with intent to employ them.", "class": "MISDEMEANOR" },
+                { "id": "1.31", "name": "Criminal Trespass 1st Degree", "description": "Knowingly entering or remaining unlawfully in a building.", "class": "MISDEMEANOR" },
+                { "id": "1.32", "name": "Criminal Trespass 2nd Degree", "description": "Entering premises of another (not building).", "class": "MISDEMEANOR" },
+                { "id": "1.33", "name": "Vehicle Prowling 1st Degree", "description": "Entering motor home with intent to commit crime.", "class": "FELONY" },
+                { "id": "1.34", "name": "Vehicle Prowling 2nd Degree", "description": "Entering vehicle (not motor home) with intent to commit crime.", "class": "MISDEMEANOR" },
                 { "id": "1.35", "name": "Theft 1st Degree", "description": "Theft of property/services > $5,000 or taken from a person.", "class": "FELONY" },
+                { "id": "1.36", "name": "Theft 2nd Degree", "description": "Theft of property/services $750 - $5,000.", "class": "FELONY" },
                 { "id": "1.37", "name": "Theft 3rd Degree", "description": "Theft of property/services <= $750.", "class": "MISDEMEANOR" },
                 { "id": "1.38", "name": "Possession Stolen Vehicle", "description": "Possessing a stolen motor vehicle.", "class": "FELONY" },
-                { "id": "1.39", "name": "Taking Vehicle 1st Degree", "description": "Taking vehicle without permission to alter, sell, or export.", "class": "FELONY" },
+                { "id": "1.39", "name": "Taking Vehicle 1st Degree", "description": "Taking vehicle without permission to alter appearance, sell parts, or export.", "class": "FELONY" },
                 { "id": "1.44", "name": "Robbery 1st Degree", "description": "Robbery while armed, inflicting injury, or against a financial institution.", "class": "FELONY" },
-                { "id": "1.49", "name": "Organized Retail Theft", "description": "Retail theft > $750 committed with an accomplice.", "class": "FELONY" }
-            ]
-        },
-        {
-            "title": "Governmental & Public Peace",
-            "laws": [
+                { "id": "1.45", "name": "Robbery 2nd Degree", "description": "Simple robbery without aggravating factors.", "class": "FELONY" },
+                { "id": "1.46", "name": "Theft of a Firearm", "description": "Theft of any firearm.", "class": "FELONY" },
+                { "id": "1.47", "name": "Possessing a Stolen Firearm", "description": "Possessing or carrying a firearm known to be stolen.", "class": "FELONY" },
+                { "id": "1.49", "name": "Organized Retail Theft", "description": "Retail theft > $750 committed with an accomplice.", "class": "FELONY" },
                 { "id": "1.50", "name": "Obstructing LEO", "description": "Willfully hindering, delaying, or obstructing any LEO in official duties.", "class": "MISDEMEANOR" },
-                { "id": "1.51", "name": "Disarming LEO/CO", "description": "Removing or depriving an officer of their weapon/firearm.", "class": "FELONY" },
+                { "id": "1.51", "name": "Disarming LEO/CO", "description": "Removing weapon from LEO/CO without consent.", "class": "FELONY" },
                 { "id": "1.52", "name": "Resisting Arrest", "description": "Intentionally preventing or attempting to prevent a lawful arrest.", "class": "MISDEMEANOR" },
-                { "id": "1.56", "name": "False Statement", "description": "Knowingly making a false or misleading material statement to a public servant.", "class": "MISDEMEANOR" },
+                { "id": "1.54", "name": "Escape 1st Degree", "description": "Escaping from custody/detention while held for a felony conviction.", "class": "FELONY" },
+                { "id": "1.56", "name": "False Statement", "description": "Knowingly making a false/misleading material statement to a public servant.", "class": "MISDEMEANOR" },
                 { "id": "1.58", "name": "Harming Police Dog", "description": "Maliciously injuring or killing a K9 or detection dog.", "class": "FELONY" },
+                { "id": "1.60", "name": "Criminal Mischief", "description": "Using force with 3+ others against persons or property.", "class": "MISDEMEANOR" },
+                { "id": "1.62", "name": "Failure to Disperse", "description": "Refusing to leave an area of substantial risk when ordered by LEO.", "class": "MISDEMEANOR" },
                 { "id": "1.63", "name": "Disorderly Conduct", "description": "Abusive language, disrupting assemblies, or obstructing traffic.", "class": "MISDEMEANOR" },
-                { "id": "1.64", "name": "False Reporting", "description": "Initiating false reports of emergencies likely to cause evacuation or alarm.", "class": "MISDEMEANOR" }
+                { "id": "1.64", "name": "False Reporting", "description": "Initiating false reports likely to cause evacuation or alarm.", "class": "MISDEMEANOR" },
+                { "id": "1.65", "name": "Indecent Exposure", "description": "Intentionally making open and obscene exposure of person.", "class": "MISDEMEANOR" },
+                { "id": "1.66", "name": "Prostitution", "description": "Engaging or offering to engage in sexual conduct for a fee.", "class": "MISDEMEANOR" }
             ]
         },
         {
-            "title": "Title IV & V - Health & Drugs",
+            "title": "Titles IV & V - Health & Drugs",
             "laws": [
                 { "id": "4.01", "name": "Legend Drugs Fraud", "description": "Obtaining prescription drugs via fraud, forgery, or false names.", "class": "FELONY" },
+                { "id": "4.03", "name": "Drug Paraphernalia", "description": "Possession of equipment used for planting, manufacturing, or using controlled substances.", "class": "MISDEMEANOR" },
                 { "id": "4.04", "name": "Drug Manufacturing/Delivery", "description": "Unlawful manufacture, delivery, or possession with intent to deliver.", "class": "FELONY" },
-                { "id": "4.05", "name": "Drug Possession", "description": "Possession or public use of controlled substance without prescription.", "class": "MISDEMEANOR" },
-                { "id": "5.01", "name": "Malicious Explosion", "description": "Destroying property or structures via explosives.", "class": "FELONY" }
+                { "id": "4.05", "name": "Drug Possession/Use", "description": "Possession or public use of controlled substance without prescription.", "class": "MISDEMEANOR" },
+                { "id": "5.01", "name": "Malicious Explosion", "description": "Destroying property or structures via explosives.", "class": "FELONY" },
+                { "id": "5.02", "name": "Explosives License", "description": "Possession or transport of explosives without valid license.", "class": "FELONY" },
+                { "id": "5.03", "name": "Smoking in Public", "description": "Smoking in public places, employment, or within 25ft of such.", "class": "INFRACTION" }
             ]
         }
     ],
@@ -88,15 +95,23 @@
             "title": "Title III - Motor Vehicle Code",
             "laws": [
                 { "id": "3.02", "name": "Registration Required", "description": "Operating vehicle without current registration or displaying plates.", "class": "INFRACTION" },
-                { "id": "3.04", "name": "Driving Without License", "description": "Driving on highway without a valid license.", "class": "MISDEMEANOR" },
+                { "id": "3.03", "name": "Unauthorized Driver", "description": "Permitting unauthorized person to drive your vehicle.", "class": "MISDEMEANOR" },
+                { "id": "3.04", "name": "Driving Without License", "description": "Driving on highway without first obtaining a valid license.", "class": "MISDEMEANOR" },
                 { "id": "3.07", "name": "Driving While Invalidated", "description": "Driving while license is suspended or revoked.", "class": "MISDEMEANOR" },
-                { "id": "3.09", "name": "Lights Required", "description": "Failure to display headlights/signals during sunset-sunrise or low visibility.", "class": "INFRACTION" },
+                { "id": "3.09", "name": "Lights Required", "description": "Failure to display headlights/signals half hour after sunset or low visibility.", "class": "INFRACTION" },
+                { "id": "3.14", "name": "Striking Unattended Property", "description": "Failure to notify owner or leave notice after striking unattended vehicle/property.", "class": "MISDEMEANOR" },
                 { "id": "3.15", "name": "Hit & Run (Injury/Death)", "description": "Failure to stop and remain at scene of accident involving injury/death.", "class": "FELONY" },
-                { "id": "3.17", "name": "Attempting to Elude", "description": "Willful failure to stop and reckless driving while eluding a LEO vehicle.", "class": "FELONY" },
-                { "id": "3.22", "name": "Speeding", "description": "Exceeding posted limits or driving at unsafe speeds for conditions.", "class": "INFRACTION" },
-                { "id": "3.23", "name": "Reckless Driving", "description": "Driving in willful or wanton disregard for safety of persons/property.", "class": "MISDEMEANOR" },
+                { "id": "3.16", "name": "Obedience to Officers", "description": "Refusing to comply with lawful order of LEO or Firefighter.", "class": "MISDEMEANOR" },
+                { "id": "3.17", "name": "Attempting to Elude", "description": "Willful failure to stop and reckless driving while eluding pursuing LEO.", "class": "FELONY" },
+                { "id": "3.19", "name": "Lane Usage", "description": "Failure to drive on right side or stay in right-hand lane when available.", "class": "INFRACTION" },
+                { "id": "3.21", "name": "Following Too Closely", "description": "Failure to maintain reasonable and prudent following distance.", "class": "INFRACTION" },
+                { "id": "3.22", "name": "Speed Limits", "description": "Exceeding posted limits (25 Urban, 50 County, 60 Highway, 70 Rural).", "class": "INFRACTION" },
+                { "id": "3.23", "name": "Reckless Driving", "description": "Driving in willful or wanton disregard for safety.", "class": "MISDEMEANOR" },
                 { "id": "3.24", "name": "DUI", "description": "Driving under influence of alcohol (>0.08%), Cannabis (>5.00 THC), or drugs.", "class": "MISDEMEANOR" },
-                { "id": "3.30", "name": "Street Racing", "description": "Comparing or contesting relative speeds on public highway.", "class": "MISDEMEANOR" },
+                { "id": "3.25", "name": "Open Container", "description": "Drinking or possessing open alcohol in a motor vehicle.", "class": "INFRACTION" },
+                { "id": "3.27", "name": "Vehicular Assault", "description": "Causing substantial bodily harm via reckless or DUI driving.", "class": "FELONY" },
+                { "id": "3.28", "name": "Negligent Driving", "description": "Operating vehicle in a manner that endangers person or property.", "class": "INFRACTION" },
+                { "id": "3.30", "name": "Racing on Highways", "description": "Contesting relative speeds. Constitutes reckless driving.", "class": "MISDEMEANOR" },
                 { "id": "3.31", "name": "Illegal Parking", "description": "Parking on sidewalks, intersections, near hydrants, or prohibited zones.", "class": "INFRACTION" },
                 { "id": "3.33", "name": "Electronic Device Use", "description": "Using personal electronic device while driving.", "class": "INFRACTION" }
             ]
@@ -104,13 +119,18 @@
     ],
     "wildlife": [
         {
-            "title": "Title VI & VII - Environment & Wildlife",
+            "title": "Titles II, VI, VII - Wildlife & Environment",
             "laws": [
-                { "id": "6.01", "name": "Reckless Burning", "description": "Knowingly causing fire/explosion endangering forestlands.", "class": "FELONY" },
+                { "id": "2.01", "name": "Dangerous Wild Animals", "description": "Owning or controlling potentially dangerous wild animals.", "class": "FELONY" },
+                { "id": "2.02", "name": "Trespassing Animals", "description": "Damage caused by livestock trespassing on enclosed land.", "class": "MISDEMEANOR" },
+                { "id": "6.01", "name": "Reckless Burning", "description": "Knowingly causing fire endangering forestlands.", "class": "FELONY" },
+                { "id": "6.02", "name": "Unextinguished Campfire", "description": "Failure to extinguish campfire upon leaving.", "class": "INFRACTION" },
                 { "id": "6.03", "name": "Illegal Dumping", "description": "Dumping solid waste without permit onto ground or into waters.", "class": "MISDEMEANOR" },
-                { "id": "7.01", "name": "License Required", "description": "Hunting, fishing, or taking wildlife without recreational license.", "class": "INFRACTION" },
-                { "id": "7.04", "name": "Unlawful Fishing 1st Degree", "description": "Taking 2x bag limit or using prohibited methods (gaffs, snares, stones).", "class": "MISDEMEANOR" },
-                { "id": "7.06", "name": "Loaded Firearm in Vehicle", "description": "Carrying loaded rifle/shotgun in motor vehicle or ORV.", "class": "MISDEMEANOR" }
+                { "id": "7.01", "name": "License Required", "description": "Hunting, fishing, or taking wildlife/seaweed without license.", "class": "INFRACTION" },
+                { "id": "7.03", "name": "False Info to Warden", "description": "Providing false info regarding taking or possession of wildlife.", "class": "MISDEMEANOR" },
+                { "id": "7.04", "name": "Unlawful Fishing 1st Degree", "description": "Taking 2x bag limit or using prohibited means (gaffs, snares, stones).", "class": "MISDEMEANOR" },
+                { "id": "7.06", "name": "Loaded Firearm in Vehicle", "description": "Carrying loaded rifle/shotgun in motor vehicle or ORV.", "class": "MISDEMEANOR" },
+                { "id": "7.07", "name": "Wildlife Inspection Avoidance", "description": "Failure to obey check station signs or produce equipment for inspection.", "class": "MISDEMEANOR" }
             ]
         }
     ]
