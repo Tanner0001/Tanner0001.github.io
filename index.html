@@ -962,20 +962,82 @@
                     <!-- Job Content Area -->
                     <article class="flex-1 space-y-12 pb-20">
                         <!-- Public Works SOP -->
-                        <div id="cj-pw" class="civ-sub-content active space-y-8">
+                        <div id="cj-pw" class="civ-sub-content active space-y-12 text-left">
                             <div class="flex items-center gap-4 mb-8">
                                 <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">DPW-SOP</span>
-                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Public Works</h2>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Public Works Operations</h2>
                             </div>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
-                                    <h3 class="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2"><i data-lucide="cone" class="text-orange-500"></i> D.O.T. Operations</h3>
-                                    <p class="text-slate-400 text-xs leading-relaxed">Maintenance of state infrastructure and traffic devices. Personnel must secure work zones with proper cone placement and vehicle positioning.</p>
-                                </div>
-                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
-                                    <h3 class="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2"><i data-lucide="zap" class="text-yellow-500"></i> Utility Response</h3>
-                                    <p class="text-slate-400 text-xs leading-relaxed">Handling electrical and water grid failures. Response to downed power lines requires immediate scene isolation and coordination with LEO/FD.</p>
-                                </div>
+                            
+                            <div class="space-y-12">
+                                <!-- 1.0 Department Mission -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-emerald-500"><i data-lucide="wrench" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">1.0 Department Mission</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">The Department of Public Works (DPW) is the primary agency responsible for the health, safety, and functionality of San Andreas' infrastructure. From the towering electrical grids of Los Santos to the rural highways of Blaine County, DPW personnel ensure that the state remains operational. This role is a high-visibility public service position that requires technical precision and an unwavering commitment to safety. You are the first line of defense against infrastructure failure and environmental hazards.</p>
+                                </section>
+
+                                <!-- 2.0 DOT & Roadway Safety -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-8">
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">2.0 Roadway Safety (D.O.T.)</h3>
+                                        <p class="text-slate-400 text-sm leading-relaxed">The Department of Transportation (DOT) division focuses on the maintained portions of public highways. Your primary duty is the installation, repair, and protection of traffic control devices and road surfaces. Working near active traffic is the most dangerous aspect of this job; therefore, strict adherence to work-zone protocols is mandatory.</p>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 gap-8">
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-orange-500 font-bold text-[10px] uppercase mb-3 flex items-center gap-2"><i data-lucide="cone" class="w-4 h-4"></i> Work Zone Setup</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed">When performing repairs, you must establish a 'Safety Taper' using traffic cones. Tapers should begin 100 meters prior to the work site, using a 45-degree angle to gradually shift traffic into adjacent lanes. "Construction Ahead" signage must be placed visible to oncoming drivers to comply with RCSA Title III standards.</p>
+                                        </div>
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-orange-500 font-bold text-[10px] uppercase mb-3 flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Traffic Coordination</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed">For major repairs or bridge inspections, coordinate with the San Andreas Highway Patrol (SAHP) to provide a rolling roadblock or full road closure. Never attempt to stop high-speed traffic with hand signals alone; always utilize vehicle-mounted arrow boards and amber lighting.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 3.0 Utility & Grid Response -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-8">
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">3.0 Utility & Grid Response</h3>
+                                        <p class="text-slate-400 text-sm leading-relaxed">The Utilities division manages the state’s Power, Water, and Gas systems. Personnel in this role are 'Emergency Responders' and must be prepared to react to infrastructure disasters at a moment's notice.</p>
+                                    </div>
+                                    <div class="space-y-6">
+                                        <div class="p-8 bg-yellow-500/5 border border-yellow-500/20 rounded-[2.5rem]">
+                                            <h4 class="text-yellow-500 font-black text-xs uppercase mb-4">San Power: Downed Line Protocol</h4>
+                                            <p class="text-slate-400 text-xs leading-relaxed mb-4">Downed electrical lines represent a Tier-1 life threat. Upon arrival, you must establish a 50-meter perimeter. Do not allow any personnel (including LEO/FD) to touch the affected vehicle or structure until the grid has been confirmed isolated at the nearest substation. If fire is present, coordinate with the Fire Department for specialized non-conductive suppression.</p>
+                                        </div>
+                                        <div class="p-8 bg-blue-500/5 border border-blue-500/20 rounded-[2.5rem]">
+                                            <h4 class="text-blue-500 font-black text-xs uppercase mb-4">Water & Gas: Leak Management</h4>
+                                            <p class="text-slate-400 text-xs leading-relaxed">Gas leaks require immediate evacuation of the surrounding area. Utilize gas-sniffing equipment to determine the saturation levels before attempting a valve-shutoff. Water main breaks require careful excavation to prevent further damage to nearby fiber-optic or electrical lines.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 4.0 Sanitation & Health -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">4.0 Sanitation & Environmental Health</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">Sanitation workers are the primary monitors for environmental health. While performing waste collection routes, you are also acting as a reporter for the state. Under RCSA 6.03 (Illegal Dumping), you are required to document and report any unauthorized disposal of hazardous materials or bulk waste in public spaces.</p>
+                                    <div class="bg-emerald-500/10 p-6 rounded-2xl border border-emerald-500/20">
+                                        <strong class="text-white text-[10px] uppercase block mb-2">Illegal Dumping Enforcement:</strong>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed italic m-0">If you observe a citizen dumping waste into a waterway or on a public highway, do not confront them directly. Record the vehicle plate and notify Law Enforcement immediately. Your documentation is the key to successfully charging violators under Title VI of the RCSA.</p>
+                                    </div>
+                                </section>
+
+                                <!-- 5.0 Legal & Safety Compliance -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-red-500"><i data-lucide="shield-check" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">5.0 Legal & Safety Compliance</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">All DPW personnel must adhere to the RCSA at all times. Failure to follow safety standards results in personal liability and potential criminal negligence charges.</p>
+                                    <ul class="space-y-4 list-none p-0">
+                                        <li class="flex gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700">
+                                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+                                            <p class="text-xs text-slate-400"><strong>RCSA 3.16 Compliance:</strong> High-visibility vests and protective headgear must be worn at all times while on a public roadway.</p>
+                                        </li>
+                                        <li class="flex gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700">
+                                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+                                            <p class="text-xs text-slate-400"><strong>Lighting Standards:</strong> Amber lighting is a tool for safety, not a permit to violate traffic laws. Lights should only be active when stationary or when operating as a slow-moving hazard.</p>
+                                        </li>
+                                    </ul>
+                                </section>
                             </div>
                         </div>
 
