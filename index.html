@@ -446,12 +446,112 @@
             </div>
 
             <!-- FD Tab Contents -->
-            <div id="fd-dashboard" class="fd-tab-content active">
-                <div class="p-4 mb-6 rounded-xl text-red-300 glassmorphism border-red-900/20">
-                    <p class="font-bold">Fire Marshal Message:</p>
-                    <p class="text-sm">Welcome to the Fire & EMS Portal. Please ensure all medical certifications are up to date in the Certs tab.</p>
+            <div id="fd-dashboard" class="fd-tab-content active text-left text-left">
+                <div class="p-4 mb-8 rounded-xl text-red-300 glassmorphism border-red-900/20 text-left">
+                    <p class="font-bold uppercase text-[10px] tracking-[0.2em] mb-1 text-left">Command Notice:</p>
+                    <p class="text-sm text-left">All personnel must ensure their BLS (Basic Life Support) certifications are logged in the Certs tracker before going on-duty.</p>
                 </div>
-                <p class="text-slate-500 italic text-center py-20">Fire Department Dashboard content coming soon.</p>
+
+                <div class="grid lg:grid-cols-2 gap-8 mb-12 text-left">
+                    <!-- Recruitment Process -->
+                    <section class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6 text-left">
+                        <h2 class="text-white font-black uppercase italic tracking-widest text-lg flex items-center gap-3 text-left">
+                            <i data-lucide="user-plus" class="text-red-500 text-left"></i> Joining Fire & EMS
+                        </h2>
+                        <p class="text-slate-400 text-xs leading-relaxed text-left">Do you have what it takes to save lives? SAFR is looking for calm, decisive, and compassionate individuals to join our ranks as Firefighters and Paramedics.</p>
+                        
+                        <div class="space-y-4 text-left">
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
+                                <span class="w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-xl text-xs font-black shadow-inner">01</span>
+                                <div class="flex-1 text-left">
+                                    <strong class="text-white text-xs block uppercase text-left">Discord Application</strong>
+                                    <p class="text-[10px] text-slate-500 text-left text-left">Submit your interest in the #fire-recruitment channel. Ensure your background is clean.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
+                                <span class="w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-xl text-xs font-black shadow-inner">02</span>
+                                <div class="flex-1 text-left text-left">
+                                    <strong class="text-white text-xs block uppercase text-left text-left">The Interview</strong>
+                                    <p class="text-[10px] text-slate-500 text-left text-left">A verbal assessment focused on your medical knowledge and ability to work under high stress.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
+                                <span class="w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-xl text-xs font-black shadow-inner">03</span>
+                                <div class="flex-1 text-left text-left">
+                                    <strong class="text-white text-xs block uppercase text-left text-left">SAFR Academy</strong>
+                                    <p class="text-[10px] text-slate-500 text-left text-left">One training session covering apparatus operation, BLS protocols, and fire suppression tactics.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left text-left">
+                                <span class="w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-xl text-xs font-black shadow-inner">04</span>
+                                <div class="flex-1 text-left text-left">
+                                    <strong class="text-white text-xs block uppercase text-left text-left">Probation Period</strong>
+                                    <p class="text-[10px] text-slate-500 text-left text-left">Ride-alongs with senior staff to demonstrate your proficiency in the field.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mission & Philosophy -->
+                    <section class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6 text-left">
+                        <h2 class="text-white font-black uppercase italic tracking-widest text-lg flex items-center gap-3 text-left">
+                            <i data-lucide="heart" class="text-red-500 text-left"></i> Departmental Philosophy
+                        </h2>
+                        <p class="text-slate-400 text-xs leading-relaxed text-left">San Andreas Fire & Rescue operates on the "Triangle of Service." Our commitment to the community is built on technical excellence, rapid response, and deep compassion.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 text-left">
+                            <div class="p-5 bg-red-500/5 border border-red-500/10 rounded-2xl text-left">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2 text-left">Life Safety</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic text-left">Our #1 priority. We exist to ensure every citizen makes it home safe.</p>
+                            </div>
+                            <div class="p-5 bg-red-500/5 border border-red-500/10 rounded-2xl text-left">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2 text-left">Stabilization</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic text-left">Bringing order to chaos through professional hazard mitigation.</p>
+                            </div>
+                            <div class="p-5 bg-red-500/5 border border-red-500/10 rounded-2xl text-left">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2 text-left">Preservation</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic text-left">Minimizing loss of property and environment through rapid response.</p>
+                            </div>
+                            <div class="p-5 bg-red-500/5 border border-red-500/10 rounded-2xl text-left">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2 text-left">Medical Excellence</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic text-left">Providing the highest level of pre-hospital care in the state.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-500/10 p-6 rounded-2xl border border-red-500/20 text-center text-left">
+                            <p class="text-white text-xs font-black uppercase italic mb-0 text-center text-left text-left">"First In, Last Out. Pride in Service."</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Quick Navigation -->
+                <section class="text-left">
+                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-6 flex items-center gap-4 text-left">
+                        Quick Navigation <div class="h-px bg-slate-800 flex-1"></div>
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+                        <button onclick="openFDTab('fd-manual', event)" class="bg-slate-800/50 hover:bg-slate-700/50 p-6 rounded-3xl border border-slate-700 transition-all text-left group">
+                            <i data-lucide="book-open" class="w-6 h-6 text-red-500 mb-3 group-hover:scale-110 transition-transform text-left"></i>
+                            <span class="block text-sm font-bold text-white tracking-tight text-left">S.O.P. Manual</span>
+                            <span class="text-[9px] text-slate-500 uppercase font-black text-left">Protocols</span>
+                        </button>
+                        <button onclick="openFDTab('fd-apparatus', event)" class="bg-slate-800/50 hover:bg-slate-700/50 p-6 rounded-3xl border border-slate-700 transition-all text-left group">
+                            <i data-lucide="truck" class="w-6 h-6 text-red-500 mb-3 group-hover:scale-110 transition-transform text-left"></i>
+                            <span class="block text-sm font-bold text-white tracking-tight text-left">Apparatus</span>
+                            <span class="text-[9px] text-slate-500 uppercase font-black text-left">Fleet Roster</span>
+                        </button>
+                        <button onclick="openFDTab('fd-certs', event)" class="bg-slate-800/50 hover:bg-slate-700/50 p-6 rounded-3xl border border-slate-700 transition-all text-left group">
+                            <i data-lucide="award" class="w-6 h-6 text-red-500 mb-3 group-hover:scale-110 transition-transform text-left"></i>
+                            <span class="block text-sm font-bold text-white tracking-tight text-left">Certifications</span>
+                            <span class="text-[9px] text-slate-500 uppercase font-black text-left">Medical Logs</span>
+                        </button>
+                        <button onclick="openFDTab('fd-uniforms', event)" class="bg-slate-800/50 hover:bg-slate-700/50 p-6 rounded-3xl border border-slate-700 transition-all text-left group">
+                            <i data-lucide="user" class="w-6 h-6 text-red-500 mb-3 group-hover:scale-110 transition-transform text-left"></i>
+                            <span class="block text-sm font-bold text-white tracking-tight text-left">Uniforms</span>
+                            <span class="text-[9px] text-slate-500 uppercase font-black text-left">Standards</span>
+                        </button>
+                    </div>
+                </section>
             </div>
 
             <div id="fd-manual" class="fd-tab-content hidden">
