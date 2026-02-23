@@ -869,155 +869,87 @@
             </div>
 
             <div id="civ-jobs" class="civ-tab-content hidden text-left">
-                <!-- Detailed Job Directory -->
-                <div class="space-y-16">
-                    <!-- SECTION: PRIVATE SECURITY -->
-                    <section class="space-y-8">
-                        <div class="flex items-center gap-4">
-                            <h2 class="text-2xl font-black uppercase italic text-white m-0">Security Operations Manual</h2>
-                            <div class="h-px bg-slate-800 flex-1"></div>
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Civ Job Sidebar -->
+                    <aside class="hidden lg:block w-72 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 h-fit sticky top-24">
+                        <h2 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6">Operations Directory</h2>
+                        <div class="space-y-2">
+                            <button onclick="openCivSubTab('cj-pw', event)" class="civ-sub-tab active w-full flex items-center gap-3 p-3 rounded-xl bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="hard-hat" class="w-4 h-4"></i> Public Works
+                            </button>
+                            <button onclick="openCivSubTab('cj-security', event)" class="civ-sub-tab w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="shield" class="w-4 h-4"></i> Private Security
+                            </button>
+                            <button onclick="openCivSubTab('cj-towing', event)" class="civ-sub-tab w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="truck" class="w-4 h-4"></i> Towing & Recovery
+                            </a>
+                            <button onclick="openCivSubTab('cj-coroner', event)" class="civ-sub-tab w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="skull" class="w-4 h-4"></i> Medical Examiner
+                            </a>
                         </div>
-                        <div class="grid lg:grid-cols-3 gap-8">
-                            <div class="lg:col-span-2 space-y-6">
-                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] relative overflow-hidden">
-                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-emerald-500"><i data-lucide="shield" class="w-48 h-48"></i></div>
-                                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-widest">1.0 Private Guard Standards</h3>
-                                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Private security personnel are responsible for the protection of property, assets, and individuals. Unlike peace officers, security guards have no special arrest powers and must operate within the legal framework of a standard citizen while on duty.</p>
-                                    
-                                    <div class="grid md:grid-cols-2 gap-6">
-                                        <div class="space-y-4">
-                                            <h4 class="text-emerald-500 font-black text-[10px] uppercase tracking-[0.2em]">Unarmed Guard</h4>
-                                            <p class="text-xs text-slate-500 leading-relaxed italic">Primary Focus: Observation and Reporting. Equipped with radio, flashlight, and high-visibility apparel. Use of force is strictly defensive.</p>
-                                        </div>
-                                        <div class="space-y-4">
-                                            <h4 class="text-emerald-500 font-black text-[10px] uppercase tracking-[0.2em]">Armed Guard</h4>
-                                            <p class="text-xs text-slate-500 leading-relaxed italic">Primary Focus: High-value asset protection. Requires valid CCW and Armed Security certification. Firearms are only to be drawn in response to a lethal threat.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                    </aside>
 
-                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
-                                    <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest">2.0 Interaction Protocol</h3>
-                                    <div class="space-y-4">
-                                        <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700">
-                                            <i data-lucide="eye" class="w-6 h-6 text-emerald-500 flex-shrink-0"></i>
-                                            <div>
-                                                <strong class="text-white block text-sm">Observe & Report</strong>
-                                                <p class="text-xs text-slate-400">Documentation is your best weapon. Log suspicious activity, vehicle plates, and suspect descriptions for LEO handover.</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700">
-                                            <i data-lucide="phone-forwarded" class="w-6 h-6 text-emerald-500 flex-shrink-0"></i>
-                                            <div>
-                                                <strong class="text-white block text-sm">LEO Coordination</strong>
-                                                <p class="text-xs text-slate-400">In the event of a crime, call 911 immediately. Secure the perimeter but do not interfere with police operations once they arrive.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <!-- Job Content Area -->
+                    <article class="flex-1 space-y-12 pb-20">
+                        <!-- Public Works SOP -->
+                        <div id="cj-pw" class="civ-sub-content active space-y-8">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">DPW-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Public Works</h2>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
+                                    <h3 class="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2"><i data-lucide="cone" class="text-orange-500"></i> D.O.T. Operations</h3>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Maintenance of state infrastructure and traffic devices. Personnel must secure work zones with proper cone placement and vehicle positioning.</p>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
+                                    <h3 class="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2"><i data-lucide="zap" class="text-yellow-500"></i> Utility Response</h3>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Handling electrical and water grid failures. Response to downed power lines requires immediate scene isolation and coordination with LEO/FD.</p>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="space-y-6">
-                                <div class="bg-emerald-950/20 border border-emerald-500/30 p-8 rounded-[3rem] text-left">
-                                    <h4 class="text-emerald-500 font-black uppercase text-[10px] mb-4 tracking-widest">Security Use of Force</h4>
-                                    <div class="space-y-4">
-                                        <div class="pb-4 border-b border-emerald-500/10">
-                                            <span class="text-white font-bold text-xs block">Level 1: Verbal</span>
-                                            <span class="text-slate-500 text-[10px]">De-escalation and commands to leave property.</span>
-                                        </div>
-                                        <div class="pb-4 border-b border-emerald-500/10">
-                                            <span class="text-white font-bold text-xs block">Level 2: Physical</span>
-                                            <span class="text-slate-500 text-[10px]">Escorting individuals off-site. No strikes.</span>
-                                        </div>
-                                        <div class="pb-4 border-b border-emerald-500/10">
-                                            <span class="text-white font-bold text-xs block">Level 3: Less-Lethal</span>
-                                            <span class="text-slate-500 text-[10px]">Taser or OC spray (if certified/equipped).</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-red-500 font-bold text-xs block uppercase">Level 4: Lethal</span>
-                                            <span class="text-slate-500 text-[10px]">Grave bodily threat defense only.</span>
-                                        </div>
-                                    </div>
+                        <!-- Security SOP -->
+                        <div id="cj-security" class="civ-sub-content hidden space-y-8">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">SEC-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Private Security</h2>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                <h3 class="text-xl font-bold text-white mb-4">Armed vs. Unarmed Standards</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">All security personnel must adhere to RCSA standards. Armed guards require state certification. Use of force is strictly for the defense of life and property.</p>
+                                <div class="p-6 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                    <strong class="text-white text-[10px] uppercase block mb-2">Protocol: Observe & Report</strong>
+                                    <p class="text-xs text-slate-500 italic">"Security is the secondary line of defense. Your primary duty is documentation and LEO notification."</p>
                                 </div>
                             </div>
                         </div>
-                    </section>
 
-                    <!-- SECTION: PUBLIC WORKS -->
-                    <section class="space-y-8">
-                        <div class="flex items-center gap-4">
-                            <h2 class="text-2xl font-black uppercase italic text-white m-0">Public Works Division Guide</h2>
-                            <div class="h-px bg-slate-800 flex-1"></div>
-                        </div>
-                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <!-- DOT -->
-                            <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden flex flex-col">
-                                <div class="bg-orange-600 p-6 text-white text-center">
-                                    <i data-lucide="cone" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                                    <h3 class="text-lg font-black uppercase m-0">D.O.T.</h3>
-                                </div>
-                                <div class="p-6 flex-1 space-y-4">
-                                    <p class="text-[10px] text-slate-400 leading-relaxed uppercase font-bold tracking-wider border-b border-slate-800 pb-2">Roadway & Signs</p>
-                                    <p class="text-xs text-slate-500 leading-relaxed">Maintenance of state highways, signage replacement, and traffic signal repair. DOT ensures all RCSA Title III traffic devices are functional.</p>
-                                </div>
+                        <!-- Towing SOP -->
+                        <div id="cj-towing" class="civ-sub-content hidden space-y-8">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">TOW-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Towing & Recovery</h2>
                             </div>
-                            <!-- San Power -->
-                            <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden flex flex-col">
-                                <div class="bg-yellow-500 p-6 text-black text-center">
-                                    <i data-lucide="zap" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                                    <h3 class="text-lg font-black uppercase m-0">San Power</h3>
-                                </div>
-                                <div class="p-6 flex-1 space-y-4">
-                                    <p class="text-[10px] text-slate-400 leading-relaxed uppercase font-bold tracking-wider border-b border-slate-800 pb-2">Electrical Grid</p>
-                                    <p class="text-xs text-slate-500 leading-relaxed">Response to power outages, transformer explosions, and downed lines. Critical during storm events and major accidents.</p>
-                                </div>
-                            </div>
-                            <!-- Sanitation -->
-                            <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden flex flex-col">
-                                <div class="bg-emerald-700 p-6 text-white text-center">
-                                    <i data-lucide="trash-2" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                                    <h3 class="text-lg font-black uppercase m-0">Sanitation</h3>
-                                </div>
-                                <div class="p-6 flex-1 space-y-4">
-                                    <p class="text-[10px] text-slate-400 leading-relaxed uppercase font-bold tracking-wider border-b border-slate-800 pb-2">Waste Management</p>
-                                    <p class="text-xs text-slate-500 leading-relaxed">Residential and commercial waste collection. Monitors for illegal dumping violations under RCSA 6.03.</p>
-                                </div>
-                            </div>
-                            <!-- Water/Gas -->
-                            <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden flex flex-col">
-                                <div class="bg-blue-600 p-6 text-white text-center">
-                                    <i data-lucide="droplet" class="w-10 h-10 mx-auto mb-2 opacity-50"></i>
-                                    <h3 class="text-lg font-black uppercase m-0">Water & Gas</h3>
-                                </div>
-                                <div class="p-6 flex-1 space-y-4">
-                                    <p class="text-[10px] text-slate-400 leading-relaxed uppercase font-bold tracking-wider border-b border-slate-800 pb-2">Utility Service</p>
-                                    <p class="text-xs text-slate-500 leading-relaxed">Management of underground piping, water treatment facilities, and gas line safety inspections.</p>
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
+                                <p class="text-slate-400 text-sm leading-relaxed">Tow operators provide critical logistics support. This includes roadside assistance and LEO-authorized impounds.</p>
+                                <div class="bg-orange-500/10 border border-orange-500/20 p-4 rounded-xl">
+                                    <p class="text-orange-400 text-[10px] font-bold uppercase m-0">Safety Alert: Amber lighting MUST be active when on-scene or towing below flow of traffic.</p>
                                 </div>
                             </div>
                         </div>
-                    </section>
 
-                    <!-- Other Roles -->
-                    <section class="grid md:grid-cols-3 gap-8">
-                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
-                            <h3 class="text-white font-black uppercase italic text-sm flex items-center gap-3">
-                                <i data-lucide="truck" class="text-emerald-500"></i> Towing & Impound
-                            </h3>
-                            <p class="text-slate-500 text-xs leading-relaxed">Authorized impound services for LEO. Must follow RCSA 3.14/3.15 protocols during scene arrival. Always use amber lighting when stationary on a highway.</p>
+                        <!-- Coroner SOP -->
+                        <div id="cj-coroner" class="civ-sub-content hidden space-y-8">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">ME-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Medical Examiner</h2>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
+                                <p class="text-slate-400 text-sm leading-relaxed">The Medical Examiner's office handles the documentation and transport of remains. Close coordination with Law Enforcement investigators is mandatory.</p>
+                            </div>
                         </div>
-                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
-                            <h3 class="text-white font-black uppercase italic text-sm flex items-center gap-3">
-                                <i data-lucide="skull" class="text-emerald-500"></i> Medical Examiner
-                            </h3>
-                            <p class="text-slate-500 text-xs leading-relaxed">Forensic services for the state. Do not cross LEO perimeters without authorization. Focus on scene integrity and remain transport.</p>
-                        </div>
-                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
-                            <h3 class="text-white font-black uppercase italic text-sm flex items-center gap-3">
-                                <i data-lucide="video" class="text-emerald-500"></i> Media Rights
-                            </h3>
-                            <p class="text-slate-500 text-xs leading-relaxed">As per RCSA (14)10, media has the right to record government employees in public. Do not interfere with active operations.</p>
-                        </div>
-                    </section>
+                    </article>
                 </div>
             </div>
 
@@ -1042,9 +974,6 @@
                                     <div class="flex gap-3 text-[10px] text-slate-500">
                                         <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Comprehensive S.O.P. manual required.
                                     </div>
-                                    <div class="flex gap-3 text-[10px] text-slate-500">
-                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Clear business model and community impact.
-                                    </div>
                                 </div>
                             </div>
 
@@ -1056,69 +985,31 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
                                         <span class="text-white font-bold text-[9px] block uppercase mb-1">Branding</span>
-                                        <p class="text-[9px] text-slate-500">Custom uniforms, logos, and badges.</p>
+                                        <p class="text-[9px] text-slate-500">Custom uniforms & logos.</p>
                                     </div>
                                     <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
                                         <span class="text-white font-bold text-[9px] block uppercase mb-1">Fleet</span>
-                                        <p class="text-[9px] text-slate-500">Custom vehicle liveries and decals.</p>
-                                    </div>
-                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
-                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Signage</span>
-                                        <p class="text-[9px] text-slate-500">MLO interior branding and exteriors.</p>
-                                    </div>
-                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
-                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Technical</span>
-                                        <p class="text-[9px] text-slate-500">Custom prop and inventory item assets.</p>
+                                        <p class="text-[9px] text-slate-500">Custom vehicle liveries.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Compliance & Regulations -->
-                    <section class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
-                            <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
-                                <i data-lucide="clipboard-check" class="text-orange-500"></i> Regulatory Compliance
-                            </h3>
-                            <div class="space-y-6">
-                                <div class="flex gap-4">
-                                    <div class="bg-slate-800 p-3 rounded-xl h-fit"><i data-lucide="flame" class="w-5 h-5 text-red-500"></i></div>
-                                    <div>
-                                        <strong class="text-white text-xs block mb-1">Fire Marshal Inspection</strong>
-                                        <p class="text-[10px] text-slate-400 leading-relaxed">All official factions must pass a monthly fire safety inspection. Failure to maintain extinguishers and clear exits will result in temporary suspension of business licenses.</p>
-                                    </div>
+                    <section class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
+                        <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
+                            <i data-lucide="map-pin" class="text-blue-500"></i> Property & Logistics
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <p class="text-[10px] text-slate-400 leading-relaxed m-0">Official factions are eligible for customized interiors (MLOs) and designated parking/inventory zones. This requires an approved faction registration.</p>
+                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700 space-y-3">
+                                <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                    <span class="text-white text-[10px] font-bold">Custom MLO Request</span>
+                                    <span class="text-slate-500 text-[9px] uppercase">Approved Only</span>
                                 </div>
-                                <div class="flex gap-4">
-                                    <div class="bg-slate-800 p-3 rounded-xl h-fit"><i data-lucide="heart-pulse" class="w-5 h-5 text-emerald-500"></i></div>
-                                    <div>
-                                        <strong class="text-white text-xs block mb-1">State Certification</strong>
-                                        <p class="text-[10px] text-slate-400 leading-relaxed">Medical and Security factions require specialized state certifications before being allowed to operate in public spaces.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
-                            <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
-                                <i data-lucide="map-pin" class="text-blue-500"></i> Property & Logistics
-                            </h3>
-                            <div class="space-y-4">
-                                <p class="text-[10px] text-slate-400 leading-relaxed">Official factions are eligible for customized interiors (MLOs) and designated parking/inventory zones.</p>
-                                
-                                <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700 space-y-3">
-                                    <div class="flex justify-between items-center border-b border-slate-700 pb-2">
-                                        <span class="text-white text-[10px] font-bold">Custom MLO Request</span>
-                                        <span class="text-slate-500 text-[9px] uppercase">Approved Factions Only</span>
-                                    </div>
-                                    <div class="flex justify-between items-center border-b border-slate-700 pb-2">
-                                        <span class="text-white text-[10px] font-bold">Asset Texture Upload</span>
-                                        <span class="text-slate-500 text-[9px] uppercase">Developer Review Required</span>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-white text-[10px] font-bold">Custom Dispatch Codes</span>
-                                        <span class="text-slate-500 text-[9px] uppercase">Included</span>
-                                    </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white text-[10px] font-bold">Asset Texture Upload</span>
+                                    <span class="text-slate-500 text-[9px] uppercase">Review Required</span>
                                 </div>
                             </div>
                         </div>

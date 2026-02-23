@@ -132,6 +132,22 @@ function openCivTab(tabName, event) {
     lucide.createIcons();
 }
 
+function openCivSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("civ-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("civ-sub-tab");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
+        buttons[i].classList.add("text-slate-400", "hover:bg-slate-800");
+    }
+    document.getElementById(subTabName).classList.remove("hidden");
+    event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
+    event.currentTarget.classList.remove("text-slate-400", "hover:bg-slate-800");
+    lucide.createIcons();
+}
+
 // UTILITIES
 function toggleAccordion(id) {
     const content = document.getElementById(id);
