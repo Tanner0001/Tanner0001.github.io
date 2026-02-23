@@ -65,12 +65,12 @@ function openSubTab(subTabName, event) {
     }
     const buttons = document.getElementsByClassName("sub-tab");
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-orange-600", "text-white");
+        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
     document.getElementById(subTabName).classList.remove("hidden", "active");
     document.getElementById(subTabName).classList.add("active");
-    event.currentTarget.classList.add("active", "bg-orange-600", "text-white");
+    event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
     lucide.createIcons();
 }
 
@@ -81,11 +81,11 @@ function openPenalSubTab(subTabName, event) {
     }
     const buttons = document.getElementsByClassName("sub-tab-penal");
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-orange-600", "text-white");
+        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
     document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-orange-600", "text-white");
+    event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
 }
 
 function openUniformSubTab(subTabName, event) {
@@ -95,11 +95,11 @@ function openUniformSubTab(subTabName, event) {
     }
     const buttons = document.getElementsByClassName("sub-tab-uniform");
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-orange-600", "text-white");
+        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
     document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-orange-600", "text-white");
+    event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
 }
 
 // FD PORTAL TABS
@@ -322,7 +322,7 @@ function renderPenalCode(filter = '') {
     
     if (tabContainer.innerHTML.trim() === "") {
         tabContainer.innerHTML = Object.keys(penalData).map((key, index) => `
-            <button class="sub-tab-penal ${index === 0 ? 'active bg-orange-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+            <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
                     onclick="openPenalSubTab('p-${key}', event)">
                 ${getDisplayName(key)}
             </button>
@@ -342,7 +342,7 @@ function renderPenalCode(filter = '') {
                 foundMatch = true;
                 html += `
                     <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700 mb-6">
-                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-orange-300 font-bold uppercase tracking-widest text-[10px]">${section.title}</div>
+                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-[10px]">${section.title}</div>
                         <div class="p-6 divide-y divide-slate-800 space-y-4">
                             ${filteredLaws.map(law => `
                                 <div class="flex justify-between items-start pt-4 first:pt-0">
@@ -377,7 +377,7 @@ function getClassStyle(cls) {
         case 'MISDEMEANOR': return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20';
         case 'INFRACTION': return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
         case 'DEFINITION': return 'bg-slate-700/50 text-slate-300 border-slate-600';
-        case 'PROCEDURE': return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+        case 'PROCEDURE': return 'bg-orange-500/10 text-sky-400 border-orange-500/20';
         default: return 'bg-slate-500/10 text-slate-500 border-slate-500/20';
     }
 }
@@ -387,7 +387,7 @@ function renderVehicles() {
     const tabContainer = document.getElementById('vehicle-tabs');
     const dataContainer = document.getElementById('vehicle-data-container');
     tabContainer.innerHTML = Object.keys(vehicleData).map((key, index) => `
-        <button class="sub-tab ${index === 0 ? 'active bg-orange-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest" 
+        <button class="sub-tab ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest" 
                 onclick="openSubTab('v-${key}', event)">
             ${key.toUpperCase()}
         </button>
@@ -397,7 +397,7 @@ function renderVehicles() {
             <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
                 <div class="responsive-table-container">
                     <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-orange-300 text-[10px] uppercase font-bold tracking-[0.2em]">
+                        <thead class="bg-slate-900/50 text-sky-300 text-[10px] uppercase font-bold tracking-[0.2em]">
                             <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800 text-sm">
@@ -405,7 +405,7 @@ function renderVehicles() {
                                 <tr class="hover:bg-slate-800/30 transition-colors">
                                     <td class="px-8 py-4 text-slate-500 font-bold">${v.role}</td>
                                     <td class="px-8 py-4 text-white">${v.model}</td>
-                                    <td class="px-8 py-4 text-right font-mono text-orange-400">${v.code}</td>
+                                    <td class="px-8 py-4 text-right font-mono text-sky-400">${v.code}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
