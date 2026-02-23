@@ -148,6 +148,34 @@ function openCivSubTab(subTabName, event) {
     lucide.createIcons();
 }
 
+function openCivVehicleSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("civ-vehicle-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("sub-tab-civ-v");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    document.getElementById(subTabName).classList.remove("hidden");
+    event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
+}
+
+function openFDVehicleSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("fd-vehicle-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("sub-tab-fd-v");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-red-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    document.getElementById(subTabName).classList.remove("hidden");
+    event.currentTarget.classList.add("active", "bg-red-600", "text-white");
+}
+
 // UTILITIES
 function toggleAccordion(id) {
     const content = document.getElementById(id);
@@ -188,21 +216,102 @@ function toggleManualSidebar() {
 // DATA ENGINE
 let penalData = null;
 let vehicleData = null;
+let civVehicleData = null;
+let fdVehicleData = null;
 
 async function loadAllData() {
     try {
         const cacheBuster = `?v=${Date.now()}`;
-        const [penalRes, vehicleRes] = await Promise.all([
+        const [penalRes, vehicleRes, civVehRes, fdVehRes] = await Promise.all([
             fetch('penal_code.json' + cacheBuster),
-            fetch('vehicles.json' + cacheBuster)
+            fetch('vehicles.json' + cacheBuster),
+            fetch('civ_vehicles.json' + cacheBuster),
+            fetch('fd_vehicles.json' + cacheBuster)
         ]);
         penalData = await penalRes.json();
         vehicleData = await vehicleRes.json();
+        civVehicleData = await civVehRes.json();
+        fdVehicleData = await fdVehRes.json();
+
         renderPenalCode();
         renderVehicles();
+        renderCivVehicles();
+        renderFDVehicles();
     } catch (err) {
         console.error("Data Load Error:", err);
     }
+}
+
+function renderCivVehicles() {
+    if (!civVehicleData) return;
+    const tabContainer = document.getElementById('civ-vehicle-tabs');
+    const dataContainer = document.getElementById('civ-vehicle-data-container');
+    
+    tabContainer.innerHTML = Object.keys(civVehicleData).map((key, index) => `
+        <button class="sub-tab-civ-v ${index === 0 ? 'active bg-emerald-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+                onclick="openCivVehicleSubTab('cv-${key}', event)">
+            ${key.toUpperCase()}
+        </button>
+    `).join('');
+
+    dataContainer.innerHTML = Object.keys(civVehicleData).map((key, index) => `
+        <div id="cv-${key}" class="civ-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
+            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                <div class="responsive-table-container">
+                    <table class="w-full text-left m-0">
+                        <thead class="bg-slate-900/50 text-emerald-400 text-[10px] uppercase font-bold tracking-[0.2em]">
+                            <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm">
+                            ${civVehicleData[key].map(v => `
+                                <tr class="hover:bg-slate-800/30 transition-colors text-left">
+                                    <td class="px-8 py-4 text-slate-500 font-bold text-left">${v.role}</td>
+                                    <td class="px-8 py-4 text-white text-left">${v.model}</td>
+                                    <td class="px-8 py-4 text-right font-mono text-emerald-400">${v.code}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderFDVehicles() {
+    if (!fdVehicleData) return;
+    const tabContainer = document.getElementById('fd-vehicle-tabs');
+    const dataContainer = document.getElementById('fd-vehicle-data-container');
+    
+    tabContainer.innerHTML = Object.keys(fdVehicleData).map((key, index) => `
+        <button class="sub-tab-fd-v ${index === 0 ? 'active bg-red-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+                onclick="openFDVehicleSubTab('fv-${key}', event)">
+            ${key.toUpperCase()}
+        </button>
+    `).join('');
+
+    dataContainer.innerHTML = Object.keys(fdVehicleData).map((key, index) => `
+        <div id="fv-${key}" class="fd-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
+            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                <div class="responsive-table-container">
+                    <table class="w-full text-left m-0">
+                        <thead class="bg-slate-900/50 text-red-400 text-[10px] uppercase font-bold tracking-[0.2em]">
+                            <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm">
+                            ${fdVehicleData[key].map(v => `
+                                <tr class="hover:bg-slate-800/30 transition-colors text-left">
+                                    <td class="px-8 py-4 text-slate-500 font-bold text-left">${v.role}</td>
+                                    <td class="px-8 py-4 text-white text-left">${v.model}</td>
+                                    <td class="px-8 py-4 text-right font-mono text-red-400">${v.code}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `).join('');
 }
 
 function renderPenalCode(filter = '') {

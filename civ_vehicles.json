@@ -1,0 +1,14 @@
+{
+    "security": [
+        { "role": "Patrol Unit", "model": "Security Stanier", "code": "sec_stanier" },
+        { "role": "CIT Transport", "model": "Armored Stockade", "code": "stockade" }
+    ],
+    "publicworks": [
+        { "role": "Utility Response", "model": "Utility Truck", "code": "utility" },
+        { "role": "DOT Maintenance", "model": "Bison Flatbed", "code": "bison3" }
+    ],
+    "towing": [
+        { "role": "Standard Tow", "model": "Flatbed Tow", "code": "flatbed" },
+        { "role": "Small Recovery", "model": "Towtruck (Slamvan)", "code": "towtruck2" }
+    ]
+}
