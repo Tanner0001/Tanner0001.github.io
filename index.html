@@ -15,6 +15,19 @@
     <div id="main-hub" class="min-h-screen flex flex-col items-center p-6 bg-[url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png')] bg-cover bg-center bg-fixed relative overflow-y-auto pt-20">
         <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>
         
+        <!-- Pinned Announcement -->
+        <div class="relative z-10 w-full max-w-4xl mb-12">
+            <div class="bg-red-500/10 border border-red-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl">
+                <div class="bg-red-500 p-4 rounded-2xl animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.4)]">
+                    <i data-lucide="alert-octagon" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <span class="block text-[10px] font-black uppercase tracking-[0.3em] text-red-500 mb-1">Server Status Update</span>
+                    <p class="text-white text-lg font-bold m-0 italic">Dynamic Gaming is currently closed and plans to re-open <span class="text-red-400">May 2026</span>.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="relative z-10 text-center mb-12">
             <h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase italic text-white mb-2">Dynamic <span class="text-orange-500">Gaming</span></h1>
             <p class="text-slate-400 uppercase tracking-[0.5em] text-sm font-bold border-t border-slate-800 pt-4 inline-block mb-8">Community Resource Hub</p>
@@ -1009,48 +1022,116 @@
             </div>
 
             <div id="civ-business" class="civ-tab-content hidden text-left">
-                <div class="max-w-4xl mx-auto space-y-12">
-                    <section class="space-y-6">
-                        <h2 class="text-2xl font-black uppercase italic text-white flex items-center gap-4">
-                            <i data-lucide="award" class="text-emerald-500"></i> Starting a Business
-                        </h2>
-                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6">
-                            <p class="text-slate-400 leading-relaxed text-sm">Dynamic Gaming encourages entrepreneurial spirit. Whether you want to open a small coffee shop or a massive logistics firm, the state is here to support your growth. Follow the steps below to get licensed.</p>
-                            
-                            <div class="grid md:grid-cols-3 gap-4">
-                                <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                    <span class="text-emerald-500 font-black italic block mb-1">Step 01</span>
-                                    <strong class="text-white text-xs block mb-1 uppercase">Concept</strong>
-                                    <p class="text-[10px] text-slate-500">Define your business model, services, and location requirements.</p>
+                <div class="max-w-5xl mx-auto space-y-16">
+                    <!-- Faction Registration Guide -->
+                    <section class="space-y-8">
+                        <div class="flex items-center gap-4">
+                            <h2 class="text-2xl font-black uppercase italic text-white m-0">Business Faction Registration</h2>
+                            <div class="h-px bg-slate-800 flex-1"></div>
+                        </div>
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6">
+                                <h3 class="text-emerald-500 font-black uppercase tracking-widest text-sm flex items-center gap-2">
+                                    <i data-lucide="users" class="w-5 h-5"></i> 1.0 Becoming an Official Faction
+                                </h3>
+                                <p class="text-slate-400 text-xs leading-relaxed">Top-tier businesses can apply for Official Faction status. This grants the business a permanent place in the server's lore, dedicated radio frequencies, and inclusion in governmental briefings.</p>
+                                <div class="space-y-3">
+                                    <div class="flex gap-3 text-[10px] text-slate-500">
+                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Minimum of 5 active employees.
+                                    </div>
+                                    <div class="flex gap-3 text-[10px] text-slate-500">
+                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Comprehensive S.O.P. manual required.
+                                    </div>
+                                    <div class="flex gap-3 text-[10px] text-slate-500">
+                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Clear business model and community impact.
+                                    </div>
                                 </div>
-                                <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                    <span class="text-emerald-500 font-black italic block mb-1">Step 02</span>
-                                    <strong class="text-white text-xs block mb-1 uppercase">Application</strong>
-                                    <p class="text-[10px] text-slate-500">Submit your business plan through the community Discord for approval.</p>
-                                </div>
-                                <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                    <span class="text-emerald-500 font-black italic block mb-1">Step 03</span>
-                                    <strong class="text-white text-xs block mb-1 uppercase">Licensing</strong>
-                                    <p class="text-[10px] text-slate-500">Once approved, obtain your state business license and start operations.</p>
+                            </div>
+
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6">
+                                <h3 class="text-emerald-500 font-black uppercase tracking-widest text-sm flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-5 h-5"></i> 2.0 Custom Asset Integration
+                                </h3>
+                                <p class="text-slate-400 text-xs leading-relaxed">To maintain a professional server image, all business factions must have custom textures and assets added to the server core. This ensures your brand is unique and recognizable.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
+                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Branding</span>
+                                        <p class="text-[9px] text-slate-500">Custom uniforms, logos, and badges.</p>
+                                    </div>
+                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
+                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Fleet</span>
+                                        <p class="text-[9px] text-slate-500">Custom vehicle liveries and decals.</p>
+                                    </div>
+                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
+                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Signage</span>
+                                        <p class="text-[9px] text-slate-500">MLO interior branding and exteriors.</p>
+                                    </div>
+                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
+                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Technical</span>
+                                        <p class="text-[9px] text-slate-500">Custom prop and inventory item assets.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="space-y-6">
-                        <h2 class="text-2xl font-black uppercase italic text-white flex items-center gap-4">
-                            <i data-lucide="layout-grid" class="text-emerald-500"></i> Common Business Types
-                        </h2>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl">
-                                <h4 class="text-white font-bold mb-2 flex items-center gap-2"><i data-lucide="utensils" class="w-4 h-4 text-emerald-500"></i> Service & Hospitality</h4>
-                                <p class="text-slate-500 text-xs leading-relaxed">Restaurants, bars, and clubs. These businesses are high-traffic and focus on social roleplay and community engagement.</p>
-                            </div>
-                            <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl">
-                                <h4 class="text-white font-bold mb-2 flex items-center gap-2"><i data-lucide="wrench" class="w-4 h-4 text-emerald-500"></i> Automotive & Repair</h4>
-                                <p class="text-slate-500 text-xs leading-relaxed">Mechanic shops and performance tuning. Essential for vehicle maintenance and customization roleplay.</p>
+                    <!-- Compliance & Regulations -->
+                    <section class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
+                            <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
+                                <i data-lucide="clipboard-check" class="text-orange-500"></i> Regulatory Compliance
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="flex gap-4">
+                                    <div class="bg-slate-800 p-3 rounded-xl h-fit"><i data-lucide="flame" class="w-5 h-5 text-red-500"></i></div>
+                                    <div>
+                                        <strong class="text-white text-xs block mb-1">Fire Marshal Inspection</strong>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">All official factions must pass a monthly fire safety inspection. Failure to maintain extinguishers and clear exits will result in temporary suspension of business licenses.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4">
+                                    <div class="bg-slate-800 p-3 rounded-xl h-fit"><i data-lucide="heart-pulse" class="w-5 h-5 text-emerald-500"></i></div>
+                                    <div>
+                                        <strong class="text-white text-xs block mb-1">State Certification</strong>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">Medical and Security factions require specialized state certifications before being allowed to operate in public spaces.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
+                            <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
+                                <i data-lucide="map-pin" class="text-blue-500"></i> Property & Logistics
+                            </h3>
+                            <div class="space-y-4">
+                                <p class="text-[10px] text-slate-400 leading-relaxed">Official factions are eligible for customized interiors (MLOs) and designated parking/inventory zones.</p>
+                                
+                                <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700 space-y-3">
+                                    <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                        <span class="text-white text-[10px] font-bold">Custom MLO Request</span>
+                                        <span class="text-slate-500 text-[9px] uppercase">Approved Factions Only</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                        <span class="text-white text-[10px] font-bold">Asset Texture Upload</span>
+                                        <span class="text-slate-500 text-[9px] uppercase">Developer Review Required</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-white text-[10px] font-bold">Custom Dispatch Codes</span>
+                                        <span class="text-slate-500 text-[9px] uppercase">Included</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Application CTA -->
+                    <section class="bg-emerald-900/20 border border-emerald-500/20 p-8 rounded-[3rem] text-center">
+                        <h2 class="text-2xl font-black uppercase italic text-white mb-4">Register Your Faction</h2>
+                        <p class="text-slate-400 text-xs mb-8 max-w-lg mx-auto">Prepare your custom texture files (.ytd/.yft) and your operational manual before opening a registration ticket.</p>
+                        <a href="https://discord.gg/epgJVK6cnf" target="_blank" class="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black uppercase italic tracking-wider transition-all hover:scale-105 shadow-2xl">
+                            <i data-lucide="file-plus" class="w-5 h-5"></i>
+                            Open Faction Registration Ticket
+                        </a>
                     </section>
                 </div>
             </div>
