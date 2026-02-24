@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Gaming - Civilian Portal</title>
+    <link rel="icon" type="image/png" href="../images/Favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen">
+
+    <div id="civ-portal" class="min-h-screen">
+        <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-[60] px-6 py-3 flex justify-between items-center text-left">
+            <div class="flex items-center gap-4">
+                <a href="../" class="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+                </a>
+                <div class="h-4 w-px bg-slate-800"></div>
+                <span class="text-white font-black italic uppercase text-xs tracking-tighter">Dynamic <span class="text-emerald-500">CIVILIAN</span></span>
+            </div>
+        </nav>
+
+        <header class="h-32 md:h-40 flex items-center justify-center text-center bg-gradient-to-b from-emerald-900/20 to-slate-950 border-b border-emerald-900/50 shadow-2xl">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-black tracking-tighter uppercase italic text-white m-0 text-center">Civilian Operations</h1>
+                <p class="text-emerald-400 mt-1 uppercase tracking-widest text-[10px] font-bold text-center">Los Santos & Blaine County Public Resource</p>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
+            <div class="flex border-b border-slate-700 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap">
+                <button class="civ-tab active p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-dashboard', event)">Dashboard</button>
+                <button class="civ-tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-jobs', event)">Job Guide</button>
+                <button class="civ-tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-vehicles', event)">Vehicles</button>
+                <button class="civ-tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openCivTab('civ-business', event)">Business</button>
+            </div>
+
+            <!-- Civ Tab Contents -->
+            <div id="civ-dashboard" class="civ-tab-content active text-left">
+                <div class="p-4 mb-8 rounded-xl text-emerald-300 glassmorphism border-emerald-900/20 text-left">
+                    <p class="font-bold uppercase text-[10px] tracking-widest text-left">Public Notice:</p>
+                    <p class="text-sm text-left">Welcome to the Civilian Resource Portal. Here you can find information on public service jobs, starting a business, and registering factions.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div onclick="openCivTab('civ-jobs', event)" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all cursor-pointer text-left">
+                        <i data-lucide="briefcase" class="w-8 h-8 text-emerald-500 mb-4"></i>
+                        <h3 class="text-white font-bold uppercase italic mb-2">Employment</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">View all civilian job SOPs and requirements.</p>
+                    </div>
+                    <div onclick="openCivTab('civ-business', event)" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all cursor-pointer text-left">
+                        <i data-lucide="building" class="w-8 h-8 text-emerald-500 mb-4"></i>
+                        <h3 class="text-white font-bold uppercase italic mb-2">Registration</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">Register your business as an official server faction.</p>
+                    </div>
+                    <div onclick="window.location.href='../'" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl group hover:border-emerald-500 transition-all cursor-pointer text-left">
+                        <i data-lucide="home" class="w-8 h-8 text-emerald-500 mb-4"></i>
+                        <h3 class="text-white font-bold uppercase italic mb-2">Hub Home</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed">Return to the main server dashboard.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="civ-jobs" class="civ-tab-content hidden text-left">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Civ Job Sidebar -->
+                    <aside class="hidden lg:block w-72 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 h-fit sticky top-24">
+                        <h2 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6">Operations Directory</h2>
+                        <div class="space-y-2">
+                            <button onclick="openCivSubTab('cj-pw', event)" class="civ-sub-tab active w-full flex items-center gap-3 p-3 rounded-xl bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="hard-hat" class="w-4 h-4"></i> Public Works
+                            </button>
+                            <button onclick="openCivSubTab('cj-security', event)" class="civ-sub-tab w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="shield" class="w-4 h-4"></i> Private Security
+                            </button>
+                            <button onclick="openCivSubTab('cj-towing', event)" class="civ-sub-tab w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="truck" class="w-4 h-4"></i> Towing & Recovery
+                            </button>
+                            <button onclick="openCivSubTab('cj-coroner', event)" class="civ-sub-tab w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <i data-lucide="skull" class="w-4 h-4"></i> Medical Examiner
+                            </button>
+                        </div>
+                    </aside>
+
+                    <!-- Job Content Area -->
+                    <article class="flex-1 space-y-12 pb-20">
+                        <!-- Public Works SOP -->
+                        <div id="cj-pw" class="civ-sub-content active space-y-12 text-left">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">DPW-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Public Works Operations</h2>
+                            </div>
+                            
+                            <div class="space-y-12">
+                                <!-- 1.0 Department Mission -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-emerald-500"><i data-lucide="wrench" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">1.0 Department Mission</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">The Department of Public Works (DPW) is the primary agency responsible for the health, safety, and functionality of San Andreas' infrastructure. From the towering electrical grids of Los Santos to the rural highways of Blaine County, DPW personnel ensure that the state remains operational. This role is a high-visibility public service position that requires technical precision and an unwavering commitment to safety. You are the first line of defense against infrastructure failure and environmental hazards.</p>
+                                </section>
+
+                                <!-- 2.0 DOT & Roadway Safety -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-8">
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">2.0 Roadway Safety (D.O.T.)</h3>
+                                        <p class="text-slate-400 text-sm leading-relaxed">The Department of Transportation (DOT) division focuses on the maintained portions of public highways. Your primary duty is the installation, repair, and protection of traffic control devices and road surfaces. Working near active traffic is the most dangerous aspect of this job; therefore, strict adherence to work-zone protocols is mandatory.</p>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 gap-8">
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-orange-500 font-bold text-[10px] uppercase mb-3 flex items-center gap-2"><i data-lucide="cone" class="w-4 h-4"></i> Work Zone Setup</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed">When performing repairs, you must establish a 'Safety Taper' using traffic cones. Tapers should begin 100 meters prior to the work site, using a 45-degree angle to gradually shift traffic into adjacent lanes. "Construction Ahead" signage must be placed visible to oncoming drivers to comply with RCSA Title III standards.</p>
+                                        </div>
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-orange-500 font-bold text-[10px] uppercase mb-3 flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Traffic Coordination</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed">For major repairs or bridge inspections, coordinate with the San Andreas Highway Patrol (SAHP) to provide a rolling roadblock or full road closure. Never attempt to stop high-speed traffic with hand signals alone; always utilize vehicle-mounted arrow boards and amber lighting.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 3.0 Utility & Grid Response -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-8">
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">3.0 Utility & Grid Response</h3>
+                                        <p class="text-slate-400 text-sm leading-relaxed">The Utilities division manages the state’s Power, Water, and Gas systems. Personnel in this role are 'Emergency Responders' and must be prepared to react to infrastructure disasters at a moment's notice.</p>
+                                    </div>
+                                    <div class="space-y-6">
+                                        <div class="p-8 bg-yellow-500/5 border border-yellow-500/20 rounded-[2.5rem]">
+                                            <h4 class="text-yellow-500 font-black text-xs uppercase mb-4">San Power: Downed Line Protocol</h4>
+                                            <p class="text-slate-400 text-xs leading-relaxed mb-4">Downed electrical lines represent a Tier-1 life threat. Upon arrival, you must establish a 50-meter perimeter. Do not allow any personnel (including LEO/FD) to touch the affected vehicle or structure until the grid has been confirmed isolated at the nearest substation. If fire is present, coordinate with the Fire Department for specialized non-conductive suppression.</p>
+                                        </div>
+                                        <div class="p-8 bg-blue-500/5 border border-blue-500/20 rounded-[2.5rem]">
+                                            <h4 class="text-blue-500 font-black text-xs uppercase mb-4">Water & Gas: Leak Management</h4>
+                                            <p class="text-slate-400 text-xs leading-relaxed">Gas leaks require immediate evacuation of the surrounding area. Utilize gas-sniffing equipment to determine the saturation levels before attempting a valve-shutoff. Water main breaks require careful excavation to prevent further damage to nearby fiber-optic or electrical lines.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 4.0 Sanitation & Health -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">4.0 Sanitation & Environmental Health</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">Sanitation workers are the primary monitors for environmental health. While performing waste collection routes, you are also acting as a reporter for the state. Under RCSA 6.03 (Illegal Dumping), you are required to document and report any unauthorized disposal of hazardous materials or bulk waste in public spaces.</p>
+                                    <div class="bg-emerald-500/10 p-6 rounded-2xl border border-emerald-500/20">
+                                        <strong class="text-white text-[10px] uppercase block mb-2">Illegal Dumping Enforcement:</strong>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed italic m-0">If you observe a citizen dumping waste into a waterway or on a public highway, do not confront them directly. Record the vehicle plate and notify Law Enforcement immediately. Your documentation is the key to successfully charging violators under Title VI of the RCSA.</p>
+                                    </div>
+                                </section>
+
+                                <!-- 5.0 Legal & Safety Compliance -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-red-500"><i data-lucide="shield-check" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">5.0 Legal & Safety Compliance</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">All DPW personnel must adhere to the RCSA at all times. Failure to follow safety standards results in personal liability and potential criminal negligence charges.</p>
+                                    <ul class="space-y-4 list-none p-0">
+                                        <li class="flex gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700">
+                                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+                                            <p class="text-xs text-slate-400"><strong>RCSA 3.16 Compliance:</strong> High-visibility vests and protective headgear must be worn at all times while on a public roadway.</p>
+                                        </li>
+                                        <li class="flex gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700">
+                                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+                                            <p class="text-xs text-slate-400"><strong>Lighting Standards:</strong> Amber lighting is a tool for safety, not a permit to violate traffic laws. Lights should only be active when stationary or when operating as a slow-moving hazard.</p>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+
+                        <!-- Security SOP -->
+                        <div id="cj-security" class="civ-sub-content hidden space-y-12 text-left">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">SEC-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Private Security Protocols</h2>
+                            </div>
+
+                            <div class="space-y-12">
+                                <!-- 1.0 Professional Conduct -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-emerald-500"><i data-lucide="award" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">1.0 Professional Conduct & Diplomacy</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">Dynamic Security personnel represent the server's standard for professional civilian roleplay. You must remain calm, patient, and highly observant at all times. Prioritize **Diplomacy over Violence**; weapons are a final resort, not a regular tool of the trade.</p>
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-emerald-500 font-bold text-[10px] uppercase mb-2">Situational Awareness</h4>
+                                            <p class="text-[10px] text-slate-500 leading-relaxed italic">Maintain a 360-degree awareness. Watch your corners, your front, and your back. Your primary duty is the protection of yourself, your partner, and the property you are assigned to guard.</p>
+                                        </div>
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-emerald-500 font-bold text-[10px] uppercase mb-2">LEO Cooperation</h4>
+                                            <p class="text-[10px] text-slate-500 leading-relaxed italic">Comply with and assist Law Enforcement Officers at all times. Security and LEO share the same goal of public safety. Treat peace officers with the utmost respect.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 2.0 Command & Operations -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase tracking-widest">2.0 Command & Supervisory Protocols</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">Security is one of the premier civilian career paths on the server. Proper command structure ensures that all agencies (Static Guard, CIT, and Private Contractors) operate within server rules and SOPs.</p>
+                                    <div class="bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-2xl">
+                                        <h4 class="text-white font-bold text-xs uppercase mb-2 flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-emerald-500"></i> Supervisor Request Policy</h4>
+                                        <p class="text-xs text-slate-400 leading-relaxed">If a citizen or LEO requests a security supervisor, the request **must** be facilitated immediately. Even if no supervisor is physically present on-site, personnel must attempt to contact one via the radio frequency.</p>
+                                    </div>
+                                </section>
+
+                                <!-- 3.0 Operational Roles -->
+                                <section class="grid md:grid-cols-2 gap-8">
+                                    <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
+                                        <h3 class="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-3">
+                                            <i data-lucide="banknote" class="text-emerald-500"></i> 3.0 Cash-In-Transit (CIT)
+                                        </h3>
+                                        <p class="text-slate-500 text-xs leading-relaxed">CIT units are responsible for the armored transport of high-value assets and currency. This role requires heightened awareness and strict adherence to route protocols to prevent robberies.</p>
+                                    </div>
+                                    <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-4">
+                                        <h3 class="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-3">
+                                            <i data-lucide="shield-check" class="text-emerald-500"></i> 3.1 Static & Patrol
+                                        </h3>
+                                        <p class="text-slate-500 text-xs leading-relaxed">Standard guards focused on securing a fixed location or performing designated patrol loops. Focus is on trespassing enforcement and 'Observe & Report' procedures.</p>
+                                    </div>
+                                </section>
+
+                                <!-- 4.0 Vehicle & Lighting -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase tracking-widest">4.0 Vehicle & Lighting Standards</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">Personnel must utilize an authorized agency patrol vehicle while on duty. **Personal vehicles are strictly prohibited for security operations.**</p>
+                                    
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div class="space-y-4">
+                                            <h4 class="text-orange-500 font-black text-[10px] uppercase tracking-widest">Lighting & Siren Auth</h4>
+                                            <ul class="text-[10px] text-slate-500 space-y-2 list-disc list-inside">
+                                                <li><strong>Amber Lighting:</strong> Standard for all patrol and utility response.</li>
+                                                <li><strong>Red Lighting:</strong> Authorized for high-security property defense and government contract operations.</li>
+                                                <li><strong>Siren Usage:</strong> Authorized ONLY within private property boundaries or during active government escort contracts to preserve life/property.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-red-500/5 border border-red-500/20 p-6 rounded-2xl">
+                                            <h4 class="text-red-500 font-black text-[10px] uppercase mb-2">Prohibited Actions</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed mb-0">Never use red lights or sirens on public highways to bypass traffic signals or perform traffic stops. These tools are restricted to private property or approved government escorts. Violations constitute Impersonation of a Government Employee (RCSA 1.06).</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Use of Force Continuum -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-orange-500"><i data-lucide="shield-alert" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white mb-8">Security Use of Force Continuum</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                                            <span class="text-emerald-500 font-bold text-[10px] uppercase">Level 1: Verbal</span>
+                                            <span class="text-slate-500 text-[9px]">Presence and commands to leave.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                                            <span class="text-blue-500 font-bold text-[10px] uppercase">Level 2: Soft Control</span>
+                                            <span class="text-slate-500 text-[9px]">Escorting individuals off-property.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
+                                            <span class="text-yellow-500 font-bold text-[10px] uppercase">Level 3: Hard Control</span>
+                                            <span class="text-slate-500 text-[9px]">Physical restraint / Handcuffing.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
+                                            <span class="text-orange-500 font-bold text-[10px] uppercase">Level 4: Less Lethal</span>
+                                            <span class="text-slate-500 text-[9px]">Taser/OC (Armed certification required).</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                                            <span class="text-red-500 font-bold text-[10px] uppercase text-red-500">Level 5: Lethal</span>
+                                            <span class="text-slate-500 text-[9px]">Grave threat defense only.</span>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                        <!-- Towing SOP -->
+                        <div id="cj-towing" class="civ-sub-content hidden space-y-8 text-left">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">TOW-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left text-left">Towing & Recovery Operations</h2>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-8 text-left text-left">
+                                <section class="space-y-4 text-left">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest text-left">1.0 Role Overview</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed text-left">As a Towing & Recovery Specialist, you are the backbone of the state's logistical infrastructure. Your primary objective is to maintain the flow of traffic by clearing disabled vehicles, responding to accidents, and facilitating law enforcement impounds. This role requires a high level of technical skill, safety awareness, and professional diplomacy. You are often the first person a citizen sees after a stressful accident, making you a key representative of the civilian service community. Maintaining a calm and professional demeanor is essential for successful roleplay in this field.</p>
+                                </section>
+
+                                <section class="space-y-4 text-left">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest text-left">2.0 Operational Standards</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed text-left">Before beginning your shift, you must perform a full vehicle inspection. Ensure your winch, chains, and amber lighting systems are fully operational. While on duty, you must wear high-visibility safety apparel at all times to comply with RCSA 3.16. When arriving at a scene, especially those involving Law Enforcement or Fire/EMS, you must stage your vehicle in a way that protects the scene while allowing for a quick exit. Always check in with the Incident Commander (IC) before touching any vehicle within a designated perimeter. Failure to coordinate can lead to evidence contamination or safety hazards.</p>
+                                </section>
+
+                                <section class="space-y-4 text-left">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest text-left">3.0 Legal & Safety Guidelines</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed text-left">Safety is the non-negotiable priority of Towing operations. Under RCSA 3.14 and 3.15, you must document all pre-existing damage to a vehicle before it is hooked or loaded. This prevents fraudulent liability claims against your agency. Amber lighting must be activated whenever you are stationary on a public roadway or when transporting a load that significantly limits your speed. Remember: You are a civilian contractor. You have no authority to pursue vehicles or perform traffic stops. Unauthorized use of equipment to interfere with traffic will result in immediate termination and potential criminal charges for Impersonation (RCSA 1.06).</p>
+                                </section>
+
+                                <div class="bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-2xl text-left">
+                                    <h4 class="text-white font-bold text-xs uppercase mb-2 flex items-center gap-2 text-left"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> Professional Code</h4>
+                                    <p class="text-[10px] text-slate-400 leading-relaxed italic m-0 text-left">Always provide a receipt for services, treat the public with respect, and coordinate closely with the San Andreas Highway Patrol. Efficiency and safety are the hallmarks of a master tow operator.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coroner SOP -->
+                        <div id="cj-coroner" class="civ-sub-content hidden space-y-12 text-left">
+                            <div class="flex items-center gap-4 mb-8 text-left">
+                                <span class="bg-emerald-900/30 text-emerald-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-900/50">ME-SOP</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Medical Examiner Manual</h2>
+                            </div>
+                            
+                            <div class="space-y-12">
+                                <!-- 1.0 Role & Responsibility -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-8 opacity-5 text-emerald-500"><i data-lucide="skull" class="w-48 h-48"></i></div>
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">1.0 Office of the Medical Examiner</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">The Office of the Medical Examiner (OME) is a specialized civilian forensic agency. Your primary mandate is to investigate all sudden, violent, or suspicious deaths within the state. Unlike standard EMS, your focus is not on life-saving measures, but on the clinical documentation of the deceased and the collection of physical evidence. You are a scientist in the field, and your findings are often the deciding factor in criminal prosecutions and civil litigation.</p>
+                                </section>
+
+                                <!-- 2.0 Scene Integrity & Evidence -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-8">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">2.0 Forensic Scene Preservation</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">A death scene is a primary crime scene until proven otherwise. Your interaction with the scene must be clinical and documented. Every movement within the "Inner Perimeter" must be authorized by the Lead LEO Investigator on-scene.</p>
+                                    
+                                    <div class="grid md:grid-cols-2 gap-8">
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-emerald-500 font-bold text-[10px] uppercase mb-3 flex items-center gap-2"><i data-lucide="camera" class="w-4 h-4"></i> Photographic Evidence</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed">Before the body is moved, you must photograph the deceased in their original position. Capture the surrounding environment, including shell casings, weapons, or drug paraphernalia. These "In-Situ" photos are vital for reconstruction.</p>
+                                        </div>
+                                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                            <h4 class="text-emerald-500 font-bold text-[10px] uppercase mb-3 flex items-center gap-2"><i data-lucide="clipboard-list" class="w-4 h-4"></i> Chain of Custody</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed">All personal effects found on the deceased (Wallets, Phones, Jewelry) must be bagged and tagged separately. You are responsible for the legal chain of custody until the property is transferred to the LEO evidence locker.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 3.0 Post-Mortem Procedures -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">3.0 Identification & Transport</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">Positive identification is the priority once the scene is secured. If the deceased carries no ID, use fingerprints or distinguishing marks (Tattoos/Scars) for the preliminary report.</p>
+                                    
+                                    <div class="p-8 bg-emerald-500/5 border border-emerald-500/20 rounded-[2.5rem]">
+                                        <h4 class="text-white font-black text-xs uppercase mb-4 flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4 text-emerald-500"></i> Removal & Logistics</h4>
+                                        <ul class="text-[10px] text-slate-400 space-y-3 list-none p-0">
+                                            <li class="flex gap-3"><i data-lucide="check" class="w-3 h-3 text-emerald-500 mt-0.5"></i> Utilize a professional remain-transport bag for all removals.</li>
+                                            <li class="flex gap-3"><i data-lucide="check" class="w-3 h-3 text-emerald-500 mt-0.5"></i> Ensure the transport vehicle is staged away from public view to maintain dignity.</li>
+                                            <li class="flex gap-3"><i data-lucide="check" class="w-3 h-3 text-emerald-500 mt-0.5"></i> Log the "Time of Arrival" and "Time of Removal" for the Case File.</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- 4.0 Multi-Agency Coordination -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">4.0 Multi-Agency Coordination</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">The Medical Examiner works at the intersection of Law Enforcement and Public Health. Your role requires professional communication across all departments.</p>
+                                    <div class="grid md:grid-cols-3 gap-6">
+                                        <div class="p-5 bg-orange-500/5 border border-orange-500/20 rounded-2xl">
+                                            <strong class="text-orange-500 text-[10px] uppercase block mb-2">With LEO</strong>
+                                            <p class="text-[9px] text-slate-500">Provide preliminary cause of death (Homicide/Suicide/Accidental) to assist investigators.</p>
+                                        </div>
+                                        <div class="p-5 bg-red-500/5 border border-red-500/20 rounded-2xl">
+                                            <strong class="text-red-500 text-[10px] uppercase block mb-2">With Fire/EMS</strong>
+                                            <p class="text-[9px] text-slate-500">Coordinate the "Pronouncement of Death" if EMS was performing life-saving measures.</p>
+                                        </div>
+                                        <div class="p-5 bg-emerald-500/5 border border-emerald-500/20 rounded-2xl">
+                                            <strong class="text-emerald-500 text-[10px] uppercase block mb-2">With Public</strong>
+                                            <p class="text-[9px] text-slate-500">Do not release the names of the deceased to the media or public. Refer all inquiries to LEO PIO.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 5.0 Professional Integrity -->
+                                <section class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] space-y-6">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest">5.0 Professional Integrity</h3>
+                                    <p class="text-slate-400 text-sm leading-relaxed">The Medical Examiner’s role is one of immense responsibility. You are representing the state during a citizen’s most tragic moment. Any conduct that compromises the dignity of the deceased or the integrity of an investigation—including "Scene Looting" or unauthorized disclosure of details—will result in immediate permanent removal from the civilian registry and criminal prosecution.</p>
+                                </section>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div id="civ-vehicles" class="civ-tab-content hidden text-left">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Civilian Fleet Database</h1>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official registration and authorized spawn codes for public service vehicles.</p>
+                </header>
+
+                <div id="civ-vehicle-tabs" class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
+                </div>
+
+                <div id="civ-vehicle-data-container">
+                    <!-- Dynamic content will be injected here -->
+                </div>
+            </div>
+
+            <div id="civ-business" class="civ-tab-content hidden text-left">
+                <div class="max-w-5xl mx-auto space-y-16">
+                    <!-- Faction Registration Guide -->
+                    <section class="space-y-8">
+                        <div class="flex items-center gap-4">
+                            <h2 class="text-2xl font-black uppercase italic text-white m-0">Business Faction Registration</h2>
+                            <div class="h-px bg-slate-800 flex-1"></div>
+                        </div>
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6">
+                                <h3 class="text-emerald-500 font-black uppercase tracking-widest text-sm flex items-center gap-2">
+                                    <i data-lucide="users" class="w-5 h-5"></i> 1.0 Becoming an Official Faction
+                                </h3>
+                                <p class="text-slate-400 text-xs leading-relaxed">Top-tier businesses can apply for Official Faction status. This grants the business a permanent place in the server's lore, dedicated radio frequencies, and inclusion in governmental briefings.</p>
+                                <div class="space-y-3">
+                                    <div class="flex gap-3 text-[10px] text-slate-500">
+                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Minimum of 5 active employees.
+                                    </div>
+                                    <div class="flex gap-3 text-[10px] text-slate-500">
+                                        <i data-lucide="check-circle" class="w-3 h-3 text-emerald-500"></i> Comprehensive S.O.P. manual required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6">
+                                <h3 class="text-emerald-500 font-black uppercase tracking-widest text-sm flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-5 h-5"></i> 2.0 Custom Asset Integration
+                                </h3>
+                                <p class="text-slate-400 text-xs leading-relaxed">To maintain a professional server image, all business factions must have custom textures and assets added to the server core. This ensures your brand is unique and recognizable.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
+                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Branding</span>
+                                        <p class="text-[9px] text-slate-500">Custom uniforms & logos.</p>
+                                    </div>
+                                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700">
+                                        <span class="text-white font-bold text-[9px] block uppercase mb-1">Fleet</span>
+                                        <p class="text-[9px] text-slate-500">Custom vehicle liveries.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem]">
+                        <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs flex items-center gap-3">
+                            <i data-lucide="map-pin" class="text-blue-500"></i> Property & Logistics
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <p class="text-[10px] text-slate-400 leading-relaxed m-0">Official factions are eligible for customized interiors (MLOs) and designated parking/inventory zones. This requires an approved faction registration.</p>
+                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700 space-y-3">
+                                <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                    <span class="text-white text-[10px] font-bold">Custom MLO Request</span>
+                                    <span class="text-slate-500 text-[9px] uppercase">Approved Only</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white text-[10px] font-bold">Asset Texture Upload</span>
+                                    <span class="text-slate-500 text-[9px] uppercase">Review Required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Application CTA -->
+                    <section class="bg-emerald-900/20 border border-emerald-500/20 p-8 rounded-[3rem] text-center">
+                        <h2 class="text-2xl font-black uppercase italic text-white mb-4">Register Your Faction</h2>
+                        <p class="text-slate-400 text-xs mb-8 max-w-lg mx-auto">Prepare your custom texture files (.ytd/.yft) and your operational manual before opening a registration ticket.</p>
+                        <a href="https://discord.gg/epgJVK6cnf" target="_blank" class="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black uppercase italic tracking-wider transition-all hover:scale-105 shadow-2xl">
+                            <i data-lucide="file-plus" class="w-5 h-5"></i>
+                            Open Faction Registration Ticket
+                        </a>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer id="global-footer" class="text-center py-20 text-slate-700 text-[10px] uppercase tracking-[0.4em] font-black">
+        Dynamic Gaming // RESTRICTED ACCESS // 2026
+    </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-slate-950/90 backdrop-blur-2xl p-4 md:p-12">
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[110]">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        
+        <button onclick="changeImage(-1)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 p-4 rounded-full text-white transition-all z-[110]">
+            <i data-lucide="chevron-left" class="w-8 h-8"></i>
+        </button>
+        
+        <div class="relative w-full h-full flex items-center justify-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 object-contain">
+        </div>
+
+        <button onclick="changeImage(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 p-4 rounded-full text-white transition-all z-[110]">
+            <i data-lucide="chevron-right" class="w-8 h-8"></i>
+        </button>
+    </div>
+
+    <script src="../script.js?v=1.1"></script>
+</body>
+</html>

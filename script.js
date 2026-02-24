@@ -1,32 +1,17 @@
+// PATH DETECTION
+const isSubfolder = window.location.pathname.includes('/leo/') || 
+                    window.location.pathname.includes('/fd/') || 
+                    window.location.pathname.includes('/civ/');
+const basePath = isSubfolder ? '../' : '';
+
 // PORTAL NAVIGATION
 function enterPortal(type) {
-    document.getElementById('main-hub').classList.add('hidden');
-    document.getElementById('global-footer').classList.remove('hidden');
-    
-    // Hide all portals first to be safe
-    document.getElementById('leo-portal').classList.add('hidden');
-    document.getElementById('fd-portal').classList.add('hidden');
-    document.getElementById('civ-portal').classList.add('hidden');
-
-    if (type === 'leo') {
-        document.getElementById('leo-portal').classList.remove('hidden');
-    } else if (type === 'fd') {
-        document.getElementById('fd-portal').classList.remove('hidden');
-    } else if (type === 'civ') {
-        document.getElementById('civ-portal').classList.remove('hidden');
-    }
-    window.scrollTo(0,0);
-    lucide.createIcons();
+    // If we're on the main hub, we can just navigate to the subfolder
+    window.location.href = type + '/';
 }
 
 function showHub() {
-    document.getElementById('leo-portal').classList.add('hidden');
-    document.getElementById('fd-portal').classList.add('hidden');
-    document.getElementById('civ-portal').classList.add('hidden');
-    document.getElementById('global-footer').classList.add('hidden');
-    document.getElementById('main-hub').classList.remove('hidden');
-    window.scrollTo(0,0);
-    lucide.createIcons();
+    window.location.href = basePath || './';
 }
 
 // MAIN TAB SWITCHING (LEO)
@@ -38,8 +23,10 @@ function openTab(tabName) {
         x[i].classList.remove("active");
     }
     const target = document.getElementById(tabName);
-    target.classList.remove("hidden");
-    target.classList.add("active");
+    if (target) {
+        target.classList.remove("hidden");
+        target.classList.add("active");
+    }
 
     var tabs = document.getElementsByClassName("tab");
     for (i = 0; i < tabs.length; i++) {
@@ -68,9 +55,14 @@ function openSubTab(subTabName, event) {
         buttons[i].classList.remove("active", "bg-sky-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
-    document.getElementById(subTabName).classList.remove("hidden", "active");
-    document.getElementById(subTabName).classList.add("active");
-    event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+    const target = document.getElementById(subTabName);
+    if (target) {
+        target.classList.remove("hidden", "active");
+        target.classList.add("active");
+    }
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+    }
     lucide.createIcons();
 }
 
@@ -84,8 +76,9 @@ function openPenalSubTab(subTabName, event) {
         buttons[i].classList.remove("active", "bg-sky-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
-    document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
 }
 
 function openUniformSubTab(subTabName, event) {
@@ -98,8 +91,9 @@ function openUniformSubTab(subTabName, event) {
         buttons[i].classList.remove("active", "bg-sky-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
-    document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
 }
 
 // FD PORTAL TABS
@@ -112,8 +106,9 @@ function openFDTab(tabName, event) {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove("active");
     }
-    document.getElementById(tabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active");
+    const target = document.getElementById(tabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active");
     lucide.createIcons();
 }
 
@@ -127,8 +122,9 @@ function openCivTab(tabName, event) {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove("active");
     }
-    document.getElementById(tabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active");
+    const target = document.getElementById(tabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active");
     lucide.createIcons();
 }
 
@@ -142,9 +138,12 @@ function openCivSubTab(subTabName, event) {
         buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
         buttons[i].classList.add("text-slate-400", "hover:bg-slate-800");
     }
-    document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
-    event.currentTarget.classList.remove("text-slate-400", "hover:bg-slate-800");
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
+        event.currentTarget.classList.remove("text-slate-400", "hover:bg-slate-800");
+    }
     lucide.createIcons();
 }
 
@@ -158,8 +157,9 @@ function openCivVehicleSubTab(subTabName, event) {
         buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
-    document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
 }
 
 function openFDVehicleSubTab(subTabName, event) {
@@ -172,14 +172,16 @@ function openFDVehicleSubTab(subTabName, event) {
         buttons[i].classList.remove("active", "bg-red-600", "text-white");
         buttons[i].classList.add("text-slate-500");
     }
-    document.getElementById(subTabName).classList.remove("hidden");
-    event.currentTarget.classList.add("active", "bg-red-600", "text-white");
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-red-600", "text-white");
 }
 
 // UTILITIES
 function toggleAccordion(id) {
     const content = document.getElementById(id);
     const icon = document.getElementById(id + '-icon');
+    if (!content) return;
     if (content.classList.contains('hidden')) {
         content.classList.remove('hidden');
         if (icon) icon.setAttribute('data-lucide', 'chevron-up');
@@ -191,7 +193,7 @@ function toggleAccordion(id) {
 }
 
 function toggleManualSidebar() {
-    const sidebar = document.querySelector('#manual aside');
+    const sidebar = document.querySelector('#manual aside') || document.querySelector('#fd-manual aside') || document.querySelector('#civ-jobs aside');
     if (!sidebar) return;
     if (sidebar.classList.contains('hidden')) {
         sidebar.classList.remove('hidden');
@@ -223,10 +225,10 @@ async function loadAllData() {
     try {
         const cacheBuster = `?v=${Date.now()}`;
         const [penalRes, vehicleRes, civVehRes, fdVehRes] = await Promise.all([
-            fetch('penal_code.json' + cacheBuster),
-            fetch('vehicles.json' + cacheBuster),
-            fetch('civ_vehicles.json' + cacheBuster),
-            fetch('fd_vehicles.json' + cacheBuster)
+            fetch(basePath + 'penal_code.json' + cacheBuster),
+            fetch(basePath + 'vehicles.json' + cacheBuster),
+            fetch(basePath + 'civ_vehicles.json' + cacheBuster),
+            fetch(basePath + 'fd_vehicles.json' + cacheBuster)
         ]);
         penalData = await penalRes.json();
         vehicleData = await vehicleRes.json();
@@ -246,6 +248,7 @@ function renderCivVehicles() {
     if (!civVehicleData) return;
     const tabContainer = document.getElementById('civ-vehicle-tabs');
     const dataContainer = document.getElementById('civ-vehicle-data-container');
+    if (!tabContainer || !dataContainer) return;
     
     tabContainer.innerHTML = Object.keys(civVehicleData).map((key, index) => `
         <button class="sub-tab-civ-v ${index === 0 ? 'active bg-emerald-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
@@ -282,6 +285,7 @@ function renderFDVehicles() {
     if (!fdVehicleData) return;
     const tabContainer = document.getElementById('fd-vehicle-tabs');
     const dataContainer = document.getElementById('fd-vehicle-data-container');
+    if (!tabContainer || !dataContainer) return;
     
     tabContainer.innerHTML = Object.keys(fdVehicleData).map((key, index) => `
         <button class="sub-tab-fd-v ${index === 0 ? 'active bg-red-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
@@ -319,6 +323,7 @@ function renderPenalCode(filter = '') {
     const searchTerm = filter.toLowerCase();
     const tabContainer = document.getElementById('penal-tabs');
     const dataContainer = document.getElementById('penal-data-container');
+    if (!tabContainer || !dataContainer) return;
     
     if (tabContainer.innerHTML.trim() === "") {
         tabContainer.innerHTML = Object.keys(penalData).map((key, index) => `
@@ -386,6 +391,8 @@ function renderVehicles() {
     if (!vehicleData) return;
     const tabContainer = document.getElementById('vehicle-tabs');
     const dataContainer = document.getElementById('vehicle-data-container');
+    if (!tabContainer || !dataContainer) return;
+
     tabContainer.innerHTML = Object.keys(vehicleData).map((key, index) => `
         <button class="sub-tab ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest" 
                 onclick="openSubTab('v-${key}', event)">
@@ -437,14 +444,16 @@ let currentImageIndex = 0;
 function openLightbox(index) {
     currentImageIndex = index;
     const modal = document.getElementById('lightbox-modal');
-    document.getElementById('lightbox-img').src = galleryImages[index].src;
+    if (!modal) return;
+    document.getElementById('lightbox-img').src = basePath + galleryImages[index].src;
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     lucide.createIcons();
 }
 
 function closeLightbox() {
-    document.getElementById('lightbox-modal').classList.add('hidden');
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
 }
 
@@ -453,9 +462,10 @@ function changeImage(step) {
     if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
     if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
     const img = document.getElementById('lightbox-img');
+    if (!img) return;
     img.style.opacity = '0';
     setTimeout(() => {
-        img.src = galleryImages[currentImageIndex].src;
+        img.src = basePath + galleryImages[currentImageIndex].src;
         img.style.opacity = '1';
     }, 150);
 }

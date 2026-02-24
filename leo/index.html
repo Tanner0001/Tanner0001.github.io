@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Gaming - Law Enforcement Portal</title>
+    <link rel="icon" type="image/png" href="../images/Favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen">
+
+    <div id="leo-portal" class="min-h-screen">
+        <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-[60] px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="../" class="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+                </a>
+                <div class="h-4 w-px bg-slate-800"></div>
+                <span class="text-white font-black italic uppercase text-xs tracking-tighter">Dynamic <span class="text-orange-500">LEO</span></span>
+            </div>
+            <div class="flex gap-6">
+                <span class="text-[10px] text-slate-600 uppercase font-black tracking-widest hidden sm:block">Restricted Access // Phase 2</span>
+            </div>
+        </nav>
+
+        <header class="h-32 md:h-40 flex items-center justify-center text-center hero-gradient border-b border-sky-900/50 shadow-2xl">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-black tracking-tighter uppercase italic text-white m-0">Dynamic Gaming LE</h1>
+                <p class="text-sky-300 mt-1 uppercase tracking-widest text-[10px] font-bold">Official Resource Portal</p>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
+            <div class="flex border-b border-slate-700 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap">
+                <button class="tab active p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard')">Dashboard</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('manual')">Manual</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('agencies')">Agencies</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles')">Vehicles</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('uniforms')">Uniforms</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider text-slate-100" onclick="openTab('training')">Training</button>
+            </div>
+
+            <!-- LEO TAB CONTENTS START HERE -->
+            <div id="dashboard" class="tab-content active text-left">
+                <div class="p-4 mb-8 rounded-xl text-slate-200 glassmorphism border-orange-500/20">
+                    <p class="font-bold uppercase text-[10px] tracking-[0.2em] mb-1">Command Notice:</p>
+                    <p class="text-sm">Welcome to the Dynamic Gaming LE Portal. Ensure you review the updated RCSA Title III protocols in the Manual before your next shift.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                    <!-- Recruitment Process -->
+                    <section class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6 text-left">
+                        <h2 class="text-white font-black uppercase italic tracking-widest text-lg flex items-center gap-3">
+                            <i data-lucide="user-plus" class="text-orange-500"></i> Recruitment & Entry
+                        </h2>
+                        <p class="text-slate-400 text-xs leading-relaxed">Interested in serving San Andreas? Our recruitment process is designed to find professional, dedicated members who value high-quality roleplay and community safety.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700">
+                                <span class="w-8 h-8 flex items-center justify-center bg-slate-800 border border-orange-500/30 text-orange-500 rounded-xl text-xs font-black shadow-inner">01</span>
+                                <div class="flex-1">
+                                    <strong class="text-white text-xs block uppercase">Discord Application</strong>
+                                    <p class="text-[10px] text-slate-500">Must be a registered community member to submit an application via the #recruitment channel.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700">
+                                <span class="w-8 h-8 flex items-center justify-center bg-slate-800 border border-orange-500/30 text-orange-500 rounded-xl text-xs font-black shadow-inner">02</span>
+                                <div class="flex-1">
+                                    <strong class="text-white text-xs block uppercase">The Interview</strong>
+                                    <p class="text-[10px] text-slate-500">A quick verbal session with a training officer to discuss your experience and expectations.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700">
+                                <span class="w-8 h-8 flex items-center justify-center bg-slate-800 border border-orange-500/30 text-orange-500 rounded-xl text-xs font-black shadow-inner">03</span>
+                                <div class="flex-1">
+                                    <strong class="text-white text-xs block uppercase">Phase 1 Training</strong>
+                                    <p class="text-[10px] text-slate-500">One dedicated field training session covering radio, stops, and use of force protocols.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700">
+                                <span class="w-8 h-8 flex items-center justify-center bg-slate-800 border border-orange-500/30 text-orange-500 rounded-xl text-xs font-black shadow-inner">04</span>
+                                <div class="flex-1">
+                                    <strong class="text-white text-xs block uppercase">Probationary Period</strong>
+                                    <p class="text-[10px] text-slate-500">Newly cleared officers serve a 14-day probation to demonstrate consistency and integrity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mission & Duties -->
+                    <section class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-6 text-left">
+                        <h2 class="text-white font-black uppercase italic tracking-widest text-lg flex items-center gap-3">
+                            <i data-lucide="shield-check" class="text-orange-500"></i> Departmental Mission
+                        </h2>
+                        <p class="text-slate-400 text-xs leading-relaxed">The primary goal of Law Enforcement at Dynamic Gaming is to foster a safe, immersive, and legal environment for all citizens. We are not just "patrol officers"—we are storytellers who use the framework of the law to enhance every interaction.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-5 bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2">Public Safety</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic">Proactive patrol and incident response to preserve life and property.</p>
+                            </div>
+                            <div class="p-5 bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2">Legal Execution</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic">Fair and consistent enforcement of the Revised Code of San Andreas (RCSA).</p>
+                            </div>
+                            <div class="p-5 bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2">Professionalism</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic">Maintaining high standards in uniform, speech, and vehicle operation.</p>
+                            </div>
+                            <div class="p-5 bg-slate-800/50 border border-slate-700/50 rounded-2xl">
+                                <h4 class="text-white font-bold text-[10px] uppercase mb-2">Immersive RP</h4>
+                                <p class="text-[9px] text-slate-500 leading-relaxed italic">Using realistic procedures to deepen the immersion for all server members.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-orange-500/10 p-6 rounded-2xl border border-orange-500/20 text-center">
+                            <p class="text-white text-xs font-black uppercase italic mb-0">"To Serve, To Protect, and To Lead."</p>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Quick Links -->
+                    <section>
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 flex items-center gap-4">
+                            Quick Navigation <div class="h-px bg-slate-800 flex-1"></div>
+                        </h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="openTab('manual')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="book-open" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">S.O.P. Manual</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Procedures & Ethics</span>
+                            </button>
+                            <button onclick="openTab('agencies')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="building-2" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">Agencies</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Department Info</span>
+                            </button>
+                            <button onclick="openTab('vehicles')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="car" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">Vehicle Fleet</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Spawn Codes</span>
+                            </button>
+                            <button onclick="openTab('penalcode')" class="bg-slate-800/50 hover:bg-slate-700/50 p-4 rounded-2xl border border-slate-700 transition-all text-left group">
+                                <i data-lucide="gavel" class="w-5 h-5 text-orange-500 mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block text-sm font-bold text-white tracking-tight">Penal Code</span>
+                                <span class="text-[10px] text-slate-500 uppercase font-black">Laws & Sentencing</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Google Forms / External Links -->
+                    <section>
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-4 flex items-center gap-4">
+                            Official Forms <div class="h-px bg-slate-800 flex-1"></div>
+                        </h2>
+                        <div class="space-y-3">
+                            <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-sky-400/50 transition-all group">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-white">Accolades / Complaints</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Officer Conduct Reporting</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-sky-400/50 transition-all group">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="calendar-off" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-white">Leave of Absence</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">LOA Request Form</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
+                            </a>
+                            <a href="#" class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl hover:border-sky-400/50 transition-all group">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-orange-500/10 p-2 rounded-lg text-orange-500"><i data-lucide="clipboard-list" class="w-4 h-4"></i></div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-white">Incident Report</span>
+                                        <span class="text-[10px] text-slate-500 uppercase">Case Filing System</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="external-link" class="w-4 h-4 text-slate-600 group-hover:text-orange-500 transition-colors"></i>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div id="manual" class="tab-content">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <aside class="hidden lg:block w-72 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 h-fit sticky top-24">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Navigation</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Category: General -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-general')" class="w-full flex justify-between items-center text-sky-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>General Info</span>
+                                <i data-lucide="chevron-down" id="cat-general-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-general" class="space-y-1 ml-2">
+                                <li><a href="#section-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 1 Introduction</a></li>
+                                <li><a href="#section-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 2 Chain of Command</a></li>
+                                <li><a href="#section-11" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 11 Briefings</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Communications -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-comm')" class="w-full flex justify-between items-center text-sky-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Communications</span>
+                                <i data-lucide="chevron-down" id="cat-comm-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-comm" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-3" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 3 Radio Comms</a></li>
+                                <li><a href="#section-4" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 4 Patrol Zones</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Field Operations -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-field')" class="w-full flex justify-between items-center text-sky-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Field Operations</span>
+                                <i data-lucide="chevron-down" id="cat-field-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-field" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-6" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 6 Use of Force</a></li>
+                                <li><a href="#section-7" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 7 Traffic Stops</a></li>
+                                <li><a href="#section-8" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 8 Pursuits</a></li>
+                                <li><a href="#section-9" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 9 Apprehension</a></li>
+                                <li><a href="#section-10" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 10 Responding</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Divisions -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-divs')" class="w-full flex justify-between items-center text-sky-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Divisions</span>
+                                <i data-lucide="chevron-down" id="cat-divs-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-divs" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-5" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 5 Overview</a></li>
+                                <li><a href="#section-5-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 5.1 Duties</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Personnel -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-pers')" class="w-full flex justify-between items-center text-sky-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Professional Standards</span>
+                                <i data-lucide="chevron-down" id="cat-pers-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-pers" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-12" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 12 Reporting</a></li>
+                                <li><a href="#section-13" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 13 Discipline</a></li>
+                                <li><a href="#section-14" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 14 Activity</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Category: Equipment -->
+                        <div class="space-y-2">
+                            <button onclick="toggleAccordion('cat-equip')" class="w-full flex justify-between items-center text-sky-300 font-bold text-sm uppercase tracking-wider bg-slate-800/50 p-3 rounded-lg">
+                                <span>Equipment</span>
+                                <i data-lucide="chevron-down" id="cat-equip-icon" class="w-4 h-4"></i>
+                            </button>
+                            <ul id="cat-equip" class="hidden space-y-1 ml-2">
+                                <li><a href="#section-15" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15 General</a></li>
+                                <li><a href="#section-15-1" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.1 Firearms</a></li>
+                                <li><a href="#section-15-2" class="block p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg text-sm transition-all">Section 15.2 Less Lethal</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <div class="lg:hidden fixed bottom-6 right-6 z-50">
+                    <button class="bg-slate-700 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white" onclick="toggleManualSidebar()">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+        
+                <main class="flex-1 p-6 md:p-12 max-w-5xl">
+                    <article class="prose prose-invert max-w-none">
+                        <!-- Intro Header -->
+                        <div class="mb-16 text-center lg:text-left">
+                            <h1 class="text-5xl font-black uppercase italic text-white mb-4 leading-tight">Standard Operating <span class="text-orange-500">Procedures</span></h1>
+                            <p class="text-slate-400 text-xl max-w-2xl leading-relaxed">Official protocols and ethical guidelines for all sworn Law Enforcement Officers.</p>
+                            <div class="h-1.5 w-32 bg-sky-600 rounded-full mt-8 mx-auto lg:mx-0"></div>
+                        </div>
+
+                        <section id="section-1" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 1</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Introduction</h2>
+                            </div>
+                            
+                            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                                <div class="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50">
+                                    <p class="text-slate-300 leading-relaxed m-0">
+                                        This document sets forth the policies and procedures of the agency that all law enforcement officers must adhere to in order to perform their duties to the highest standard. It is the responsibility of each officer to comply with these rules and policies.
+                                    </p>
+                                </div>
+                                <div class="bg-slate-800/30 p-8 rounded-2xl border border-slate-700/50">
+                                    <p class="text-slate-300 leading-relaxed m-0">
+                                        Authorized law enforcement command staff may make changes to this document at any time. All changes will be clearly stated in the law enforcement bulletin.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div id="section-1-1" class="mb-12 bg-slate-800/20 p-8 rounded-3xl border border-slate-800">
+                                <h3 class="text-2xl font-black uppercase italic text-orange-500 mb-6 flex items-center gap-3">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i> 1.1 Core Ethics
+                                </h3>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Respect</h4>
+                                        <p class="text-slate-400 text-sm">Treat others with dignity. Refrain from disrespectful behavior, shouting, or profanity.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Service</h4>
+                                        <p class="text-slate-400 text-sm">Serve with dedication. Protect the community and assist those in need with no bias.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Excellence</h4>
+                                        <p class="text-slate-400 text-sm">Better yourself continuously. Be efficient in policy and maintain training standards.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4 class="text-white font-bold uppercase text-sm tracking-widest">Justice</h4>
+                                        <p class="text-slate-400 text-sm">Uphold the law for everyone, regardless of race, religion, gender, or orientation.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="section-1-2">
+                                <h3 class="text-2xl font-black uppercase italic text-orange-500 mb-6 flex items-center gap-3">
+                                    <i data-lucide="briefcase" class="w-6 h-6"></i> 1.2 Duties
+                                </h3>
+                                <ul class="list-none p-0 space-y-4">
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="heart" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Protect Life and Property</strong><span class="text-slate-400 text-sm">Be proactive and vigilant during patrols to deter crime.</span></div>
+                                    </li>
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="scale" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Maintain Order</strong><span class="text-slate-400 text-sm">Use de-escalation techniques to resolve conflicts and ensure security.</span></div>
+                                    </li>
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="gavel" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Enforce the Law</strong><span class="text-slate-400 text-sm">Adhere to and enforce all State and Federal laws strictly.</span></div>
+                                    </li>
+                                    <li class="flex gap-4 bg-slate-800/40 p-4 rounded-xl items-start">
+                                        <div class="bg-orange-500/20 p-2 rounded-lg text-orange-500 mt-1"><i data-lucide="users" class="w-4 h-4"></i></div>
+                                        <div><strong class="text-white block">Community Relations</strong><span class="text-slate-400 text-sm">Develop a sense of trust with the public through positive interaction.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section id="section-2" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 2</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Chain of Command</h2>
+                            </div>
+                            <p class="text-slate-400 mb-8 leading-relaxed">
+                                All law enforcement officers are subordinate to all ranks above their position, regardless of agency. Any and all departmental issues shall be discussed with respect to the Chain of Command.
+                            </p>
+                            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                                <table class="w-full text-left m-0">
+                                    <thead class="bg-slate-800/80 text-sky-300 text-xs uppercase font-bold tracking-[0.2em]">
+                                        <tr>
+                                            <th class="px-8 py-6">Command Grade</th>
+                                            <th class="px-8 py-6">Supervisory Grade</th>
+                                            <th class="px-8 py-6">Patrol Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-800">
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-5 text-white font-medium">Captain</td>
+                                            <td class="px-8 py-5 text-white font-medium">Sergeant</td>
+                                            <td class="px-8 py-5 text-white font-medium">Police Officer III</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-5 text-white font-medium">Lieutenant</td>
+                                            <td class="px-8 py-5 text-white font-medium">Corporal</td>
+                                            <td class="px-8 py-5 text-white font-medium">Police Officer II</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-8 py-5 text-slate-500 italic">---</td>
+                                            <td class="px-8 py-5 text-slate-500 italic">---</td>
+                                            <td class="px-8 py-5 text-white font-medium">Police Officer I</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section id="section-3" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 3</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Radio Communications</h2>
+                            </div>
+                            
+                            <div class="bg-sky-600/10 border border-orange-500/20 p-6 rounded-2xl mb-8">
+                                <p class="text-sky-300 font-bold m-0 flex items-center gap-2">
+                                    <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                                    Professional Standards Required
+                                </p>
+                                <p class="text-sky-300/80 text-sm mt-2 m-0 leading-relaxed">
+                                    Radio channels are for official communication only. Broadcasts must be clear, calm, and concise.
+                                </p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Standard Key-Up</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
+                                        <li>State your callsign clearly.</li>
+                                        <li>Broadcast your transmission.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">Active Situations</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
+                                        <li>State callsign and brief situation.</li>
+                                        <li>State current location (include postal).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest border-b border-slate-800 pb-2">Radio Frequencies</h3>
+                            <div class="grid sm:grid-cols-2 gap-4 mb-12">
+                                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                                    <span class="text-orange-500 font-black text-xs uppercase tracking-widest mb-2 block">Los Santos County</span>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-white text-lg font-bold">Patrol: 70</span>
+                                        <span class="text-slate-400 text-sm">TAC 1: 71 | TAC 2: 72</span>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                                    <span class="text-orange-500 font-black text-xs uppercase tracking-widest mb-2 block">Blaine County</span>
+                                    <div class="flex flex-col gap-1">
+                                        <span class="text-white text-lg font-bold">Patrol: 80</span>
+                                        <span class="text-slate-400 text-sm">TAC 1: 81 | TAC 2: 82</span>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest border-b border-slate-800 pb-2">Callsign Structure</h3>
+                            <div class="space-y-6">
+                                <!-- LSPD -->
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-lspd')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Los Santos Police Department</span>
+                                        <i data-lucide="chevron-down" id="cs-lspd-icon"></i>
+                                    </button>
+                                    <div id="cs-lspd" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="space-y-4">
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-sky-300">Chief of Police</strong> Car followed by 1 (e.g. CAR-1)</div>
+                                                <div><strong class="text-sky-300">Deputy Chief</strong> Car followed by 2 (e.g. CAR-2)</div>
+                                                <div><strong class="text-sky-300">Assistant Chief</strong> Car followed by single digit 3-7 (e.g. CAR-5)</div>
+                                                <div><strong class="text-sky-300">Captains</strong> Car followed by 1 or 2 digits 8-12 (e.g. CAR-8)</div>
+                                                <div><strong class="text-sky-300">Lieutenants</strong> Car followed by 1 or 2 digits 13-33 (e.g. CAR-20)</div>
+                                                <div><strong class="text-sky-300">Detectives</strong> Watch-DAVID-Unit (e.g. 2-DAVID-10)</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4">
+                                                <strong class="text-white block mb-2">Patrol Assignments</strong>
+                                                <ul class="list-none p-0 space-y-2">
+                                                    <li><strong class="text-sky-300">Sergeants:</strong> Watch followed by precinct (e.g. 2-NORA)</li>
+                                                    <li><strong class="text-sky-300">District Units:</strong> Watch-Precinct-Unit (e.g. 2-SAM-1)</li>
+                                                    <li><strong class="text-sky-300">Walking Beat:</strong> Watch-Precinct-61 to 69 (Sgt: 70)</li>
+                                                    <li><strong class="text-sky-300">Bicycle Beat:</strong> Watch-Precinct-81 to 89 (Sgt: 80)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4 grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-sky-300">Harbor</strong> HBR + 1 or 2 digits (HARBOR-1)</div>
+                                                <div><strong class="text-sky-300">Traffic</strong> T + 2 digits (TOM-15)</div>
+                                                <div><strong class="text-sky-300">SWAT</strong> Z + 2 digits (ZEBRA-20)</div>
+                                                <div><strong class="text-sky-300">K-9</strong> K-9 + 1 or 2 digits (1-15)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- LSCSO -->
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-lscso')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">LS County Sheriff’s Office</span>
+                                        <i data-lucide="chevron-down" id="cs-lscso-icon"></i>
+                                    </button>
+                                    <div id="cs-lscso" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="space-y-4">
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-sky-300">Sheriff</strong> County followed by 1 (e.g. COUNTY-1)</div>
+                                                <div><strong class="text-sky-300">Undersheriff</strong> County followed by 2 (e.g. COUNTY-2)</div>
+                                                <div><strong class="text-sky-300">Division Chiefs</strong> County single digit 3-7</div>
+                                                <div><strong class="text-sky-300">Detectives</strong> County 120-160</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4 grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-sky-300">North Precinct</strong> CHARLES 90-99 (Sgt: 2-CHARLES)</div>
+                                                <div><strong class="text-sky-300">South Precinct</strong> GEORGE 90-99 (Sgt: 2-GEORGE)</div>
+                                                <div><strong class="text-sky-300">City of Davis</strong> LINCOLN 90-99 (Sgt: 2-LINCOLN)</div>
+                                                <div><strong class="text-sky-300">Rockford Hills</strong> HENRY 290-299 (Sgt: 2-HENRY)</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4">
+                                                <strong class="text-white block mb-2">METRO Transit / Air / Marine</strong>
+                                                <ul class="list-none p-0 space-y-1">
+                                                    <li><strong class="text-sky-300">METRO 40-49</strong> Within City Limits</li>
+                                                    <li><strong class="text-sky-300">METRO 50-59</strong> Outside City Limits</li>
+                                                    <li><strong class="text-sky-300">GUARDIAN-1</strong> LE Ops / <strong class="text-sky-300">GUARDIAN-2</strong> SAR Ops</li>
+                                                    <li><strong class="text-sky-300">MARINE 1-59</strong> Marine Units</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- BCSD -->
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-bcsd')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Blaine County Sheriff’s Dept</span>
+                                        <i data-lucide="chevron-down" id="cs-bcsd-icon"></i>
+                                    </button>
+                                    <div id="cs-bcsd" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div><strong class="text-sky-300">Sheriff</strong> COUNTY-1</div>
+                                            <div><strong class="text-sky-300">Undersheriff</strong> COUNTY-2</div>
+                                            <div><strong class="text-sky-300">Bureau Chiefs</strong> County 3-6</div>
+                                            <div><strong class="text-sky-300">Lieutenants</strong> County 7-25</div>
+                                            <div><strong class="text-sky-300">Sergeants</strong> County 26-70</div>
+                                            <div><strong class="text-sky-300">Deputies</strong> County 100-600</div>
+                                            <div><strong class="text-sky-300">K-9</strong> K-9 1-10</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PBPD -->
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-pbpd')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Paleto Bay Police Department</span>
+                                        <i data-lucide="chevron-down" id="cs-pbpd-icon"></i>
+                                    </button>
+                                    <div id="cs-pbpd" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div><strong class="text-sky-300">Chief/Deputy</strong> CAR-1, CAR-2</div>
+                                            <div><strong class="text-sky-300">Assist. Chief</strong> CAR 3-5</div>
+                                            <div><strong class="text-sky-300">Captains</strong> CAR 6-9</div>
+                                            <div><strong class="text-sky-300">Lieutenants</strong> LINCOLN 10-22</div>
+                                            <div><strong class="text-sky-300">Sergeants</strong> SAM 100-300</div>
+                                            <div><strong class="text-sky-300">Detectives</strong> DAVID 100-300</div>
+                                            <div><strong class="text-sky-300">2-Man Patrol</strong> BAKER 100-400</div>
+                                            <div><strong class="text-sky-300">1-Man Patrol</strong> PAUL 100-400</div>
+                                            <div><strong class="text-sky-300">Motorcycle</strong> MARY 100-400</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SASP -->
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-sasp')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">State Patrol & Other Agencies</span>
+                                        <i data-lucide="chevron-down" id="cs-sasp-icon"></i>
+                                    </button>
+                                    <div id="cs-sasp" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="space-y-4">
+                                            <div class="grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-sky-300">Chief</strong> STATE-1</div>
+                                                <div><strong class="text-sky-300">Deputy Chiefs</strong> STATE 2-5</div>
+                                                <div><strong class="text-sky-300">Majors</strong> STATE 6-14</div>
+                                                <div><strong class="text-sky-300">Captains</strong> STATE 15-39</div>
+                                                <div><strong class="text-sky-300">Lieutenants</strong> STATE 40-99</div>
+                                                <div><strong class="text-sky-300">Sergeants</strong> STATE 100-299</div>
+                                                <div><strong class="text-sky-300">Troopers</strong> STATE 300-1299</div>
+                                                <div><strong class="text-sky-300">Motorcycle</strong> MARY 300-1299</div>
+                                                <div><strong class="text-sky-300">Commercial</strong> XRAY 700-999</div>
+                                                <div><strong class="text-sky-300">Air Support</strong> SMOKEY 1-3</div>
+                                            </div>
+                                            <div class="border-t border-slate-700/50 pt-4 grid md:grid-cols-2 gap-4">
+                                                <div><strong class="text-sky-300">State Parks</strong> PARKS 100-300</div>
+                                                <div><strong class="text-sky-300">Wildlife Officers</strong> WILDLIFE 100-200</div>
+                                                <div><strong class="text-sky-300">Wildlife Sgts</strong> WILDLIFE 20-50</div>
+                                                <div><strong class="text-sky-300">Wildlife Capts</strong> WILDLIFE 5-11</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Federal -->
+                                <div class="bg-slate-800/20 rounded-3xl overflow-hidden border border-slate-800">
+                                    <button onclick="toggleAccordion('cs-fed')" class="w-full flex justify-between items-center p-6 text-white hover:bg-slate-800/50 transition-all text-left">
+                                        <span class="font-black italic uppercase tracking-wider">Federal Agencies</span>
+                                        <i data-lucide="chevron-down" id="cs-fed-icon"></i>
+                                    </button>
+                                    <div id="cs-fed" class="hidden p-8 pt-0 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div><strong class="text-sky-300">Forest Service</strong> FOREST 100-200</div>
+                                            <div><strong class="text-sky-300">NPS</strong> NPS 100-200</div>
+                                            <div><strong class="text-sky-300">Border Patrol</strong> USBP 100-200</div>
+                                            <div><strong class="text-sky-300">Homeland Security</strong> DHS 100-200</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-4" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 4</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Agency Patrol Zones</h2>
+                            </div>
+                            <div class="space-y-6 text-slate-400 leading-relaxed">
+                                <p>Law enforcement agencies are assigned specific patrol zones within which they are responsible for maintaining public safety and order. Adherence to designated patrol zones is expected, with the exception of responding to mutual aid requests.</p>
+                                <p>In instances where multiple law enforcement agencies share jurisdiction over a particular zone, the agency represented by the designated color holds primary authority. Secondary jurisdiction extends to any other agencies operating within the shared zone.</p>
+                                <div class="bg-sky-600/10 border border-orange-500/20 p-6 rounded-2xl">
+                                    <p class="text-sky-300 font-bold m-0 italic">Cross-Jurisdiction Protocol</p>
+                                    <p class="text-sm mt-2 m-0">When pursuing a suspect and entering a zone outside of their agency's jurisdiction, law enforcement officers are obligated to promptly notify the primary jurisdiction holder of their entry and the circumstances surrounding it.</p>
+                                </div>
+                                <p class="font-bold text-white uppercase tracking-widest text-xs">Patrol Zone Map (Reference Required)</p>
+                            </div>
+                        </section>
+
+                        <section id="section-5" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 5</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Divisions</h2>
+                            </div>
+                            <p class="text-slate-400 mb-8">Primary duty divisions and units are the core of law enforcement, responsible for the department's patrol duties. Secondary duty divisions and units are auxiliary assignments.</p>
+                            
+                            <div class="rounded-3xl overflow-hidden glassmorphism border border-slate-700 mb-12">
+                                <table class="w-full text-left m-0">
+                                    <thead class="bg-slate-800/80 text-sky-300 text-[10px] uppercase font-bold tracking-[0.2em]">
+                                        <tr><th class="px-8 py-4">Field Operations (Primary)</th><th class="px-8 py-4">Support Operations (Secondary)</th></tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-800 text-sm">
+                                        <tr><td class="px-8 py-4 text-white">Patrol Division</td><td class="px-8 py-4 text-white">Aviation Unit</td></tr>
+                                        <tr><td class="px-8 py-4 text-white">Traffic Enforcement Division</td><td class="px-8 py-4 text-white">Marine Unit</td></tr>
+                                        <tr><td class="px-8 py-4 text-white">K-9 Unit</td><td class="px-8 py-4 text-white">Special Weapons and Tactics [P-III+]</td></tr>
+                                        <tr><td class="px-8 py-4 text-white">Criminal Investigations [P-II+]</td><td class="px-8 py-4 text-slate-500">---</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div id="section-5-1" class="space-y-8">
+                                <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest border-b border-slate-800 pb-2">Divisional Duties</h3>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                        <h4 class="text-orange-500 font-bold mb-2">Patrol Division</h4>
+                                        <p class="text-slate-400 text-sm m-0">The backbone of the department, fulfilling emergency response, traffic stops, and local ordinance enforcement.</p>
+                                    </div>
+                                    <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                        <h4 class="text-orange-500 font-bold mb-2">Traffic Enforcement</h4>
+                                        <p class="text-slate-400 text-sm m-0">Prioritizes smooth flow of traffic, monitoring highways, and investigating traffic accidents.</p>
+                                    </div>
+                                    <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                        <h4 class="text-orange-500 font-bold mb-2">K-9 Unit</h4>
+                                        <p class="text-slate-400 text-sm m-0">Criminal tracking and apprehension, detecting contraband, and assisting in high-risk searches.</p>
+                                    </div>
+                                    <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                        <h4 class="text-orange-500 font-bold mb-2">Investigations (CIU)</h4>
+                                        <p class="text-slate-400 text-sm m-0">Specialized detectives focusing on evidence gathering, warrants, and in-depth criminal investigation.</p>
+                                    </div>
+                                    <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                        <h4 class="text-orange-500 font-bold mb-2">Aviation & Marine</h4>
+                                        <p class="text-slate-400 text-sm m-0">Aerial surveillance, search and rescue, and maritime law enforcement.</p>
+                                    </div>
+                                    <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                        <h4 class="text-orange-500 font-bold mb-2">SWAT</h4>
+                                        <p class="text-slate-400 text-sm m-0">Hostage rescue, barricaded suspect intervention, and high-risk warrant execution.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-6" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 6</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Use of Force Continuum</h2>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">1. Compliant</h4>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Lowest Force</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Officer Presence:</strong> Use body language and position to deter or de-escalate.</p>
+                                </div>
+
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">2. Resistant (Passive)</h4>
+                                        <span class="text-[10px] bg-blue-500/20 text-blue-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Verbal</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Verbal Commands:</strong> Clear and concise commands to direct the subject's behavior.</p>
+                                </div>
+
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">3. Resistant (Active)</h4>
+                                        <span class="text-[10px] bg-yellow-500/20 text-yellow-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Soft Control</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Soft Empty-Hand:</strong> Technique such as physical compliance holds, wrist locks, and joint locks.</p>
+                                </div>
+
+                                <div class="group bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-white font-black uppercase italic m-0">4. Assaultive (Harm)</h4>
+                                        <span class="text-[10px] bg-orange-500/20 text-orange-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Hard Control</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0"><strong>Hard Empty-Hand / Less Lethal:</strong> Strikes, pressure points, takedowns, tasers, and batons.</p>
+                                </div>
+
+                                <div class="group bg-slate-900 p-6 rounded-2xl border border-red-900/50 hover:border-red-500 transition-all shadow-xl">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-red-500 font-black uppercase italic m-0">5. Serious Bodily Harm / Death</h4>
+                                        <span class="text-[10px] bg-red-500/20 text-red-500 px-2 py-0.5 rounded uppercase font-bold tracking-widest">Lethal Force</span>
+                                    </div>
+                                    <p class="text-slate-400 text-sm m-0 font-medium">Deadly force as a last resort to save life or prevent serious injury.</p>
+                                </div>
+                            </div>
+
+                            <div id="section-6-1" class="mt-12 bg-slate-800/20 border border-slate-700 p-8 rounded-3xl">
+                                <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-widest flex items-center gap-2">
+                                    <i data-lucide="microscope" class="w-5 h-5 text-orange-500"></i> 6.1 Investigation and Accountability
+                                </h3>
+                                <p class="text-slate-400 text-sm leading-relaxed m-0">If an officer is involved in an officer-involved shooting (OIS), officers who fired their weapon must relinquish their firearm at the request of a detective or supervisor. The officers must also serve a statement to the requestor, and return to the station to sign out a new firearm.</p>
+                            </div>
+                        </section>
+
+                        <!-- Remaining sections follow this pattern... -->
+                        <section id="section-7" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 7</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Traffic Stops</h2>
+                            </div>
+                            
+                            <div class="bg-slate-800/20 p-8 rounded-3xl border border-slate-800">
+                                <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest">Operational Flow</h3>
+                                <div class="space-y-4">
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">1</span>
+                                        <p class="text-slate-400 text-sm m-0">Activate emergency warning system (Lights/Sirens).</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">2</span>
+                                        <p class="text-slate-400 text-sm m-0">Update dispatch with status and location.</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">3</span>
+                                        <p class="text-slate-400 text-sm m-0">Run vehicle plate and registered owner for warrants.</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">4</span>
+                                        <p class="text-slate-400 text-sm m-0">Approach politely, state reason for stop, and request documents.</p>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <span class="bg-slate-700 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-1">5</span>
+                                        <p class="text-slate-400 text-sm m-0">Evaluate behavior for signs of impairment or hostility.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="section-7-1" class="mt-12 bg-slate-900 border border-red-900/30 p-8 rounded-3xl relative overflow-hidden">
+                                <div class="absolute top-0 right-0 p-4 opacity-10 text-red-500">
+                                    <i data-lucide="shield-alert" class="w-24 h-24"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-red-500 mb-6 uppercase tracking-widest flex items-center gap-2">
+                                    <i data-lucide="alert-triangle" class="w-5 h-5"></i> 7.1 High Risk Traffic Stops
+                                </h3>
+                                <div class="space-y-4 relative z-10">
+                                    <p class="text-slate-400 text-sm italic mb-6">Initiated upon investigation of a serious crime previously, currently, or about to be committed.</p>
+                                    <ul class="list-none p-0 space-y-3 text-slate-300 text-sm">
+                                        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i> Request backup immediately (Minimum 2 additional units).</li>
+                                        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i> Position secondary vehicle to the left; third vehicle behind/between.</li>
+                                        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i> Primary unit commands suspect: Keys out, walk backwards, knees down.</li>
+                                        <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i> Clear the vehicle only once all visible occupants are secured.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-8" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 8</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Vehicle Pursuits</h2>
+                            </div>
+                            
+                            <div class="space-y-8">
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-white font-bold mb-4">Tactical Intervention Techniques</h4>
+                                    <div class="grid md:grid-cols-3 gap-4">
+                                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700">
+                                            <span class="text-orange-500 font-black text-[10px] uppercase block mb-2">P.I.T. Maneuver</span>
+                                            <p class="text-slate-400 text-[11px] m-0 leading-relaxed text-left">Requires supervisor permission. Details: Speed, weather, traffic. Generally restricted above 70 MPH.</p>
+                                        </div>
+                                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700">
+                                            <span class="text-orange-500 font-black text-[10px] uppercase block mb-2">Rolling Roadblock</span>
+                                            <p class="text-slate-400 text-[11px] m-0 leading-relaxed text-left">Ideal with 4 units. Safe below 40 MPH. Requires supervisor permission.</p>
+                                        </div>
+                                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700">
+                                            <span class="text-orange-500 font-black text-[10px] uppercase block mb-2">Stop Sticks</span>
+                                            <p class="text-slate-400 text-[11px] m-0 leading-relaxed text-left">Safe and efficient termination. Ensure removal after deployment.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-sky-600/5 border border-orange-500/20 p-6 rounded-2xl">
+                                    <h4 class="text-white font-bold text-sm mb-3">Engagement Rules</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-2">
+                                        <li>Traffic violations alone are NOT sufficient for high-speed pursuit.</li>
+                                        <li>Officers shall not attempt to pass other units in pursuit.</li>
+                                        <li>At least one unit must stop to assess any officer-involved collisions.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-9" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 9</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Criminal Apprehension</h2>
+                            </div>
+
+                            <div class="space-y-6 mb-12">
+                                <p class="text-slate-400 leading-relaxed">Upon determination of probable cause for arrest and/or detention, law enforcement officers are to operate as directed below:</p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-slate-800/20 p-4 rounded-xl text-slate-300 text-xs flex gap-3">
+                                        <span class="text-orange-500 font-black italic">01</span> Restrain and search suspect/vehicle for illegal/dangerous items.
+                                    </div>
+                                    <div class="bg-slate-800/20 p-4 rounded-xl text-slate-300 text-xs flex gap-3">
+                                        <span class="text-orange-500 font-black italic">02</span> Retrieve and log evidence of crimes.
+                                    </div>
+                                    <div class="bg-slate-800/20 p-4 rounded-xl text-slate-300 text-xs flex gap-3">
+                                        <span class="text-orange-500 font-black italic">03</span> Run suspect name and vehicle plate for active warrants.
+                                    </div>
+                                    <div class="bg-slate-800/20 p-4 rounded-xl text-slate-300 text-xs flex gap-3">
+                                        <span class="text-orange-500 font-black italic">04</span> Transport to station/prison and unrestrain once in cell.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Miranda Warning Box -->
+                            <div class="bg-slate-950 border-2 border-sky-900/50 p-8 rounded-3xl relative overflow-hidden mb-12 text-left">
+                                <div class="absolute top-0 right-0 p-4 opacity-10">
+                                    <i data-lucide="scale" class="w-32 h-32"></i>
+                                </div>
+                                <h4 class="text-orange-500 font-black uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-2">
+                                    <i data-lucide="shield-alert" class="w-4 h-4"></i> Official Miranda Warning
+                                </h4>
+                                <p class="text-slate-200 text-lg italic leading-relaxed font-serif m-0 relative z-10">
+                                    “You have the right to remain silent. Anything you say can and will be used against you in a court of law. You have the right to an attorney. If you cannot afford an attorney, one will be provided for you by the State of San Andreas. Do you understand the rights I have just read to you? With these rights in mind, do you wish to speak to me?”
+                                </p>
+                            </div>
+                        </section>
+
+                        <section id="section-10" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 10</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Responding to Calls</h2>
+                            </div>
+
+                            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest">General Response</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-3">
+                                        <li>Determine priority based on number of units and nature of call.</li>
+                                        <li>High-visibility vests REQUIRED on any highway (50MPH+) for investigations.</li>
+                                        <li>Must ask Primary Officer or Supervisor for permission to clear a scene.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800" id="section-10-1">
+                                    <h4 class="text-orange-500 font-bold mb-4 uppercase text-xs tracking-widest">10.1 Officer Emergencies</h4>
+                                    <ul class="list-disc list-inside text-slate-400 text-sm space-y-3">
+                                        <li>All units clear current calls and proceed to officer's location immediately.</li>
+                                        <li>Cease all non-emergency communications.</li>
+                                        <li>Reduce response ONLY once the situation is declared under control.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="rounded-3xl overflow-hidden glassmorphism border border-slate-700">
+                                <table class="w-full text-left m-0">
+                                    <thead class="bg-slate-800/80 text-sky-300 text-[10px] uppercase font-bold tracking-[0.2em]">
+                                        <tr><th class="px-8 py-4">Code</th><th class="px-8 py-4">Definition</th><th class="px-8 py-4">Context</th></tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-800 text-sm">
+                                        <tr><td class="px-8 py-4 font-black text-orange-500">CODE 3</td><td class="px-8 py-4 text-white">Emergency lights and sirens</td><td class="px-8 py-4 text-slate-400 italic">Life threatening / Pursuits</td></tr>
+                                        <tr><td class="px-8 py-4 font-black text-slate-300">CODE 2</td><td class="px-8 py-4 text-white">Lights only / Siren at intersections</td><td class="px-8 py-4 text-slate-400 italic">Urgent, not life threatening</td></tr>
+                                        <tr><td class="px-8 py-4 font-black text-slate-500">CODE 1</td><td class="px-8 py-4 text-white">No lights or sirens</td><td class="px-8 py-4 text-slate-400 italic">Routine response</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-slate-400 mt-6 text-sm italic leading-relaxed">When responding, officers are required to slow down at intersections, changing the tone of their siren, looking both ways before continuing.</p>
+                        </section>
+
+                        <section id="section-11" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 11</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Briefings</h2>
+                            </div>
+                            <div class="bg-slate-800/30 p-8 rounded-3xl border border-slate-700">
+                                <p class="text-slate-300 mb-6">At any given time, a supervisor is authorized to call for a briefing. All officers should finish tasks and proceed to the location immediately. Briefings are held for:</p>
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div class="flex gap-3 text-slate-400 text-sm font-medium"><i data-lucide="info" class="w-4 h-4 text-orange-500 mt-0.5"></i> New policies and procedures.</div>
+                                    <div class="flex gap-3 text-slate-400 text-sm font-medium"><i data-lucide="clipboard-check" class="w-4 h-4 text-orange-500 mt-0.5"></i> Vehicle and uniform inspection.</div>
+                                    <div class="flex gap-3 text-slate-400 text-sm font-medium"><i data-lucide="map-pin" class="w-4 h-4 text-orange-500 mt-0.5"></i> Assignments and patrol zones.</div>
+                                    <div class="flex gap-3 text-slate-400 text-sm font-medium"><i data-lucide="alert-circle" class="w-4 h-4 text-orange-500 mt-0.5"></i> Information on recent incidents.</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-12" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 12</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Reporting & Conduct</h2>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl text-center">
+                                <p class="text-slate-400 mb-6 max-w-xl mx-auto">Should you observe conduct from your colleagues that needs to be recognized or reported, please collect all pertinent information and submit via the official method.</p>
+                                <div class="inline-block bg-sky-600/20 border border-orange-500/50 px-8 py-4 rounded-2xl shadow-xl">
+                                    <p class="text-orange-500 font-bold m-0 uppercase tracking-widest text-[10px]">Official Submission Method</p>
+                                    <p class="text-white font-black italic m-0 mt-1">Dynamic Gaming Law Enforcement Accolades/Complaint Form</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-13" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 13</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Disciplinary Actions</h2>
+                            </div>
+                            <div class="space-y-6">
+                                <p class="text-slate-400 leading-relaxed">Failure to adhere to any policy or guideline will result in a negative outlook, reprimand and reports. Continued reports will result in a Disciplinary Action Report (DAR) being filed.</p>
+                                <div class="bg-red-950/20 border border-red-900/30 p-8 rounded-3xl relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 p-4 opacity-5 text-red-500"><i data-lucide="alert-octagon" class="w-32 h-32"></i></div>
+                                    <h4 class="text-red-500 font-black uppercase tracking-widest text-xs mb-4">Escalation Protocol</h4>
+                                    <p class="text-slate-200 font-medium m-0 leading-relaxed relative z-10">Upon three (3) Disciplinary Action Reports being filed within one (1) month, officers will receive a one (1) week suspension from duty. <span class="text-red-500 font-black block mt-2 italic">Breach of suspension will result in an immediate termination.</span></p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="section-14" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 14</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Activity</h2>
+                            </div>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-colors">
+                                    <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Patrol Minimum</h4>
+                                    <p class="text-slate-400 text-xs m-0 leading-relaxed">Sworn officers are required to fulfill a one (1) hour patrol activity requirement a week. Failure to log for 2 weeks without cause results in removal.</p>
+                                </div>
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-colors" id="section-14-1">
+                                    <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Resignation</h4>
+                                    <p class="text-slate-400 text-xs m-0 leading-relaxed">Must notify command. Ineligible to reapply for one (1) month. Rejoin starts as Police Officer I grade.</p>
+                                </div>
+                                <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-colors" id="section-14-2">
+                                    <h4 class="text-white font-bold text-sm mb-3 uppercase tracking-wider">Leave of Absence</h4>
+                                    <p class="text-slate-400 text-xs m-0 leading-relaxed">Required for absences exceeding 10 consecutive days. Beyond 2 months may lead to involuntary resignation.</p>
+                                </div>
+                            </div>
+                        </section>
+                        </section>
+                        
+                        <section id="section-15" class="mb-12 scroll-mt-12">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="bg-slate-800 text-orange-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-slate-700">Section 15</span>
+                                <h2 class="text-4xl font-black uppercase italic text-white m-0">Equipment</h2>
+                            </div>
+                            <p class="text-slate-400 mb-8 leading-relaxed italic">Officers shall only deploy items listed herein. Officers shall not deploy any equipment not authorized. Exception: BCSO Inner-Facility Correctional Deputies shall not possess a firearm.</p>
+                            
+                            <div id="section-15-1" class="space-y-12">
+                                <!-- Handguns -->
+                                <div class="space-y-6">
+                                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-widest border-b border-slate-800 pb-2 flex items-center gap-2">
+                                        <i data-lucide="shield" class="w-5 h-5 text-orange-500"></i> Authorized Handguns
+                                    </h3>
+                                    <p class="text-slate-400 text-sm italic">Authorized attachment: Rail mounted flashlight.</p>
+                                    <div class="rounded-3xl overflow-hidden glassmorphism border border-slate-700">
+                                        <table class="w-full text-left m-0 text-xs">
+                                            <thead class="bg-slate-800/80 text-sky-300 uppercase font-bold tracking-widest">
+                                                <tr><th class="px-8 py-4">Sidearm</th><th class="px-8 py-4">Ammunition</th></tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                                <tr><td class="px-8 py-3">Hawk and Little Combat Pistol</td><td class="px-8 py-3">9mm 12 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Hawk and Little D&P Pistol</td><td class="px-8 py-3">9mm 17 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Hawk and Little Gardone Pistol</td><td class="px-8 py-3">9mm 15 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Hawk and Little Heavy Pistol</td><td class="px-8 py-3">.45 7 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Hawk and Little Heavy Pistol MK II</td><td class="px-8 py-3">9mm 17 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Hawk and Little Pistol / MK II</td><td class="px-8 py-3">9mm 12 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Vom Feuer Service Pistol / VF Pistol</td><td class="px-8 py-3">9mm 15 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Shrewsbury Duty Pistol / MK II</td><td class="px-8 py-3">9mm 15/17 Round Magazine</td></tr>
+                                                <tr><td class="px-8 py-3">Shrewsbury Endurance Pistol</td><td class="px-8 py-3">.45 10 Round Magazine</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Rifles & Shotguns -->
+                                <div class="grid md:grid-cols-2 gap-8">
+                                    <div class="space-y-4">
+                                        <h4 class="text-white font-black uppercase italic text-sm tracking-wider">Patrol Rifles</h4>
+                                        <p class="text-slate-500 text-[10px] italic">Attachments: Holo/Red Dot, Flashlight, Suppressor.</p>
+                                        <div class="rounded-2xl overflow-hidden border border-slate-800 text-xs">
+                                            <div class="bg-slate-800/50 p-3 text-white">Vom Feuer Combat / Carbine / Military</div>
+                                            <div class="bg-slate-900/50 p-3 text-slate-400 border-t border-slate-800">5.56 30 Round Magazine</div>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <h4 class="text-white font-black uppercase italic text-sm tracking-wider">Patrol Shotguns</h4>
+                                        <p class="text-slate-500 text-[10px] italic">Attachments: Rail mounted flashlight.</p>
+                                        <div class="rounded-2xl overflow-hidden border border-slate-800 text-xs">
+                                            <div class="bg-slate-800/50 p-3 text-white">Shrewsbury Pump Shotgun</div>
+                                            <div class="bg-slate-900/50 p-3 text-slate-400 border-t border-slate-800">12-Gauge</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Less Lethal -->
+                                <div id="section-15-2" class="space-y-6 pt-8 border-t border-slate-800">
+                                    <h3 class="text-xl font-bold text-white mb-4 uppercase tracking-widest flex items-center gap-2">
+                                        <i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i> Less Lethal
+                                    </h3>
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                            <h4 class="text-orange-500 font-bold mb-2">Stun Gun</h4>
+                                            <p class="text-slate-400 text-xs m-0">Mandatory black color. Authorized attachment: Rail mounted flashlight.</p>
+                                        </div>
+                                        <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-800">
+                                            <h4 class="text-orange-500 font-bold mb-2">Less Lethal Shotgun</h4>
+                                            <p class="text-slate-400 text-xs m-0">Authorized colors: Green, Orange, Yellow. Authorized attachment: Rail mounted flashlight.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </article>
+                </main>
+            </div>
+        </div>
+
+        <div id="agencies" class="tab-content hidden">
+            <main class="max-w-4xl mx-auto px-6 py-12">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Law Enforcement Agencies</h1>
+                    <p class="text-slate-400">Detailed information about each department.</p>
+                </header>
+
+                <div class="space-y-4">
+                    <!-- LSPD -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('lspd-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Los Santos Police Department</span>
+                            <i data-lucide="chevron-down" id="lspd-info-icon"></i>
+                        </button>
+                        <div id="lspd-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Los Santos Police Department (LSPD) is the primary law enforcement agency for the City of Los Santos. Its mission is to protect the lives and property of the people of Los Santos, to maintain public order, and to enforce the law with impartiality and integrity.</p>
+                        </div>
+                    </div>
+
+                    <!-- LSPP -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('lspp-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Los Santos Port Police</span>
+                            <i data-lucide="chevron-down" id="lspp-info-icon"></i>
+                        </button>
+                        <div id="lspp-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Los Santos Port Police (LSPP) is a specialized law enforcement agency responsible for policing the Port of Los Santos and the Los Santos International Airport. Its mission is to ensure the security of the port and airport facilities, and to protect the flow of commerce through these vital transportation hubs.</p>
+                        </div>
+                    </div>
+
+                    <!-- LSCSO -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('lscso-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Los Santos County Sheriff’s Office</span>
+                            <i data-lucide="chevron-down" id="lscso-info-icon"></i>
+                        </button>
+                        <div id="lscso-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Los Santos County Sheriff's Office (LSCSO) is the primary law enforcement agency for the unincorporated areas of Los Santos County and the City of Davis and Rockford Hills. Its mission is to provide professional law enforcement services to the community, and to maintain public safety through proactive policing and community engagement.</p>
+                        </div>
+                    </div>
+
+                    <!-- BCSD -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('bcsd-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Blaine County Sheriff’s Department</span>
+                            <i data-lucide="chevron-down" id="bcsd-info-icon"></i>
+                        </button>
+                        <div id="bcsd-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Blaine County Sheriff's Department (BCSD) is the primary law enforcement agency for Blaine County. Its mission is to provide safe and secure communities for the residents and visitors of Blaine County, and to uphold the law with professionalism and respect.</p>
+                        </div>
+                    </div>
+
+                    <!-- PBPD -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('pbpd-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Paleto Bay Police Department</span>
+                            <i data-lucide="chevron-down" id="pbpd-info-icon"></i>
+                        </button>
+                        <div id="pbpd-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The Paleto Bay Police Department (PBPD) is the primary law enforcement agency for the City of Paleto Bay. Its mission is to maintain a safe and peaceful environment for the community, and to provide professional law enforcement services with integrity and dedication.</p>
+                        </div>
+                    </div>
+
+                    <!-- SASP -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('sasp-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>San Andreas State Patrol & Other State Agencies</span>
+                            <i data-lucide="chevron-down" id="sasp-info-icon"></i>
+                        </button>
+                        <div id="sasp-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>The San Andreas State Patrol (SASP) is the primary highway patrol agency for the State of San Andreas. Its mission is to ensure the safety of the state's highways, and to provide assistance to local law enforcement agencies when needed. Other state agencies include San Andreas State Parks and the San Andreas Department of Fish and Wildlife.</p>
+                        </div>
+                    </div>
+
+                    <!-- Federal -->
+                    <div class="rounded-2xl overflow-hidden glassmorphism">
+                        <button onclick="toggleAccordion('federal-info')" class="w-full flex justify-between items-center bg-slate-700/20 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-xs">
+                            <span>Federal Agencies</span>
+                            <i data-lucide="chevron-down" id="federal-info-icon"></i>
+                        </button>
+                        <div id="federal-info" class="hidden p-6 space-y-4 text-slate-400">
+                            <p>Federal agencies include the United States Forest Service Law Enforcement, the National Parks Service, the United States Border Patrol, and the United States Department of Homeland Security. Their mission is to enforce federal laws and regulations within their respective jurisdictions, and to protect the nation's natural resources and borders.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div id="vehicles" class="tab-content hidden">
+            <header class="mb-10">
+                <h1 class="text-4xl font-black uppercase italic italic text-white">Vehicle Database</h1>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official fleet inventory and authorized spawn codes.</p>
+            </header>
+
+            <!-- Sub-navigation for departments (Generated Dynamically) -->
+            <div id="vehicle-tabs" class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
+            </div>
+
+            <div id="vehicle-data-container">
+                <!-- Dynamic content will be injected here -->
+            </div>
+        </div>
+
+        <div id="penalcode" class="tab-content hidden">
+            <main class="max-w-5xl mx-auto px-6 py-12">
+                <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <h1 class="text-4xl font-black uppercase italic italic text-white">Statutory Penal Code</h1>
+                        <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official legal definitions and sentencing guidelines.</p>
+                    </div>
+                    <!-- Search Bar -->
+                    <div class="relative w-full md:w-80">
+                        <input type="text" id="penalSearch" placeholder="Search laws or IDs..." class="w-full bg-slate-800/50 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-orange-500 transition-all shadow-xl">
+                        <i data-lucide="search" class="absolute left-4 top-3 w-4 h-4 text-slate-500"></i>
+                    </div>
+                </header>
+
+                <!-- Sub-navigation for Code Types (Generated Dynamically) -->
+                <div id="penal-tabs" class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto max-w-full">
+                </div>
+
+                <div id="penal-data-container">
+                    <!-- Dynamic content will be injected here -->
+                </div>
+            </main>
+        </div>
+
+        <div id="uniforms" class="tab-content hidden">
+            <main class="max-w-5xl mx-auto px-6 py-12">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black uppercase italic italic text-white">Uniform Guidelines</h1>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Official departmental dress codes and equipment standards.</p>
+                </header>
+
+                <!-- Sub-navigation for agencies -->
+                <div class="flex gap-2 mb-8 bg-slate-800/50 p-2 rounded-2xl border border-slate-700 w-fit overflow-x-auto no-scrollbar whitespace-nowrap max-w-full">
+                    <button class="sub-tab-uniform active px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all bg-sky-600 text-white" onclick="openUniformSubTab('u-lspd', event)">LSPD</button>
+                    <button class="sub-tab-uniform px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openUniformSubTab('u-lssd', event)">LSSD</button>
+                    <button class="sub-tab-uniform px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openUniformSubTab('u-bcso', event)">BCSO</button>
+                    <button class="sub-tab-uniform px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all text-slate-500 hover:text-white" onclick="openUniformSubTab('u-sasp', event)">SASP</button>
+                </div>
+
+                <div id="uniform-data-container">
+                    <!-- LSPD Section -->
+                    <div id="u-lspd" class="uniform-sub-content active space-y-12">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Uniform Card -->
+                            <div class="bg-slate-800/30 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col">
+                                <div class="aspect-[3/4] bg-slate-900 flex items-center justify-center border-b border-slate-700 text-slate-700">
+                                    <i data-lucide="image" class="w-12 h-12"></i>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-white font-black uppercase italic tracking-wider mb-2">Class A (Formal)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Full dress uniform with tie and campaign hat. Used for ceremonies, court, and official appearances.</p>
+                                </div>
+                            </div>
+                            <!-- Uniform Card -->
+                            <div class="bg-slate-800/30 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col">
+                                <div class="aspect-[3/4] bg-slate-900 flex items-center justify-center border-b border-slate-700 text-slate-700">
+                                    <i data-lucide="image" class="w-12 h-12"></i>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-white font-black uppercase italic tracking-wider mb-2">Class B (Standard)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Long sleeve shirt with patches. Standard patrol uniform for colder weather or formal patrol duties.</p>
+                                </div>
+                            </div>
+                            <!-- Uniform Card -->
+                            <div class="bg-slate-800/30 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl flex flex-col">
+                                <div class="aspect-[3/4] bg-slate-900 flex items-center justify-center border-b border-slate-700 text-slate-700">
+                                    <i data-lucide="image" class="w-12 h-12"></i>
+                                </div>
+                                <div class="p-6">
+                                    <h4 class="text-white font-black uppercase italic tracking-wider mb-2">Class C (Duty)</h4>
+                                    <p class="text-slate-400 text-xs leading-relaxed">Short sleeve shirt. The primary daily uniform for all field operations and patrol duties.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LSSD Section -->
+                    <div id="u-lssd" class="uniform-sub-content hidden space-y-12">
+                        <p class="text-slate-500 italic text-sm text-center py-20">LSSD Uniform Guidelines blocked out. Waiting for specific requirements.</p>
+                    </div>
+
+                    <!-- BCSO Section -->
+                    <div id="u-bcso" class="uniform-sub-content hidden space-y-12">
+                        <p class="text-slate-500 italic text-sm text-center py-20">BCSO Uniform Guidelines blocked out. Waiting for specific requirements.</p>
+                    </div>
+
+                    <!-- SASP Section -->
+                    <div id="u-sasp" class="uniform-sub-content hidden space-y-12">
+                        <p class="text-slate-500 italic text-sm text-center py-20">SASP Uniform Guidelines blocked out. Waiting for specific requirements.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div id="training" class="tab-content hidden">
+            <div class="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto px-6 py-12 text-left">
+                <!-- Training Navigation -->
+                <aside class="w-full lg:w-72 space-y-4">
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sticky top-24">
+                        <h2 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-6 text-left">Training Curriculum</h2>
+                        <nav class="space-y-2">
+                            <a href="#t-page-1" class="flex items-center gap-3 p-3 rounded-xl bg-sky-600/10 text-orange-500 border border-orange-500/20 text-xs font-bold uppercase tracking-wider transition-all">
+                                <span class="w-6 h-6 flex items-center justify-center bg-orange-500 text-white rounded-lg text-[10px]">01</span> Orientation
+                            </a>
+                            <a href="#t-page-2" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">02</span> Comms & Radio
+                            </a>
+                            <a href="#t-page-3" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">03</span> Pursuit Tactics
+                            </a>
+                            <a href="#t-page-4" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">04</span> Tactical Gear
+                            </a>
+                            <a href="#t-page-5" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider transition-all">
+                                <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-slate-500 rounded-lg text-[10px]">05</span> Admin & MDT
+                            </a>
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- Training Content -->
+                <div class="flex-1 space-y-24 pb-40 text-left">
+                    <!-- Page 1: Orientation -->
+                    <section id="t-page-1" class="scroll-mt-32">
+                        <div class="flex items-center gap-4 mb-8">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 01</span>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0">Field Orientation</h2>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-8 text-left">
+                            <p class="text-slate-400 leading-relaxed text-left">Welcome to the Dynamic Gaming Law Enforcement Training Program. This curriculum is designed to ensure all personnel operate with the highest levels of <strong>Integrity, Knowledge, and Professionalism</strong>. This is your foundation for field competency.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 text-left">
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 text-left">
+                                    <h4 class="text-white font-bold text-sm mb-2 flex items-center gap-2 text-left"><i data-lucide="heart" class="w-4 h-4 text-orange-500"></i> Core Ethics Check</h4>
+                                    <p class="text-xs text-slate-500 italic text-left">"I will maintain a professional image, uphold the RCSA laws, and treat all citizens with dignity."</p>
+                                </div>
+                                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 text-left">
+                                    <h4 class="text-white font-bold text-sm mb-2 flex items-center gap-2 text-left"><i data-lucide="shield" class="w-4 h-4 text-orange-500"></i> Duty Authorization</h4>
+                                    <p class="text-xs text-slate-500 text-left">Personnel are authorized to enforce the Revised Code of San Andreas and protect the life and property of residents.</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4 pt-6 border-t border-slate-800 text-left">
+                                <h3 class="text-white font-bold uppercase text-[10px] tracking-[0.3em] text-left">Training Progress Tracker</h3>
+                                <div class="space-y-2 text-left">
+                                    <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded-xl border border-slate-700 text-left">
+                                        <div class="flex items-center gap-3 text-left">
+                                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                                            <span class="text-xs text-slate-300 font-bold uppercase text-left">Basic Law Knowledge</span>
+                                        </div>
+                                        <span class="text-[9px] text-slate-500 text-left">Verified</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded-xl border border-slate-700 text-left">
+                                        <div class="flex items-center gap-3 text-left">
+                                            <i data-lucide="circle" class="w-4 h-4 text-slate-600"></i>
+                                            <span class="text-xs text-slate-300 font-bold uppercase text-left">Technical & MDT</span>
+                                        </div>
+                                        <span class="text-[9px] text-slate-500 text-left">Pending</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded-xl border border-slate-700 text-left">
+                                        <div class="flex items-center gap-3 text-left">
+                                            <i data-lucide="circle" class="w-4 h-4 text-slate-600"></i>
+                                            <span class="text-xs text-slate-300 font-bold uppercase text-left">Field Check-off</span>
+                                        </div>
+                                        <span class="text-[9px] text-slate-500 text-left">Locked</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Page 2: Communications -->
+                    <section id="t-page-2" class="scroll-mt-32">
+                        <div class="flex items-center gap-4 mb-8">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 02</span>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Radio Proficiency</h2>
+                        </div>
+                        <div class="space-y-6 text-left">
+                            <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] text-left">
+                                <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest text-left">The 3-W's Broadcast System</h3>
+                                <div class="grid md:grid-cols-3 gap-4 mb-8 text-left">
+                                    <div class="p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl text-center text-left">
+                                        <span class="block text-orange-500 font-black text-2xl mb-1 italic text-left">WHO</span>
+                                        <p class="text-[10px] text-slate-400 uppercase font-bold text-left">State Callsign (e.g. 1-ADAM-10)</p>
+                                    </div>
+                                    <div class="p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl text-center text-left">
+                                        <span class="block text-orange-500 font-black text-2xl mb-1 italic text-left">WHERE</span>
+                                        <p class="text-[10px] text-slate-400 uppercase font-bold text-left">Location & Postal Number</p>
+                                    </div>
+                                    <div class="p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl text-center text-left">
+                                        <span class="block text-orange-500 font-black text-2xl mb-1 italic text-left">WHAT</span>
+                                        <p class="text-[10px] text-slate-400 uppercase font-bold text-left">Situation/Code (e.g. Traffic Stop)</p>
+                                    </div>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-widest text-left">Broadcast Best Practices</h3>
+                                <ul class="space-y-4 list-none p-0 text-left">
+                                    <li class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-slate-800 rounded-xl text-orange-500 font-bold italic text-lg shadow-inner">1</div>
+                                        <div class="text-left">
+                                            <strong class="text-white block text-sm text-left">Wait for Silence</strong>
+                                            <p class="text-xs text-slate-400 leading-relaxed text-left">Listen for at least 2 seconds before keying up to ensure you don't cut off emergency traffic. Never "step" on others.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex gap-4 p-4 bg-slate-800/30 rounded-2xl border border-slate-700 text-left">
+                                        <div class="w-10 h-10 flex items-center justify-center bg-slate-800 rounded-xl text-orange-500 font-bold italic text-lg shadow-inner">2</div>
+                                        <div class="text-left">
+                                            <strong class="text-white block text-sm text-left">Status Codes</strong>
+                                            <p class="text-xs text-slate-400 leading-relaxed text-left">Utilize standard codes: 10-8 (On Duty), 10-7 (Off Duty), 10-6 (Busy), 10-4 (Understood).</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Page 3: Pursuit & PIT Tactics -->
+                    <section id="t-page-3" class="scroll-mt-32">
+                        <div class="flex items-center gap-4 mb-8">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 03</span>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Pursuit & PIT Tactics</h2>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] space-y-12 text-left">
+                            <div class="grid md:grid-cols-2 gap-12 text-left">
+                                <div class="space-y-6 text-left">
+                                    <h3 class="text-xl font-bold text-white uppercase italic tracking-widest text-left">Pursuit Management</h3>
+                                    <div class="space-y-4 text-left">
+                                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 text-left">
+                                            <h4 class="text-orange-500 font-bold text-[10px] uppercase mb-2 text-left">Primary Unit Role</h4>
+                                            <p class="text-xs text-slate-400 leading-relaxed text-left">Maintains focus on the suspect vehicle. Only primary should call out locations, speeds, and occupant behavior.</p>
+                                        </div>
+                                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 text-left">
+                                            <h4 class="text-orange-500 font-bold text-[10px] uppercase mb-2 text-left">Secondary Unit Role</h4>
+                                            <p class="text-xs text-slate-400 leading-relaxed text-left">Provides immediate backup. Secondary handles secondary radio traffic, coordinates PIT requests, and prepares for bail-outs.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-slate-800/30 p-8 rounded-[2.5rem] border border-slate-700 relative overflow-hidden text-left">
+                                    <div class="absolute top-0 right-0 p-6 opacity-10 text-orange-500"><i data-lucide="crosshair" class="w-32 h-32"></i></div>
+                                    <h3 class="text-xl font-bold text-white mb-6 text-left">PIT Authorization</h3>
+                                    <div class="space-y-4 text-left">
+                                        <p class="text-xs text-slate-400 text-left">The <strong>Pursuit Intervention Technique (PIT)</strong> is a tactic used to force a fleeing vehicle to turn sideways abruptly, causing the driver to lose control and stop.</p>
+                                        <div class="p-4 bg-orange-500/10 border border-orange-500/30 rounded-xl text-left">
+                                            <strong class="text-white text-xs block mb-1 text-left">Standard PIT Rule:</strong>
+                                            <ul class="text-[10px] text-slate-400 list-disc list-inside space-y-1 text-left">
+                                                <li class="text-left">Authorized below <span class="text-orange-500 font-bold text-left">35 MPH</span> for standard units.</li>
+                                                <li class="text-left">Authorized in areas with low pedestrian traffic.</li>
+                                                <li class="text-left">Requires supervisor authorization or clear felony threat.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Page 4: Tactical Engagement -->
+                    <section id="t-page-4" class="scroll-mt-32">
+                        <div class="flex items-center gap-4 mb-8">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 04</span>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Tactical Engagement</h2>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 p-10 rounded-[3rem] relative overflow-hidden text-left">
+                            <div class="absolute top-0 right-0 p-8 opacity-5 text-orange-500"><i data-lucide="shield-alert" class="w-48 h-48"></i></div>
+                            
+                            <div class="grid lg:grid-cols-2 gap-12 text-left">
+                                <div class="space-y-6 text-left">
+                                    <h3 class="text-xl font-bold text-white text-left">Use of Force Continuum</h3>
+                                    <div class="space-y-3 text-left">
+                                        <div class="flex items-center justify-between p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-left">
+                                            <span class="text-emerald-500 font-bold text-[10px] uppercase text-left">Level 1: Presence</span>
+                                            <span class="text-slate-500 text-[9px] text-left">Professional Uniform & Vehicle.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl text-left">
+                                            <span class="text-blue-500 font-bold text-[10px] uppercase text-left">Level 2: Verbal</span>
+                                            <span class="text-slate-500 text-[9px] text-left">Commands, Warnings, Persuasion.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-xl text-left">
+                                            <span class="text-yellow-500 font-bold text-[10px] uppercase text-left">Level 3: Physical</span>
+                                            <span class="text-slate-500 text-[9px] text-left">Handcuffing, Restraint, Pressure.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl text-left">
+                                            <span class="text-orange-500 font-bold text-[10px] uppercase text-left">Level 4: Less Lethal</span>
+                                            <span class="text-slate-500 text-[9px] text-left">Taser, OC Spray, Beanbag.</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-left">
+                                            <span class="text-red-500 font-bold text-[10px] uppercase text-left">Level 5: Lethal</span>
+                                            <span class="text-slate-500 text-[9px] text-left">Firearm (Grave Bodily Threat).</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6 text-left">
+                                    <h3 class="text-xl font-bold text-white text-left">Scenario Response Guides</h3>
+                                    <div class="space-y-4 text-left">
+                                        <div class="p-5 bg-slate-800/50 rounded-[2rem] border border-slate-700 text-left">
+                                            <h4 class="text-white font-bold text-xs mb-2 italic flex items-center gap-2 text-left text-left"><i data-lucide="target" class="w-4 h-4 text-red-500 text-left"></i> Active Shooter</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed text-left"><strong>Immediate Deployment:</strong> Do not wait for SWAT if life is at risk. Form a 4-man diamond stack. Primary objective is to neutralize the threat and secure the area for EMS entry.</p>
+                                        </div>
+                                        <div class="p-5 bg-slate-800/50 rounded-[2rem] border border-slate-700 text-left">
+                                            <h4 class="text-white font-bold text-xs mb-2 italic flex items-center gap-2 text-left text-left"><i data-lucide="users" class="w-4 h-4 text-red-500 text-left"></i> Hostage/Barricade</h4>
+                                            <p class="text-[10px] text-slate-400 leading-relaxed text-left"><strong>Perimeter Setup:</strong> Establish a hard inner perimeter. Do not attempt entry. Designate a negotiator. Entry only authorized if the 'Execution Clock' starts.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Page 5: Administrative -->
+                    <section id="t-page-5" class="scroll-mt-32">
+                        <div class="flex items-center gap-4 mb-8">
+                            <span class="bg-orange-500 text-white px-3 py-1 rounded-lg text-[10px] font-black uppercase">Phase 05</span>
+                            <h2 class="text-4xl font-black uppercase italic text-white m-0 text-left">Admin & Technical</h2>
+                        </div>
+                        <div class="space-y-8 text-left">
+                            <div class="grid md:grid-cols-2 gap-8 text-left">
+                                <!-- Scene Management -->
+                                <div class="bg-slate-900 border border-slate-800 p-8 rounded-[3rem] text-left">
+                                    <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs text-left">Crime Scene Protocol</h3>
+                                    <div class="space-y-4 text-left">
+                                        <div class="flex gap-4 text-left">
+                                            <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-orange-500 rounded-lg text-[10px] font-bold text-left">1</span>
+                                            <p class="text-xs text-slate-400 text-left text-left"><strong>Isolate & Secure:</strong> Use yellow tape or vehicles to block civilian access. Establish an entry/exit log.</p>
+                                        </div>
+                                        <div class="flex gap-4 text-left">
+                                            <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-orange-500 rounded-lg text-[10px] font-bold text-left">2</span>
+                                            <p class="text-xs text-slate-400 text-left text-left"><strong>Document Evidence:</strong> Photograph every shell casing and weapon in place before collection.</p>
+                                        </div>
+                                        <div class="flex gap-4 text-left">
+                                            <span class="w-6 h-6 flex items-center justify-center bg-slate-800 text-orange-500 rounded-lg text-[10px] font-bold text-left">3</span>
+                                            <p class="text-xs text-slate-400 text-left text-left"><strong>Witness Statements:</strong> Separate witnesses immediately to prevent story matching.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MDT Operations -->
+                                <div class="bg-slate-900 border-2 border-dashed border-slate-800 p-8 rounded-[3rem] text-center flex flex-col justify-center text-left">
+                                    <i data-lucide="laptop" class="w-10 h-10 text-slate-700 mx-auto mb-4 text-left"></i>
+                                    <h3 class="text-white font-bold mb-2 uppercase tracking-widest text-xs text-center text-left">How to Use MDT</h3>
+                                    <p class="text-slate-500 text-[10px] max-w-xs mx-auto italic text-center text-left">[PLACEHOLDER: Please provide technical instructions for operating the Mobile Data Terminal.]</p>
+                                </div>
+                            </div>
+
+                            <!-- Report Writing Placeholder -->
+                            <div class="bg-slate-900 border-2 border-dashed border-slate-800 p-12 rounded-[3rem] text-center text-left">
+                                <i data-lucide="file-text" class="w-12 h-12 text-slate-700 mx-auto mb-4 text-left"></i>
+                                <h3 class="text-white font-bold mb-2 uppercase tracking-widest text-center text-left">Report Writing Standards</h3>
+                                <p class="text-slate-500 text-sm max-w-md mx-auto italic text-center text-left">[PLACEHOLDER: Provide examples of proper report formatting and required information for booking files.]</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="global-footer" class="text-center py-20 text-slate-700 text-[10px] uppercase tracking-[0.4em] font-black">
+        Dynamic Gaming // RESTRICTED ACCESS // 2026
+    </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-slate-950/90 backdrop-blur-2xl p-4 md:p-12">
+        <button onclick="closeLightbox()" class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[110]">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        
+        <button onclick="changeImage(-1)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 p-4 rounded-full text-white transition-all z-[110]">
+            <i data-lucide="chevron-left" class="w-8 h-8"></i>
+        </button>
+        
+        <div class="relative w-full h-full flex items-center justify-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 object-contain">
+        </div>
+
+        <button onclick="changeImage(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 p-4 rounded-full text-white transition-all z-[110]">
+            <i data-lucide="chevron-right" class="w-8 h-8"></i>
+        </button>
+    </div>
+
+    <script src="../script.js?v=1.1"></script>
+</body>
+</html>
