@@ -1,8 +1,17 @@
 // SUPABASE CONFIGURATION
-// Replace these with your actual credentials from admin/auth.js
 const SUPABASE_URL = 'https://mqdumsqnsezmlcyxvkwq.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xZHVtc3Fuc2V6bWxjeXh2a3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NTQzMTUsImV4cCI6MjA4NzUzMDMxNX0.qs24B8CQ193Uqot6HB5guHtJWJgycx654AR-08JXyi4';
-const sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let sbClient = null;
+try {
+    if (typeof supabase !== 'undefined') {
+        sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } else {
+        console.error("Supabase library not loaded!");
+    }
+} catch (e) {
+    console.error("Supabase Init Error:", e);
+}
 
 // PATH DETECTION
 const isSubfolder = window.location.pathname.includes('/leo/') || 
@@ -20,7 +29,7 @@ function showHub() {
 }
 
 // MAIN TAB SWITCHING (LEO)
-function openTab(tabName) {
+function openTab(tabName, event) {
     var i;
     var x = document.getElementsByClassName("tab-content");
     for (i = 0; i < x.length; i++) {
@@ -37,7 +46,7 @@ function openTab(tabName) {
     for (i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("active");
     }
-    if (event && event.currentTarget && event.currentTarget.classList.contains('tab')) {
+    if (event && event.currentTarget) {
         event.currentTarget.classList.add("active");
     }
     
@@ -227,10 +236,10 @@ let civVehicleData = null;
 let fdVehicleData = null;
 
 async function loadAllData() {
+    if (!sbClient) return;
     try {
-        log('Fetching data from Supabase...');
+        console.log('[Database] Syncing...');
         
-        // Fetch all tables in parallel
         const [penalRes, leoVehRes, civVehRes, fdVehRes] = await Promise.all([
             sbClient.from('penal_code').select('*'),
             sbClient.from('leo_vehicles').select('*'),
@@ -238,18 +247,19 @@ async function loadAllData() {
             sbClient.from('fd_vehicles').select('*')
         ]);
 
-        // Transform Penal Code back to grouped format
-        if (penalRes.data) {
+        // Transform Penal Code
+        if (penalRes.data && penalRes.data.length > 0) {
             penalData = {};
             penalRes.data.forEach(row => {
-                const sectionKey = row.section_title.toLowerCase().includes('motor') ? 'vehicle' : 
-                                 row.section_title.toLowerCase().includes('wildlife') ? 'wildlife' :
-                                 row.section_title.toLowerCase().includes('policy') ? 'policy' : 'criminal';
+                const title = row.section_title || 'General';
+                const sectionKey = title.toLowerCase().includes('motor') ? 'vehicle' : 
+                                 title.toLowerCase().includes('wildlife') ? 'wildlife' :
+                                 title.toLowerCase().includes('policy') ? 'policy' : 'criminal';
                 
                 if (!penalData[sectionKey]) penalData[sectionKey] = [];
-                let section = penalData[sectionKey].find(s => s.title === row.section_title);
+                let section = penalData[sectionKey].find(s => s.title === title);
                 if (!section) {
-                    section = { title: row.section_title, laws: [] };
+                    section = { title: title, laws: [] };
                     penalData[sectionKey].push(section);
                 }
                 section.laws.push({ id: row.id, name: row.name, description: row.description, class: row.class });
@@ -257,29 +267,30 @@ async function loadAllData() {
         }
 
         // Transform LEO Vehicles
-        if (leoVehRes.data) {
+        if (leoVehRes.data && leoVehRes.data.length > 0) {
             vehicleData = {};
             leoVehRes.data.forEach(row => {
-                if (!vehicleData[row.department]) vehicleData[row.department] = [];
-                vehicleData[row.department].push({ role: row.role, model: row.model, code: row.code });
+                const dept = row.department || 'unmarked';
+                if (!vehicleData[dept]) vehicleData[dept] = [];
+                vehicleData[dept].push({ role: row.role, model: row.model, code: row.code });
             });
         }
 
         // Transform Civ Vehicles
-        if (civVehRes.data) {
+        if (civVehRes.data && civVehRes.data.length > 0) {
             civVehicleData = {};
             civVehRes.data.forEach(row => {
-                if (!civVehicleData[row.category]) civVehicleData[row.category] = [];
-                civVehicleData[row.category].push({ role: row.role, model: row.model, code: row.code });
+                const cat = row.category || 'other';
+                if (!civVehicleData[cat]) civVehicleData[cat] = [];
+                civVehicleData[cat].push({ role: row.role, model: row.model, code: row.code });
             });
         }
 
         // Transform FD Vehicles
-        if (fdVehRes.data) {
+        if (fdVehRes.data && fdVehRes.data.length > 0) {
             fdVehicleData = { 'fire': [], 'ems': [] };
             fdVehRes.data.forEach(row => {
-                // Heuristic to split FD/EMS
-                const type = row.role.toLowerCase().includes('ambulance') || row.role.toLowerCase().includes('medical') ? 'ems' : 'fire';
+                const type = (row.role.toLowerCase().includes('ambulance') || row.role.toLowerCase().includes('medical')) ? 'ems' : 'fire';
                 fdVehicleData[type].push({ role: row.role, model: row.model, code: row.code });
             });
         }
@@ -291,12 +302,9 @@ async function loadAllData() {
         
         lucide.createIcons();
     } catch (err) {
-        console.error("Data Load Error:", err);
+        console.error("Data Sync Error:", err);
     }
 }
-
-function log(msg) { console.log(`[Database] ${msg}`); }
-
 
 function renderCivVehicles() {
     if (!civVehicleData) return;
@@ -304,14 +312,17 @@ function renderCivVehicles() {
     const dataContainer = document.getElementById('civ-vehicle-data-container');
     if (!tabContainer || !dataContainer) return;
     
-    tabContainer.innerHTML = Object.keys(civVehicleData).map((key, index) => `
+    const keys = Object.keys(civVehicleData);
+    if (keys.length === 0) return;
+
+    tabContainer.innerHTML = keys.map((key, index) => `
         <button class="sub-tab-civ-v ${index === 0 ? 'active bg-emerald-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
                 onclick="openCivVehicleSubTab('cv-${key}', event)">
             ${key.toUpperCase()}
         </button>
     `).join('');
 
-    dataContainer.innerHTML = Object.keys(civVehicleData).map((key, index) => `
+    dataContainer.innerHTML = keys.map((key, index) => `
         <div id="cv-${key}" class="civ-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
             <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
                 <div class="responsive-table-container">
@@ -341,14 +352,17 @@ function renderFDVehicles() {
     const dataContainer = document.getElementById('fd-vehicle-data-container');
     if (!tabContainer || !dataContainer) return;
     
-    tabContainer.innerHTML = Object.keys(fdVehicleData).map((key, index) => `
+    const keys = Object.keys(fdVehicleData).filter(k => fdVehicleData[k].length > 0);
+    if (keys.length === 0) return;
+
+    tabContainer.innerHTML = keys.map((key, index) => `
         <button class="sub-tab-fd-v ${index === 0 ? 'active bg-red-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
                 onclick="openFDVehicleSubTab('fv-${key}', event)">
             ${key.toUpperCase()}
         </button>
     `).join('');
 
-    dataContainer.innerHTML = Object.keys(fdVehicleData).map((key, index) => `
+    dataContainer.innerHTML = keys.map((key, index) => `
         <div id="fv-${key}" class="fd-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
             <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
                 <div class="responsive-table-container">
@@ -379,8 +393,11 @@ function renderPenalCode(filter = '') {
     const dataContainer = document.getElementById('penal-data-container');
     if (!tabContainer || !dataContainer) return;
     
+    const keys = Object.keys(penalData);
+    if (keys.length === 0) return;
+
     if (tabContainer.innerHTML.trim() === "") {
-        tabContainer.innerHTML = Object.keys(penalData).map((key, index) => `
+        tabContainer.innerHTML = keys.map((key, index) => `
             <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
                     onclick="openPenalSubTab('p-${key}', event)">
                 ${getDisplayName(key)}
@@ -388,7 +405,7 @@ function renderPenalCode(filter = '') {
         `).join('');
     }
 
-    dataContainer.innerHTML = Object.keys(penalData).map((key, index) => {
+    dataContainer.innerHTML = keys.map((key, index) => {
         let html = `<div id="p-${key}" class="penal-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-6">`;
         let foundMatch = false;
         penalData[key].forEach(section => {
@@ -417,7 +434,7 @@ function renderPenalCode(filter = '') {
                 `;
             }
         });
-        if (!foundMatch) html += `<p class="text-slate-500 text-sm italic">No matching records found.</p>`;
+        if (!foundMatch) html += `<p class="text-slate-500 text-sm italic text-center py-10">No matching records found.</p>`;
         html += `</div>`;
         return html;
     }).join('');
@@ -447,13 +464,16 @@ function renderVehicles() {
     const dataContainer = document.getElementById('vehicle-data-container');
     if (!tabContainer || !dataContainer) return;
 
-    tabContainer.innerHTML = Object.keys(vehicleData).map((key, index) => `
+    const keys = Object.keys(vehicleData);
+    if (keys.length === 0) return;
+
+    tabContainer.innerHTML = keys.map((key, index) => `
         <button class="sub-tab ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest" 
                 onclick="openSubTab('v-${key}', event)">
             ${key.toUpperCase()}
         </button>
     `).join('');
-    dataContainer.innerHTML = Object.keys(vehicleData).map((key, index) => `
+    dataContainer.innerHTML = keys.map((key, index) => `
         <div id="v-${key}" class="sub-tab-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
             <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
                 <div class="responsive-table-container">
@@ -532,11 +552,8 @@ document.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Render initial static icons
     lucide.createIcons();
-    
     loadAllData();
-    
     const penalSearch = document.getElementById('penalSearch');
     if (penalSearch) penalSearch.addEventListener('input', (e) => renderPenalCode(e.target.value));
 });
