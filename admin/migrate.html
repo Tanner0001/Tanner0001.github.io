@@ -11,32 +11,51 @@
 <body class="bg-slate-950 text-slate-100 p-12">
     <div class="max-w-2xl mx-auto space-y-8">
         <header>
-            <h1 class="text-3xl font-black uppercase italic">Database <span class="text-orange-500">Migrator</span></h1>
-            <p class="text-slate-500 text-sm">Push your local JSON files to your Supabase tables.</p>
+            <h1 class="text-3xl font-black uppercase italic">Data <span class="text-orange-500">Converter</span></h1>
+            <p class="text-slate-500 text-sm">Download CSV files to manually upload to your Supabase tables.</p>
         </header>
 
-        <div class="bg-slate-900 border border-white/10 p-8 rounded-[2rem] space-y-6">
-            <div class="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl text-orange-500 text-xs">
-                <strong>Warning:</strong> Ensure your Supabase credentials are set in <code>admin/auth.js</code> before running.
-            </div>
-
+        <div class="bg-slate-900 border border-white/10 p-8 rounded-[2.5rem] space-y-6">
             <div class="space-y-4">
-                <button onclick="migrateLEO()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
-                    <span>Migrate LEO Vehicles</span>
-                    <i data-lucide="upload" class="w-4 h-4"></i>
-                </button>
-                <button onclick="migrateCiv()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
-                    <span>Migrate Civilian Vehicles</span>
-                    <i data-lucide="upload" class="w-4 h-4"></i>
-                </button>
-                <button onclick="migrateFD()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
-                    <span>Migrate FD Vehicles</span>
-                    <i data-lucide="upload" class="w-4 h-4"></i>
-                </button>
-                <button onclick="migratePenal()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
-                    <span>Migrate Penal Code</span>
-                    <i data-lucide="upload" class="w-4 h-4"></i>
-                </button>
+                <div class="flex gap-2">
+                    <button onclick="migrateLEO()" class="flex-1 bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                        <span>Migrate LEO Vehicles</span>
+                        <i data-lucide="upload" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="downloadLEOCSV()" class="bg-orange-600 hover:bg-orange-500 p-4 rounded-xl flex items-center justify-center transition-all" title="Download CSV">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="migrateCiv()" class="flex-1 bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                        <span>Migrate Civilian Vehicles</span>
+                        <i data-lucide="upload" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="downloadCivCSV()" class="bg-orange-600 hover:bg-orange-500 p-4 rounded-xl flex items-center justify-center transition-all" title="Download CSV">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="migrateFD()" class="flex-1 bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                        <span>Migrate FD Vehicles</span>
+                        <i data-lucide="upload" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="downloadFDCSV()" class="bg-orange-600 hover:bg-orange-500 p-4 rounded-xl flex items-center justify-center transition-all" title="Download CSV">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="migratePenal()" class="flex-1 bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                        <span>Migrate Penal Code</span>
+                        <i data-lucide="upload" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="downloadPenalCSV()" class="bg-orange-600 hover:bg-orange-500 p-4 rounded-xl flex items-center justify-center transition-all" title="Download CSV">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </button>
+                </div>
             </div>
 
             <div id="status" class="mt-8 p-4 bg-slate-950 rounded-xl font-mono text-[10px] h-48 overflow-y-auto border border-white/5">
