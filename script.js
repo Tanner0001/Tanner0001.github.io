@@ -1,7 +1,7 @@
 // SUPABASE CONFIGURATION
 // Replace these with your actual credentials from admin/auth.js
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'YOUR_https://mqdumsqnsezmlcyxvkwq.supabase.coSUPABASE_URL';
+const SUPABASE_ANON_KEY = 'sb_publishable_kVsPiJutYuMj8XniLjDGVw_LnULXf6e';
 const sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // PATH DETECTION
