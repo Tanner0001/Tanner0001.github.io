@@ -239,6 +239,9 @@ async function loadAllData() {
         renderVehicles();
         renderCivVehicles();
         renderFDVehicles();
+        
+        // Final icon check after all dynamic content is injected
+        lucide.createIcons();
     } catch (err) {
         console.error("Data Load Error:", err);
     }
@@ -478,6 +481,9 @@ document.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Render initial static icons
+    lucide.createIcons();
+    
     loadAllData();
     
     const penalSearch = document.getElementById('penalSearch');
