@@ -1,7 +1,7 @@
 // SUPABASE CONFIGURATION
 // Replace these with your actual credentials from admin/auth.js
 const SUPABASE_URL = 'https://mqdumsqnsezmlcyxvkwq.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_kVsPiJutYuMj8XniLjDGVw_LnULXf6e';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xZHVtc3Fuc2V6bWxjeXh2a3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NTQzMTUsImV4cCI6MjA4NzUzMDMxNX0.qs24B8CQ193Uqot6HB5guHtJWJgycx654AR-08JXyi4';
 const sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // PATH DETECTION
@@ -10,7 +10,215 @@ const isSubfolder = window.location.pathname.includes('/leo/') ||
                     window.location.pathname.includes('/civ/');
 const basePath = isSubfolder ? '../' : '';
 
-// ... (existing navigation functions) ...
+// PORTAL NAVIGATION
+function enterPortal(type) {
+    window.location.href = type + '/';
+}
+
+function showHub() {
+    window.location.href = basePath || './';
+}
+
+// MAIN TAB SWITCHING (LEO)
+function openTab(tabName) {
+    var i;
+    var x = document.getElementsByClassName("tab-content");
+    for (i = 0; i < x.length; i++) {
+        x[i].classList.add("hidden");
+        x[i].classList.remove("active");
+    }
+    const target = document.getElementById(tabName);
+    if (target) {
+        target.classList.remove("hidden");
+        target.classList.add("active");
+    }
+
+    var tabs = document.getElementsByClassName("tab");
+    for (i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+    if (event && event.currentTarget && event.currentTarget.classList.contains('tab')) {
+        event.currentTarget.classList.add("active");
+    }
+    
+    const sidebar = document.querySelector('#manual aside');
+    if (sidebar && !sidebar.classList.contains('hidden')) {
+        toggleManualSidebar();
+    }
+    lucide.createIcons();
+}
+
+// SUB-TAB FUNCTIONALITY (VEHICLES, PENAL, UNIFORM)
+function openSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("sub-tab-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+        contents[i].classList.remove("active");
+    }
+    const buttons = document.getElementsByClassName("sub-tab");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    const target = document.getElementById(subTabName);
+    if (target) {
+        target.classList.remove("hidden", "active");
+        target.classList.add("active");
+    }
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+    }
+    lucide.createIcons();
+}
+
+function openPenalSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("penal-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("sub-tab-penal");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+}
+
+function openUniformSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("uniform-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("sub-tab-uniform");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
+}
+
+// FD PORTAL TABS
+function openFDTab(tabName, event) {
+    const contents = document.getElementsByClassName("fd-tab-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("fd-tab");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
+    const target = document.getElementById(tabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active");
+    lucide.createIcons();
+}
+
+// CIV PORTAL TABS
+function openCivTab(tabName, event) {
+    const contents = document.getElementsByClassName("civ-tab-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("civ-tab");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
+    const target = document.getElementById(tabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active");
+    lucide.createIcons();
+}
+
+function openCivSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("civ-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("civ-sub-tab");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
+        buttons[i].classList.add("text-slate-400", "hover:bg-slate-800");
+    }
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
+        event.currentTarget.classList.remove("text-slate-400", "hover:bg-slate-800");
+    }
+    lucide.createIcons();
+}
+
+function openCivVehicleSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("civ-vehicle-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("sub-tab-civ-v");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
+}
+
+function openFDVehicleSubTab(subTabName, event) {
+    const contents = document.getElementsByClassName("fd-vehicle-sub-content");
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+    }
+    const buttons = document.getElementsByClassName("sub-tab-fd-v");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active", "bg-red-600", "text-white");
+        buttons[i].classList.add("text-slate-500");
+    }
+    const target = document.getElementById(subTabName);
+    if (target) target.classList.remove("hidden");
+    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-red-600", "text-white");
+}
+
+// UTILITIES
+function toggleAccordion(id) {
+    const content = document.getElementById(id);
+    const icon = document.getElementById(id + '-icon');
+    if (!content) return;
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        if (icon) icon.setAttribute('data-lucide', 'chevron-up');
+    } else {
+        content.classList.add('hidden');
+        if (icon) icon.setAttribute('data-lucide', 'chevron-down');
+    }
+    lucide.createIcons();
+}
+
+function toggleManualSidebar() {
+    const sidebar = document.querySelector('#manual aside') || document.querySelector('#fd-manual aside') || document.querySelector('#civ-jobs aside');
+    if (!sidebar) return;
+    if (sidebar.classList.contains('hidden')) {
+        sidebar.classList.remove('hidden');
+        sidebar.classList.add('fixed', 'inset-0', 'z-50', 'w-full', 'h-full', 'bg-slate-900');
+        if (!document.getElementById('close-sidebar')) {
+            const closeBtn = document.createElement('button');
+            closeBtn.id = 'close-sidebar';
+            closeBtn.className = 'absolute top-6 right-6 p-2 bg-slate-800 rounded-full text-white';
+            closeBtn.innerHTML = '<i data-lucide="x"></i>';
+            closeBtn.onclick = toggleManualSidebar;
+            sidebar.appendChild(closeBtn);
+            lucide.createIcons();
+        }
+    } else {
+        sidebar.classList.add('hidden');
+        sidebar.classList.remove('fixed', 'inset-0', 'z-50', 'w-full', 'h-full', 'bg-slate-900');
+        const closeBtn = document.getElementById('close-sidebar');
+        if (closeBtn) closeBtn.remove();
+    }
+}
 
 // DATA ENGINE
 let penalData = null;

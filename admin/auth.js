@@ -1,6 +1,6 @@
 // Replace these with your actual Supabase credentials
 const SUPABASE_URL = 'https://mqdumsqnsezmlcyxvkwq.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_kVsPiJutYuMj8XniLjDGVw_LnULXf6e';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xZHVtc3Fuc2V6bWxjeXh2a3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NTQzMTUsImV4cCI6MjA4NzUzMDMxNX0.qs24B8CQ193Uqot6HB5guHtJWJgycx654AR-08JXyi4';
 
 // Use a different name for the client to avoid conflicts with the library
 const sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

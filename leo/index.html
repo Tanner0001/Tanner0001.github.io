@@ -36,13 +36,13 @@
 
         <main class="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
             <div class="flex border-b border-slate-700 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap">
-                <button class="tab active p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard')">Dashboard</button>
-                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('manual')">Manual</button>
-                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('agencies')">Agencies</button>
-                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles')">Vehicles</button>
-                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode')">Penal Code</button>
-                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('uniforms')">Uniforms</button>
-                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider text-slate-100" onclick="openTab('training')">Training</button>
+                <button class="tab active p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('dashboard', event)">Dashboard</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('manual', event)">Manual</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('agencies', event)">Agencies</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('vehicles', event)">Vehicles</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('penalcode', event)">Penal Code</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider" onclick="openTab('uniforms', event)">Uniforms</button>
+                <button class="tab p-3 md:p-4 text-xs md:text-sm font-bold uppercase tracking-wider text-slate-100" onclick="openTab('training', event)">Training</button>
             </div>
 
             <!-- LEO TAB CONTENTS START HERE -->
@@ -195,7 +195,7 @@
                 </div>
             </div>
 
-            <div id="manual" class="tab-content">
+            <div id="manual" class="tab-content hidden">
                 <div class="flex flex-col lg:flex-row gap-8">
                     <aside class="hidden lg:block w-72 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 h-fit sticky top-24">
                         <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Manual Navigation</h2>
