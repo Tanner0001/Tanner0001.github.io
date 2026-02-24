@@ -1,6 +1,6 @@
 // SUPABASE CONFIGURATION
 // Replace these with your actual credentials from admin/auth.js
-const SUPABASE_URL = 'YOUR_https://mqdumsqnsezmlcyxvkwq.supabase.coSUPABASE_URL';
+const SUPABASE_URL = 'https://mqdumsqnsezmlcyxvkwq.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_kVsPiJutYuMj8XniLjDGVw_LnULXf6e';
 const sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
