@@ -95,13 +95,83 @@
             </div>
         </div>
 
-        <!-- Placeholder Section -->
-        <div class="bg-slate-900/50 border-2 border-dashed border-white/5 rounded-[3rem] p-20 text-center">
+        <!-- Placeholder Section (Moved down) -->
+        <div id="under-construction" class="hidden bg-slate-900/50 border-2 border-dashed border-white/5 rounded-[3rem] p-20 text-center mb-12">
             <i data-lucide="construction" class="w-16 h-16 text-slate-700 mx-auto mb-6"></i>
             <h3 class="text-2xl font-black uppercase italic text-white mb-2">Modules Under Construction</h3>
             <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">Once you connect your Supabase database, you can use this area to manage your vehicle data, penal codes, and view server logs.</p>
         </div>
+
+        <!-- Vehicle Management Section -->
+        <section id="vehicle-mgmt" class="space-y-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl font-black uppercase italic text-white">Manage Vehicles</h2>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Add or remove vehicles from the live database.</p>
+                </div>
+                <button onclick="showAddVehicleModal()" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-3 rounded-xl font-black uppercase italic text-[10px] tracking-widest transition-all flex items-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Add New Vehicle
+                </button>
+            </div>
+
+            <div class="bg-slate-900 border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-950/50 text-[10px] font-black uppercase tracking-[0.2em] text-orange-500">
+                        <tr>
+                            <th class="px-8 py-5">Dept/Cat</th>
+                            <th class="px-8 py-5">Role</th>
+                            <th class="px-8 py-5">Model</th>
+                            <th class="px-8 py-5">Code</th>
+                            <th class="px-8 py-5 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehicle-list" class="divide-y divide-white/5 text-sm">
+                        <!-- Rows injected here -->
+                        <tr><td colspan="5" class="px-8 py-20 text-center text-slate-500 italic">Fetching vehicle data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
+
+    <!-- Add Vehicle Modal -->
+    <div id="add-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/90 backdrop-blur-md p-6">
+        <div class="bg-slate-900 border border-white/10 p-10 rounded-[3rem] w-full max-w-lg shadow-2xl">
+            <h3 class="text-2xl font-black uppercase italic text-white mb-6">Add New <span class="text-orange-500">Vehicle</span></h3>
+            <form id="add-vehicle-form" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Table</label>
+                        <select id="v-table" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                            <option value="leo_vehicles">LEO Vehicles</option>
+                            <option value="civ_vehicles">Civ Vehicles</option>
+                            <option value="fd_vehicles">FD Vehicles</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Dept/Cat</label>
+                        <input type="text" id="v-dept" placeholder="e.g. lspd" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Role</label>
+                    <input type="text" id="v-role" placeholder="e.g. Patrol" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Model Name</label>
+                    <input type="text" id="v-model" placeholder="e.g. 2020 Ford Explorer" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Spawn Code</label>
+                    <input type="text" id="v-code" placeholder="e.g. 20exp" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <button type="button" onclick="hideAddVehicleModal()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest transition-all">Cancel</button>
+                    <button type="submit" class="flex-1 bg-orange-600 hover:bg-orange-500 text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest transition-all">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="auth.js"></script>
     <script>
@@ -109,12 +179,77 @@
             const session = await checkUser();
             if (session) {
                 document.getElementById('user-email').textContent = session.user.email;
+                fetchVehicles();
             }
             lucide.createIcons();
         }
 
+        async function fetchVehicles() {
+            const { data: leo } = await sbClient.from('leo_vehicles').select('*');
+            const { data: civ } = await sbClient.from('civ_vehicles').select('*');
+            const { data: fd } = await sbClient.from('fd_vehicles').select('*');
+            
+            const list = document.getElementById('vehicle-list');
+            list.innerHTML = '';
+
+            const renderRows = (data, table) => {
+                data.forEach(v => {
+                    const row = document.createElement('tr');
+                    row.className = "hover:bg-white/5 transition-colors";
+                    row.innerHTML = `
+                        <td class="px-8 py-4 font-bold text-slate-400 uppercase text-xs">${v.department || v.category || 'N/A'}</td>
+                        <td class="px-8 py-4 text-white font-medium">${v.role}</td>
+                        <td class="px-8 py-4 text-slate-300">${v.model}</td>
+                        <td class="px-8 py-4 font-mono text-orange-500">${v.code}</td>
+                        <td class="px-8 py-4 text-right">
+                            <button onclick="deleteVehicle('${table}', ${v.id})" class="text-red-500 hover:text-red-400 p-2 rounded-lg hover:bg-red-500/10 transition-all">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </td>
+                    `;
+                    list.appendChild(row);
+                });
+            };
+
+            if (leo) renderRows(leo, 'leo_vehicles');
+            if (civ) renderRows(civ, 'civ_vehicles');
+            if (fd) renderRows(fd, 'fd_vehicles');
+            lucide.createIcons();
+        }
+
+        function showAddVehicleModal() { document.getElementById('add-modal').classList.remove('hidden'); }
+        function hideAddVehicleModal() { document.getElementById('add-modal').classList.add('hidden'); }
+
+        document.getElementById('add-vehicle-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const table = document.getElementById('v-table').value;
+            const payload = {
+                role: document.getElementById('v-role').value,
+                model: document.getElementById('v-model').value,
+                code: document.getElementById('v-code').value
+            };
+            
+            if (table === 'leo_vehicles') payload.department = document.getElementById('v-dept').value;
+            if (table === 'civ_vehicles') payload.category = document.getElementById('v-dept').value;
+
+            const { error } = await sbClient.from(table).insert([payload]);
+            if (error) alert(error.message);
+            else {
+                hideAddVehicleModal();
+                fetchVehicles();
+                e.target.reset();
+            }
+        });
+
+        async function deleteVehicle(table, id) {
+            if (!confirm('Are you sure you want to delete this vehicle?')) return;
+            const { error } = await sbClient.from(table).delete().eq('id', id);
+            if (error) alert(error.message);
+            else fetchVehicles();
+        }
+
         async function handleLogout() {
-            const { error } = await supabase.auth.signOut();
+            await sbClient.auth.signOut();
             window.location.href = 'index.html';
         }
 
