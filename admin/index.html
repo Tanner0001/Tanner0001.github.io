@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal - Dynamic Gaming</title>
+    <link rel="icon" type="image/png" href="../images/Favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex items-center justify-center p-6 bg-[url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png')] bg-cover bg-center relative">
+    <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-xl"></div>
+
+    <div class="relative z-10 w-full max-w-md">
+        <div class="text-center mb-8">
+            <a href="../" class="inline-flex items-center gap-2 text-slate-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest mb-6">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Hub
+            </a>
+            <h1 class="text-4xl font-black tracking-tighter uppercase italic text-white mb-2">Staff <span class="text-orange-500">Portal</span></h1>
+            <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.3em]">Restricted Access Area</p>
+        </div>
+
+        <div class="bg-slate-900/50 border border-white/10 p-8 rounded-[2.5rem] backdrop-blur-2xl shadow-2xl">
+            <form id="login-form" class="space-y-6">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Email Address</label>
+                    <div class="relative">
+                        <i data-lucide="mail" class="absolute left-5 top-4 w-4 h-4 text-slate-500"></i>
+                        <input type="email" id="email" required class="w-full bg-slate-950/50 border border-slate-800 rounded-2xl py-4 pl-14 pr-6 text-sm text-white focus:outline-none focus:border-orange-500 transition-all" placeholder="name@example.com">
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 ml-4">Access Key</label>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-5 top-4 w-4 h-4 text-slate-500"></i>
+                        <input type="password" id="password" required class="w-full bg-slate-950/50 border border-slate-800 rounded-2xl py-4 pl-14 pr-6 text-sm text-white focus:outline-none focus:border-orange-500 transition-all" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-orange-600 hover:bg-orange-500 text-white py-4 rounded-2xl font-black uppercase italic tracking-wider transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(249,115,22,0.2)] flex items-center justify-center gap-3">
+                    <i data-lucide="log-in" class="w-5 h-5"></i>
+                    Authorize Access
+                </button>
+            </form>
+
+            <div id="auth-error" class="hidden mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-xs font-bold text-center">
+                <!-- Error message injected here -->
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <p class="text-slate-700 text-[9px] uppercase font-black tracking-[0.2em]">Unauthorized access attempts are logged and reported.</p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

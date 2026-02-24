@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Migration - Dynamic Gaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 p-12">
+    <div class="max-w-2xl mx-auto space-y-8">
+        <header>
+            <h1 class="text-3xl font-black uppercase italic">Database <span class="text-orange-500">Migrator</span></h1>
+            <p class="text-slate-500 text-sm">Push your local JSON files to your Supabase tables.</p>
+        </header>
+
+        <div class="bg-slate-900 border border-white/10 p-8 rounded-[2rem] space-y-6">
+            <div class="p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl text-orange-500 text-xs">
+                <strong>Warning:</strong> Ensure your Supabase credentials are set in <code>admin/auth.js</code> before running.
+            </div>
+
+            <div class="space-y-4">
+                <button onclick="migrateLEO()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                    <span>Migrate LEO Vehicles</span>
+                    <i data-lucide="upload" class="w-4 h-4"></i>
+                </button>
+                <button onclick="migrateCiv()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                    <span>Migrate Civilian Vehicles</span>
+                    <i data-lucide="upload" class="w-4 h-4"></i>
+                </button>
+                <button onclick="migrateFD()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                    <span>Migrate FD Vehicles</span>
+                    <i data-lucide="upload" class="w-4 h-4"></i>
+                </button>
+                <button onclick="migratePenal()" class="w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl flex justify-between items-center transition-all">
+                    <span>Migrate Penal Code</span>
+                    <i data-lucide="upload" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div id="status" class="mt-8 p-4 bg-slate-950 rounded-xl font-mono text-[10px] h-48 overflow-y-auto border border-white/5">
+                Waiting for command...
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="migrate.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
