@@ -29,35 +29,24 @@ function showHub() {
 }
 
 // UNIVERSAL TAB SWITCHING
-/**
- * @param {string} targetId - The ID of the content to show
- * @param {Event} event - The click event
- * @param {string} contentClass - The class name shared by all content panes in this group
- * @param {string} tabClass - The class name shared by all tab buttons in this group
- * @param {string} activeStyleClasses - Tailwind classes to apply to the active tab (optional)
- */
 function switchTab(targetId, event, contentClass, tabClass, activeStyleClasses = 'active') {
-    // Hide all content panes
     const contents = document.getElementsByClassName(contentClass);
     for (let i = 0; i < contents.length; i++) {
         contents[i].classList.add("hidden");
         contents[i].classList.remove("active");
     }
 
-    // Show the target pane
     const target = document.getElementById(targetId);
     if (target) {
         target.classList.remove("hidden");
         target.classList.add("active");
     }
 
-    // Update tab button styles
     const tabs = document.getElementsByClassName(tabClass);
     const styleList = activeStyleClasses.split(' ');
     
     for (let i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("active", ...styleList);
-        // Special case for sub-tabs that need text color reset
         if (tabClass.includes('sub-tab')) {
             tabs[i].classList.add("text-slate-500");
         }
@@ -68,7 +57,6 @@ function switchTab(targetId, event, contentClass, tabClass, activeStyleClasses =
         event.currentTarget.classList.remove("text-slate-500");
     }
     
-    // Auto-close sidebar on mobile if it exists
     const sidebar = document.querySelector('#manual aside') || document.querySelector('#fd-manual aside') || document.querySelector('#civ-jobs aside');
     if (sidebar && !sidebar.classList.contains('hidden') && window.innerWidth < 1024) {
         toggleManualSidebar();
@@ -77,18 +65,16 @@ function switchTab(targetId, event, contentClass, tabClass, activeStyleClasses =
     lucide.createIcons();
 }
 
-// Keep legacy wrappers for specific logic if needed, or mapping
+// Legacy wrappers
 function openTab(id, e) { switchTab(id, e, 'tab-content', 'tab'); }
 function openFDTab(id, e) { switchTab(id, e, 'fd-tab-content', 'fd-tab'); }
 function openCivTab(id, e) { switchTab(id, e, 'civ-tab-content', 'civ-tab'); }
-
 function openSubTab(id, e) { switchTab(id, e, 'sub-tab-content', 'sub-tab', 'bg-sky-600 text-white'); }
 function openPenalSubTab(id, e) { switchTab(id, e, 'penal-sub-content', 'sub-tab-penal', 'bg-sky-600 text-white'); }
 function openUniformSubTab(id, e) { switchTab(id, e, 'uniform-sub-content', 'sub-tab-uniform', 'bg-sky-600 text-white'); }
 function openCivSubTab(id, e) { switchTab(id, e, 'civ-sub-content', 'civ-sub-tab', 'bg-emerald-600 text-white'); }
 function openCivVehicleSubTab(id, e) { switchTab(id, e, 'civ-vehicle-sub-content', 'sub-tab-civ-v', 'bg-emerald-600 text-white'); }
 function openFDVehicleSubTab(id, e) { switchTab(id, e, 'fd-vehicle-sub-content', 'sub-tab-fd-v', 'bg-red-600 text-white'); }
-
 
 // UTILITIES
 function toggleAccordion(id) {
@@ -138,7 +124,6 @@ async function loadAllData() {
     if (!sbClient) return;
     try {
         console.log('[Database] Syncing...');
-        
         const [penalRes, leoVehRes, civVehRes, fdVehRes] = await Promise.all([
             sbClient.from('penal_code').select('*'),
             sbClient.from('leo_vehicles').select('*'),
@@ -146,27 +131,16 @@ async function loadAllData() {
             sbClient.from('fd_vehicles').select('*')
         ]);
 
-        // Transform Penal Code
-        if (penalRes.data && penalRes.data.length > 0) {
+        if (penalRes.data) {
             penalData = {};
             penalRes.data.forEach(row => {
-                const title = row.section_title || 'General';
-                const sectionKey = title.toLowerCase().includes('motor') ? 'vehicle' : 
-                                 title.toLowerCase().includes('wildlife') ? 'wildlife' :
-                                 title.toLowerCase().includes('policy') ? 'policy' : 'criminal';
-                
+                const sectionKey = row.section_title || 'General';
                 if (!penalData[sectionKey]) penalData[sectionKey] = [];
-                let section = penalData[sectionKey].find(s => s.title === title);
-                if (!section) {
-                    section = { title: title, laws: [] };
-                    penalData[sectionKey].push(section);
-                }
-                section.laws.push({ id: row.id, name: row.name, description: row.description, class: row.class });
+                penalData[sectionKey].push({ id: row.id, name: row.name, description: row.description, class: row.class });
             });
         }
 
-        // Transform LEO Vehicles
-        if (leoVehRes.data && leoVehRes.data.length > 0) {
+        if (leoVehRes.data) {
             vehicleData = {};
             leoVehRes.data.forEach(row => {
                 const dept = row.department || 'unmarked';
@@ -175,8 +149,7 @@ async function loadAllData() {
             });
         }
 
-        // Transform Civ Vehicles
-        if (civVehRes.data && civVehRes.data.length > 0) {
+        if (civVehRes.data) {
             civVehicleData = {};
             civVehRes.data.forEach(row => {
                 const cat = row.category || 'other';
@@ -185,8 +158,7 @@ async function loadAllData() {
             });
         }
 
-        // Transform FD Vehicles
-        if (fdVehRes.data && fdVehRes.data.length > 0) {
+        if (fdVehRes.data) {
             fdVehicleData = { 'fire': [], 'ems': [] };
             fdVehRes.data.forEach(row => {
                 const type = (row.role.toLowerCase().includes('ambulance') || row.role.toLowerCase().includes('medical')) ? 'ems' : 'fire';
@@ -198,91 +170,19 @@ async function loadAllData() {
         renderVehicles();
         renderCivVehicles();
         renderFDVehicles();
-        
         lucide.createIcons();
+        logVisit();
     } catch (err) {
         console.error("Data Sync Error:", err);
     }
 }
 
-function renderCivVehicles() {
-    if (!civVehicleData) return;
-    const tabContainer = document.getElementById('civ-vehicle-tabs');
-    const dataContainer = document.getElementById('civ-vehicle-data-container');
-    if (!tabContainer || !dataContainer) return;
-    
-    const keys = Object.keys(civVehicleData);
-    if (keys.length === 0) return;
-
-    tabContainer.innerHTML = keys.map((key, index) => `
-        <button class="sub-tab-civ-v ${index === 0 ? 'active bg-emerald-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
-                onclick="openCivVehicleSubTab('cv-${key}', event)">
-            ${key.toUpperCase()}
-        </button>
-    `).join('');
-
-    dataContainer.innerHTML = keys.map((key, index) => `
-        <div id="cv-${key}" class="civ-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
-            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
-                <div class="responsive-table-container">
-                    <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-emerald-400 text-[10px] uppercase font-bold tracking-[0.2em]">
-                            <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-sm">
-                            ${civVehicleData[key].map(v => `
-                                <tr class="hover:bg-slate-800/30 transition-colors text-left">
-                                    <td class="px-8 py-4 text-slate-500 font-bold text-left">${v.role}</td>
-                                    <td class="px-8 py-4 text-white text-left">${v.model}</td>
-                                    <td class="px-8 py-4 text-right font-mono text-emerald-400">${v.code}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-function renderFDVehicles() {
-    if (!fdVehicleData) return;
-    const tabContainer = document.getElementById('fd-vehicle-tabs');
-    const dataContainer = document.getElementById('fd-vehicle-data-container');
-    if (!tabContainer || !dataContainer) return;
-    
-    const keys = Object.keys(fdVehicleData).filter(k => fdVehicleData[k].length > 0);
-    if (keys.length === 0) return;
-
-    tabContainer.innerHTML = keys.map((key, index) => `
-        <button class="sub-tab-fd-v ${index === 0 ? 'active bg-red-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
-                onclick="openFDVehicleSubTab('fv-${key}', event)">
-            ${key.toUpperCase()}
-        </button>
-    `).join('');
-
-    dataContainer.innerHTML = keys.map((key, index) => `
-        <div id="fv-${key}" class="fd-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
-            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
-                <div class="responsive-table-container">
-                    <table class="w-full text-left m-0">
-                        <thead class="bg-slate-900/50 text-red-400 text-[10px] uppercase font-bold tracking-[0.2em]">
-                            <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-800 text-sm">
-                            ${fdVehicleData[key].map(v => `
-                                <tr class="hover:bg-slate-800/30 transition-colors text-left">
-                                    <td class="px-8 py-4 text-slate-500 font-bold text-left">${v.role}</td>
-                                    <td class="px-8 py-4 text-white text-left">${v.model}</td>
-                                    <td class="px-8 py-4 text-right font-mono text-red-400">${v.code}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    `).join('');
+async function logVisit() {
+    if (!sbClient) return;
+    try {
+        // This expects a table named 'site_stats' with a column 'hits'
+        const { data } = await sbClient.rpc('increment_hits');
+    } catch (e) {}
 }
 
 function renderPenalCode(filter = '') {
@@ -298,51 +198,43 @@ function renderPenalCode(filter = '') {
     if (tabContainer.innerHTML.trim() === "") {
         tabContainer.innerHTML = keys.map((key, index) => `
             <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
-                    onclick="openPenalSubTab('p-${key}', event)">
-                ${getDisplayName(key)}
+                    onclick="openPenalSubTab('p-${key.replace(/\s+/g, '-')}', event)">
+                ${key}
             </button>
         `).join('');
     }
 
     dataContainer.innerHTML = keys.map((key, index) => {
-        let html = `<div id="p-${key}" class="penal-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-6">`;
-        let foundMatch = false;
-        penalData[key].forEach(section => {
-            const filteredLaws = section.laws.filter(law => 
-                law.name.toLowerCase().includes(searchTerm) || 
-                law.id.toLowerCase().includes(searchTerm) ||
-                law.description.toLowerCase().includes(searchTerm)
-            );
-            if (filteredLaws.length > 0) {
-                foundMatch = true;
-                html += `
-                    <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700 mb-6">
-                        <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-[10px]">${section.title}</div>
-                        <div class="p-6 divide-y divide-slate-800 space-y-4">
-                            ${filteredLaws.map(law => `
-                                <div class="flex justify-between items-start pt-4 first:pt-0">
-                                    <div>
-                                        <h4 class="font-bold text-white text-sm">${law.id}. ${law.name}</h4>
-                                        <p class="text-xs text-slate-500">${law.description}</p>
-                                    </div>
-                                    <span class="${getClassStyle(law.class)} px-3 py-1 rounded-full text-[10px] font-bold border">${law.class}</span>
+        const filteredLaws = penalData[key].filter(law => 
+            law.name.toLowerCase().includes(searchTerm) || 
+            law.id.toString().toLowerCase().includes(searchTerm) ||
+            law.description.toLowerCase().includes(searchTerm)
+        );
+
+        let html = `<div id="p-${key.replace(/\s+/g, '-')}" class="penal-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-6">`;
+        if (filteredLaws.length > 0) {
+            html += `
+                <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700 mb-6">
+                    <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-[10px]">${key}</div>
+                    <div class="p-6 divide-y divide-slate-800 space-y-4">
+                        ${filteredLaws.map(law => `
+                            <div class="flex justify-between items-start pt-4 first:pt-0">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">${law.id}. ${law.name}</h4>
+                                    <p class="text-xs text-slate-500">${law.description}</p>
                                 </div>
-                            `).join('')}
-                        </div>
+                                <span class="${getClassStyle(law.class)} px-3 py-1 rounded-full text-[10px] font-bold border">${law.class}</span>
+                            </div>
+                        `).join('')}
                     </div>
-                `;
-            }
-        });
-        if (!foundMatch) html += `<p class="text-slate-500 text-sm italic text-center py-10">No matching records found.</p>`;
+                </div>`;
+        } else {
+            html += `<p class="text-slate-500 text-sm italic text-center py-10">No matching records found.</p>`;
+        }
         html += `</div>`;
         return html;
     }).join('');
     lucide.createIcons();
-}
-
-function getDisplayName(key) {
-    const names = { 'policy': 'Legal Policy', 'criminal': 'Criminal Code', 'vehicle': 'Vehicle Code', 'wildlife': 'Fish & Game' };
-    return names[key] || key.toUpperCase();
 }
 
 function getClassStyle(cls) {
@@ -386,6 +278,84 @@ function renderVehicles() {
                                     <td class="px-8 py-4 text-slate-500 font-bold">${v.role}</td>
                                     <td class="px-8 py-4 text-white">${v.model}</td>
                                     <td class="px-8 py-4 text-right font-mono text-sky-400">${v.code}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderCivVehicles() {
+    if (!civVehicleData) return;
+    const tabContainer = document.getElementById('civ-vehicle-tabs');
+    const dataContainer = document.getElementById('civ-vehicle-data-container');
+    if (!tabContainer || !dataContainer) return;
+    const keys = Object.keys(civVehicleData);
+    if (keys.length === 0) return;
+
+    tabContainer.innerHTML = keys.map((key, index) => `
+        <button class="sub-tab-civ-v ${index === 0 ? 'active bg-emerald-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+                onclick="openCivVehicleSubTab('cv-${key}', event)">
+            ${key.toUpperCase()}
+        </button>
+    `).join('');
+
+    dataContainer.innerHTML = keys.map((key, index) => `
+        <div id="cv-${key}" class="civ-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
+            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                <div class="responsive-table-container">
+                    <table class="w-full text-left m-0">
+                        <thead class="bg-slate-900/50 text-emerald-400 text-[10px] uppercase font-bold tracking-[0.2em]">
+                            <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm">
+                            ${civVehicleData[key].map(v => `
+                                <tr class="hover:bg-slate-800/30 transition-colors text-left">
+                                    <td class="px-8 py-4 text-slate-500 font-bold text-left">${v.role}</td>
+                                    <td class="px-8 py-4 text-white text-left">${v.model}</td>
+                                    <td class="px-8 py-4 text-right font-mono text-emerald-400">${v.code}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderFDVehicles() {
+    if (!fdVehicleData) return;
+    const tabContainer = document.getElementById('fd-vehicle-tabs');
+    const dataContainer = document.getElementById('fd-vehicle-data-container');
+    if (!tabContainer || !dataContainer) return;
+    const keys = Object.keys(fdVehicleData).filter(k => fdVehicleData[k].length > 0);
+    if (keys.length === 0) return;
+
+    tabContainer.innerHTML = keys.map((key, index) => `
+        <button class="sub-tab-fd-v ${index === 0 ? 'active bg-red-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
+                onclick="openFDVehicleSubTab('fv-${key}', event)">
+            ${key.toUpperCase()}
+        </button>
+    `).join('');
+
+    dataContainer.innerHTML = keys.map((key, index) => `
+        <div id="fv-${key}" class="fd-vehicle-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-8">
+            <div class="rounded-3xl overflow-hidden shadow-2xl glassmorphism border border-slate-700">
+                <div class="responsive-table-container">
+                    <table class="w-full text-left m-0">
+                        <thead class="bg-slate-900/50 text-red-400 text-[10px] uppercase font-bold tracking-[0.2em]">
+                            <tr><th class="px-8 py-4">Role</th><th class="px-8 py-4">Vehicle Model</th><th class="px-8 py-4 text-right">Spawn Code</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm">
+                            ${fdVehicleData[key].map(v => `
+                                <tr class="hover:bg-slate-800/30 transition-colors text-left">
+                                    <td class="px-8 py-4 text-slate-500 font-bold text-left">${v.role}</td>
+                                    <td class="px-8 py-4 text-white text-left">${v.model}</td>
+                                    <td class="px-8 py-4 text-right font-mono text-red-400">${v.code}</td>
                                 </tr>
                             `).join('')}
                         </tbody>

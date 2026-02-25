@@ -67,7 +67,7 @@
                 <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl">
                     <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Total Hub Traffic</span>
                     <div class="flex items-end gap-4">
-                        <span class="text-5xl font-black text-white leading-none">1,284</span>
+                        <span id="stat-traffic" class="text-5xl font-black text-white leading-none">--</span>
                         <span class="text-emerald-500 text-xs font-bold flex items-center gap-1 pb-1">
                             <i data-lucide="trending-up" class="w-3 h-3"></i> +12%
                         </span>
@@ -251,12 +251,25 @@
         let currentVehicles = [];
         let currentPenalCode = [];
 
+        // OVERVIEW & STATS
+        async function fetchStats() {
+            try {
+                const { data } = await sbClient.from('site_stats').select('hits').eq('id', 1).single();
+                if (data) {
+                    document.getElementById('stat-traffic').textContent = data.hits.toLocaleString();
+                }
+            } catch (e) {
+                console.error("Traffic Stat Error:", e);
+            }
+        }
+
         async function initDashboard() {
             const session = await checkUser();
             if (session) {
                 document.getElementById('user-email').textContent = session.user.email;
                 fetchVehicles();
                 fetchPenalCode();
+                fetchStats();
             }
             lucide.createIcons();
         }
