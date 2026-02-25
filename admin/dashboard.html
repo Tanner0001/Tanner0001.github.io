@@ -36,6 +36,9 @@
                 <button onclick="showSection('notices-mgmt')" class="nav-btn w-full flex items-center gap-3 p-4 rounded-2xl hover:bg-white/5 text-slate-400 border border-transparent transition-all text-xs font-black uppercase tracking-widest">
                     <i data-lucide="megaphone" class="w-4 h-4"></i> Global Notices
                 </button>
+                <button onclick="showSection('settings-mgmt')" class="nav-btn w-full flex items-center gap-3 p-4 rounded-2xl hover:bg-white/5 text-slate-400 border border-transparent transition-all text-xs font-black uppercase tracking-widest">
+                    <i data-lucide="settings" class="w-4 h-4"></i> Site Settings
+                </button>
             </nav>
         </div>
 
@@ -221,6 +224,51 @@
                 </div>
             </div>
         </section>
+
+        <!-- Site Settings Section -->
+        <section id="section-settings-mgmt" class="admin-section hidden space-y-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl font-black uppercase italic text-white">System <span class="text-orange-500">Settings</span></h2>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Global site toggles and infrastructure integrations.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Maintenance Mode Card -->
+                <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl space-y-6">
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-1">
+                            <h3 class="text-lg font-black uppercase italic text-white flex items-center gap-2">
+                                <i data-lucide="shield-alert" class="text-red-500"></i> Maintenance Mode
+                            </h3>
+                            <p class="text-[10px] text-slate-500 uppercase font-bold">Lock public site access</p>
+                        </div>
+                        <div id="m-toggle-box" class="relative inline-flex items-center cursor-pointer" onclick="toggleMaintenance()">
+                            <div id="m-toggle-bg" class="w-14 h-7 bg-slate-800 rounded-full transition-colors border border-white/5"></div>
+                            <div id="m-toggle-dot" class="absolute left-1 top-1 w-5 h-5 bg-slate-400 rounded-full transition-transform"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-red-500/5 border border-red-500/10 rounded-2xl">
+                        <p class="text-[10px] text-red-400 leading-relaxed italic m-0">When active, all visitors will be redirected to a 'Maintenance in Progress' screen. Staff members can still bypass this using their login.</p>
+                    </div>
+                </div>
+
+                <!-- Discord Integration Card -->
+                <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl space-y-6">
+                    <h3 class="text-lg font-black uppercase italic text-white flex items-center gap-2">
+                        <i data-lucide="message-square" class="text-[#5865F2]"></i> Discord Analytics
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Guild Widget ID</label>
+                            <input type="text" id="discord-widget-id" placeholder="e.g. 1234567890" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                        </div>
+                        <button onclick="saveDiscordID()" class="w-full bg-[#5865F2] hover:bg-[#4752C4] text-white py-3 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Link Discord</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Add/Edit Vehicle Modal -->
@@ -349,6 +397,8 @@
             }
         }
 
+        let isMaintenanceActive = false;
+
         async function initDashboard() {
             const session = await checkUser();
             if (session) {
@@ -357,8 +407,53 @@
                 fetchPenalCode();
                 fetchStats();
                 fetchGlobalNotices();
+                fetchSiteSettings();
             }
             lucide.createIcons();
+        }
+
+        async function fetchSiteSettings() {
+            const { data } = await sbClient.from('site_settings').select('*');
+            if (data) {
+                const maintenance = data.find(s => s.key === 'maintenance_mode');
+                const discord = data.find(s => s.key === 'discord_id');
+                
+                if (maintenance) {
+                    isMaintenanceActive = maintenance.value === true;
+                    updateMaintenanceUI();
+                }
+                if (discord) document.getElementById('discord-widget-id').value = discord.value;
+            }
+        }
+
+        function updateMaintenanceUI() {
+            const bg = document.getElementById('m-toggle-bg');
+            const dot = document.getElementById('m-toggle-dot');
+            if (isMaintenanceActive) {
+                bg.classList.remove('bg-slate-800');
+                bg.classList.add('bg-red-600');
+                dot.classList.add('translate-x-7', 'bg-white');
+            } else {
+                bg.classList.add('bg-slate-800');
+                bg.classList.remove('bg-red-600');
+                dot.classList.remove('translate-x-7', 'bg-white');
+            }
+        }
+
+        async function toggleMaintenance() {
+            isMaintenanceActive = !isMaintenanceActive;
+            const { error } = await sbClient.from('site_settings').upsert({ 
+                key: 'maintenance_mode', 
+                value: isMaintenanceActive 
+            });
+            if (error) alert(error.message);
+            else updateMaintenanceUI();
+        }
+
+        async function saveDiscordID() {
+            const val = document.getElementById('discord-widget-id').value;
+            await sbClient.from('site_settings').upsert({ key: 'discord_id', value: val });
+            alert('Discord Link Saved');
         }
 
         async function fetchGlobalNotices() {
