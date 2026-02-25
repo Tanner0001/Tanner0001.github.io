@@ -132,6 +132,7 @@ async function loadAllData() {
         ]);
 
         if (penalRes.data) {
+            console.log('[Database] Penal Code loaded:', penalRes.data.length, 'rows');
             penalData = {};
             penalRes.data.forEach(row => {
                 const sectionKey = row.section_title || 'General';
@@ -180,8 +181,7 @@ async function loadAllData() {
 async function logVisit() {
     if (!sbClient) return;
     try {
-        // This expects a table named 'site_stats' with a column 'hits'
-        const { data } = await sbClient.rpc('increment_hits');
+        await sbClient.rpc('increment_hits');
     } catch (e) {}
 }
 
@@ -193,43 +193,51 @@ function renderPenalCode(filter = '') {
     if (!tabContainer || !dataContainer) return;
     
     const keys = Object.keys(penalData);
-    if (keys.length === 0) return;
+    if (keys.length === 0) {
+        dataContainer.innerHTML = '<p class="text-slate-500 text-center py-20 italic">No penal code entries found in database.</p>';
+        return;
+    }
 
+    // Generate tabs if they don't exist
     if (tabContainer.innerHTML.trim() === "") {
-        tabContainer.innerHTML = keys.map((key, index) => `
-            <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all" 
-                    onclick="openPenalSubTab('p-${key.replace(/\s+/g, '-')}', event)">
-                ${key}
-            </button>
-        `).join('');
+        tabContainer.innerHTML = keys.map((key, index) => {
+            const safeId = key.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            return `
+                <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap" 
+                        onclick="openPenalSubTab('p-${safeId}', event)">
+                    ${key}
+                </button>
+            `;
+        }).join('');
     }
 
     dataContainer.innerHTML = keys.map((key, index) => {
+        const safeId = key.replace(/[^a-z0-9]/gi, '-').toLowerCase();
         const filteredLaws = penalData[key].filter(law => 
-            law.name.toLowerCase().includes(searchTerm) || 
-            law.id.toString().toLowerCase().includes(searchTerm) ||
-            law.description.toLowerCase().includes(searchTerm)
+            (law.name || '').toLowerCase().includes(searchTerm) || 
+            (law.id || '').toString().toLowerCase().includes(searchTerm) ||
+            (law.description || '').toLowerCase().includes(searchTerm)
         );
 
-        let html = `<div id="p-${key.replace(/\s+/g, '-')}" class="penal-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-6">`;
+        let html = `<div id="p-${safeId}" class="penal-sub-content ${index === 0 ? 'active' : 'hidden'} space-y-6">`;
         if (filteredLaws.length > 0) {
             html += `
                 <div class="rounded-2xl overflow-hidden glassmorphism border border-slate-700 mb-6">
                     <div class="bg-slate-800/50 p-4 border-b border-slate-700 text-sky-300 font-bold uppercase tracking-widest text-[10px]">${key}</div>
                     <div class="p-6 divide-y divide-slate-800 space-y-4">
                         ${filteredLaws.map(law => `
-                            <div class="flex justify-between items-start pt-4 first:pt-0">
-                                <div>
+                            <div class="flex justify-between items-start pt-4 first:pt-0 gap-4">
+                                <div class="text-left">
                                     <h4 class="font-bold text-white text-sm">${law.id}. ${law.name}</h4>
-                                    <p class="text-xs text-slate-500">${law.description}</p>
+                                    <p class="text-xs text-slate-500 mt-1">${law.description}</p>
                                 </div>
-                                <span class="${getClassStyle(law.class)} px-3 py-1 rounded-full text-[10px] font-bold border">${law.class}</span>
+                                <span class="${getClassStyle(law.class)} px-3 py-1 rounded-full text-[10px] font-bold border shrink-0 uppercase">${law.class || 'N/A'}</span>
                             </div>
                         `).join('')}
                     </div>
                 </div>`;
         } else {
-            html += `<p class="text-slate-500 text-sm italic text-center py-10">No matching records found.</p>`;
+            html += `<p class="text-slate-500 text-sm italic text-center py-10">No matching laws found in this section.</p>`;
         }
         html += `</div>`;
         return html;
@@ -238,7 +246,9 @@ function renderPenalCode(filter = '') {
 }
 
 function getClassStyle(cls) {
-    switch(cls) {
+    if (!cls) return 'bg-slate-500/10 text-slate-500 border-slate-500/20';
+    const c = cls.toUpperCase();
+    switch(c) {
         case 'FELONY': return 'bg-red-500/10 text-red-500 border-red-500/20';
         case 'CAPITAL': return 'bg-red-600 text-white border-red-600';
         case 'MISDEMEANOR': return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20';
