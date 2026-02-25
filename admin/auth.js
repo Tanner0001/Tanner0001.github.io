@@ -38,8 +38,16 @@ if (loginForm) {
 
 async function checkUser() {
     const { data: { session } } = await sbClient.auth.getSession();
-    if (!session && window.location.pathname.includes('dashboard.html')) {
+    const isLoginPage = window.location.pathname.endsWith('admin/') || window.location.pathname.endsWith('admin/index.html');
+    const isDashboardPage = window.location.pathname.includes('dashboard.html');
+
+    if (session && isLoginPage) {
+        window.location.href = 'dashboard.html';
+    } else if (!session && isDashboardPage) {
         window.location.href = 'index.html';
     }
     return session;
 }
+
+// Run check on every auth-related page load
+checkUser();

@@ -28,168 +28,67 @@ function showHub() {
     window.location.href = basePath || './';
 }
 
-// MAIN TAB SWITCHING (LEO)
-function openTab(tabName, event) {
-    var i;
-    var x = document.getElementsByClassName("tab-content");
-    for (i = 0; i < x.length; i++) {
-        x[i].classList.add("hidden");
-        x[i].classList.remove("active");
+// UNIVERSAL TAB SWITCHING
+/**
+ * @param {string} targetId - The ID of the content to show
+ * @param {Event} event - The click event
+ * @param {string} contentClass - The class name shared by all content panes in this group
+ * @param {string} tabClass - The class name shared by all tab buttons in this group
+ * @param {string} activeStyleClasses - Tailwind classes to apply to the active tab (optional)
+ */
+function switchTab(targetId, event, contentClass, tabClass, activeStyleClasses = 'active') {
+    // Hide all content panes
+    const contents = document.getElementsByClassName(contentClass);
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.add("hidden");
+        contents[i].classList.remove("active");
     }
-    const target = document.getElementById(tabName);
+
+    // Show the target pane
+    const target = document.getElementById(targetId);
     if (target) {
         target.classList.remove("hidden");
         target.classList.add("active");
     }
 
-    var tabs = document.getElementsByClassName("tab");
-    for (i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
+    // Update tab button styles
+    const tabs = document.getElementsByClassName(tabClass);
+    const styleList = activeStyleClasses.split(' ');
+    
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active", ...styleList);
+        // Special case for sub-tabs that need text color reset
+        if (tabClass.includes('sub-tab')) {
+            tabs[i].classList.add("text-slate-500");
+        }
     }
+
     if (event && event.currentTarget) {
-        event.currentTarget.classList.add("active");
+        event.currentTarget.classList.add("active", ...styleList);
+        event.currentTarget.classList.remove("text-slate-500");
     }
     
-    const sidebar = document.querySelector('#manual aside');
-    if (sidebar && !sidebar.classList.contains('hidden')) {
+    // Auto-close sidebar on mobile if it exists
+    const sidebar = document.querySelector('#manual aside') || document.querySelector('#fd-manual aside') || document.querySelector('#civ-jobs aside');
+    if (sidebar && !sidebar.classList.contains('hidden') && window.innerWidth < 1024) {
         toggleManualSidebar();
     }
+
     lucide.createIcons();
 }
 
-// SUB-TAB FUNCTIONALITY (VEHICLES, PENAL, UNIFORM)
-function openSubTab(subTabName, event) {
-    const contents = document.getElementsByClassName("sub-tab-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-        contents[i].classList.remove("active");
-    }
-    const buttons = document.getElementsByClassName("sub-tab");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
-        buttons[i].classList.add("text-slate-500");
-    }
-    const target = document.getElementById(subTabName);
-    if (target) {
-        target.classList.remove("hidden", "active");
-        target.classList.add("active");
-    }
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
-    }
-    lucide.createIcons();
-}
+// Keep legacy wrappers for specific logic if needed, or mapping
+function openTab(id, e) { switchTab(id, e, 'tab-content', 'tab'); }
+function openFDTab(id, e) { switchTab(id, e, 'fd-tab-content', 'fd-tab'); }
+function openCivTab(id, e) { switchTab(id, e, 'civ-tab-content', 'civ-tab'); }
 
-function openPenalSubTab(subTabName, event) {
-    const contents = document.getElementsByClassName("penal-sub-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("sub-tab-penal");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
-        buttons[i].classList.add("text-slate-500");
-    }
-    const target = document.getElementById(subTabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
-}
+function openSubTab(id, e) { switchTab(id, e, 'sub-tab-content', 'sub-tab', 'bg-sky-600 text-white'); }
+function openPenalSubTab(id, e) { switchTab(id, e, 'penal-sub-content', 'sub-tab-penal', 'bg-sky-600 text-white'); }
+function openUniformSubTab(id, e) { switchTab(id, e, 'uniform-sub-content', 'sub-tab-uniform', 'bg-sky-600 text-white'); }
+function openCivSubTab(id, e) { switchTab(id, e, 'civ-sub-content', 'civ-sub-tab', 'bg-emerald-600 text-white'); }
+function openCivVehicleSubTab(id, e) { switchTab(id, e, 'civ-vehicle-sub-content', 'sub-tab-civ-v', 'bg-emerald-600 text-white'); }
+function openFDVehicleSubTab(id, e) { switchTab(id, e, 'fd-vehicle-sub-content', 'sub-tab-fd-v', 'bg-red-600 text-white'); }
 
-function openUniformSubTab(subTabName, event) {
-    const contents = document.getElementsByClassName("uniform-sub-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("sub-tab-uniform");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-sky-600", "text-white");
-        buttons[i].classList.add("text-slate-500");
-    }
-    const target = document.getElementById(subTabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-sky-600", "text-white");
-}
-
-// FD PORTAL TABS
-function openFDTab(tabName, event) {
-    const contents = document.getElementsByClassName("fd-tab-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("fd-tab");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active");
-    }
-    const target = document.getElementById(tabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) event.currentTarget.classList.add("active");
-    lucide.createIcons();
-}
-
-// CIV PORTAL TABS
-function openCivTab(tabName, event) {
-    const contents = document.getElementsByClassName("civ-tab-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("civ-tab");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active");
-    }
-    const target = document.getElementById(tabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) event.currentTarget.classList.add("active");
-    lucide.createIcons();
-}
-
-function openCivSubTab(subTabName, event) {
-    const contents = document.getElementsByClassName("civ-sub-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("civ-sub-tab");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
-        buttons[i].classList.add("text-slate-400", "hover:bg-slate-800");
-    }
-    const target = document.getElementById(subTabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
-        event.currentTarget.classList.remove("text-slate-400", "hover:bg-slate-800");
-    }
-    lucide.createIcons();
-}
-
-function openCivVehicleSubTab(subTabName, event) {
-    const contents = document.getElementsByClassName("civ-vehicle-sub-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("sub-tab-civ-v");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-emerald-600", "text-white");
-        buttons[i].classList.add("text-slate-500");
-    }
-    const target = document.getElementById(subTabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-emerald-600", "text-white");
-}
-
-function openFDVehicleSubTab(subTabName, event) {
-    const contents = document.getElementsByClassName("fd-vehicle-sub-content");
-    for (let i = 0; i < contents.length; i++) {
-        contents[i].classList.add("hidden");
-    }
-    const buttons = document.getElementsByClassName("sub-tab-fd-v");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active", "bg-red-600", "text-white");
-        buttons[i].classList.add("text-slate-500");
-    }
-    const target = document.getElementById(subTabName);
-    if (target) target.classList.remove("hidden");
-    if (event && event.currentTarget) event.currentTarget.classList.add("active", "bg-red-600", "text-white");
-}
 
 // UTILITIES
 function toggleAccordion(id) {
