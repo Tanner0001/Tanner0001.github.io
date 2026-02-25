@@ -123,7 +123,7 @@ let fdVehicleData = null;
 async function loadAllData() {
     if (!sbClient) return;
     try {
-        console.log('[Database] Syncing...');
+        console.log('[Database] Syncing all resources...');
         const [penalRes, leoVehRes, civVehRes, fdVehRes] = await Promise.all([
             sbClient.from('penal_code').select('*'),
             sbClient.from('leo_vehicles').select('*'),
@@ -131,39 +131,64 @@ async function loadAllData() {
             sbClient.from('fd_vehicles').select('*')
         ]);
 
+        // Error Logging
+        if (penalRes.error) console.error('[Database] Penal Code Error:', penalRes.error.message);
+        if (leoVehRes.error) console.error('[Database] LEO Vehicle Error:', leoVehRes.error.message);
+
+        // Transformation with Casing Support
         if (penalRes.data) {
-            console.log('[Database] Penal Code loaded:', penalRes.data.length, 'rows');
+            console.log('[Database] Penal Code returned', penalRes.data.length, 'rows');
             penalData = {};
             penalRes.data.forEach(row => {
-                const sectionKey = row.section_title || 'General';
-                if (!penalData[sectionKey]) penalData[sectionKey] = [];
-                penalData[sectionKey].push({ id: row.id, name: row.name, description: row.description, class: row.class });
+                // Support both 'section_title' and 'Section Title' or fallback to 'General'
+                const title = row.section_title || row['Section Title'] || 'General';
+                if (!penalData[title]) penalData[title] = [];
+                
+                penalData[title].push({ 
+                    id: row.id || row.ID, 
+                    name: row.name || row.Name, 
+                    description: row.description || row.Description, 
+                    class: row.class || row.Class 
+                });
             });
         }
 
         if (leoVehRes.data) {
             vehicleData = {};
             leoVehRes.data.forEach(row => {
-                const dept = row.department || 'unmarked';
+                const dept = row.department || row.Department || 'unmarked';
                 if (!vehicleData[dept]) vehicleData[dept] = [];
-                vehicleData[dept].push({ role: row.role, model: row.model, code: row.code });
+                vehicleData[dept].push({ 
+                    role: row.role || row.Role, 
+                    model: row.model || row.Model, 
+                    code: row.code || row.Code 
+                });
             });
         }
 
         if (civVehRes.data) {
             civVehicleData = {};
             civVehRes.data.forEach(row => {
-                const cat = row.category || 'other';
+                const cat = row.category || row.Category || 'other';
                 if (!civVehicleData[cat]) civVehicleData[cat] = [];
-                civVehicleData[cat].push({ role: row.role, model: row.model, code: row.code });
+                civVehicleData[cat].push({ 
+                    role: row.role || row.Role, 
+                    model: row.model || row.Model, 
+                    code: row.code || row.Code 
+                });
             });
         }
 
         if (fdVehRes.data) {
             fdVehicleData = { 'fire': [], 'ems': [] };
             fdVehRes.data.forEach(row => {
-                const type = (row.role.toLowerCase().includes('ambulance') || row.role.toLowerCase().includes('medical')) ? 'ems' : 'fire';
-                fdVehicleData[type].push({ role: row.role, model: row.model, code: row.code });
+                const role = (row.role || row.Role || '').toLowerCase();
+                const type = (role.includes('ambulance') || role.includes('medical')) ? 'ems' : 'fire';
+                fdVehicleData[type].push({ 
+                    role: row.role || row.Role, 
+                    model: row.model || row.Model, 
+                    code: row.code || row.Code 
+                });
             });
         }
 
@@ -174,7 +199,7 @@ async function loadAllData() {
         lucide.createIcons();
         logVisit();
     } catch (err) {
-        console.error("Data Sync Error:", err);
+        console.error("Critical Data Sync Error:", err);
     }
 }
 
@@ -182,7 +207,9 @@ async function logVisit() {
     if (!sbClient) return;
     try {
         await sbClient.rpc('increment_hits');
-    } catch (e) {}
+    } catch (e) {
+        // Function might not exist yet
+    }
 }
 
 function renderPenalCode(filter = '') {
@@ -198,7 +225,6 @@ function renderPenalCode(filter = '') {
         return;
     }
 
-    // Generate tabs if they don't exist
     if (tabContainer.innerHTML.trim() === "") {
         tabContainer.innerHTML = keys.map((key, index) => {
             const safeId = key.replace(/[^a-z0-9]/gi, '-').toLowerCase();
