@@ -422,12 +422,16 @@
         // FORM SUBMISSIONS
         document.getElementById('add-vehicle-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const { data: { session } } = await sbClient.auth.getSession();
+            if (!session) return alert('Session expired. Please log in again.');
+
             const table = document.getElementById('v-table').value;
             const id = document.getElementById('v-id').value;
             const payload = {
                 role: document.getElementById('v-role').value,
                 model: document.getElementById('v-model').value,
-                code: document.getElementById('v-code').value
+                code: document.getElementById('v-code').value,
+                user_id: session.user.id // Critical for RLS
             };
             
             if (table === 'leo_vehicles') payload.department = document.getElementById('v-dept').value;
@@ -449,13 +453,17 @@
 
         document.getElementById('penal-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const { data: { session } } = await sbClient.auth.getSession();
+            if (!session) return alert('Session expired. Please log in again.');
+
             const id = document.getElementById('p-db-id').value;
             const payload = {
                 id: document.getElementById('p-id').value,
                 name: document.getElementById('p-name').value,
                 section_title: document.getElementById('p-section').value,
                 class: document.getElementById('p-class').value,
-                description: document.getElementById('p-desc').value
+                description: document.getElementById('p-desc').value,
+                user_id: session.user.id // Critical for RLS
             };
 
             let result;
