@@ -66,14 +66,19 @@
 
         <!-- Sections -->
         <div id="section-overview" class="admin-section">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">FiveM Server Status</span>
+                    <div class="flex items-end gap-4">
+                        <span id="stat-server-online" class="text-xs font-black uppercase tracking-widest text-red-500">Offline</span>
+                        <span id="stat-players" class="text-2xl font-black text-white leading-none">0/0</span>
+                    </div>
+                    <span id="stat-last-seen" class="block text-[8px] text-slate-600 uppercase font-bold mt-4 tracking-widest">Never Seen</span>
+                </div>
                 <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl">
                     <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Total Hub Traffic</span>
                     <div class="flex items-end gap-4">
                         <span id="stat-traffic" class="text-5xl font-black text-white leading-none">--</span>
-                        <span class="text-emerald-500 text-xs font-bold flex items-center gap-1 pb-1">
-                            <i data-lucide="trending-up" class="w-3 h-3"></i> +12%
-                        </span>
                     </div>
                 </div>
                 <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl">
@@ -311,12 +316,36 @@
         // OVERVIEW & STATS
         async function fetchStats() {
             try {
-                const { data } = await sbClient.from('site_stats').select('hits').eq('id', 1).single();
-                if (data) {
-                    document.getElementById('stat-traffic').textContent = data.hits.toLocaleString();
+                // Fetch Website Traffic
+                const { data: trafficData } = await sbClient.from('site_stats').select('hits').eq('id', 1).single();
+                if (trafficData) {
+                    document.getElementById('stat-traffic').textContent = trafficData.hits.toLocaleString();
+                }
+
+                // Fetch Live FiveM Status
+                const { data: serverData } = await sbClient.from('server_status').select('*').eq('id', 1).single();
+                if (serverData) {
+                    const statusEl = document.getElementById('stat-server-online');
+                    const playersEl = document.getElementById('stat-players');
+                    const seenEl = document.getElementById('stat-last-seen');
+
+                    const lastSeen = new Date(serverData.last_seen);
+                    const isTimeout = (new Date() - lastSeen) > 180000;
+                    const isOnline = serverData.is_online && !isTimeout;
+
+                    if (isOnline) {
+                        statusEl.textContent = "Online";
+                        statusEl.className = "text-xs font-black uppercase tracking-widest text-emerald-500";
+                        playersEl.textContent = `${serverData.players}/${serverData.max_players}`;
+                    } else {
+                        statusEl.textContent = "Offline";
+                        statusEl.className = "text-xs font-black uppercase tracking-widest text-red-500";
+                        playersEl.textContent = "0/0";
+                    }
+                    seenEl.textContent = "Last Sync: " + lastSeen.toLocaleTimeString();
                 }
             } catch (e) {
-                console.error("Traffic Stat Error:", e);
+                console.error("Stat Fetch Error:", e);
             }
         }
 
