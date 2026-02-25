@@ -32,7 +32,10 @@
                 </button>
                 <button onclick="showSection('penal-mgmt')" class="nav-btn w-full flex items-center gap-3 p-4 rounded-2xl hover:bg-white/5 text-slate-400 border border-transparent transition-all text-xs font-black uppercase tracking-widest">
                     <i data-lucide="gavel" class="w-4 h-4"></i> Penal Code
-                </a>
+                </button>
+                <button onclick="showSection('notices-mgmt')" class="nav-btn w-full flex items-center gap-3 p-4 rounded-2xl hover:bg-white/5 text-slate-400 border border-transparent transition-all text-xs font-black uppercase tracking-widest">
+                    <i data-lucide="megaphone" class="w-4 h-4"></i> Global Notices
+                </button>
             </nav>
         </div>
 
@@ -159,6 +162,60 @@
                 </table>
             </div>
         </section>
+
+        <!-- Global Notices Section -->
+        <section id="section-notices-mgmt" class="admin-section hidden space-y-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl font-black uppercase italic text-white">Global <span class="text-orange-500">Notices</span></h2>
+                    <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Update server status and department bulletins across the site.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Hub Status Card -->
+                <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl space-y-6">
+                    <h3 class="text-lg font-black uppercase italic text-white flex items-center gap-2">
+                        <i data-lucide="home" class="text-orange-500"></i> Main Hub Status
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Status Text</label>
+                            <input type="text" id="notice-hub-text" placeholder="e.g. Currently Closed // Re-opening May 2026" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                        </div>
+                        <button onclick="saveGlobalNotice('hub_status', 'notice-hub-text')" class="w-full bg-orange-600 hover:bg-orange-500 text-white py-3 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Update Hub Status</button>
+                    </div>
+                </div>
+
+                <!-- LEO Bulletin Card -->
+                <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl space-y-6">
+                    <h3 class="text-lg font-black uppercase italic text-white flex items-center gap-2">
+                        <i data-lucide="shield" class="text-orange-500"></i> LEO Department Notice
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Bulletin Content</label>
+                            <textarea id="notice-leo-text" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs resize-none"></textarea>
+                        </div>
+                        <button onclick="saveGlobalNotice('leo_bulletin', 'notice-leo-text')" class="w-full bg-orange-600 hover:bg-orange-500 text-white py-3 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Update LEO Bulletin</button>
+                    </div>
+                </div>
+
+                <!-- FD Bulletin Card -->
+                <div class="bg-slate-900 border border-white/5 p-8 rounded-[2.5rem] shadow-xl space-y-6">
+                    <h3 class="text-lg font-black uppercase italic text-white flex items-center gap-2">
+                        <i data-lucide="flame" class="text-red-500"></i> FD Department Notice
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Bulletin Content</label>
+                            <textarea id="notice-fd-text" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs resize-none"></textarea>
+                        </div>
+                        <button onclick="saveGlobalNotice('fd_bulletin', 'notice-fd-text')" class="w-full bg-orange-600 hover:bg-orange-500 text-white py-3 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all">Update FD Bulletin</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Add/Edit Vehicle Modal -->
@@ -270,8 +327,36 @@
                 fetchVehicles();
                 fetchPenalCode();
                 fetchStats();
+                fetchGlobalNotices();
             }
             lucide.createIcons();
+        }
+
+        async function fetchGlobalNotices() {
+            const { data } = await sbClient.from('site_notices').select('*');
+            if (data) {
+                const hub = data.find(n => n.id === 'hub_status');
+                const leo = data.find(n => n.id === 'leo_bulletin');
+                const fd = data.find(n => n.id === 'fd_bulletin');
+                
+                if (hub) document.getElementById('notice-hub-text').value = hub.content;
+                if (leo) document.getElementById('notice-leo-text').value = leo.content;
+                if (fd) document.getElementById('notice-fd-text').value = fd.content;
+            }
+        }
+
+        async function saveGlobalNotice(id, inputId) {
+            const content = document.getElementById(inputId).value;
+            const { data: { session } } = await sbClient.auth.getSession();
+            
+            const { error } = await sbClient.from('site_notices').upsert({ 
+                id: id, 
+                content: content,
+                user_id: session.user.id
+            });
+
+            if (error) alert(error.message);
+            else alert('Notice Updated Successfully');
         }
 
         function showSection(sectionId) {

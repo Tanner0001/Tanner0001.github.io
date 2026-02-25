@@ -18,13 +18,13 @@
         
         <!-- Pinned Announcement -->
         <div class="relative z-10 w-full max-w-4xl mb-12">
-            <div class="bg-red-500/10 border border-red-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl">
-                <div class="bg-red-500 p-4 rounded-2xl animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.4)]">
-                    <i data-lucide="alert-octagon" class="w-6 h-6 text-white"></i>
+            <div id="hub-status-box" class="bg-red-500/10 border border-red-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl">
+                <div id="hub-status-dot" class="bg-red-500 p-4 rounded-2xl animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.4)]">
+                    <i id="hub-status-icon" data-lucide="alert-octagon" class="w-6 h-6 text-white"></i>
                 </div>
                 <div>
                     <span class="block text-[10px] font-black uppercase tracking-[0.3em] text-red-500 mb-1">Server Status Update</span>
-                    <p class="text-white text-lg font-bold m-0 italic">Dynamic Gaming is currently closed and plans to re-open <span class="text-red-400">May 2026</span>.</p>
+                    <p id="dynamic-hub-status" class="text-white text-lg font-bold m-0 italic">Dynamic Gaming is currently closed and plans to re-open <span class="text-red-400">May 2026</span>.</p>
                 </div>
             </div>
         </div>

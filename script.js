@@ -196,10 +196,60 @@ async function loadAllData() {
         renderVehicles();
         renderCivVehicles();
         renderFDVehicles();
+        fetchNotices(); 
+        fetchServerStatus(); // Fetch Live FiveM Status
         lucide.createIcons();
         logVisit();
     } catch (err) {
         console.error("Critical Data Sync Error:", err);
+    }
+}
+
+async function fetchServerStatus() {
+    if (!sbClient) return;
+    try {
+        const { data, error } = await sbClient.from('server_status').select('*').eq('id', 1).single();
+        if (data) {
+            const statusEl = document.getElementById('dynamic-hub-status');
+            const statusBox = document.getElementById('hub-status-box');
+            const statusDot = document.getElementById('hub-status-dot');
+            const statusIcon = document.getElementById('hub-status-icon');
+
+            // Check if server has checked in within the last 3 minutes
+            const lastSeen = new Date(data.last_seen);
+            const isTimeout = (new Date() - lastSeen) > 180000;
+            const isOnline = data.is_online && !isTimeout;
+
+            if (statusEl) {
+                if (isOnline) {
+                    statusEl.innerHTML = `SERVER ONLINE <span class="text-emerald-400 mx-2">//</span> ${data.players}/${data.max_players} PLAYERS`;
+                    if (statusBox) statusBox.className = "bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl";
+                    if (statusDot) statusDot.className = "bg-emerald-500 p-4 rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.4)]";
+                    if (statusIcon) statusIcon.setAttribute('data-lucide', 'check-circle');
+                } else {
+                    // Fallback to the Global Notice text if offline
+                    fetchNotices(); 
+                }
+                lucide.createIcons();
+            }
+        }
+    } catch (e) {
+        console.error("Status Fetch Error:", e);
+    }
+}
+
+async function fetchNotices() {
+    if (!sbClient) return;
+    try {
+        const { data } = await sbClient.from('site_notices').select('*');
+        if (data) {
+            data.forEach(n => {
+                const el = document.getElementById(`dynamic-${n.id.replace(/_/g, '-')}`);
+                if (el) el.textContent = n.content;
+            });
+        }
+    } catch (e) {
+        console.error("Notice Fetch Error:", e);
     }
 }
 
