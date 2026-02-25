@@ -213,7 +213,10 @@ async function checkMaintenance() {
         // Don't trigger if already on admin page (so we don't lock ourselves out)
         const isAdmin = window.location.pathname.includes('/admin/');
         
-        if (data && data.value === true && !isAdmin) {
+        // Check session to allow staff bypass
+        const { data: { session } } = await sbClient.auth.getSession();
+        
+        if (data && data.value === true && !isAdmin && !session) {
             document.body.innerHTML = `
                 <div class="fixed inset-0 z-[1000] bg-slate-950 flex flex-col items-center justify-center p-12 text-center overflow-hidden">
                     <div class="absolute inset-0 bg-[url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/697bd61687b9b5c7048b921e/b29c79989_image.png')] bg-cover bg-center opacity-10 grayscale"></div>
@@ -223,6 +226,12 @@ async function checkMaintenance() {
                         </div>
                         <h1 class="text-5xl font-black italic uppercase text-white mb-4 tracking-tighter">System Maintenance</h1>
                         <p class="text-slate-500 text-sm max-w-md uppercase font-bold tracking-widest leading-relaxed">The Dynamic Gaming hub is currently undergoing infrastructure updates. We'll be back online shortly.</p>
+                        
+                        <a href="/admin/" class="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-slate-400 hover:text-white hover:bg-white/10 transition-all text-[10px] font-black uppercase tracking-widest">
+                            <i data-lucide="lock" class="w-3 h-3"></i>
+                            Staff Login
+                        </a>
+
                         <div class="mt-12 pt-12 border-t border-white/5">
                             <p class="text-[9px] text-slate-700 uppercase font-black tracking-[0.4em]">Community Resource Hub // 2026</p>
                         </div>
