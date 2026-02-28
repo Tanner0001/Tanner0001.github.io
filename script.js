@@ -248,28 +248,43 @@ async function fetchServerStatus() {
     try {
         const { data, error } = await sbClient.from('server_status').select('*').eq('id', 1).single();
         if (data) {
-            const statusEl = document.getElementById('dynamic-hub-status');
             const statusBox = document.getElementById('hub-status-box');
             const statusDot = document.getElementById('hub-status-dot');
             const statusIcon = document.getElementById('hub-status-icon');
+            const liveIndicator = document.getElementById('server-live-indicator');
+            const playerCount = document.getElementById('server-player-count');
+            const statusLabel = document.getElementById('hub-status-label');
 
             // Check if server has checked in within the last 3 minutes
             const lastSeen = new Date(data.last_seen);
             const isTimeout = (new Date() - lastSeen) > 180000;
             const isOnline = data.is_online && !isTimeout;
 
-            if (statusEl) {
-                if (isOnline) {
-                    statusEl.innerHTML = `SERVER ONLINE <span class="text-emerald-400 mx-2">//</span> ${data.players}/${data.max_players} PLAYERS`;
-                    if (statusBox) statusBox.className = "bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl";
-                    if (statusDot) statusDot.className = "bg-emerald-500 p-4 rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.4)]";
-                    if (statusIcon) statusIcon.setAttribute('data-lucide', 'check-circle');
-                } else {
-                    // Fallback to the Global Notice text if offline
-                    fetchNotices(); 
+            if (isOnline) {
+                if (liveIndicator) liveIndicator.classList.remove('hidden');
+                if (playerCount) playerCount.textContent = `${data.players}/${data.max_players}`;
+                
+                if (statusBox) statusBox.className = "bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl";
+                if (statusDot) statusDot.className = "bg-emerald-500 p-4 rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.4)]";
+                if (statusIcon) statusIcon.setAttribute('data-lucide', 'check-circle');
+                if (statusLabel) {
+                    statusLabel.textContent = "Server Online";
+                    statusLabel.className = "block text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500 mb-1";
                 }
-                lucide.createIcons();
+            } else {
+                if (liveIndicator) liveIndicator.classList.add('hidden');
+                if (statusBox) statusBox.className = "bg-red-500/10 border border-red-500/20 p-6 rounded-[2rem] flex items-center gap-6 backdrop-blur-xl";
+                if (statusDot) statusDot.className = "bg-red-500 p-4 rounded-2xl animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.4)]";
+                if (statusIcon) statusIcon.setAttribute('data-lucide', 'alert-octagon');
+                if (statusLabel) {
+                    statusLabel.textContent = "Server Status Update";
+                    statusLabel.className = "block text-[10px] font-black uppercase tracking-[0.3em] text-red-500 mb-1";
+                }
             }
+            
+            // Always fetch notices to ensure the posted message is displayed
+            fetchNotices();
+            lucide.createIcons();
         }
     } catch (e) {
         console.error("Status Fetch Error:", e);

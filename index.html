@@ -22,9 +22,15 @@
                 <div id="hub-status-dot" class="bg-red-500 p-4 rounded-2xl animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                     <i id="hub-status-icon" data-lucide="alert-octagon" class="w-6 h-6 text-white"></i>
                 </div>
-                <div>
-                    <span class="block text-[10px] font-black uppercase tracking-[0.3em] text-red-500 mb-1">Server Status Update</span>
-                    <p id="dynamic-hub-status" class="text-white text-lg font-bold m-0 italic">Dynamic Gaming is currently closed and plans to re-open <span class="text-red-400">May 2026</span>.</p>
+                <div class="flex-1">
+                    <span id="hub-status-label" class="block text-[10px] font-black uppercase tracking-[0.3em] text-red-500 mb-1">Server Status Update</span>
+                    <p id="dynamic-hub-status" class="text-white text-lg font-bold m-0 italic">Loading notice...</p>
+                    <div id="server-live-indicator" class="mt-2 hidden">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                            Live: <span id="server-player-count">0/0</span> Players
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -261,6 +267,70 @@
             </div>
         </div>
 
+        <!-- Content Creator Section -->
+        <div id="content-creators" class="relative z-10 w-full max-w-6xl scroll-mt-24 mb-32 text-left">
+            <h2 class="text-xs font-black text-orange-500 uppercase tracking-[0.4em] flex items-center gap-4 mb-12">
+                CONTENT CREATORS <div class="h-px bg-white/10 flex-1"></div>
+            </h2>
+
+            <div class="bg-slate-900/50 border border-slate-800 p-10 rounded-[3rem] backdrop-blur-2xl relative overflow-hidden">
+                <div class="absolute -top-24 -left-24 w-64 h-64 bg-orange-500/5 blur-[80px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <h3 class="text-3xl font-black uppercase italic text-white tracking-tighter">Tell the World our Story</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Are you a streamer, YouTuber, or TikToker? We are looking for talented creators to showcase the immersive roleplay and unique experiences that Dynamic Gaming has to offer. Whether you have 10 followers or 10,000, we value high-quality storytelling and community engagement.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                <div class="text-orange-500 mb-2"><i data-lucide="video" class="w-5 h-5"></i></div>
+                                <h4 class="text-white font-bold text-xs uppercase mb-1">Creator Tags</h4>
+                                <p class="text-slate-500 text-[10px]">Exclusive Discord roles and in-game recognition.</p>
+                            </div>
+                            <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                <div class="text-orange-500 mb-2"><i data-lucide="megaphone" class="w-5 h-5"></i></div>
+                                <h4 class="text-white font-bold text-xs uppercase mb-1">Promotion</h4>
+                                <p class="text-slate-500 text-[10px]">We feature top-tier content on our social media channels.</p>
+                            </div>
+                            <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                <div class="text-orange-500 mb-2"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+                                <h4 class="text-white font-bold text-xs uppercase mb-1">Early Access</h4>
+                                <p class="text-slate-500 text-[10px]">Get a first look at new features and server updates.</p>
+                            </div>
+                            <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                <div class="text-orange-500 mb-2"><i data-lucide="users-2" class="w-5 h-5"></i></div>
+                                <h4 class="text-white font-bold text-xs uppercase mb-1">Collaboration</h4>
+                                <p class="text-slate-500 text-[10px]">Work directly with staff on community events.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-6">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScjNJpbd3ppktn_SvKkj_6KSxjludme1eg3-4NHPQlRY1nc2A/viewform?usp=dialog" target="_blank" class="inline-flex items-center gap-3 bg-white hover:bg-slate-200 text-slate-950 px-8 py-4 rounded-2xl font-black uppercase italic tracking-wider transition-all hover:scale-105">
+                                <i data-lucide="file-edit" class="w-5 h-5"></i>
+                                Apply for Creator
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="aspect-video bg-slate-950 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl relative group">
+                            <img src="images/17282257253000282112_20250511004744_1.png" class="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-[3000ms]">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center text-white shadow-[0_0_30px_rgba(234,88,12,0.5)] group-hover:scale-110 transition-transform duration-500">
+                                    <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-6 left-6 right-6 p-4 bg-slate-900/80 backdrop-blur-md rounded-xl border border-white/10">
+                                <span class="text-[10px] text-orange-500 font-black uppercase tracking-widest">Featured Clip</span>
+                                <p class="text-white text-xs font-bold italic mt-1">"The best roleplay community I've ever been a part of."</p>
+                            </div>
+                        </div>
+                        <!-- Decorative Elements -->
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-orange-500/20 blur-3xl rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Server Information Section -->
         <div id="server-info" class="relative z-10 w-full max-w-6xl scroll-mt-12 mb-20">
             <h2 class="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] flex items-center gap-4 mb-12">
@@ -268,7 +338,7 @@
             </h2>
 
             <!-- Server Links Box -->
-            <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl flex items-center justify-between group hover:border-orange-500 transition-all">
                     <div>
                         <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Server IP Address</span>
@@ -282,6 +352,13 @@
                         <span class="text-xl font-bold text-white italic tracking-tighter uppercase">cfx.re/join/8glgpm</span>
                     </div>
                     <i data-lucide="external-link" class="w-5 h-5 text-slate-700 group-hover:text-[#f40552] transition-colors"></i>
+                </a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFWDLnGD0f9z2ScmXRZBywWji_Y96JU-Yu593u6E0fJp5-g/viewform?usp=dialog" target="_blank" class="bg-slate-900 border border-slate-800 p-6 rounded-3xl flex items-center justify-between group hover:border-red-500 transition-all">
+                    <div>
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500">Banned?</span>
+                        <span class="text-xl font-bold text-white italic tracking-tighter uppercase">Submit Appeal</span>
+                    </div>
+                    <i data-lucide="gavel" class="w-5 h-5 text-slate-700 group-hover:text-red-500 transition-colors"></i>
                 </a>
             </div>
 
@@ -333,13 +410,23 @@
                             <p class="text-slate-400 text-xs">Do not leave during active roleplay situations. Stay in character near others.</p>
                         </div>
                     </div>
-                    <div class="bg-sky-600/5 border border-orange-500/20 p-6 rounded-2xl text-xs text-slate-400 leading-relaxed italic">
+                    <div class="bg-red-600/10 border border-red-500/20 p-6 rounded-2xl text-xs text-red-400 leading-relaxed italic font-bold">
                         Violating rules can lead to kicks or bans. Rules are to be followed in spirit, not just wording. If you're unclear, contact Server Government.
                     </div>
                 </div>
 
                 <!-- Commands Column -->
                 <div class="space-y-8">
+                    <!-- Discord Widget -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-black uppercase italic text-white flex items-center gap-3">
+                            <i data-lucide="message-square" class="text-orange-500"></i> Discord Status
+                        </h3>
+                        <div class="rounded-2xl overflow-hidden border border-slate-800">
+                            <iframe src="https://discord.com/widget?id=1073313036003184660&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        </div>
+                    </div>
+
                     <div class="space-y-6">
                         <h3 class="text-xl font-black uppercase italic text-white flex items-center gap-3">
                             <i data-lucide="terminal" class="text-orange-500"></i> Server Commands
