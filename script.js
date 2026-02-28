@@ -507,19 +507,20 @@ function renderFDVehicles() {
 
 // GALLERY LIGHTBOX
 const galleryImages = [
-    { src: 'images/17282257253000282112_20250511004744_1.png', caption: '' },
-    { src: 'images/17282257253000282112_20250330005032_1.png', caption: '' },
-    { src: 'images/17282257253000282112_20250505162250_1.png', caption: '' },
-    { src: 'images/17282257253000282112_20250511010749_1.png', caption: '' },
-    { src: 'images/im33age.png', caption: '' },
-    { src: 'images/ima2ge.png', caption: '' },
-    { src: 'images/imag1e.png', caption: '' },
-    { src: 'images/imag222e.png', caption: '' },
-    { src: 'images/image.png', caption: '' },
-    { src: 'images/imagepdcentral.png', caption: '' },
-    { src: 'images/imagesdk9.png', caption: '' },
-    { src: 'images/imasdadsge.png', caption: '' },
-    { src: 'images/imfdage.png', caption: '' }
+    { type: 'video', src: 'clips/thedoor.DVR_-_Trim.mp4', caption: 'The Door' },
+    { type: 'video', src: 'clips/flipped.mp4', caption: 'Flipped' },
+    { type: 'video', src: 'clips/run.mp4', caption: 'Run' },
+    { type: 'video', src: 'clips/ScreenRecording_06-08-2025_23-48-22_1.mov', caption: 'Field Action' },
+    { type: 'video', src: 'clips/subtleforeshadowing.mov', caption: 'Subtle Foreshadowing' },
+    { type: 'image', src: 'images/17282257253000282112_20250511004744_1.png', caption: '' },
+    { type: 'image', src: 'images/17282257253000282112_20250330005032_1.png', caption: '' },
+    { type: 'image', src: 'images/17282257253000282112_20250505162250_1.png', caption: '' },
+    { type: 'image', src: 'images/17282257253000282112_20250511010749_1.png', caption: '' },
+    { type: 'image', src: 'images/im33age.png', caption: '' },
+    { type: 'image', src: 'images/ima2ge.png', caption: '' },
+    { type: 'image', src: 'images/imag1e.png', caption: '' },
+    { type: 'image', src: 'images/imag222e.png', caption: '' },
+    { type: 'image', src: 'images/image.png', caption: '' }
 ];
 let currentImageIndex = 0;
 
@@ -527,7 +528,23 @@ function openLightbox(index) {
     currentImageIndex = index;
     const modal = document.getElementById('lightbox-modal');
     if (!modal) return;
-    document.getElementById('lightbox-img').src = basePath + galleryImages[index].src;
+    
+    const img = document.getElementById('lightbox-img');
+    const video = document.getElementById('lightbox-video');
+    const item = galleryImages[index];
+
+    if (item.type === 'video') {
+        img.classList.add('hidden');
+        video.classList.remove('hidden');
+        video.src = basePath + item.src;
+        video.play();
+    } else {
+        video.classList.add('hidden');
+        video.pause();
+        img.classList.remove('hidden');
+        img.src = basePath + item.src;
+    }
+
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     lucide.createIcons();
@@ -535,6 +552,11 @@ function openLightbox(index) {
 
 function closeLightbox() {
     const modal = document.getElementById('lightbox-modal');
+    const video = document.getElementById('lightbox-video');
+    if (video) {
+        video.pause();
+        video.src = "";
+    }
     if (modal) modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
 }
@@ -543,12 +565,29 @@ function changeImage(step) {
     currentImageIndex += step;
     if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
     if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+    
     const img = document.getElementById('lightbox-img');
-    if (!img) return;
+    const video = document.getElementById('lightbox-video');
+    const item = galleryImages[currentImageIndex];
+
     img.style.opacity = '0';
+    video.style.opacity = '0';
+
     setTimeout(() => {
-        img.src = basePath + galleryImages[currentImageIndex].src;
-        img.style.opacity = '1';
+        if (item.type === 'video') {
+            img.classList.add('hidden');
+            video.classList.remove('hidden');
+            video.src = basePath + item.src;
+            video.play();
+            video.style.opacity = '1';
+        } else {
+            video.classList.add('hidden');
+            video.pause();
+            video.src = "";
+            img.classList.remove('hidden');
+            img.src = basePath + item.src;
+            img.style.opacity = '1';
+        }
     }, 150);
 }
 

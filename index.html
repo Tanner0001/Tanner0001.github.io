@@ -158,50 +158,80 @@
                 </div>
             </section>
 
-            <!-- Gallery -->
-            <section class="space-y-8 text-left">
-                <h2 class="text-xs font-black text-orange-500 uppercase tracking-[0.4em] flex items-center gap-4">
-                    FIELD FOOTAGE <div class="h-px bg-white/10 flex-1"></div>
-                </h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Large Feature Image -->
-                    <div onclick="openLightbox(0)" class="col-span-2 md:col-span-4 relative aspect-[21/9] bg-slate-900 rounded-[2.5rem] border border-white/5 overflow-hidden group shadow-2xl cursor-pointer">
-                        <img src="images/17282257253000282112_20250511004744_1.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms]">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
-                    </div>
-                    
-                    <!-- Small Grid -->
-                    <div onclick="openLightbox(1)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/17282257253000282112_20250330005032_1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <div onclick="openLightbox(2)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/17282257253000282112_20250505162250_1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <div onclick="openLightbox(3)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/17282257253000282112_20250511010749_1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <div onclick="openLightbox(4)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/im33age.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <!-- Extra Grid Row -->
-                    <div onclick="openLightbox(5)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/ima2ge.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                    </div>
-                    <div onclick="openLightbox(6)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/imag1e.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                    </div>
-                    <div onclick="openLightbox(7)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/imag222e.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                    </div>
-                    <div onclick="openLightbox(8)" class="relative aspect-square bg-slate-900 rounded-[1.5rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
-                        <img src="images/image.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+        <!-- Field Footage / Clips Section -->
+        <div id="clips" class="relative z-10 w-full max-w-6xl scroll-mt-24 mb-32 text-left">
+            <h2 class="text-xs font-black text-orange-500 uppercase tracking-[0.4em] flex items-center gap-4 mb-12">
+                FIELD FOOTAGE <div class="h-px bg-white/10 flex-1"></div>
+            </h2>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Featured Clip -->
+                <div class="lg:col-span-2">
+                    <div onclick="openLightbox(0)" class="relative aspect-video bg-slate-900 rounded-[3rem] border border-white/5 overflow-hidden group shadow-2xl cursor-pointer">
+                        <div class="absolute inset-0 bg-orange-600/5 flex items-center justify-center">
+                             <div class="w-24 h-24 bg-orange-600 rounded-full flex items-center justify-center text-white shadow-[0_0_40px_rgba(234,88,12,0.6)] group-hover:scale-110 transition-transform duration-500 z-10">
+                                <i data-lucide="play" class="w-10 h-10 fill-current ml-1"></i>
+                            </div>
+                        </div>
+                        <img src="images/17282257253000282112_20250511004744_1.png" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-[2000ms]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-10 left-10 right-10">
+                            <span class="inline-block px-4 py-1 bg-orange-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Featured Footage</span>
+                            <h3 class="text-4xl font-black uppercase italic text-white tracking-tighter">"The Door"</h3>
+                            <p class="text-slate-400 text-sm mt-2 font-medium italic">High-intensity entry operation captured during a live server event.</p>
+                        </div>
                     </div>
                 </div>
-            </section>
+
+                <!-- Side Clips Grid -->
+                <div class="space-y-6">
+                    <div onclick="openLightbox(1)" class="relative h-[180px] bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <i data-lucide="play-circle" class="w-12 h-12 text-white/50 group-hover:text-orange-500 transition-colors"></i>
+                        </div>
+                        <img src="images/17282257253000282112_20250330005032_1.png" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute bottom-4 left-6 text-[10px] text-white font-black uppercase tracking-widest">Clip: Flipped</div>
+                    </div>
+                    <div onclick="openLightbox(2)" class="relative h-[180px] bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <i data-lucide="play-circle" class="w-12 h-12 text-white/50 group-hover:text-orange-500 transition-colors"></i>
+                        </div>
+                        <img src="images/17282257253000282112_20250505162250_1.png" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute bottom-4 left-6 text-[10px] text-white font-black uppercase tracking-widest">Clip: Run</div>
+                    </div>
+                    <div onclick="openLightbox(3)" class="relative h-[180px] bg-slate-900 rounded-[2rem] border border-white/5 overflow-hidden group shadow-xl cursor-pointer">
+                        <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <i data-lucide="play-circle" class="w-12 h-12 text-white/50 group-hover:text-orange-500 transition-colors"></i>
+                        </div>
+                        <img src="images/17282257253000282112_20250511010749_1.png" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute bottom-4 left-6 text-[10px] text-white font-black uppercase tracking-widest">Clip: Field Action</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord & Community Section -->
+        <div id="discord-status" class="relative z-10 w-full max-w-6xl mb-32 text-left">
+            <div class="grid lg:grid-cols-3 gap-12 items-center">
+                <div class="lg:col-span-1 space-y-6">
+                    <h2 class="text-xs font-black text-orange-500 uppercase tracking-[0.4em] flex items-center gap-4">
+                        LIVE COMMUNITY <div class="h-px bg-white/10 flex-1"></div>
+                    </h2>
+                    <h3 class="text-4xl font-black uppercase italic text-white tracking-tighter leading-none">Stay <span class="text-orange-500">Connected</span> with the Network</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Our Discord is the heart of Dynamic Gaming. Join over 1,000 members for live server updates, community events, and technical support. Don't just play—be part of the evolution.</p>
+                    <div class="pt-4">
+                        <a href="https://discord.gg/epgJVK6cnf" target="_blank" class="inline-flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-4 rounded-2xl font-black uppercase italic tracking-wider transition-all hover:scale-105 shadow-xl shadow-[#5865F2]/20 group">
+                            <i data-lucide="message-square" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                            Launch Discord
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="bg-slate-900 border border-slate-800 p-2 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                        <iframe src="https://discord.com/widget?id=1073313036003184660&theme=dark" width="100%" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" class="rounded-[2rem]"></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Support the Project Section -->
@@ -359,6 +389,7 @@
         
         <div class="relative w-full h-full flex items-center justify-center">
             <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 object-contain">
+            <video id="lightbox-video" src="" controls class="hidden max-w-full max-h-full rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 outline-none"></video>
         </div>
 
         <button onclick="changeImage(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/5 hover:bg-white/10 p-4 rounded-full text-white transition-all z-[110]">
