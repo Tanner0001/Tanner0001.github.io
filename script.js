@@ -507,7 +507,6 @@ function renderFDVehicles() {
 
 // GALLERY LIGHTBOX
 const galleryImages = [
-    { type: 'video', src: 'clips/thedoor.DVR_-_Trim.mp4', caption: 'The Door' },
     { type: 'video', src: 'clips/flipped.mp4', caption: 'Flipped' },
     { type: 'video', src: 'clips/run.mp4', caption: 'Run' },
     { type: 'video', src: 'clips/ScreenRecording_06-08-2025_23-48-22_1.mov', caption: 'Field Action' },
