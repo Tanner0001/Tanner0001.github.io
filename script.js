@@ -120,6 +120,8 @@ let vehicleData = null;
 let civVehicleData = null;
 let fdVehicleData = null;
 
+let currentPenalCountry = 'USA';
+
 async function loadAllData() {
     if (!sbClient) return;
     try {
@@ -138,13 +140,15 @@ async function loadAllData() {
         // Transformation with Casing Support
         if (penalRes.data) {
             console.log('[Database] Penal Code returned', penalRes.data.length, 'rows');
-            penalData = {};
+            penalData = { 'USA': {}, 'CANADA': {} };
             penalRes.data.forEach(row => {
-                // Support both 'section_title' and 'Section Title' or fallback to 'General'
+                const country = row.country || row.Country || 'USA';
                 const title = row.section_title || row['Section Title'] || 'General';
-                if (!penalData[title]) penalData[title] = [];
                 
-                penalData[title].push({ 
+                if (!penalData[country]) penalData[country] = {};
+                if (!penalData[country][title]) penalData[country][title] = [];
+                
+                penalData[country][title].push({ 
                     id: row.id || row.ID, 
                     name: row.name || row.Name, 
                     description: row.description || row.Description, 
@@ -315,6 +319,24 @@ async function logVisit() {
     }
 }
 
+function setPenalCountry(country) {
+    currentPenalCountry = country;
+    
+    // Update UI buttons
+    document.querySelectorAll('.country-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-orange-600', 'text-white', 'shadow-lg', 'shadow-orange-600/20');
+        btn.classList.add('bg-slate-800', 'text-slate-400');
+    });
+    
+    const activeBtn = document.getElementById('btn-' + country.toLowerCase());
+    if (activeBtn) {
+        activeBtn.classList.add('active', 'bg-orange-600', 'text-white', 'shadow-lg', 'shadow-orange-600/20');
+        activeBtn.classList.remove('bg-slate-800', 'text-slate-400');
+    }
+    
+    renderPenalCode();
+}
+
 function renderPenalCode(filter = '') {
     if (!penalData) return;
     const searchTerm = filter.toLowerCase();
@@ -322,27 +344,27 @@ function renderPenalCode(filter = '') {
     const dataContainer = document.getElementById('penal-data-container');
     if (!tabContainer || !dataContainer) return;
     
-    const keys = Object.keys(penalData);
-    if (keys.length === 0) {
-        dataContainer.innerHTML = '<p class="text-slate-500 text-center py-20 italic">No penal code entries found in database.</p>';
-        return;
-    }
+    const countryData = penalData[currentPenalCountry] || {};
+    const keys = Object.keys(countryData);
+    
+    tabContainer.innerHTML = keys.map((key, index) => {
+        const safeId = key.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+        return `
+            <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap" 
+                    onclick="openPenalSubTab('p-${safeId}', event)">
+                ${key}
+            </button>
+        `;
+    }).join('');
 
-    if (tabContainer.innerHTML.trim() === "") {
-        tabContainer.innerHTML = keys.map((key, index) => {
-            const safeId = key.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-            return `
-                <button class="sub-tab-penal ${index === 0 ? 'active bg-sky-600 text-white' : 'text-slate-500'} px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap" 
-                        onclick="openPenalSubTab('p-${safeId}', event)">
-                    ${key}
-                </button>
-            `;
-        }).join('');
+    if (keys.length === 0) {
+        dataContainer.innerHTML = '<p class="text-slate-500 text-center py-20 italic">No penal code entries found for this section.</p>';
+        return;
     }
 
     dataContainer.innerHTML = keys.map((key, index) => {
         const safeId = key.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-        const filteredLaws = penalData[key].filter(law => 
+        const filteredLaws = countryData[key].filter(law => 
             (law.name || '').toLowerCase().includes(searchTerm) || 
             (law.id || '').toString().toLowerCase().includes(searchTerm) ||
             (law.description || '').toLowerCase().includes(searchTerm)

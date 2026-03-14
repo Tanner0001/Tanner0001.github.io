@@ -333,6 +333,15 @@
                         <input type="text" id="p-section" placeholder="e.g. Criminal Code" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
                     </div>
                     <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Country / Region</label>
+                        <select id="p-country" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
+                            <option value="USA">USA</option>
+                            <option value="CANADA">CANADA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="space-y-1">
                         <label class="text-[10px] font-black uppercase text-slate-500 ml-2">Classification</label>
                         <select id="p-class" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white text-xs">
                             <option value="FELONY">FELONY</option>
@@ -600,6 +609,7 @@
                 document.getElementById('p-id').value = data.id;
                 document.getElementById('p-name').value = data.name;
                 document.getElementById('p-section').value = data.section_title;
+                document.getElementById('p-country').value = data.country || 'USA';
                 document.getElementById('p-class').value = data.class;
                 document.getElementById('p-desc').value = data.description;
                 showAddPenalModal();
@@ -670,6 +680,7 @@
                 id: document.getElementById('p-id').value,
                 name: document.getElementById('p-name').value,
                 section_title: document.getElementById('p-section').value,
+                country: document.getElementById('p-country').value,
                 class: document.getElementById('p-class').value,
                 description: document.getElementById('p-desc').value,
                 user_id: session.user.id // Critical for RLS
