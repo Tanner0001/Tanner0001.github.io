@@ -133,6 +133,49 @@ function zoomMap(factor, cx, cy) {
     applyMapTransform();
 }
 
+// Start the map view zoomed 2× onto central Los Santos
+function focusOnLS() {
+    const wrap = document.getElementById('map-wrap');
+    const img  = document.getElementById('map-img');
+    if (!wrap || !img) return;
+    const wW = wrap.clientWidth, wH = wrap.clientHeight;
+    const nW = img.naturalWidth  || wW;
+    const nH = img.naturalHeight || wH;
+    const iR = nW / nH, cR = wW / wH;
+    let imgW, imgH, oX, oY;
+    if (iR > cR) { imgW = wW; imgH = wW / iR; oX = 0;   oY = (wH - imgH) / 2; }
+    else         { imgH = wH; imgW = wH * iR;  oY = 0;   oX = (wW - imgW) / 2; }
+    // LS centre ~(0, -1000) in world coords
+    const cx = oX + (0 + 5610) / 12340 * imgW;
+    const cy = oY + (1 - (-1000 + 3850) / 12200) * imgH;
+    mapZoom = 2;
+    mapPanX = wW / 2 - cx * 2;
+    mapPanY = wH / 2 - cy * 2;
+    clampMapPan();
+    applyMapTransform();
+}
+
+// Convert canvas viewport point back to world coords (for coordinate readout)
+function canvasToWorld(vpX, vpY) {
+    const wrap = document.getElementById('map-wrap');
+    const img  = document.getElementById('map-img');
+    if (!wrap || !img) return null;
+    const wW = wrap.clientWidth, wH = wrap.clientHeight;
+    const nW = img.naturalWidth || wW, nH = img.naturalHeight || wH;
+    const iR = nW / nH, cR = wW / wH;
+    let imgW, imgH, oX, oY;
+    if (iR > cR) { imgW = wW; imgH = wW / iR; oX = 0;  oY = (wH - imgH) / 2; }
+    else         { imgH = wH; imgW = wH * iR;  oY = 0;  oX = (wW - imgW) / 2; }
+    // Convert viewport → canvas → image-relative fraction
+    const canX = (vpX - mapPanX) / mapZoom;
+    const canY = (vpY - mapPanY) / mapZoom;
+    const fracX = (canX - oX) / imgW;
+    const fracY = (canY - oY) / imgH;
+    const wx = fracX * 12340 - 5610;
+    const wy = (1 - fracY) * 12200 - 3850;
+    return { x: wx, y: wy };
+}
+
 // ── Center tab switching ──────────────────────────────────────────────────
 document.querySelectorAll('.center-tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -726,8 +769,9 @@ document.getElementById('notes-save-btn').addEventListener('click', async () => 
 
     const mapImg = document.getElementById('map-img');
     if (mapImg) {
-        if (mapImg.complete && mapImg.naturalWidth) renderMap();
-        else mapImg.addEventListener('load', () => renderMap());
+        const onLoad = () => { focusOnLS(); renderMap(); };
+        if (mapImg.complete && mapImg.naturalWidth) onLoad();
+        else mapImg.addEventListener('load', onLoad);
     }
 
     // Zoom / pan wiring
@@ -743,6 +787,17 @@ document.getElementById('notes-save-btn').addEventListener('click', async () => 
             if (e.button !== 0) return;
             mapDrag = { x: e.clientX, y: e.clientY, px: mapPanX, py: mapPanY };
             e.preventDefault();
+        });
+
+        const coordEl = document.getElementById('map-coords');
+        mapWrap.addEventListener('mousemove', e => {
+            if (!coordEl) return;
+            const r = mapWrap.getBoundingClientRect();
+            const w = canvasToWorld(e.clientX - r.left, e.clientY - r.top);
+            if (w) coordEl.textContent = `X: ${w.x.toFixed(0)}  Y: ${w.y.toFixed(0)}`;
+        });
+        mapWrap.addEventListener('mouseleave', () => {
+            if (coordEl) coordEl.textContent = 'hover to read coords';
         });
     }
 
