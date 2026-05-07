@@ -91,10 +91,11 @@ function statusClass(status) {
 }
 
 // ── GTA V world → map percentage ──────────────────────────────────────────
-// Standard GTA V bounds: X [-4096, +4096], Y [-4096, +4096] (Y inverted on map)
+// Calibrated for standard GTA V satellite map (portrait, ocean-bordered)
+// X: -3750 to +4250 (~8000 units E-W), Y: -4200 to +7800 (~12000 N-S, inverted)
 function worldToMap(wx, wy) {
-    const x = (wx + 4096) / 8192;
-    const y = 1.0 - (wy + 4096) / 8192;
+    const x = (wx + 3750) / 8000;
+    const y = 1.0 - (wy + 4200) / 12000;
     return {
         left: Math.max(0, Math.min(100, x * 100)).toFixed(3) + '%',
         top:  Math.max(0, Math.min(100, y * 100)).toFixed(3) + '%'
