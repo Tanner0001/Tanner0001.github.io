@@ -91,11 +91,11 @@ function statusClass(status) {
 }
 
 // ── GTA V world → map percentage ──────────────────────────────────────────
-// Calibrated for standard GTA V satellite map (portrait, ocean-bordered)
-// X: -3750 to +4250 (~8000 units E-W), Y: -4200 to +7800 (~12000 N-S, inverted)
+// Calibrated for standard FiveM postal code map (transparent PNG, portrait)
+// World bounds: X [-3650, +4450] (~8100 E-W), Y [-4450, +8050] (~12500 N-S, inverted)
 function worldToMap(wx, wy) {
-    const x = (wx + 3750) / 8000;
-    const y = 1.0 - (wy + 4200) / 12000;
+    const x = (wx + 3650) / 8100;
+    const y = 1.0 - (wy + 4450) / 12500;
     return {
         left: Math.max(0, Math.min(100, x * 100)).toFixed(3) + '%',
         top:  Math.max(0, Math.min(100, y * 100)).toFixed(3) + '%'
@@ -282,10 +282,23 @@ function renderRoster() {
 // ── Map rendering ─────────────────────────────────────────────────────────
 function renderMap() {
     const overlay  = document.getElementById('map-overlay');
+    const mapImg   = document.getElementById('map-img');
     const countEl  = document.getElementById('map-unit-count');
-    if (!overlay) return;
+    if (!overlay || !mapImg) return;
 
     overlay.innerHTML = '';
+
+    // Fit overlay exactly over the rendered image area (object-fit: contain letterboxes)
+    const cW = mapImg.parentElement.clientWidth;
+    const cH = mapImg.parentElement.clientHeight;
+    const nW = mapImg.naturalWidth  || cW;
+    const nH = mapImg.naturalHeight || cH;
+    const imgRatio = nW / nH;
+    const conRatio = cW / cH;
+    let rW, rH, oX, oY;
+    if (imgRatio > conRatio) { rW = cW; rH = cW / imgRatio; oX = 0; oY = (cH - rH) / 2; }
+    else                     { rH = cH; rW = cH * imgRatio; oY = 0; oX = (cW - rW) / 2; }
+    overlay.style.cssText = `position:absolute; left:${oX}px; top:${oY}px; width:${rW}px; height:${rH}px; pointer-events:none;`;
 
     const onDuty = roster.filter(u => u.x || u.y); // only place units that have coords
 
@@ -672,5 +685,17 @@ document.getElementById('notes-save-btn').addEventListener('click', async () => 
     subscribeRealtime();
     // Re-render ages every minute; re-render map every 30s (roster syncs every 30s server-side)
     setInterval(() => renderCallList(), 60000);
-    setInterval(() => { if (document.getElementById('ctab-map') && !document.getElementById('ctab-map').classList.contains('hidden')) renderMap(); }, 30000);
+    setInterval(() => { if (!document.getElementById('ctab-map').classList.contains('hidden')) renderMap(); }, 30000);
+
+    // Re-fit overlay when window resizes
+    window.addEventListener('resize', () => {
+        if (!document.getElementById('ctab-map').classList.contains('hidden')) renderMap();
+    });
+
+    // Re-render map once image is loaded (naturalWidth available)
+    const mapImg = document.getElementById('map-img');
+    if (mapImg) {
+        if (mapImg.complete && mapImg.naturalWidth) renderMap();
+        else mapImg.addEventListener('load', () => renderMap());
+    }
 })();

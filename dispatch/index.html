@@ -78,8 +78,9 @@
         .spick-btn.active-status { background: rgba(249,115,22,.12); color: #f97316; border-color: rgba(249,115,22,.35); }
 
         /* Map */
-        #map-wrap { position: relative; width: 100%; height: 100%; background: #0a0f1a; overflow: hidden; }
-        #map-img   { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; user-select: none; }
+        #map-wrap  { position: relative; width: 100%; height: 100%; background: #0d1117; overflow: hidden; }
+        #map-img   { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; user-select: none; }
+        #map-overlay { position: absolute; pointer-events: none; }
         #map-overlay { position: absolute; inset: 0; pointer-events: none; }
 
         .map-unit {
@@ -333,8 +334,7 @@
             <!-- ── MAP TAB ── -->
             <div class="ctab-panel hidden flex-1 overflow-hidden" id="ctab-map">
                 <div id="map-wrap">
-                    <!-- Download any GTA V satellite map and save as ../images/gtamap.jpg -->
-                    <img id="map-img" src="../images/gtamap.jpg" alt="GTA V Map"
+                    <img id="map-img" src="../images/gtamap.png" alt="GTA V Map"
                          onerror="this.style.opacity='0.08'"
                          draggable="false" />
                     <div id="map-overlay"></div>
