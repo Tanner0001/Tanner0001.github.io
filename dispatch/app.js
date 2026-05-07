@@ -91,15 +91,46 @@ function statusClass(status) {
 }
 
 // ── GTA V world → map percentage ──────────────────────────────────────────
-// Calibrated for standard FiveM postal code map (transparent PNG, portrait)
-// World bounds: X [-3650, +4450] (~8100 E-W), Y [-4450, +8050] (~12500 N-S, inverted)
+// Exact formula from kibook/webmap (gta5Map): width=12340, height=12200,
+// xOffset=10390, yOffset=12150, mapRadius=16000
 function worldToMap(wx, wy) {
-    const x = (wx + 3650) / 8100;
-    const y = 1.0 - (wy + 4450) / 12500;
+    const left   = Math.max(0, Math.min(100, (wx + 16000 - 10390) / 12340 * 100));
+    const bottom = Math.max(0, Math.min(100, (wy + 16000 - 12150) / 12200 * 100));
     return {
-        left: Math.max(0, Math.min(100, x * 100)).toFixed(3) + '%',
-        top:  Math.max(0, Math.min(100, y * 100)).toFixed(3) + '%'
+        left: left.toFixed(3) + '%',
+        top:  (100 - bottom).toFixed(3) + '%'   // invert Y: higher game Y = higher on map
     };
+}
+
+// ── Map zoom / pan ─────────────────────────────────────────────────────────
+let mapZoom = 1;
+let mapPanX = 0;
+let mapPanY = 0;
+let mapDrag = null;
+
+function applyMapTransform() {
+    const c = document.getElementById('map-canvas');
+    if (c) c.style.transform = `translate(${mapPanX}px,${mapPanY}px) scale(${mapZoom})`;
+}
+
+function clampMapPan() {
+    const wrap = document.getElementById('map-wrap');
+    if (!wrap) return;
+    const wW = wrap.clientWidth, wH = wrap.clientHeight;
+    mapPanX = Math.min(0, Math.max(wW - wW * mapZoom, mapPanX));
+    mapPanY = Math.min(0, Math.max(wH - wH * mapZoom, mapPanY));
+}
+
+function zoomMap(factor, cx, cy) {
+    const wrap = document.getElementById('map-wrap');
+    if (!wrap) return;
+    if (cx === undefined) { cx = wrap.clientWidth / 2; cy = wrap.clientHeight / 2; }
+    const newZoom = Math.max(1, Math.min(6, mapZoom * factor));
+    mapPanX = cx - (cx - mapPanX) * (newZoom / mapZoom);
+    mapPanY = cy - (cy - mapPanY) * (newZoom / mapZoom);
+    mapZoom = newZoom;
+    clampMapPan();
+    applyMapTransform();
 }
 
 // ── Center tab switching ──────────────────────────────────────────────────
@@ -283,14 +314,15 @@ function renderRoster() {
 function renderMap() {
     const overlay  = document.getElementById('map-overlay');
     const mapImg   = document.getElementById('map-img');
+    const canvas   = document.getElementById('map-canvas');
     const countEl  = document.getElementById('map-unit-count');
-    if (!overlay || !mapImg) return;
+    if (!overlay || !mapImg || !canvas) return;
 
     overlay.innerHTML = '';
 
-    // Fit overlay exactly over the rendered image area (object-fit: contain letterboxes)
-    const cW = mapImg.parentElement.clientWidth;
-    const cH = mapImg.parentElement.clientHeight;
+    // Fit overlay over the letterboxed image area within the canvas
+    const cW = canvas.clientWidth;
+    const cH = canvas.clientHeight;
     const nW = mapImg.naturalWidth  || cW;
     const nH = mapImg.naturalHeight || cH;
     const imgRatio = nW / nH;
@@ -683,19 +715,51 @@ document.getElementById('notes-save-btn').addEventListener('click', async () => 
     await loadCalls();
     await loadRoster();
     subscribeRealtime();
-    // Re-render ages every minute; re-render map every 30s (roster syncs every 30s server-side)
     setInterval(() => renderCallList(), 60000);
     setInterval(() => { if (!document.getElementById('ctab-map').classList.contains('hidden')) renderMap(); }, 30000);
 
-    // Re-fit overlay when window resizes
     window.addEventListener('resize', () => {
+        clampMapPan();
+        applyMapTransform();
         if (!document.getElementById('ctab-map').classList.contains('hidden')) renderMap();
     });
 
-    // Re-render map once image is loaded (naturalWidth available)
     const mapImg = document.getElementById('map-img');
     if (mapImg) {
         if (mapImg.complete && mapImg.naturalWidth) renderMap();
         else mapImg.addEventListener('load', () => renderMap());
     }
+
+    // Zoom / pan wiring
+    const mapWrap = document.getElementById('map-wrap');
+    if (mapWrap) {
+        mapWrap.addEventListener('wheel', e => {
+            e.preventDefault();
+            const r = mapWrap.getBoundingClientRect();
+            zoomMap(e.deltaY < 0 ? 1.15 : 1 / 1.15, e.clientX - r.left, e.clientY - r.top);
+        }, { passive: false });
+
+        mapWrap.addEventListener('mousedown', e => {
+            if (e.button !== 0) return;
+            mapDrag = { x: e.clientX, y: e.clientY, px: mapPanX, py: mapPanY };
+            e.preventDefault();
+        });
+    }
+
+    window.addEventListener('mousemove', e => {
+        if (!mapDrag) return;
+        mapPanX = mapDrag.px + (e.clientX - mapDrag.x);
+        mapPanY = mapDrag.py + (e.clientY - mapDrag.y);
+        clampMapPan();
+        applyMapTransform();
+    });
+
+    window.addEventListener('mouseup', () => { mapDrag = null; });
+
+    document.getElementById('map-zoom-in')?.addEventListener('click',  () => zoomMap(1.4));
+    document.getElementById('map-zoom-out')?.addEventListener('click', () => zoomMap(1 / 1.4));
+    document.getElementById('map-reset-btn')?.addEventListener('click', () => {
+        mapZoom = 1; mapPanX = 0; mapPanY = 0;
+        applyMapTransform();
+    });
 })();

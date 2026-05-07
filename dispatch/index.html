@@ -78,10 +78,11 @@
         .spick-btn.active-status { background: rgba(249,115,22,.12); color: #f97316; border-color: rgba(249,115,22,.35); }
 
         /* Map */
-        #map-wrap  { position: relative; width: 100%; height: 100%; background: #0d1117; overflow: hidden; }
-        #map-img   { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; user-select: none; }
+        #map-wrap    { position: relative; width: 100%; height: 100%; background: #0d1117; overflow: hidden; cursor: grab; }
+        #map-wrap:active { cursor: grabbing; }
+        #map-canvas  { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: 0 0; }
+        #map-img     { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; user-select: none; pointer-events: none; }
         #map-overlay { position: absolute; pointer-events: none; }
-        #map-overlay { position: absolute; inset: 0; pointer-events: none; }
 
         .map-unit {
             position: absolute;
@@ -334,29 +335,34 @@
             <!-- ── MAP TAB ── -->
             <div class="ctab-panel hidden flex-1 overflow-hidden" id="ctab-map">
                 <div id="map-wrap">
-                    <img id="map-img" src="../images/gtamap.png" alt="GTA V Map"
-                         onerror="this.style.opacity='0.08'"
-                         draggable="false" />
-                    <div id="map-overlay"></div>
+                    <!-- Zoomable/pannable canvas — contains image + dot overlay -->
+                    <div id="map-canvas">
+                        <img id="map-img" src="../images/gtamap.png" alt="GTA V Map"
+                             onerror="this.style.opacity='0.08'"
+                             draggable="false" />
+                        <div id="map-overlay"></div>
+                    </div>
 
-                    <!-- Legend -->
-                    <div class="absolute bottom-4 left-4 bg-slate-950/85 border border-white/10 rounded-2xl p-3 flex flex-col gap-2 z-10">
+                    <!-- Legend (fixed, outside canvas so it doesn't zoom) -->
+                    <div class="absolute bottom-4 left-4 bg-slate-950/85 border border-white/10 rounded-2xl p-3 flex flex-col gap-2 z-10 pointer-events-none">
                         <div class="text-[8px] font-black uppercase tracking-widest text-slate-600 mb-1">Map Legend</div>
-                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 border border-white/30"></div><span class="text-[10px] text-slate-400">Unit</span></div>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 border border-white/30"></div><span class="text-[10px] text-slate-400">Unit (LEO)</span></div>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-red-400 border border-white/30"></div><span class="text-[10px] text-slate-400">Unit (Fire/EMS)</span></div>
                         <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-red-500 border border-white/30"></div><span class="text-[10px] text-slate-400">911 Call</span></div>
                         <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-500 border border-white/30"></div><span class="text-[10px] text-slate-400">311 Call</span></div>
                         <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-500 border border-white/30"></div><span class="text-[10px] text-slate-400">Other Call</span></div>
                     </div>
 
                     <!-- Unit count badge -->
-                    <div class="absolute top-3 right-3 bg-slate-950/85 border border-white/10 rounded-xl px-3 py-1.5 z-10">
+                    <div class="absolute top-3 right-3 bg-slate-950/85 border border-white/10 rounded-xl px-3 py-1.5 z-10 pointer-events-none">
                         <span class="text-[10px] font-black uppercase tracking-widest text-orange-500" id="map-unit-count">0 units</span>
                     </div>
 
-                    <!-- No image hint -->
-                    <div id="map-hint" class="absolute inset-0 flex flex-col items-center justify-center gap-3 pointer-events-none" style="display:none!important">
-                        <i data-lucide="map" class="w-12 h-12 text-slate-700 opacity-40"></i>
-                        <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Add <code class="font-mono text-slate-500">images/gtamap.jpg</code> to enable the map</span>
+                    <!-- Zoom controls -->
+                    <div class="absolute bottom-4 right-4 flex gap-1.5 z-10">
+                        <button id="map-zoom-in"  class="w-8 h-8 bg-slate-950/85 border border-white/10 rounded-xl text-slate-400 hover:text-white text-lg leading-none transition-colors flex items-center justify-center font-black">+</button>
+                        <button id="map-zoom-out" class="w-8 h-8 bg-slate-950/85 border border-white/10 rounded-xl text-slate-400 hover:text-white text-lg leading-none transition-colors flex items-center justify-center font-black">−</button>
+                        <button id="map-reset-btn" class="h-8 px-3 bg-slate-950/85 border border-white/10 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Reset</button>
                     </div>
                 </div>
             </div>
