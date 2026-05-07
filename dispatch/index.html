@@ -16,7 +16,6 @@
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
 
-        /* Call state left-border accent */
         .call-card[data-state="Outstanding"] { border-left: 2px solid #f59e0b; }
         .call-card[data-state="Assigned"]    { border-left: 2px solid #3b82f6; }
         .call-card[data-state="On Scene"]    { border-left: 2px solid #10b981; }
@@ -50,9 +49,112 @@
         }
         .toast { animation: toastIn 0.2s ease-out; }
 
-        /* History row hover */
         .hist-row:hover { background: rgba(255,255,255,.03); }
         .hist-row.selected-hist { background: rgba(249,115,22,.05); }
+
+        /* Roster card interactive */
+        .roster-card { transition: border-color .15s, background .15s; }
+        .roster-card:hover { border-color: rgba(255,255,255,.1); cursor: pointer; }
+        .roster-card.expanded { border-color: rgba(249,115,22,.25) !important; background: rgba(249,115,22,.03) !important; }
+
+        .status-picker { display: none; }
+        .roster-card.expanded .status-picker { display: flex; }
+
+        .spick-btn {
+            flex: 1 1 0;
+            padding: 4px 0;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,.06);
+            background: rgba(255,255,255,.03);
+            color: #64748b;
+            cursor: pointer;
+            transition: all .12s;
+        }
+        .spick-btn:hover { color: #fff; border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.07); }
+        .spick-btn.active-status { background: rgba(249,115,22,.12); color: #f97316; border-color: rgba(249,115,22,.35); }
+
+        /* Map */
+        #map-wrap { position: relative; width: 100%; height: 100%; background: #0a0f1a; overflow: hidden; }
+        #map-img   { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; user-select: none; }
+        #map-overlay { position: absolute; inset: 0; pointer-events: none; }
+
+        .map-unit {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: all;
+            cursor: default;
+        }
+        .map-unit-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,.6);
+            box-shadow: 0 0 6px rgba(249,115,22,.8);
+            background: #f97316;
+            transition: transform .3s;
+        }
+        .map-unit:hover .map-unit-dot { transform: scale(1.4); }
+        .map-unit-label {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 4px;
+            background: rgba(2,6,23,.9);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 9px;
+            font-weight: 900;
+            color: #fff;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .15s;
+            letter-spacing: .04em;
+        }
+        .map-unit:hover .map-unit-label { opacity: 1; }
+
+        .map-call {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: all;
+            cursor: default;
+        }
+        .map-call-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,.5);
+        }
+        .map-call-dot.c-911  { background: #ef4444; box-shadow: 0 0 5px rgba(239,68,68,.7); }
+        .map-call-dot.c-311  { background: #f59e0b; box-shadow: 0 0 5px rgba(245,158,11,.7); }
+        .map-call-dot.c-other{ background: #3b82f6; box-shadow: 0 0 5px rgba(59,130,246,.7); }
+        .map-call:hover .map-call-dot { transform: scale(1.5); transition: transform .15s; }
+        .map-call-label {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 4px;
+            background: rgba(2,6,23,.9);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 9px;
+            font-weight: 900;
+            color: #fff;
+            white-space: nowrap;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .15s;
+        }
+        .map-call:hover .map-call-label { opacity: 1; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 h-screen overflow-hidden flex flex-col">
@@ -87,7 +189,7 @@
         </div>
     </header>
 
-    <!-- ── 3-column layout ───────────────────────────────────────────────── -->
+    <!-- ── 3-column layout ──────────────────────────────────────────────── -->
     <div class="flex-1 grid overflow-hidden" style="grid-template-columns: 300px 1fr 260px">
 
         <!-- Left: active call list -->
@@ -111,6 +213,7 @@
             <div class="flex border-b border-white/5 bg-slate-900/40 flex-shrink-0">
                 <button class="center-tab px-5 py-3 text-[10px] font-black uppercase tracking-widest text-orange-500 border-b-2 border-orange-500 transition-all" data-ctab="incident">Incident</button>
                 <button class="center-tab px-5 py-3 text-[10px] font-black uppercase tracking-widest text-slate-500 border-b-2 border-transparent hover:text-white transition-all" data-ctab="history">History</button>
+                <button class="center-tab px-5 py-3 text-[10px] font-black uppercase tracking-widest text-slate-500 border-b-2 border-transparent hover:text-white transition-all" data-ctab="map">Map</button>
                 <button class="center-tab px-5 py-3 text-[10px] font-black uppercase tracking-widest text-slate-500 border-b-2 border-transparent hover:text-white transition-all" data-ctab="search">Search</button>
             </div>
 
@@ -188,7 +291,6 @@
 
             <!-- ── HISTORY TAB ── -->
             <div class="ctab-panel hidden flex-1 flex flex-col overflow-hidden" id="ctab-history">
-                <!-- History toolbar -->
                 <div class="flex items-center gap-3 p-4 border-b border-white/5 flex-shrink-0">
                     <div class="relative flex-1">
                         <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-600"></i>
@@ -205,8 +307,6 @@
                         <i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh
                     </button>
                 </div>
-
-                <!-- History table -->
                 <div class="flex-1 overflow-y-auto custom-scroll">
                     <table class="w-full text-left border-collapse">
                         <thead class="sticky top-0 bg-slate-950/90 backdrop-blur-sm">
@@ -224,16 +324,45 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="flex items-center justify-between px-4 py-3 border-t border-white/5 flex-shrink-0">
                     <span class="text-[10px] text-slate-600" id="hist-count">— records</span>
                     <button id="hist-more-btn" class="text-[10px] font-bold text-orange-500 hover:text-orange-400 transition-all hidden">Load more</button>
                 </div>
             </div>
 
+            <!-- ── MAP TAB ── -->
+            <div class="ctab-panel hidden flex-1 overflow-hidden" id="ctab-map">
+                <div id="map-wrap">
+                    <!-- Download any GTA V satellite map and save as ../images/gtamap.jpg -->
+                    <img id="map-img" src="../images/gtamap.jpg" alt="GTA V Map"
+                         onerror="this.style.opacity='0.08'"
+                         draggable="false" />
+                    <div id="map-overlay"></div>
+
+                    <!-- Legend -->
+                    <div class="absolute bottom-4 left-4 bg-slate-950/85 border border-white/10 rounded-2xl p-3 flex flex-col gap-2 z-10">
+                        <div class="text-[8px] font-black uppercase tracking-widest text-slate-600 mb-1">Map Legend</div>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 border border-white/30"></div><span class="text-[10px] text-slate-400">Unit</span></div>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-red-500 border border-white/30"></div><span class="text-[10px] text-slate-400">911 Call</span></div>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-500 border border-white/30"></div><span class="text-[10px] text-slate-400">311 Call</span></div>
+                        <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-500 border border-white/30"></div><span class="text-[10px] text-slate-400">Other Call</span></div>
+                    </div>
+
+                    <!-- Unit count badge -->
+                    <div class="absolute top-3 right-3 bg-slate-950/85 border border-white/10 rounded-xl px-3 py-1.5 z-10">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-orange-500" id="map-unit-count">0 units</span>
+                    </div>
+
+                    <!-- No image hint -->
+                    <div id="map-hint" class="absolute inset-0 flex flex-col items-center justify-center gap-3 pointer-events-none" style="display:none!important">
+                        <i data-lucide="map" class="w-12 h-12 text-slate-700 opacity-40"></i>
+                        <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Add <code class="font-mono text-slate-500">images/gtamap.jpg</code> to enable the map</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- ── SEARCH TAB ── -->
             <div class="ctab-panel hidden flex-1 flex flex-col overflow-hidden" id="ctab-search">
-                <!-- Search bar -->
                 <div class="p-4 border-b border-white/5 flex-shrink-0">
                     <div class="flex gap-3">
                         <div class="relative flex-1">
@@ -242,10 +371,8 @@
                         </div>
                         <button id="srch-btn" class="bg-orange-600 hover:bg-orange-500 text-white px-5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Search</button>
                     </div>
-                    <p class="text-[9px] text-slate-700 mt-2 ml-1">Searches online units and all character records. Press Enter or click Search.</p>
+                    <p class="text-[9px] text-slate-700 mt-2 ml-1">Searches online units and all character records. Press Enter or Search.</p>
                 </div>
-
-                <!-- Search results -->
                 <div class="flex-1 overflow-y-auto custom-scroll p-4" id="srch-results">
                     <div class="flex flex-col items-center justify-center h-full gap-4 text-slate-700">
                         <i data-lucide="search" class="w-10 h-10 opacity-20"></i>
@@ -266,6 +393,7 @@
                     <button class="roster-filter px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-slate-400 border border-white/5 hover:text-white transition-all" data-rfilter="fire">Fire</button>
                 </div>
             </div>
+            <div class="text-[8px] text-slate-700 px-3 pt-2 pb-1 flex-shrink-0">Click a unit to change status</div>
             <div class="flex-1 overflow-y-auto custom-scroll p-2 flex flex-col gap-1" id="roster-list">
                 <div class="flex flex-col items-center justify-center py-16 gap-3 text-slate-600">
                     <i data-lucide="users" class="w-7 h-7 opacity-30"></i>

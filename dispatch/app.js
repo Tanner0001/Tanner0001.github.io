@@ -9,7 +9,9 @@ let callFilter   = 'all';
 let rosterFilter = 'all';
 let histOffset   = 0;
 const HIST_PAGE  = 100;
-let histAll      = [];   // current filtered history rows
+let histAll      = [];
+let histLoaded   = false;
+let expandedUnit = null; // player_id of the open status picker
 
 // ── DOM refs ──────────────────────────────────────────────────────────────
 const callList          = document.getElementById('call-list');
@@ -88,6 +90,17 @@ function statusClass(status) {
     return 'status-unavailable';
 }
 
+// ── GTA V world → map percentage ──────────────────────────────────────────
+// Standard GTA V bounds: X [-4096, +4096], Y [-4096, +4096] (Y inverted on map)
+function worldToMap(wx, wy) {
+    const x = (wx + 4096) / 8192;
+    const y = 1.0 - (wy + 4096) / 8192;
+    return {
+        left: Math.max(0, Math.min(100, x * 100)).toFixed(3) + '%',
+        top:  Math.max(0, Math.min(100, y * 100)).toFixed(3) + '%'
+    };
+}
+
 // ── Center tab switching ──────────────────────────────────────────────────
 document.querySelectorAll('.center-tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -103,6 +116,7 @@ document.querySelectorAll('.center-tab').forEach(btn => {
         document.getElementById('ctab-' + target).classList.remove('hidden');
 
         if (target === 'history') loadHistory();
+        if (target === 'map')     renderMap();
         lucide.createIcons();
     });
 });
@@ -117,10 +131,7 @@ function renderCallList() {
     callCount.textContent = visible.length + ' call' + (visible.length !== 1 ? 's' : '');
     [...callList.querySelectorAll('.call-card')].forEach(el => el.remove());
 
-    if (visible.length === 0) {
-        callEmpty.style.display = '';
-        return;
-    }
+    if (visible.length === 0) { callEmpty.style.display = ''; return; }
     callEmpty.style.display = 'none';
 
     [...visible].sort((a, b) => b.incident_number - a.incident_number).forEach(call => {
@@ -142,7 +153,6 @@ function renderCallList() {
             </div>`;
 
         card.addEventListener('click', () => {
-            // Switch to incident tab if not already there
             const incTab = document.querySelector('.center-tab[data-ctab="incident"]');
             if (!incTab.classList.contains('text-orange-500')) incTab.click();
             selectCall(call.incident_number);
@@ -202,7 +212,9 @@ function refreshDetailIfSelected(n) {
     if (n === selectedId) selectCall(n);
 }
 
-// ── Roster render ─────────────────────────────────────────────────────────
+// ── Roster render (with inline status change) ─────────────────────────────
+const STATUS_OPTIONS = ['CLEAR', 'ENROUTE', 'ON SCENE', 'BUSY', 'UNAVAILABLE'];
+
 function renderRoster() {
     rosterList.innerHTML = '';
     const filtered = roster.filter(u => {
@@ -221,14 +233,100 @@ function renderRoster() {
 
     filtered.forEach(u => {
         const card = document.createElement('div');
-        card.className = 'bg-slate-950/60 border border-white/5 rounded-2xl px-3 py-2.5 grid gap-x-2 items-center';
-        card.style.gridTemplateColumns = 'auto 1fr auto';
+        const isExpanded = expandedUnit === u.player_id;
+        card.className = 'roster-card bg-slate-950/60 border border-white/5 rounded-2xl px-3 py-2.5 flex flex-col gap-2' + (isExpanded ? ' expanded' : '');
+        card.dataset.playerId = u.player_id;
+
+        const curStatus = (u.status || 'CLEAR').toUpperCase();
+
         card.innerHTML = `
-            <span class="font-mono text-[11px] font-bold text-orange-500 min-w-[44px]">${esc(u.callsign || '??')}</span>
-            <span class="text-[11px] text-slate-300 truncate">${esc(u.nick || u.name || 'Unknown')}</span>
-            <span class="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap ${statusClass(u.status)}">${esc((u.status || 'CLEAR').toUpperCase())}</span>`;
+            <div class="grid gap-x-2 items-center" style="grid-template-columns: auto 1fr auto">
+                <span class="font-mono text-[11px] font-bold text-orange-500 min-w-[44px]">${esc(u.callsign || '??')}</span>
+                <span class="text-[11px] text-slate-300 truncate">${esc(u.nick || u.name || 'Unknown')}</span>
+                <span class="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap ${statusClass(curStatus)}">${esc(curStatus)}</span>
+            </div>
+            <div class="status-picker gap-1 flex-wrap">
+                ${STATUS_OPTIONS.map(s => `
+                    <button class="spick-btn${s === curStatus ? ' active-status' : ''}" data-pid="${u.player_id}" data-status="${s}">${s}</button>
+                `).join('')}
+            </div>`;
+
+        card.addEventListener('click', e => {
+            if (e.target.classList.contains('spick-btn')) return; // handled below
+            expandedUnit = isExpanded ? null : u.player_id;
+            renderRoster();
+        });
+
+        card.querySelectorAll('.spick-btn').forEach(btn => {
+            btn.addEventListener('click', async e => {
+                e.stopPropagation();
+                const pid    = parseInt(btn.dataset.pid);
+                const status = btn.dataset.status;
+                const { error } = await sb.from('dispatch_roster')
+                    .update({ status, updated_at: new Date().toISOString() })
+                    .eq('player_id', pid);
+                if (error) { toast('info', 'Error', error.message); return; }
+                // Optimistically update local state
+                const u2 = roster.find(r => r.player_id === pid);
+                if (u2) u2.status = status;
+                renderRoster();
+                renderMap();
+            });
+        });
+
         rosterList.appendChild(card);
     });
+}
+
+// ── Map rendering ─────────────────────────────────────────────────────────
+function renderMap() {
+    const overlay  = document.getElementById('map-overlay');
+    const countEl  = document.getElementById('map-unit-count');
+    if (!overlay) return;
+
+    overlay.innerHTML = '';
+
+    const onDuty = roster.filter(u => u.x || u.y); // only place units that have coords
+
+    // Unit markers
+    onDuty.forEach(u => {
+        if (!u.x && !u.y) return;
+        const pos = worldToMap(u.x, u.y);
+        const el  = document.createElement('div');
+        el.className = 'map-unit';
+        el.style.left = pos.left;
+        el.style.top  = pos.top;
+        const jobColor = (u.job === 'Law Enforcement') ? '#f97316'
+                       : (u.job === 'Fire/EMS')        ? '#ef4444'
+                       : '#a855f7';
+        el.innerHTML = `
+            <div class="map-unit-dot" style="background:${jobColor}; box-shadow: 0 0 6px ${jobColor}99;"></div>
+            <div class="map-unit-label">${esc(u.callsign || '??')} — ${esc(u.nick || 'Unknown')}</div>`;
+        overlay.appendChild(el);
+    });
+
+    // Active call markers (only Outstanding/Assigned/On Scene with coords)
+    const activeCalls = calls.filter(c => c.state !== 'Resolved' && (c.x || c.y));
+    activeCalls.forEach(c => {
+        const pos  = worldToMap(c.x, c.y);
+        const el   = document.createElement('div');
+        el.className = 'map-call';
+        el.style.left = pos.left;
+        el.style.top  = pos.top;
+        const dotCls = c.type === '911 Emergency' ? 'c-911'
+                     : c.type === '311 Non-Emergency' ? 'c-311'
+                     : 'c-other';
+        el.innerHTML = `
+            <div class="map-call-dot ${dotCls}"></div>
+            <div class="map-call-label">#${c.incident_number} ${esc(c.type)} — ${esc(c.postal || c.address || '')}</div>`;
+        el.addEventListener('click', () => {
+            document.querySelector('.center-tab[data-ctab="incident"]').click();
+            selectCall(c.incident_number);
+        });
+        overlay.appendChild(el);
+    });
+
+    if (countEl) countEl.textContent = onDuty.length + ' unit' + (onDuty.length !== 1 ? 's' : '');
 }
 
 // ── Toast ─────────────────────────────────────────────────────────────────
@@ -251,30 +349,22 @@ async function loadCalls() {
         .order('incident_number', { ascending: false })
         .limit(200);
 
-    if (error) {
-        console.error('[CAD] loadCalls error:', error.message);
-        setConnState('error', 'DB error');
-        return;
-    }
+    if (error) { console.error('[CAD] loadCalls:', error.message); setConnState('error', 'DB error'); return; }
     calls = data || [];
     renderCallList();
 }
 
 async function loadRoster() {
     const { data, error } = await sb.from('dispatch_roster').select('*').order('callsign');
-    if (!error && data) { roster = data; renderRoster(); }
+    if (!error && data) { roster = data; renderRoster(); renderMap(); }
 }
 
 // ── History tab ───────────────────────────────────────────────────────────
-let histLoaded = false;
-
 async function loadHistory(forceReload) {
     if (histLoaded && !forceReload) return;
     histLoaded = true;
 
-    const tbody    = document.getElementById('hist-body');
-    const countEl  = document.getElementById('hist-count');
-    const moreBtn  = document.getElementById('hist-more-btn');
+    const tbody = document.getElementById('hist-body');
     tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-16 text-center text-slate-600 italic">Loading…</td></tr>';
 
     const { data, error } = await sb
@@ -287,7 +377,6 @@ async function loadHistory(forceReload) {
         tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-red-500 text-xs">${esc(error.message)}</td></tr>`;
         return;
     }
-
     histAll = data || [];
     renderHistoryTable();
 }
@@ -331,7 +420,6 @@ function renderHistoryTable() {
             <td class="px-4 py-2.5 text-[10px] text-slate-600 font-mono whitespace-nowrap">${fmtDateTime(c.created_at)}</td>`;
 
         tr.addEventListener('click', () => {
-            // Load this call into the incident panel and switch to it
             const existing = calls.find(x => x.incident_number === c.incident_number);
             if (!existing) calls.push(c);
             document.querySelector('.center-tab[data-ctab="incident"]').click();
@@ -339,17 +427,11 @@ function renderHistoryTable() {
             document.querySelectorAll('.hist-row').forEach(r => r.classList.remove('selected-hist'));
             tr.classList.add('selected-hist');
         });
-
         tbody.appendChild(tr);
     });
 
     countEl.textContent = filtered.length + ' record' + (filtered.length !== 1 ? 's' : '');
-
-    if (filtered.length > histOffset + HIST_PAGE) {
-        moreBtn.classList.remove('hidden');
-    } else {
-        moreBtn.classList.add('hidden');
-    }
+    filtered.length > histOffset + HIST_PAGE ? moreBtn.classList.remove('hidden') : moreBtn.classList.add('hidden');
 }
 
 document.getElementById('hist-search').addEventListener('input', () => { histOffset = 0; renderHistoryTable(); });
@@ -357,12 +439,12 @@ document.getElementById('hist-filter-state').addEventListener('change', () => { 
 document.getElementById('hist-load-btn').addEventListener('click', () => { histLoaded = false; histOffset = 0; loadHistory(true); });
 document.getElementById('hist-more-btn').addEventListener('click', () => { histOffset += HIST_PAGE; renderHistoryTable(); });
 
-// ── Player / Character search ─────────────────────────────────────────────
+// ── Character / player search ─────────────────────────────────────────────
 async function runSearch() {
-    const query   = document.getElementById('srch-input').value.trim();
+    const raw     = document.getElementById('srch-input').value.trim();
     const results = document.getElementById('srch-results');
 
-    if (!query) {
+    if (!raw) {
         results.innerHTML = `<div class="flex flex-col items-center justify-center h-full gap-4 text-slate-700">
             <i data-lucide="search" class="w-10 h-10 opacity-20"></i>
             <span class="text-[11px] font-black uppercase tracking-[0.15em]">Enter a name to search</span></div>`;
@@ -375,29 +457,29 @@ async function runSearch() {
         <span class="text-xs">Searching…</span></div>`;
     lucide.createIcons();
 
-    const q = query.toLowerCase();
+    const q = raw.toLowerCase();
 
-    // Search online roster
+    // Online roster match
     const rosterMatches = roster.filter(u =>
         (u.nick || '').toLowerCase().includes(q) ||
         (u.callsign || '').toLowerCase().includes(q)
     );
 
-    // Search character_records table in Supabase
+    // Character records — use separate .ilike filters chained with .or()
+    const orFilter = `full_name.ilike.%${raw}%,first_name.ilike.%${raw}%,last_name.ilike.%${raw}%`;
     const { data: charData, error: charErr } = await sb
         .from('character_records')
         .select('*')
-        .or(`full_name.ilike.%${query}%,first_name.ilike.%${query}%,last_name.ilike.%${query}%`)
+        .or(orFilter)
         .limit(50);
 
     results.innerHTML = '';
 
-    // ── Online Units section
+    // Online units section
     if (rosterMatches.length > 0) {
         const section = document.createElement('div');
         section.className = 'mb-6';
         section.innerHTML = `<div class="text-[9px] font-black uppercase tracking-widest text-orange-500 mb-3">Online Units (${rosterMatches.length})</div>`;
-
         rosterMatches.forEach(u => {
             const card = document.createElement('div');
             card.className = 'bg-slate-900 border border-white/5 rounded-2xl p-4 mb-2 grid gap-x-3 items-center';
@@ -414,12 +496,18 @@ async function runSearch() {
         results.appendChild(section);
     }
 
-    // ── Character Records section
-    if (!charErr && charData && charData.length > 0) {
+    // Character records section
+    if (charErr) {
+        const note = document.createElement('div');
+        note.className = 'bg-red-500/10 border border-red-500/20 rounded-2xl p-4 mb-4';
+        note.innerHTML = `<div class="text-[9px] font-black uppercase tracking-widest text-red-400 mb-1">Character Records Error</div>
+            <div class="text-xs text-slate-400">${esc(charErr.message)}</div>
+            <div class="text-[9px] text-slate-600 mt-2">Make sure the <code>character_records</code> table exists in Supabase and RLS allows anon reads.</div>`;
+        results.appendChild(note);
+    } else if (charData && charData.length > 0) {
         const section = document.createElement('div');
         section.className = 'mb-6';
         section.innerHTML = `<div class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-3">Character Records (${charData.length})</div>`;
-
         charData.forEach(c => {
             const isOnline = roster.some(u => u.nick === c.full_name);
             const card = document.createElement('div');
@@ -430,23 +518,25 @@ async function runSearch() {
                         <div class="text-sm font-black text-white">${esc(c.full_name)}</div>
                         <div class="text-[10px] text-slate-600 font-mono mt-0.5">ID ${c.char_id} · DOB ${esc(c.dob || '—')}</div>
                     </div>
-                    ${isOnline ? '<span class="text-[9px] font-black uppercase px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Online</span>' : '<span class="text-[9px] font-black uppercase px-2 py-1 rounded-full bg-slate-800 text-slate-600 border border-white/5">Offline</span>'}
+                    ${isOnline
+                        ? '<span class="text-[9px] font-black uppercase px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Online</span>'
+                        : '<span class="text-[9px] font-black uppercase px-2 py-1 rounded-full bg-slate-800 text-slate-600 border border-white/5">Offline</span>'}
                 </div>`;
             section.appendChild(card);
         });
         results.appendChild(section);
-    } else if (charErr) {
+    } else if (!charErr) {
         const note = document.createElement('div');
         note.className = 'text-[10px] text-slate-600 italic mb-4';
-        note.textContent = 'Character records not yet available — sync requires in-game character logins.';
+        note.textContent = 'No character records found. Records are added automatically when players log in and select a character.';
         results.appendChild(note);
     }
 
-    // ── No results
-    if (rosterMatches.length === 0 && (!charData || charData.length === 0)) {
+    // No results at all
+    if (rosterMatches.length === 0 && (!charData || charData.length === 0) && !charErr) {
         results.innerHTML = `<div class="flex flex-col items-center justify-center h-full gap-4 text-slate-700 py-16">
             <i data-lucide="search-x" class="w-10 h-10 opacity-20"></i>
-            <span class="text-[11px] font-black uppercase tracking-[0.15em]">No results for "${esc(query)}"</span></div>`;
+            <span class="text-[11px] font-black uppercase tracking-[0.15em]">No results for "${esc(raw)}"</span></div>`;
     }
 
     lucide.createIcons();
@@ -459,7 +549,9 @@ document.getElementById('srch-input').addEventListener('keydown', e => { if (e.k
 function subscribeRealtime() {
     sb.channel('dispatch')
         .on('postgres_changes', { event: '*', schema: 'public', table: 'dispatch_calls' }, handleCallChange)
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'dispatch_roster' }, () => loadRoster())
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'dispatch_roster' }, () => {
+            loadRoster(); // refreshes roster + map
+        })
         .subscribe(status => {
             if (status === 'SUBSCRIBED') setConnState('live', 'Live');
             else if (status === 'CLOSED' || status === 'CHANNEL_ERROR') setConnState('error', 'Disconnected');
@@ -469,9 +561,9 @@ function subscribeRealtime() {
 function handleCallChange({ eventType, new: row, old }) {
     if (eventType === 'INSERT') {
         calls.unshift(row);
-        // Also prepend to history cache if loaded
         if (histLoaded) { histAll.unshift(row); renderHistoryTable(); }
         renderCallList();
+        renderMap();
         toast(
             row.type === '911 Emergency' ? '911' : row.type === '311 Non-Emergency' ? '311' : 'info',
             row.type,
@@ -488,6 +580,7 @@ function handleCallChange({ eventType, new: row, old }) {
         const hidx = histAll.findIndex(c => c.incident_number === row.incident_number);
         if (hidx !== -1) histAll[hidx] = row;
         renderCallList();
+        renderMap();
         if (histLoaded) renderHistoryTable();
         refreshDetailIfSelected(row.incident_number);
 
@@ -500,6 +593,7 @@ function handleCallChange({ eventType, new: row, old }) {
             detailPlaceholder.style.display = '';
         }
         renderCallList();
+        renderMap();
         if (histLoaded) renderHistoryTable();
     }
 }
@@ -575,5 +669,7 @@ document.getElementById('notes-save-btn').addEventListener('click', async () => 
     await loadCalls();
     await loadRoster();
     subscribeRealtime();
+    // Re-render ages every minute; re-render map every 30s (roster syncs every 30s server-side)
     setInterval(() => renderCallList(), 60000);
+    setInterval(() => { if (document.getElementById('ctab-map') && !document.getElementById('ctab-map').classList.contains('hidden')) renderMap(); }, 30000);
 })();
