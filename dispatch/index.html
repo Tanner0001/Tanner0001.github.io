@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD Dispatch — Dynamic Gaming</title>
+    <link rel="icon" type="image/png" href="../images/Favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+
+        /* Call state left-border accent */
+        .call-card[data-state="Outstanding"] { border-left: 2px solid #f59e0b; }
+        .call-card[data-state="Assigned"]    { border-left: 2px solid #3b82f6; }
+        .call-card[data-state="On Scene"]    { border-left: 2px solid #10b981; }
+        .call-card[data-state="Resolved"]    { border-left: 2px solid #4b5563; }
+
+        /* State pills */
+        .pill-outstanding { background: rgba(245,158,11,.12); color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+        .pill-assigned    { background: rgba(59,130,246,.12);  color: #3b82f6; border: 1px solid rgba(59,130,246,.3); }
+        .pill-onscene     { background: rgba(16,185,129,.12);  color: #10b981; border: 1px solid rgba(16,185,129,.3); }
+        .pill-resolved    { background: rgba(107,114,128,.12); color: #6b7280; border: 1px solid rgba(107,114,128,.3); }
+
+        /* State button active states */
+        .state-btn.s-outstanding.active { background: rgba(245,158,11,.12); border-color: #f59e0b; color: #f59e0b; }
+        .state-btn.s-assigned.active    { background: rgba(59,130,246,.12);  border-color: #3b82f6; color: #3b82f6; }
+        .state-btn.s-onscene.active     { background: rgba(16,185,129,.12);  border-color: #10b981; color: #10b981; }
+        .state-btn.s-resolved.active    { background: rgba(107,114,128,.12); border-color: #6b7280; color: #6b7280; }
+
+        /* Roster unit status */
+        .status-clear       { background: rgba(16,185,129,.1);  color: #10b981; border: 1px solid rgba(16,185,129,.3); }
+        .status-enroute     { background: rgba(59,130,246,.1);  color: #3b82f6; border: 1px solid rgba(59,130,246,.3); }
+        .status-onscene     { background: rgba(245,158,11,.1);  color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+        .status-busy        { background: rgba(239,68,68,.1);   color: #ef4444; border: 1px solid rgba(239,68,68,.3); }
+        .status-unavailable { background: rgba(107,114,128,.1); color: #6b7280; border: 1px solid rgba(107,114,128,.3); }
+
+        /* Call card new-call flash */
+        @keyframes flashNew {
+            0%   { background: rgba(249,115,22,.1); border-color: rgba(249,115,22,.4); }
+            100% { background: transparent; }
+        }
+        .call-card.new-flash { animation: flashNew 1.4s ease-out; }
+
+        /* Toast slide-in */
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        .toast { animation: toastIn 0.2s ease-out; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 h-screen overflow-hidden flex flex-col">
+
+    <!-- ── Top bar ──────────────────────────────────────────────────────── -->
+    <header class="h-12 bg-slate-900 border-b border-white/5 flex items-center justify-between px-4 flex-shrink-0 gap-4">
+
+        <!-- Left: branding -->
+        <div class="flex items-center gap-3 flex-shrink-0">
+            <div class="w-7 h-7 bg-orange-600 rounded-lg flex items-center justify-center">
+                <i data-lucide="radio" class="w-4 h-4 text-white"></i>
+            </div>
+            <span class="text-white font-black italic uppercase text-sm tracking-tight">DG <span class="text-orange-500">CAD</span></span>
+            <span class="text-slate-600 text-[10px] font-bold uppercase tracking-widest hidden sm:block">Emergency Dispatch</span>
+        </div>
+
+        <!-- Center: filter tabs -->
+        <div class="flex items-center gap-1 bg-slate-950/60 border border-white/5 rounded-xl p-1">
+            <button class="filter-tab px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest bg-orange-600 text-white transition-all" data-filter="all">All</button>
+            <button class="filter-tab px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all" data-filter="Outstanding">Outstanding</button>
+            <button class="filter-tab px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all" data-filter="Assigned">Assigned</button>
+            <button class="filter-tab px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all" data-filter="On Scene">On Scene</button>
+            <button class="filter-tab px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all" data-filter="Resolved">Resolved</button>
+        </div>
+
+        <!-- Right: connection + clock -->
+        <div class="flex items-center gap-4 flex-shrink-0">
+            <div class="conn-indicator flex items-center gap-2 text-slate-500" id="conn-indicator">
+                <span class="conn-dot w-2 h-2 rounded-full bg-slate-600 transition-all"></span>
+                <span class="conn-label text-[10px] font-bold uppercase tracking-widest" id="conn-label">Connecting…</span>
+            </div>
+            <div class="clock font-mono text-[11px] text-slate-500 tracking-wide" id="clock">--:--:--</div>
+            <a href="../" class="text-slate-600 hover:text-slate-400 transition-colors">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- ── 3-column layout ───────────────────────────────────────────────── -->
+    <div class="flex-1 grid overflow-hidden" style="grid-template-columns: 300px 1fr 260px">
+
+        <!-- Left: call list -->
+        <aside class="bg-slate-900 border-r border-white/5 flex flex-col overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-white/5 flex-shrink-0">
+                <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Active Calls</span>
+                <span class="call-count text-[10px] text-slate-600 font-bold" id="call-count">0 calls</span>
+            </div>
+            <div class="call-list flex-1 overflow-y-auto custom-scroll p-2 flex flex-col gap-1" id="call-list">
+                <div class="empty-state flex flex-col items-center justify-center flex-1 gap-3 text-slate-600 py-16" id="call-empty">
+                    <i data-lucide="phone-off" class="w-8 h-8 opacity-30"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest">No active calls</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center: call detail -->
+        <main class="bg-slate-950 overflow-y-auto custom-scroll p-6 flex flex-col" id="detail-panel">
+
+            <!-- Placeholder -->
+            <div class="detail-placeholder flex flex-col items-center justify-center flex-1 gap-4 text-slate-700" id="detail-placeholder">
+                <i data-lucide="clipboard-list" class="w-12 h-12 opacity-20"></i>
+                <span class="text-[11px] font-black uppercase tracking-[0.2em]">Select a call to view details</span>
+            </div>
+
+            <!-- Call detail (hidden until selected) -->
+            <div class="call-detail flex flex-col gap-5" id="call-detail" style="display:none">
+
+                <!-- Header -->
+                <div class="flex items-start justify-between pb-5 border-b border-white/5">
+                    <div>
+                        <div class="text-[10px] font-mono text-slate-600 mb-1" id="d-incident">—</div>
+                        <div class="text-2xl font-black text-white" id="d-type">—</div>
+                    </div>
+                    <span class="call-state-pill text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full flex-shrink-0" id="d-state-pill">—</span>
+                </div>
+
+                <!-- Info grid -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-slate-900 border border-white/5 rounded-2xl p-4">
+                        <div class="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-1">Location</div>
+                        <div class="text-sm text-white font-medium" id="d-location">—</div>
+                    </div>
+                    <div class="bg-slate-900 border border-white/5 rounded-2xl p-4">
+                        <div class="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-1">Postal</div>
+                        <div class="text-sm text-white font-medium" id="d-postal">—</div>
+                    </div>
+                    <div class="bg-slate-900 border border-white/5 rounded-2xl p-4">
+                        <div class="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-1">Caller</div>
+                        <div class="text-sm text-white font-medium" id="d-caller">—</div>
+                    </div>
+                    <div class="bg-slate-900 border border-white/5 rounded-2xl p-4">
+                        <div class="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-1">Time</div>
+                        <div class="text-sm text-white font-medium" id="d-time">—</div>
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div class="flex flex-col gap-2">
+                    <div class="text-[9px] font-black uppercase tracking-widest text-slate-600">Details</div>
+                    <div class="bg-slate-900 border border-white/5 rounded-2xl p-4 text-sm text-slate-300 whitespace-pre-wrap min-h-10" id="d-message">—</div>
+                </div>
+
+                <!-- Notes -->
+                <div class="flex flex-col gap-2">
+                    <div class="text-[9px] font-black uppercase tracking-widest text-slate-600">Notes</div>
+                    <div class="bg-slate-900 border border-white/5 rounded-2xl p-4 text-sm text-slate-500 italic whitespace-pre-wrap min-h-10" id="d-notes">No notes.</div>
+                </div>
+
+                <!-- Attached units -->
+                <div class="flex flex-col gap-2">
+                    <div class="text-[9px] font-black uppercase tracking-widest text-slate-600">Attached Units</div>
+                    <div class="unit-pills flex flex-wrap gap-2" id="d-units">
+                        <span class="unit-empty text-[11px] text-slate-600">None assigned</span>
+                    </div>
+                </div>
+
+                <!-- State controls -->
+                <div class="flex flex-col gap-2">
+                    <div class="text-[9px] font-black uppercase tracking-widest text-slate-600">Update State</div>
+                    <div class="state-btns flex gap-2 flex-wrap">
+                        <button class="state-btn s-outstanding bg-slate-900 border border-white/5 rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:border-white/20 hover:text-white transition-all cursor-pointer" data-state="Outstanding">Outstanding</button>
+                        <button class="state-btn s-assigned    bg-slate-900 border border-white/5 rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:border-white/20 hover:text-white transition-all cursor-pointer" data-state="Assigned">Assigned</button>
+                        <button class="state-btn s-onscene     bg-slate-900 border border-white/5 rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:border-white/20 hover:text-white transition-all cursor-pointer" data-state="On Scene">On Scene</button>
+                        <button class="state-btn s-resolved    bg-slate-900 border border-white/5 rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:border-white/20 hover:text-white transition-all cursor-pointer" data-state="Resolved">Resolved</button>
+                    </div>
+                </div>
+
+                <!-- Notes editor -->
+                <div class="flex flex-col gap-2">
+                    <div class="text-[9px] font-black uppercase tracking-widest text-slate-600">Add / Edit Notes</div>
+                    <div class="flex gap-3 items-start">
+                        <textarea id="notes-input" rows="3" placeholder="Dispatcher notes…" class="flex-1 bg-slate-900 border border-white/5 rounded-2xl p-4 text-sm text-white placeholder-slate-600 resize-none outline-none focus:border-orange-500/40 transition-all"></textarea>
+                        <button id="notes-save-btn" class="flex-shrink-0 self-end bg-orange-600 hover:bg-orange-500 text-white px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Save</button>
+                    </div>
+                </div>
+
+            </div><!-- /.call-detail -->
+        </main>
+
+        <!-- Right: unit roster -->
+        <aside class="bg-slate-900 border-l border-white/5 flex flex-col overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-white/5 flex-shrink-0 flex-wrap gap-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Active Units</span>
+                <div class="roster-filter-row flex gap-1">
+                    <button class="roster-filter px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest bg-orange-600 text-white transition-all" data-rfilter="all">All</button>
+                    <button class="roster-filter px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-slate-400 border border-white/5 hover:text-white transition-all" data-rfilter="leo">LEO</button>
+                    <button class="roster-filter px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-slate-400 border border-white/5 hover:text-white transition-all" data-rfilter="fire">Fire</button>
+                </div>
+            </div>
+            <div class="roster-list flex-1 overflow-y-auto custom-scroll p-2 flex flex-col gap-1" id="roster-list">
+                <div class="flex flex-col items-center justify-center py-16 gap-3 text-slate-600">
+                    <i data-lucide="users" class="w-7 h-7 opacity-30"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest">No units on duty</span>
+                </div>
+            </div>
+        </aside>
+
+    </div><!-- /.grid -->
+
+    <!-- ── Toast container ──────────────────────────────────────────────── -->
+    <div id="toast-container" class="fixed bottom-4 right-4 flex flex-col gap-2 z-50 pointer-events-none"></div>
+
+    <script src="../admin/auth.js"></script>
+    <script src="app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
