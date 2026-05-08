@@ -115,17 +115,24 @@ function applyMapTransform() {
 
 function clampMapPan() {
     const wrap = document.getElementById('map-wrap');
-    if (!wrap) return;
+    const canvas = document.getElementById('map-canvas');
+    if (!wrap || !canvas) return;
     const wW = wrap.clientWidth, wH = wrap.clientHeight;
-    mapPanX = Math.min(0, Math.max(wW - wW * mapZoom, mapPanX));
-    mapPanY = Math.min(0, Math.max(wH - wH * mapZoom, mapPanY));
+    const cW = canvas.offsetWidth * mapZoom;
+    const cH = canvas.offsetHeight * mapZoom;
+
+    if (cW > wW) mapPanX = Math.min(0, Math.max(wW - cW, mapPanX));
+    else         mapPanX = (wW - cW) / 2;
+
+    if (cH > wH) mapPanY = Math.min(0, Math.max(wH - cH, mapPanY));
+    else         mapPanY = (wH - cH) / 2;
 }
 
 function zoomMap(factor, cx, cy) {
     const wrap = document.getElementById('map-wrap');
     if (!wrap) return;
     if (cx === undefined) { cx = wrap.clientWidth / 2; cy = wrap.clientHeight / 2; }
-    const newZoom = Math.max(1, Math.min(6, mapZoom * factor));
+    const newZoom = Math.max(1, Math.min(8, mapZoom * factor));
     mapPanX = cx - (cx - mapPanX) * (newZoom / mapZoom);
     mapPanY = cy - (cy - mapPanY) * (newZoom / mapZoom);
     mapZoom = newZoom;
@@ -136,21 +143,23 @@ function zoomMap(factor, cx, cy) {
 // Start the map view zoomed 2× onto central Los Santos
 function focusOnLS() {
     const wrap = document.getElementById('map-wrap');
-    const img  = document.getElementById('map-img');
-    if (!wrap || !img) return;
+    const canvas = document.getElementById('map-canvas');
+    if (!wrap || !canvas) return;
     const wW = wrap.clientWidth, wH = wrap.clientHeight;
-    const nW = img.naturalWidth  || wW;
-    const nH = img.naturalHeight || wH;
-    const iR = nW / nH, cR = wW / wH;
-    let imgW, imgH, oX, oY;
-    if (iR > cR) { imgW = wW; imgH = wW / iR; oX = 0;   oY = (wH - imgH) / 2; }
-    else         { imgH = wH; imgW = wH * iR;  oY = 0;   oX = (wW - imgW) / 2; }
+    const cW = canvas.offsetWidth;
+    const cH = canvas.offsetHeight;
+    
     // LS centre ~(0, -1000) in world coords
-    const cx = oX + (0 + 5610) / 12340 * imgW;
-    const cy = oY + (1 - (-1000 + 3850) / 12200) * imgH;
+    const pos = worldToMap(0, -1000);
+    const fx = parseFloat(pos.left) / 100;
+    const fy = parseFloat(pos.top) / 100;
+    
+    const cx = fx * cW;
+    const cy = fy * cH;
+    
     mapZoom = 2;
-    mapPanX = wW / 2 - cx * 2;
-    mapPanY = wH / 2 - cy * 2;
+    mapPanX = wW / 2 - cx * mapZoom;
+    mapPanY = wH / 2 - cy * mapZoom;
     clampMapPan();
     applyMapTransform();
 }
@@ -158,19 +167,16 @@ function focusOnLS() {
 // Convert canvas viewport point back to world coords (for coordinate readout)
 function canvasToWorld(vpX, vpY) {
     const wrap = document.getElementById('map-wrap');
-    const img  = document.getElementById('map-img');
-    if (!wrap || !img) return null;
-    const wW = wrap.clientWidth, wH = wrap.clientHeight;
-    const nW = img.naturalWidth || wW, nH = img.naturalHeight || wH;
-    const iR = nW / nH, cR = wW / wH;
-    let imgW, imgH, oX, oY;
-    if (iR > cR) { imgW = wW; imgH = wW / iR; oX = 0;  oY = (wH - imgH) / 2; }
-    else         { imgH = wH; imgW = wH * iR;  oY = 0;  oX = (wW - imgW) / 2; }
+    const canvas = document.getElementById('map-canvas');
+    if (!wrap || !canvas) return null;
+    const cW = canvas.offsetWidth, cH = canvas.offsetHeight;
+    
     // Convert viewport → canvas → image-relative fraction
     const canX = (vpX - mapPanX) / mapZoom;
     const canY = (vpY - mapPanY) / mapZoom;
-    const fracX = (canX - oX) / imgW;
-    const fracY = (canY - oY) / imgH;
+    const fracX = canX / cW;
+    const fracY = canY / cH;
+    
     const wx = fracX * 12340 - 5610;
     const wy = (1 - fracY) * 12200 - 3850;
     return { x: wx, y: wy };
@@ -191,7 +197,11 @@ document.querySelectorAll('.center-tab').forEach(btn => {
         document.getElementById('ctab-' + target).classList.remove('hidden');
 
         if (target === 'history') loadHistory();
-        if (target === 'map')     renderMap();
+        if (target === 'map')     {
+            renderMap();
+            const img = document.getElementById('map-img');
+            if (img && img.complete) focusOnLS();
+        }
         lucide.createIcons();
     });
 });
@@ -356,30 +366,16 @@ function renderRoster() {
 // ── Map rendering ─────────────────────────────────────────────────────────
 function renderMap() {
     const overlay  = document.getElementById('map-overlay');
-    const mapImg   = document.getElementById('map-img');
-    const canvas   = document.getElementById('map-canvas');
     const countEl  = document.getElementById('map-unit-count');
-    if (!overlay || !mapImg || !canvas) return;
+    if (!overlay) return;
 
     overlay.innerHTML = '';
-
-    // Fit overlay over the letterboxed image area within the canvas
-    const cW = canvas.clientWidth;
-    const cH = canvas.clientHeight;
-    const nW = mapImg.naturalWidth  || cW;
-    const nH = mapImg.naturalHeight || cH;
-    const imgRatio = nW / nH;
-    const conRatio = cW / cH;
-    let rW, rH, oX, oY;
-    if (imgRatio > conRatio) { rW = cW; rH = cW / imgRatio; oX = 0; oY = (cH - rH) / 2; }
-    else                     { rH = cH; rW = cH * imgRatio; oY = 0; oX = (cW - rW) / 2; }
-    overlay.style.cssText = `position:absolute; left:${oX}px; top:${oY}px; width:${rW}px; height:${rH}px; pointer-events:none;`;
+    // With new CSS, overlay is already 100% of canvas/image
 
     const onDuty = roster.filter(u => u.x || u.y); // only place units that have coords
 
     // Unit markers
     onDuty.forEach(u => {
-        if (!u.x && !u.y) return;
         const pos = worldToMap(u.x, u.y);
         const el  = document.createElement('div');
         el.className = 'map-unit';
