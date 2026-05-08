@@ -91,11 +91,10 @@ function statusClass(status) {
 }
 
 // ── GTA V world → map percentage ──────────────────────────────────────────
-// Exact formula from kibook/webmap (gta5Map): width=12340, height=12200,
-// xOffset=10390, yOffset=12150, mapRadius=16000
+// Calibrated for high-res portrait map: width=17107, height=11032, xOff=7704, yOff=2715
 function worldToMap(wx, wy) {
-    const left   = Math.max(0, Math.min(100, (wx + 16000 - 10390) / 12340 * 100));
-    const bottom = Math.max(0, Math.min(100, (wy + 16000 - 12150) / 12200 * 100));
+    const left   = Math.max(0, Math.min(100, (wx + 7704) / 17107 * 100));
+    const bottom = Math.max(0, Math.min(100, (wy + 2715) / 11032 * 100));
     return {
         left: left.toFixed(3) + '%',
         top:  (100 - bottom).toFixed(3) + '%'   // invert Y: higher game Y = higher on map
@@ -177,8 +176,8 @@ function canvasToWorld(vpX, vpY) {
     const fracX = canX / cW;
     const fracY = canY / cH;
     
-    const wx = fracX * 12340 - 5610;
-    const wy = (1 - fracY) * 12200 - 3850;
+    const wx = fracX * 17107 - 7704;
+    const wy = (1 - fracY) * 11032 - 2715;
     return { x: wx, y: wy };
 }
 
