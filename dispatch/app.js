@@ -91,10 +91,10 @@ function statusClass(status) {
 }
 
 // ── GTA V world → map percentage ──────────────────────────────────────────
-// Calibrated for high-res portrait map: width=17107, height=11032, xOff=7704, yOff=2715
+// Calibrated for high-res portrait map: width=12334, height=12196, xOff=5610, yOff=3847
 function worldToMap(wx, wy) {
-    const left   = Math.max(0, Math.min(100, (wx + 7704) / 17107 * 100));
-    const bottom = Math.max(0, Math.min(100, (wy + 2715) / 11032 * 100));
+    const left   = Math.max(0, Math.min(100, (wx + 5610) / 12334 * 100));
+    const bottom = Math.max(0, Math.min(100, (wy + 3847) / 12196 * 100));
     return {
         left: left.toFixed(3) + '%',
         top:  (100 - bottom).toFixed(3) + '%'   // invert Y: higher game Y = higher on map
@@ -176,8 +176,8 @@ function canvasToWorld(vpX, vpY) {
     const fracX = canX / cW;
     const fracY = canY / cH;
     
-    const wx = fracX * 17107 - 7704;
-    const wy = (1 - fracY) * 11032 - 2715;
+    const wx = fracX * 12334 - 5610;
+    const wy = (1 - fracY) * 12196 - 3847;
     return { x: wx, y: wy };
 }
 
